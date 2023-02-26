@@ -1,3 +1,4 @@
+import type { AppProps } from 'next/app';
 import { NextIntlProvider } from 'next-intl';
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
@@ -8,7 +9,7 @@ import { publicProvider } from 'wagmi/providers/public';
 
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum],
-  [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
+  [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
@@ -22,7 +23,7 @@ const wagmiClient = createClient({
   provider,
 });
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
