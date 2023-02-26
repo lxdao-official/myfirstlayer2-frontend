@@ -1,0 +1,13 @@
+{
+    "Index": {
+      "title": "Home",
+      "description": "This is the home page."
+    },
+    "LocaleSwitcher": {
+      "switchLocale": "Switch to {locale, select, zh {Chinese} en {English} other {Unknown}}"
+    },
+    "PageLayout": {
+      "pageTitle": "next-intl"
+    }
+  }
+  
