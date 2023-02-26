@@ -1,5 +1,5 @@
-import {GetStaticPropsContext} from 'next';
-import {useTranslations} from 'next-intl';
+import { GetStaticPropsContext } from 'next';
+import { useTranslations } from 'next-intl';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 import LocaleSwitcher from 'components/LocaleSwitcher';
@@ -17,10 +17,10 @@ export default function Index() {
   );
 }
 
-export async function getStaticProps({locale}: GetStaticPropsContext) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
-      messages: (await import(`../messages/${locale}.json`)).default
-    }
+      messages: (await import(`../messages/${locale}.json`)).default,
+    },
   };
 }
