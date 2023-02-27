@@ -1,13 +1,13 @@
-import {useTranslations} from 'next-intl';
+import { useTranslations } from 'next-intl';
 import Head from 'next/head';
-import {ReactNode} from 'react';
+import { ReactNode } from 'react';
 
 type Props = {
   children?: ReactNode;
   title: string;
 };
 
-export default function PageLayout({children, title}: Props) {
+export default function PageLayout({ children, title }: Props) {
   const t = useTranslations('PageLayout');
 
   return (
@@ -19,10 +19,10 @@ export default function PageLayout({children, title}: Props) {
         style={{
           padding: 24,
           fontFamily: 'system-ui, sans-serif',
-          lineHeight: 1.5
+          lineHeight: 1.5,
         }}
       >
-        <div style={{maxWidth: 510}}>
+        <div style={{ maxWidth: 510 }}>
           <h1>{title}</h1>
           {children}
         </div>
