@@ -17,7 +17,7 @@ export default function Index() {
   );
 }
 
-export async function getStaticProps({ locale }: GetStaticPropsContext) {
+export async function getStaticProps({ locale }) {
   return {
     props: {
       messages: (await import(`../messages/${locale}.json`)).default,
