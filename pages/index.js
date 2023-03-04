@@ -5,13 +5,12 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import LocaleSwitcher from '/components/LocaleSwitcher';
 import PageLayout from '/components/PageLayout';
 import Example from '../mdx/example.mdx';
-import ExampleEn from '../mdx/en/example.mdx';
-import ExampleZh from '../mdx/zh/example.mdx';
+import ExampleEn from '../mdx/example.en.mdx';
+import ExampleZh from '../mdx/example.zh.mdx';
 
 export default function Index() {
   const t = useTranslations('Index');
   const locale = useLocale();
-  console.log(locale);
 
   return (
     <PageLayout title={t('title')}>
