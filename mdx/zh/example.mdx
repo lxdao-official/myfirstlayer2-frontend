@@ -1,0 +1,21 @@
+import  MyComponent from '/components/MyComponent'
+import  MyLayoutComponent  from '/components/MyLayoutComponent'
+
+export const meta = {
+author: 'Rich Haines'
+}
+
+# 文档布局
+
+这是一个list
+
+- 一
+- 二
+- 三
+
+检查我的react节点
+
+
+
+
+export default ({ children }) =>{return <MyLayoutComponent meta={meta}>{children}</MyLayoutComponent>}

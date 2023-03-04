@@ -17,7 +17,7 @@ export default function PageLayout({ children, title }) {
           lineHeight: 1.5,
         }}
       >
-        <div style={{ maxWidth: 510 }}>
+        <div>
           <h1>{title}</h1>
           {children}
         </div>

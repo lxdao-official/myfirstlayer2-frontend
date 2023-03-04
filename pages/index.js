@@ -5,6 +5,8 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import LocaleSwitcher from '/components/LocaleSwitcher';
 import PageLayout from '/components/PageLayout';
 import Example from '../mdx/example.mdx';
+import ExampleEn from '../mdx/en/example.mdx';
+import ExampleZh from '../mdx/zh/example.mdx';
 
 export default function Index() {
   const t = useTranslations('Index');
@@ -17,6 +19,11 @@ export default function Index() {
       <LocaleSwitcher />
       <ConnectButton />
       <Example />
+      --------------------------以上通过md内组件实现翻译----------------------------------
+      <br />
+      -------------------------以下通过切换md文件实现翻译---------------------------------
+      {locale == 'en' && <ExampleEn />}
+      {locale == 'zh' && <ExampleZh />}
     </PageLayout>
   );
 }
