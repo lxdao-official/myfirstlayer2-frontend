@@ -2,11 +2,6 @@ import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import { ReactNode } from 'react';
 
-// type Props = {
-//   children?: ReactNode;
-//   title: string;
-// };
-
 export default function PageLayout({ children, title }) {
   const t = useTranslations('PageLayout');
 

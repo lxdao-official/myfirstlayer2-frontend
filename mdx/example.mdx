@@ -1,0 +1,31 @@
+import  MyComponent from '/components/MyComponent'
+import  MyLayoutComponent  from '/components/MyLayoutComponent'
+import MdTranslate from '/components/MdTranslate'
+export const meta = {
+author: 'Rich Haines'
+}
+
+# My MDX Page with a Layout
+
+This is a list in markdown:
+
+- One
+- Two
+- Three
+
+Checkout my React component:
+### <MdTranslate>description</MdTranslate>
+
+<MdTranslate>description</MdTranslate>
+
+[<MdTranslate>description</MdTranslate>](http://www.baidu.com)
+
+<MyComponent/>
+
+```javascript
+console.log(??)
+# <MdTranslate>description</MdTranslate>
+# 12313
+```
+
+export default ({ children }) =>{return <MyLayoutComponent meta={meta}>{children}</MyLayoutComponent>}
