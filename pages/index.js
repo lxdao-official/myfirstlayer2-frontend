@@ -16,7 +16,6 @@ import MyComponent from '/components/MyComponent';
 export default function Index({ content, meta }) {
   const t = useTranslations('Index');
   const locale = useLocale();
-  console.log(meta);
   const components = {
     MyComponent,
   };
