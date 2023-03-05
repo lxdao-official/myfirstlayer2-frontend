@@ -1,0 +1,19 @@
+{
+  "Index": {
+    "title": "主页",
+    "description": "这是主页."
+  },
+
+  "PageLayout": {
+    "pageTitle": "xxx"
+  },
+  "Main": {},
+
+  "SectionTeam": {
+    "sectionTeam-content-10": "本项目由【国产良心 NFT】社区发起，多位贡献者合作共建完成。",
+    "sectionTeam-content-11": "核心贡献者",
+    "sectionTeam-content-12": "贡献者",
+    "sectionTeam-title-10": "幕后团队",
+    "sectionTeam-title-11": "介绍当前项目的背后的贡献者"
+  }
+}
