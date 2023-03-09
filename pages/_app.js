@@ -6,6 +6,8 @@ import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import '../common/global.css';
+import getTheme from '../common/theme';
+import { ThemeProvider } from '@mui/material/styles';
 
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum],
@@ -25,12 +27,14 @@ const wagmiClient = createClient({
 
 export default function App({ Component, pageProps }) {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
-        <NextIntlProvider messages={pageProps.messages}>
-          <Component {...pageProps} />
-        </NextIntlProvider>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <ThemeProvider theme={getTheme('light')}>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider chains={chains}>
+          <NextIntlProvider messages={pageProps.messages}>
+            <Component {...pageProps} />
+          </NextIntlProvider>
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ThemeProvider>
   );
 }

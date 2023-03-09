@@ -16,6 +16,7 @@ import MyComponent from '/components/MyComponent';
 import { Box } from '@mui/material';
 import Container from '../components/Container';
 import SectionTop from '../sections/SectionTop';
+import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
 import SectionFooter from '../sections/SectionFooter';
 import { LXDAOIntroduction } from 'lxdao-ui';
@@ -42,6 +43,7 @@ export default function Index({ content, meta }) {
           <MDXRemote components={components} {...content} />
         </Container>
       </Box>
+      <SectionSponsors />
       <SectionTeam />
       <Box marginBottom={4} paddingX={5}>
         <LXDAOIntroduction maxWidth="1240px" xsWidth="326px" />

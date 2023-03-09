@@ -21,6 +21,7 @@ const getTheme = (mode) =>
           '"Apple Color Emoji"',
           '"Segoe UI Emoji"',
           '"Segoe UI Symbol"',
+          '"Open Sans"',
         ].join(','),
         h1: {
           fontSize: '98px',
@@ -31,7 +32,7 @@ const getTheme = (mode) =>
           fontSize: '56px',
         },
         h3: {
-          fontSize: '42px',
+          fontSize: '48px',
         },
         h4: {
           fontSize: '30px',
