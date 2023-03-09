@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import _ from 'lodash';
 import { useTheme } from '@mui/material/styles';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import StyledToolTip from '../components/StyledToolTip';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
@@ -537,7 +537,7 @@ export default function SectionTeam() {
         <Box padding={2} marginBottom={8}>
           <Grid container spacing={2}>
             {coreContributors.map((item, i) => (
-              <Grid item xs={12} sm={6} md={3} lg={2} key={i}>
+              <Grid item xs={12} sm={6} md={12 / 5} key={i}>
                 <Contributor {...item} />
               </Grid>
             ))}
@@ -554,7 +554,7 @@ export default function SectionTeam() {
         <Box padding={2} marginBottom={8}>
           <Grid container spacing={2}>
             {_.shuffle(activeContributors).map((item, i) => (
-              <Grid item xs={6} sm={4} md={2} lg={1.5} key={i}>
+              <Grid item xs={6} sm={4} md={12 / 7} key={i}>
                 <SimpleContributor {...item} />
               </Grid>
             ))}
