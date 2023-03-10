@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useTheme } from '@mui/material/styles';
 import {
   Box,
@@ -15,19 +15,18 @@ import Divider from '@mui/material/Divider';
 import LXDAOLogo from '../../components/LXDAOLogo';
 import { useRouter } from 'next/router';
 import { display } from '@mui/system';
+import { ColorModeContext } from '../../pages/_app';
 
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const router = useRouter();
 
+  const colorMode = useContext(ColorModeContext);
   const [current, setCurrent] = useState('introduce');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const t = useTranslations('Main');
   const theme = useTheme();
-
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
-
-  useEffect(() => {}, []);
 
   return (
     <Box>
@@ -46,7 +45,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
             title="theFront"
             flexDirection={{ xs: 'column', sm: 'row' }}
             alignItems="center"
-            sx={{ color: theme.palette.common.black, textDecoration: 'none' }}
+            // sx={{ color: theme.palette.common.black, textDecoration: 'none' }}
           >
             <Box
               width="125px"
@@ -54,7 +53,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               component={'img'}
               src={'/icons/logoLight.svg'}
             />
-
             <Divider
               orientation="vertical"
               sx={{
@@ -150,13 +148,15 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               component="img"
               src="/theme.svg"
               sx={{ cursor: 'pointer' }}
-              onClick={() => {
-                if (mode === 'light') {
-                  setMode('dark');
-                } else {
-                  setMode('light');
-                }
-              }}
+              onClick={colorMode.toggleColorMode}
+              // onClick={() => {
+
+              //   if (mode === 'light') {
+              //     setMode('dark');
+              //   } else {
+              //     setMode('light');
+              //   }
+              // }}
             />
             <Box
               component="img"
