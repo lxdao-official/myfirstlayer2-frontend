@@ -70,23 +70,30 @@ const Language = () => {
           onClick={handleClick}
         >
           <Box display="flex">
-            <LanguageIcon
-              sx={{
-                fontSize: '1.5rem',
-              }}
-            />
-            <Typography marginLeft={0.5}>
+            <Box component="img" src="/earth.svg" />
+            <Typography
+              marginLeft={1}
+              marginRight={0.5}
+              color={'#000'}
+              lineHeight={'26px'}
+            >
               {locale === 'zh' ? '简体中文' : 'English'}
             </Typography>
+            <Box
+              component="img"
+              src="/arrow.svg"
+              sx={{ rotate: open && '180deg' }}
+            />
           </Box>
         </Button>
         <Menu
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          disableScrollLock={false}
           MenuListProps={{
-            'aria-labelledby': 'basic-button',
-            dense: true,
+            'aria-labelledby': 'lock-button',
+            role: 'listbox',
           }}
         >
           <MenuItem>
