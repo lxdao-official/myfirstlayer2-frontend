@@ -27,7 +27,7 @@ const wagmiClient = createClient({
   provider,
 });
 
-export const ColorModeContext = createContext({ toggleColorMode: () => {} });
+export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
 export default function App({ Component, pageProps }) {
   const [mode, setMode] = useState('light');

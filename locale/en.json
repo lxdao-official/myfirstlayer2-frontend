@@ -1,7 +1,7 @@
 {
   "Index": {
-    "title": "Home",
-    "description": "This is the home page."
+    "title": "Welcome to My first layer2.",
+    "description": "Myfirstlayer2是LXDAO”my first”系列的第2个教育公益类产品。\n网上的区块链layer2知识分散且难以学习，本产品通过文字+图片+动画的形式向web3用户普及所有layer2知识。\n该作品由以太坊基金会赞助，LXDAO团队制作，非常感谢以太坊基金会对web3生态的支持。"
   },
 
   "PageLayout": {
@@ -11,12 +11,15 @@
 
   "SectionTeam": {
     "sectionTeam-content-10": "Co-founder of GCLX NFT and My First NFT. Web3 Buidler. ETH to the moon!。",
-    "sectionTeam-content-11": "At vero eos et accusamus et iusto odio dignissimos ducimus",
-    "sectionTeam-content-12": "Qui blanditiis praesentium voluptatum deleniti atque corrupti",
+    "sectionTeam-content-11": "Core Contributors",
+    "sectionTeam-content-12": "Contributors",
     "sectionTeam-title-10": "Team behind the screen",
-    "sectionTeam-title-11": "介绍当前项目的背后的贡献者",
+    "sectionTeam-title-11": "Introduce",
     "sectionTeam-partners-13": "Co-founder of GCLX NFT and My First NFT. Web3 Buidler. ETH to the moon!",
     "sectionTeam-partners-14": "At vero eos et accusamus et iusto odio dignissimos ducimus",
     "sectionTeam-partners-15": "Qui blanditiis praesentium voluptatum deleniti atque corrupti"
+  },
+  "SectionSponsors": {
+    "sectionSponsors-title-10": "Sponsors"
   }
 }

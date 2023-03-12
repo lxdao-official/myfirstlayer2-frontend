@@ -1,41 +1,16 @@
-// import { activatei18n } from '../i18n';
 import { useCallback, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
-import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
-
-import { useTranslations } from 'next-intl';
+import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { borderRadius } from '@mui/system';
 
-// export default function LocaleSwitcher() {
-//   const t = useTranslations('LocaleSwitcher');
-
-//   const { locale, locales, route } = useRouter();
-//   const otherLocale = locales?.find((cur) => cur !== locale);
-
-//   return (
-//     <Link href={route} locale={otherLocale}>
-//       {t('switchLocale', { locale: otherLocale })}
-//     </Link>
-//   );
-// }
-
 const Language = () => {
-  // const locale = useLocale();
-  // const localeLang = window.localStorage.getItem('locale');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  // const navigatorLang = navigator.language || navigator.userLanguage;
-  // const navigatorLanguage = navigatorLang.substr(0, 2);
-  // const [lang, setLang] = useState(
-  //   localeLang ? localeLang : navigatorLanguage === 'zh' ? 'zh' : 'en'
-  // );
-  // const t = useTranslations('LocaleSwitcher');
   const router = useRouter();
   const { locale, locales, route } = router;
   const otherLocale = locales?.find((cur) => cur !== locale);
@@ -49,16 +24,7 @@ const Language = () => {
   };
 
   const setLanguage = (value) => {
-    // setLang(value);
-    // activatei18n(value);
-
-    // localStorage.setItem('locale', value);
-    debugger;
     router.push('/' + (value === 'en' ? '' : value));
-  };
-
-  const handleLangSelect = (value) => {
-    setLanguage(value);
   };
 
   const LangNode = useCallback(() => {
