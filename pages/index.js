@@ -2,7 +2,6 @@ import React from 'react';
 
 import { GetStaticPropsContext } from 'next';
 import { useTranslations, useLocale } from 'next-intl';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Head from 'next/head';
 import Main from '../layouts/Main';
 
@@ -13,6 +12,7 @@ import getDocBySlug from '/utils';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
 import MyComponent from '/components/MyComponent';
+import Directory from '/components/Directory';
 import { Box } from '@mui/material';
 import Container from '../components/Container';
 import SectionTop from '../sections/SectionTop';
@@ -30,6 +30,7 @@ export default function Index({ content, meta }) {
   return (
     <Main>
       <SectionTop />
+      <Directory />
       <SectionSponsors />
       <SectionTeam />
       <Box marginBottom={4} paddingX={5}>
