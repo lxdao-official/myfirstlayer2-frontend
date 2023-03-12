@@ -72,7 +72,7 @@ export default function SectionFooter() {
           borderColor: '#DADADA',
           height: '18px',
           marginTop: '5px',
-          marginInline: { xs: '5px', sm: '88px' },
+          marginInline: { xs: '20px', sm: '88px' },
           display: { xs: 'none', sm: 'block' },
         }}
       />
