@@ -10,6 +10,7 @@ import { Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { borderRadius } from '@mui/system';
 
 // export default function LocaleSwitcher() {
 //   const t = useTranslations('LocaleSwitcher');
@@ -70,34 +71,42 @@ const Language = () => {
           onClick={handleClick}
         >
           <Box display="flex">
-            <LanguageIcon
-              sx={{
-                fontSize: '1.5rem',
-              }}
-            />
-            <Typography marginLeft={0.5}>
+            <Box component="img" src="/earth.svg" />
+            <Typography
+              marginLeft={1}
+              marginRight={0.5}
+              color={'#000'}
+              lineHeight={'26px'}
+            >
               {locale === 'zh' ? '简体中文' : 'English'}
             </Typography>
+            <Box
+              component="img"
+              src="/arrow.svg"
+              sx={{ rotate: open && '180deg' }}
+            />
           </Box>
         </Button>
         <Menu
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          disableScrollLock={false}
           MenuListProps={{
-            'aria-labelledby': 'basic-button',
-            dense: true,
+            'aria-labelledby': 'lock-button',
+            role: 'listbox',
           }}
+          autoFocus={true}
         >
           <MenuItem>
-            <Typography variant="subtitle1">
+            <Typography variant="body1">
               <Link href={route} locale="en">
                 English
               </Link>
             </Typography>
           </MenuItem>
           <MenuItem>
-            <Typography variant="subtitle1">
+            <Typography variant="body1">
               <Link href={route} locale="zh">
                 简体中文
               </Link>
@@ -110,7 +119,7 @@ const Language = () => {
               );
             }}
           >
-            <Typography variant="subtitle1">Your Lang?</Typography>
+            <Typography variant="body1">Your Lang?</Typography>
           </MenuItem>
         </Menu>
       </Box>
