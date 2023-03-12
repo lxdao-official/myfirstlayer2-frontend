@@ -30,7 +30,7 @@ export default function Index({ content, meta }) {
   return (
     <Main>
       <SectionTop />
-      <Directory />
+      <Directory md={<MDXRemote components={components} {...content} />} />
       <SectionSponsors />
       <SectionTeam />
       <Box marginBottom={4} paddingX={5}>

@@ -8,7 +8,16 @@ import {
   CardActions,
 } from '@mui/material';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Container from './Container';
+import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize'
+import MyComponent from '/components/MyComponent';
+import { test } from 'gray-matter';
 
+const readStatus = [
+  '/content/read.png',
+  '/content/unread.png',
+];
 
 const directoryText = [
   [{ text: '前言（Before Layer2）', main: true }, { text: '区块链的不可能三角',  main: false }],
@@ -17,15 +26,32 @@ const directoryText = [
   [{ text: 'Layer2未来展望',  main: true }, { text: 'Validium', main: false }, { text: 'Volition', main: false}],
 ];
 
-export default function Directory() {
-
+export default function Directory(props) {
+  // const components = {
+  //   MyComponent,
+  // };
+  const { md } = props
+  console.log('props', props);
   return (
-    <Box
+    <Container
       display="flex"
       justifyContent="space-between"
+      marginTop={4}
     >
-      <Box>
-        <Box>mdx content</Box>
+      <Box
+        sx={{
+          backgroundColor: '#ECECEC',
+          width: 920,
+        }}
+        marginRight={4}
+        borderRadius={2}
+      >
+        <Box padding={8}>
+          {/* <MDXRemote {...mdxSource} /> */}
+          {/* <MDXRemote components={components} {...mdxSource} /> */}
+          {md}
+          {/* {test()} */}
+        </Box>
       </Box>
 
             
@@ -34,9 +60,11 @@ export default function Directory() {
           <Box
             sx={{ 
               width: 247,
-              // backgroundColor: 'primary.dark',
-              border: '1px dashed grey' }}
-            marginTop={2}
+              backgroundColor: '#ECECEC',
+              }}
+              marginTop={2}
+        borderRadius={2}
+
           >
           <Box>
             <Box>
@@ -50,7 +78,7 @@ export default function Directory() {
         </Box>
       </Box>
 
-    </Box>
+    </Container>
   )
 }
 
@@ -65,8 +93,8 @@ const Item = (props) => {
             display="flex"
             paddingLeft={!item?.main ? 4 : 0}
           >
-            <Box>
-              <img src='./team/muxin.png' width={12} height={12}/>
+            <Box marginTop={1}>
+              <img src={readStatus[0]} />
             </Box>
             <Box>
                 <Typography variant={item?.main ? 'h6' : 'subtitle1'}>{item?.text}</Typography>
@@ -77,4 +105,17 @@ const Item = (props) => {
 
     </Box>
   )
+}
+
+export async function getStaticProps() {
+  // MDX text - can be from a local file, database, anywhere
+  const source = `---
+title: Test
+---
+
+Some **mdx** text, with a component<MyComponent />
+  `
+
+  const mdxSource = await serialize(source, { parseFrontmatter: true })
+  return { props: { mdxSource } }
 }
