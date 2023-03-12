@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from 'react';
-import { useTheme } from '@mui/material/styles';
 import {
   Box,
   Typography,
@@ -7,14 +6,16 @@ import {
   Menu,
   MenuItem,
   Link,
+  Divider,
+  useTheme,
 } from '@mui/material';
+import { display } from '@mui/system';
+import { useRouter } from 'next/router';
+
 import { useTranslations } from 'next-intl';
 import Container from '../../components/Container';
 import Language from '../../components/Language';
-import Divider from '@mui/material/Divider';
 import LXDAOLogo from '../../components/LXDAOLogo';
-import { useRouter } from 'next/router';
-import { display } from '@mui/system';
 import { ColorModeContext } from '../../pages/_app';
 
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
@@ -30,13 +31,14 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
 
   return (
     <Box>
-      <Box id="fixed-header">
+      <Box id="fixed-header" backgroundColor="#fafafa">
         <Container
           paddingY={1}
           display="flex"
+          flexDirection={{ xs: 'column', md: 'row' }}
           alignItems="center"
           justifyContent="space-between"
-          flexDirection={smallScreen ? 'column' : 'row'}
+          height={{ xs: '100px', md: '112px' }}
         >
           <Box
             display={'flex'}
@@ -45,7 +47,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
             title="theFront"
             flexDirection={{ xs: 'column', sm: 'row' }}
             alignItems="center"
-            // sx={{ color: theme.palette.common.black, textDecoration: 'none' }}
           >
             <Box
               width="125px"
@@ -149,14 +150,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               src="/theme.svg"
               sx={{ cursor: 'pointer' }}
               onClick={colorMode.toggleColorMode}
-              // onClick={() => {
-
-              //   if (mode === 'light') {
-              //     setMode('dark');
-              //   } else {
-              //     setMode('light');
-              //   }
-              // }}
             />
             <Box
               component="img"

@@ -29,24 +29,10 @@ export default function Index({ content, meta }) {
   return (
     <Main>
       <SectionTop />
-      <Box>
-        <Container marginTop={2}>
-          <p>{t('description')}</p>
-          <ConnectButton />
-          <Example />
-          --------------------------以上通过md内组件实现翻译----------------------------------
-          <br />
-          -------------------------以下通过切换md文件实现翻译---------------------------------
-          {locale == 'en' && <ExampleEn />}
-          {locale == 'zh' && <ExampleZh />}
-          <MDXRemote components={components} {...content} />
-        </Container>
-      </Box>
       <SectionTeam />
       <Box marginBottom={4} paddingX={5}>
         <LXDAOIntroduction maxWidth="1240px" xsWidth="326px" />
       </Box>
-
       <SectionFooter />
     </Main>
   );

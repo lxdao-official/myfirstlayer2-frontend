@@ -10,6 +10,7 @@ import { Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { borderRadius } from '@mui/system';
 
 // export default function LocaleSwitcher() {
 //   const t = useTranslations('LocaleSwitcher');
@@ -95,16 +96,17 @@ const Language = () => {
             'aria-labelledby': 'lock-button',
             role: 'listbox',
           }}
+          autoFocus={true}
         >
           <MenuItem>
-            <Typography variant="subtitle1">
+            <Typography variant="body1">
               <Link href={route} locale="en">
                 English
               </Link>
             </Typography>
           </MenuItem>
           <MenuItem>
-            <Typography variant="subtitle1">
+            <Typography variant="body1">
               <Link href={route} locale="zh">
                 简体中文
               </Link>
@@ -117,7 +119,7 @@ const Language = () => {
               );
             }}
           >
-            <Typography variant="subtitle1">Your Lang?</Typography>
+            <Typography variant="body1">Your Lang?</Typography>
           </MenuItem>
         </Menu>
       </Box>
