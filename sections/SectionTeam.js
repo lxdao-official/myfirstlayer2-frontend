@@ -19,14 +19,14 @@ const coreContributors = [
     image: '/team/bruce.jpg',
     description:
       'Web3 BUIDLER and BELIEVER! Creator of GuoChanLiangXin and MyFirstNFT. Member @theNextDAO. Core contributor @GCLX community.',
-    name: 'brucexu.eth❤️',
+    name: 'brucexu.eth',
     twitter: 'https://twitter.com/brucexu_eth',
   },
   {
     image: '/team/muxin.png',
     description:
       'Web3 BUIDLER. Artist of GuoChanLiangXin. Member @theNextDAO. 💎  hand.  Core contributor @GCLX community.',
-    name: 'Muxin.eth❤️',
+    name: 'Muxin.eth',
     twitter: 'https://twitter.com/muxin_eth',
   },
   {
@@ -398,29 +398,41 @@ function Contributor(props) {
         boxShadow={1}
         display={'flex'}
         flexDirection={'column'}
-        sx={{ backgroundImage: 'none' }}
+        sx={{
+          backgroundImage: 'none',
+          backgroundColor: '#F3F3F3',
+          borderRadius: '18px',
+          height: '160px'
+        }}
       >
         <Box
           component="img"
           src={props.image}
           title={props.name}
           sx={{
-            width: '100%',
+            width: '128px',
+            height: '128px',
             filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
-        <Box component={CardContent} position={'relative'}>
+        <Box component={CardContent} position={'relative'} sx={{
+          padding: '10px',
+          paddingTop: '6px',
+          height: '32px !important'
+        }}>
           <Box
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            marginBottom={1}
+            height="16px"
           >
-            <Typography fontWeight={700}>{props.name}</Typography>
+            <Typography sx={{
+              lineHeight: '16px'
+            }} fontWeight={600} fontSize="13px">{props.name}</Typography>
             {props.twitter && (
-              <Link color={'inherit'} target="_blank" href={props.twitter}>
+              <Link height="16px" color={'inherit'} target="_blank" href={props.twitter}>
                 <Box
-                  width="30px"
+                  height="16px"
                   color="text.secondary"
                   component="img"
                   src="/icons/twitter.svg"
@@ -428,17 +440,8 @@ function Contributor(props) {
               </Link>
             )}
           </Box>
-          <Typography color="text.secondary" fontSize="0.85rem">
-            {props.description}
-          </Typography>
         </Box>
-        <Box flexGrow={1} />
-        <Box
-          paddingLeft={2}
-          paddingRight={2}
-          component={CardActions}
-          justifyContent={'space-between'}
-        ></Box>
+
       </Box>
     </Box>
   );
@@ -535,9 +538,9 @@ export default function SectionTeam() {
           {t(`sectionTeam-content-11`)}
         </Typography>
         <Box padding={2} marginBottom={8}>
-          <Grid container spacing={2}>
+          <Grid container spacing={3.125}>
             {coreContributors.map((item, i) => (
-              <Grid item xs={12} sm={6} md={12 / 5} key={i}>
+              <Grid item xs={12} sm={6} md={12 / 8} key={i}>
                 <Contributor {...item} />
               </Grid>
             ))}
@@ -552,9 +555,9 @@ export default function SectionTeam() {
           {t(`sectionTeam-content-12`)}
         </Typography>
         <Box padding={2} marginBottom={8}>
-          <Grid container spacing={2}>
+          <Grid container spacing={3.125}>
             {_.shuffle(activeContributors).map((item, i) => (
-              <Grid item xs={6} sm={4} md={12 / 7} key={i}>
+              <Grid item xs={6} sm={3} md={12 / 8} key={i}>
                 <SimpleContributor {...item} />
               </Grid>
             ))}

@@ -55,7 +55,7 @@ function BigAd(props) {
           }}
         />
         <Box component={CardContent}>
-          <Typography variant={'h6'} fontWeight={700} gutterBottom>
+          <Typography variant={'h6'} fontWeight={600} gutterBottom>
             {props.title}
           </Typography>
           <Typography variant={'body2'} color="text.secondary">
@@ -71,10 +71,10 @@ function BigAd(props) {
         >
           <Box>
             {props.website && (
-              <Link color={'inherit'} target="_blank" href={props.website}>
+              <Link color={'inherit'} marginRight="11px" target="_blank" href={props.website}>
                 <Box
                   color="#ccc"
-                  width="40px"
+                  width="18px"
                   component="img"
                   src="/icons/website.svg"
                 />
@@ -83,33 +83,14 @@ function BigAd(props) {
             {props.twitter && (
               <Link color={'inherit'} target="_blank" href={props.twitter}>
                 <Box
-                  width="40px"
+                  width="18px"
                   color="text.secondary"
                   component="img"
                   src="/icons/twitter.svg"
                 />
               </Link>
             )}
-            {props.opensea && (
-              <Link color={'inherit'} target="_blank" href={props.opensea}>
-                <Box
-                  width="40px"
-                  color="text.secondary"
-                  component="img"
-                  src="/icons/opensea.svg"
-                />
-              </Link>
-            )}
-            {props.discord && (
-              <Link color={'inherit'} target="_blank" href={props.discord}>
-                <Box
-                  width="40px"
-                  color="text.secondary"
-                  component="img"
-                  src="/icons/discord.svg"
-                />
-              </Link>
-            )}
+
           </Box>
           <Box color="text.secondary" variant="h6">
             +{props.donation}ETH
@@ -137,7 +118,6 @@ function SmallAd(props) {
           flexDirection={'column'}
           position="relative"
         >
-          {/* <DonationInstruction /> */}
         </Box>
       </Box>
     );
@@ -274,20 +254,20 @@ function SmallAd(props) {
 export default function SectionSponsors() {
   const theme = useTheme();
   const t = useTranslations('SectionSponsors');
-  const top4 = donation.slice(0, 3);
+  const top4 = donation.slice(0, 4);
   const rest = donation.slice(4);
 
   return (
     <SectionSimpleWrapper title={t(`sectionSponsors-title-10`)} id="next">
       <Box padding={2}>
-        <Grid container spacing={4.25}>
+        <Grid container spacing={3.125}>
           {top4.map((item, i) => (
-            <Grid rowGap="55px" item xs={12} sm={6} md={4} key={i}>
+            <Grid rowGap="55px" item xs={12} sm={6} md={3} key={i}>
               <BigAd theme={theme} {...item} />
             </Grid>
           ))}
           {rest.map((item, i) => (
-            <Grid item xs={6} sm={4} md={3} key={i}>
+            <Grid item xs={6} sm={4} md={12 / 5} key={i}>
               <SmallAd theme={theme} {...item} />
             </Grid>
           ))}
