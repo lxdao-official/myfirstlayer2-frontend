@@ -1,15 +1,15 @@
 // import { activatei18n } from '../i18n';
-import { useCallback, useState } from 'react';
-import LanguageIcon from '@mui/icons-material/Language';
-import Box from '@mui/material/Box';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
-
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useCallback, useState } from 'react';
+
+import LanguageIcon from '@mui/icons-material/Language';
+import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { borderRadius } from '@mui/system';
 
 // export default function LocaleSwitcher() {

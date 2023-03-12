@@ -1,8 +1,9 @@
-import { Box, Typography, Grid } from '@mui/material';
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
 
+import { Box, Grid, Typography } from '@mui/material';
+
 import Container from '../components/Container';
-import { useTranslations, useLocale } from 'next-intl';
 
 export default function SectionTop({ content, meta }) {
   const t = useTranslations('Index');
