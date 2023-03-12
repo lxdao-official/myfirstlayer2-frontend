@@ -16,6 +16,7 @@ import Directory from '/components/Directory';
 import { Box } from '@mui/material';
 import Container from '../components/Container';
 import SectionTop from '../sections/SectionTop';
+import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
 import SectionFooter from '../sections/SectionFooter';
 import { LXDAOIntroduction } from 'lxdao-ui';
@@ -29,24 +30,12 @@ export default function Index({ content, meta }) {
   return (
     <Main>
       <SectionTop />
-      <Box>
-        <Container marginTop={2}>
-          <p>{t('description')}</p>
-          <Example />
-          --------------------------以上通过md内组件实现翻译----------------------------------
-          <br />
-          -------------------------以下通过切换md文件实现翻译---------------------------------
-          {locale == 'en' && <ExampleEn />}
-          {locale == 'zh' && <ExampleZh />}
-          <MDXRemote components={components} {...content} />
-          <Directory />
-        </Container>
-      </Box>
+      <Directory />
+      <SectionSponsors />
       <SectionTeam />
       <Box marginBottom={4} paddingX={5}>
         <LXDAOIntroduction maxWidth="1240px" xsWidth="326px" />
       </Box>
-
       <SectionFooter />
     </Main>
   );

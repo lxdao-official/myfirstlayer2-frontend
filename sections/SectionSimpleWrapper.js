@@ -16,11 +16,12 @@ export default function SectionSimpleWrapper({ id, title, children }) {
       <Box>
         <Box display="flex" justifyContent="center">
           <Typography
-            variant="h5"
+            variant="h3"
             textAlign="center"
             marginBottom={6}
             sx={{
-              fontWeight: 700,
+              fontWeight: 800,
+              fontFamily: 'Open Sans',
             }}
           >
             {title}
@@ -28,7 +29,7 @@ export default function SectionSimpleWrapper({ id, title, children }) {
         </Box>
         <Box
           overflow="hidden"
-          maxWidth={{ sm: 720, md: 960, lg: 1280 }}
+          maxWidth={{ sm: 720, md: 960, lg: 1200 }}
           margin="0 auto"
         >
           {children}

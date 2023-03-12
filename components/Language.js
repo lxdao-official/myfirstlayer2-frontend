@@ -1,40 +1,16 @@
-// import { activatei18n } from '../i18n';
 import { useCallback, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
-import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
-
-import { useTranslations } from 'next-intl';
+import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-// export default function LocaleSwitcher() {
-//   const t = useTranslations('LocaleSwitcher');
-
-//   const { locale, locales, route } = useRouter();
-//   const otherLocale = locales?.find((cur) => cur !== locale);
-
-//   return (
-//     <Link href={route} locale={otherLocale}>
-//       {t('switchLocale', { locale: otherLocale })}
-//     </Link>
-//   );
-// }
+import { borderRadius } from '@mui/system';
 
 const Language = () => {
-  // const locale = useLocale();
-  // const localeLang = window.localStorage.getItem('locale');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  // const navigatorLang = navigator.language || navigator.userLanguage;
-  // const navigatorLanguage = navigatorLang.substr(0, 2);
-  // const [lang, setLang] = useState(
-  //   localeLang ? localeLang : navigatorLanguage === 'zh' ? 'zh' : 'en'
-  // );
-  // const t = useTranslations('LocaleSwitcher');
   const router = useRouter();
   const { locale, locales, route } = router;
   const otherLocale = locales?.find((cur) => cur !== locale);
@@ -48,16 +24,7 @@ const Language = () => {
   };
 
   const setLanguage = (value) => {
-    // setLang(value);
-    // activatei18n(value);
-
-    // localStorage.setItem('locale', value);
-    debugger;
     router.push('/' + (value === 'en' ? '' : value));
-  };
-
-  const handleLangSelect = (value) => {
-    setLanguage(value);
   };
 
   const LangNode = useCallback(() => {
@@ -70,34 +37,42 @@ const Language = () => {
           onClick={handleClick}
         >
           <Box display="flex">
-            <LanguageIcon
-              sx={{
-                fontSize: '1.5rem',
-              }}
-            />
-            <Typography marginLeft={0.5}>
+            <Box component="img" src="/earth.svg" />
+            <Typography
+              marginLeft={1}
+              marginRight={0.5}
+              color={'#000'}
+              lineHeight={'26px'}
+            >
               {locale === 'zh' ? '简体中文' : 'English'}
             </Typography>
+            <Box
+              component="img"
+              src="/arrow.svg"
+              sx={{ rotate: open && '180deg' }}
+            />
           </Box>
         </Button>
         <Menu
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          disableScrollLock={false}
           MenuListProps={{
-            'aria-labelledby': 'basic-button',
-            dense: true,
+            'aria-labelledby': 'lock-button',
+            role: 'listbox',
           }}
+          autoFocus={true}
         >
           <MenuItem>
-            <Typography variant="subtitle1">
+            <Typography variant="body1">
               <Link href={route} locale="en">
                 English
               </Link>
             </Typography>
           </MenuItem>
           <MenuItem>
-            <Typography variant="subtitle1">
+            <Typography variant="body1">
               <Link href={route} locale="zh">
                 简体中文
               </Link>
@@ -110,7 +85,7 @@ const Language = () => {
               );
             }}
           >
-            <Typography variant="subtitle1">Your Lang?</Typography>
+            <Typography variant="body1">Your Lang?</Typography>
           </MenuItem>
         </Menu>
       </Box>
