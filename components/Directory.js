@@ -31,7 +31,7 @@ export default function Directory(props) {
   //   MyComponent,
   // };
   const { md } = props
-  console.log('props', props);
+  // console.log('props', props);
   return (
     <Container
       display="flex"
