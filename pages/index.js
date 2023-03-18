@@ -19,6 +19,9 @@ import SectionTop from '../sections/SectionTop';
 import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
 import SectionFooter from '../sections/SectionFooter';
+// import Progress from '../contents/Progress';
+// import TabChapter from '../contents/TabChapter';
+import Content from '../contents/Index';
 import { LXDAOIntroduction } from 'lxdao-ui';
 
 export default function Index({ content, meta }) {
@@ -30,7 +33,10 @@ export default function Index({ content, meta }) {
   return (
     <Main>
       <SectionTop />
-      <Directory md={<MDXRemote components={components} {...content} />} />
+      {/* <Progress></Progress> */}
+      {/* <TabChapter></TabChapter> */}
+      {/* <Directory md={<MDXRemote components={components} {...content} />} /> */}
+      <Content md={<MDXRemote components={components} {...content} />} />
       <SectionSponsors />
       <SectionTeam />
       <Box marginBottom={4} paddingX={5}>
