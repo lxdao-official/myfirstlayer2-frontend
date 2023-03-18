@@ -1,8 +1,11 @@
-export default function LXDAOLogo({ color }) {
+import { height } from '@mui/system';
+
+export default function LXDAOLogo({ color, width, height, ...rest }) {
   return (
     <svg
-      width="121"
-      height="32"
+      rest
+      width={width}
+      height={height}
       viewBox="0 0 121 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
