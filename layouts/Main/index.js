@@ -1,21 +1,23 @@
-import { useEffect, useState, useContext } from 'react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
+import { useContext, useEffect, useState } from 'react';
+
 import {
   Box,
-  Typography,
-  useMediaQuery,
+  Divider,
+  Link,
   Menu,
   MenuItem,
-  Link,
-  Divider,
+  Stack,
+  Typography,
+  useMediaQuery,
   useTheme,
 } from '@mui/material';
 import { display } from '@mui/system';
-import { useRouter } from 'next/router';
 
-import { useTranslations } from 'next-intl';
 import Container from '../../components/Container';
-import Language from '../../components/Language';
 import LXDAOLogo from '../../components/LXDAOLogo';
+import Language from '../../components/Language';
 import { ColorModeContext } from '../../pages/_app';
 
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
@@ -31,138 +33,300 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
 
   return (
     <Box>
-      <Box id="fixed-header" backgroundColor="#fafafa">
-        <Container
-          paddingY={1}
-          display="flex"
-          flexDirection={{ xs: 'column', md: 'row' }}
-          alignItems="center"
-          justifyContent="space-between"
-          height={{ xs: '100px', md: '112px' }}
-        >
-          <Box
-            display={'flex'}
-            component="a"
-            href="/"
-            title="theFront"
-            flexDirection={{ xs: 'column', sm: 'row' }}
+      <Box
+        id="fixed-header"
+        backgroundColor="#fff"
+        position="fixed"
+        zIndex={100}
+        width={'100vw'}
+        top={0}
+      >
+        {smallScreen ? (
+          <Container
+            display="flex"
+            flexDirection="column"
             alignItems="center"
+            padding={0}
+          >
+            <Stack
+              width="100%"
+              height="45px"
+              paddingLeft="24px"
+              paddingRight="12px"
+              direction="row"
+              justifyContent="space-between"
+            >
+              <Box
+                display="flex"
+                component="a"
+                href="/"
+                title="theFront"
+                flexDirection="row"
+                alignItems="center"
+              >
+                <Box
+                  width="82px"
+                  component={'img'}
+                  src={'/icons/logoLight.svg'}
+                />
+                <Divider
+                  orientation="vertical"
+                  sx={{
+                    borderColor: '#000',
+                    height: '16px',
+                    marginInline: '15px',
+                  }}
+                />
+
+                <LXDAOLogo
+                  width={79}
+                  height={21}
+                  color={theme.palette.common.black}
+                />
+              </Box>
+
+              <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
+                <Box
+                  component="img"
+                  src="/theme.svg"
+                  width="18px"
+                  sx={{ cursor: 'pointer' }}
+                  onClick={colorMode.toggleColorMode}
+                />
+                <Box
+                  component="img"
+                  src="/question.svg"
+                  marginX="11px"
+                  width="18px"
+                  sx={{ cursor: 'pointer' }}
+                />
+                <Language />
+              </Box>
+            </Stack>
+            <Box
+              width="100%"
+              height={'36px'}
+              justifyContent="space-evenly"
+              alignItems="center"
+              display="flex"
+              backgroundColor="black"
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography
+                  sx={{
+                    cursor: 'pointer',
+                    fontSize: '13px',
+                    fontWeight: '700',
+                    color: current == 'introduce' ? '#fff' : '#6E6E6E',
+                  }}
+                  onClick={() => {
+                    router.push('/');
+                    setCurrent('introduce');
+                  }}
+                >
+                  Introduce
+                </Typography>
+                {current == 'introduce' && (
+                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                )}
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography
+                  sx={{
+                    cursor: 'pointer',
+                    fontSize: '13px',
+
+                    fontWeight: '700',
+                    color: current == 'content' ? '#fff' : '#6E6E6E',
+                  }}
+                  onClick={() => {
+                    router.push('/');
+                    setCurrent('content');
+                  }}
+                >
+                  Content
+                </Typography>
+                {current == 'content' && (
+                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                )}
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  color: current == 'joinus' ? '#fff' : '#6E6E6E',
+                }}
+              >
+                <Typography
+                  sx={{
+                    cursor: 'pointer',
+                    fontSize: '13px',
+                    fontWeight: '700',
+                  }}
+                  onClick={() => {
+                    router.push('/');
+                    setCurrent('joinus');
+                  }}
+                >
+                  Join Us
+                </Typography>
+                {current == 'joinus' && (
+                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                )}
+              </Box>
+            </Box>
+          </Container>
+        ) : (
+          <Container
+            paddingY={1}
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="space-between"
+            height="112px"
           >
             <Box
-              width="125px"
-              height="20px"
-              component={'img'}
-              src={'/icons/logoLight.svg'}
-            />
-            <Divider
-              orientation="vertical"
-              sx={{
-                borderColor: '#000',
-                height: '24px',
-                marginInline: { xs: '5px', sm: '20px' },
-                display: { xs: 'none', sm: 'block' },
-              }}
-            />
-            <Box height={'32px'} mt={{ xs: '10px', sm: 0 }}>
-              <LXDAOLogo color={theme.palette.common.black} />
-            </Box>
-          </Box>
-          <Box gap={4} display={{ md: 'flex', sm: 'none', xs: 'none' }}>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
+              display="flex"
+              component="a"
+              href="/"
+              title="theFront"
+              flexDirection="row"
+              alignItems="center"
             >
-              <Typography
+              <Box
+                width="125px"
+                component={'img'}
+                src={'/icons/logoLight.svg'}
+              />
+              <Divider
+                orientation="vertical"
                 sx={{
-                  cursor: 'pointer',
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: current == 'introduce' ? '#000' : '#6E6E6E',
+                  borderColor: '#000',
+                  height: '24px',
+                  marginInline: '20px',
                 }}
-                onClick={() => {
-                  router.push('/');
-                  setCurrent('introduce');
+              />
+
+              <LXDAOLogo
+                width={121}
+                height={32}
+                color={theme.palette.common.black}
+              />
+            </Box>
+            <Box gap={4} display="flex" alignItems="center">
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
                 }}
               >
-                Introduce
-              </Typography>
-              {current == 'introduce' && (
-                <Box width="35px" height="2px" sx={{ background: '#000' }} />
-              )}
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <Typography
+                <Typography
+                  sx={{
+                    cursor: 'pointer',
+                    fontSize: '20px',
+                    fontWeight: '700',
+                    color: current == 'introduce' ? '#000' : '#6E6E6E',
+                  }}
+                  onClick={() => {
+                    router.push('/');
+                    setCurrent('introduce');
+                  }}
+                >
+                  Introduce
+                </Typography>
+                {current == 'introduce' && (
+                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                )}
+              </Box>
+              <Box
                 sx={{
-                  cursor: 'pointer',
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: current == 'content' ? '#000' : '#6E6E6E',
-                }}
-                onClick={() => {
-                  router.push('/');
-                  setCurrent('content');
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
                 }}
               >
-                Content
-              </Typography>
-              {current == 'content' && (
-                <Box width="35px" height="2px" sx={{ background: '#000' }} />
-              )}
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                color: current == 'joinus' ? '#000' : '#6E6E6E',
-              }}
-            >
-              <Typography
+                <Typography
+                  sx={{
+                    cursor: 'pointer',
+                    fontSize: '20px',
+                    fontWeight: '700',
+                    color: current == 'content' ? '#000' : '#6E6E6E',
+                  }}
+                  onClick={() => {
+                    router.push('/');
+                    setCurrent('content');
+                  }}
+                >
+                  Content
+                </Typography>
+                {current == 'content' && (
+                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                )}
+              </Box>
+              <Box
                 sx={{
-                  cursor: 'pointer',
-                  fontSize: '20px',
-                  fontWeight: '700',
-                }}
-                onClick={() => {
-                  router.push('/');
-                  setCurrent('joinus');
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  color: current == 'joinus' ? '#000' : '#6E6E6E',
                 }}
               >
-                Join Us
-              </Typography>
-              {current == 'joinus' && (
-                <Box width="35px" height="2px" sx={{ background: '#000' }} />
-              )}
+                <Typography
+                  sx={{
+                    cursor: 'pointer',
+                    fontSize: '20px',
+                    fontWeight: '700',
+                  }}
+                  onClick={() => {
+                    router.push('/');
+                    setCurrent('joinus');
+                  }}
+                >
+                  Join Us
+                </Typography>
+                {current == 'joinus' && (
+                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                )}
+              </Box>
             </Box>
-          </Box>
-          <Box sx={{ display: 'flex' }} zIndex={10}>
-            <Box
-              component="img"
-              src="/theme.svg"
-              sx={{ cursor: 'pointer' }}
-              onClick={colorMode.toggleColorMode}
-            />
-            <Box
-              component="img"
-              src="/question.svg"
-              marginLeft="20px"
-              marginRight="14px"
-              sx={{ cursor: 'pointer' }}
-            />
-            <Language />
-          </Box>
-        </Container>
+            <Box sx={{ display: 'flex' }} zIndex={10}>
+              <Box
+                component="img"
+                src="/theme.svg"
+                sx={{ cursor: 'pointer' }}
+                onClick={colorMode.toggleColorMode}
+              />
+              <Box
+                component="img"
+                src="/question.svg"
+                margin="20px"
+                sx={{ cursor: 'pointer' }}
+              />
+              <Language />
+            </Box>
+          </Container>
+        )}
       </Box>
-      <Box bgcolor={'alternate.main'} component="main" id="main">
+      <Box
+        bgcolor={'alternate.main'}
+        component="main"
+        id="main"
+        mt={smallScreen ? '81px' : '112px'}
+      >
         {children}
       </Box>
     </Box>

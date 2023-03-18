@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 
 import LanguageIcon from '@mui/icons-material/Language';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,6 +15,18 @@ const Language = () => {
   const router = useRouter();
   const { locale, locales, route } = router;
   const otherLocale = locales?.find((cur) => cur !== locale);
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const text = {
+    zh: {
+      sx: '简',
+      md: '简体中文',
+    },
+    en: {
+      sx: 'EN',
+      md: 'English',
+    },
+  };
 
   const handleClick = (event) => {
     setAnchorEl(event.target);
@@ -30,22 +42,23 @@ const Language = () => {
 
   const LangNode = useCallback(() => {
     return (
-      <Box marginLeft="auto">
-        <Button
+      <Box display="flex" alignItems={'center'}>
+        <Box
           aria-controls={open ? 'language-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
+          sx={{ cursor: 'pointer' }}
           onClick={handleClick}
         >
           <Box display="flex">
-            <Box component="img" src="/earth.svg" />
+            {!smallScreen && <Box component="img" src="/earth.svg" />}
             <Typography
-              marginLeft={1}
-              marginRight={0.5}
+              marginLeft={smallScreen ? 0 : 1}
+              marginRight={smallScreen ? 0 : 0.5}
               color={'#000'}
-              lineHeight={'26px'}
+              fontSize={smallScreen ? '13px' : '18px'}
             >
-              {locale === 'zh' ? '简体中文' : 'English'}
+              {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
             <Box
               component="img"
@@ -53,7 +66,7 @@ const Language = () => {
               sx={{ rotate: open && '180deg' }}
             />
           </Box>
-        </Button>
+        </Box>
         <Menu
           anchorEl={anchorEl}
           open={open}
