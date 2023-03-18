@@ -52,19 +52,6 @@ theme.typography.progress = {
   color: '#747474',
 }
 
-export default function Directory() {
-  return (
-    <div>
-      <Hidden smUp>
-        <MobileDirectory></MobileDirectory>
-      </Hidden>
-      <Hidden smDown>
-        <PcDirectory></PcDirectory>
-      </Hidden>
-    </div>
-  )
-}
-
 const Item = (props) => {
   
   const { data } = props;
@@ -107,16 +94,15 @@ const Item = (props) => {
   )
 }
 
-const PcDirectory = () => {
+export function PcDirectory() {
   return (
     <Box 
       sx={{
-        width: 247,
+        width: "120%",
         backgroundColor: '#ECECEC',
         borderRadius: 2,
         paddingX: '26px',
         paddingBottom: '45px',
-
       }}
     >
       <ThemeProvider theme={theme}>
@@ -139,7 +125,7 @@ const PcDirectory = () => {
   )
 }
 
-const MobileDirectory = () => {
+export function MobileDirectory() {
   const [drawerStatus, setDrawerStatus] = useState(false);
 
   return (

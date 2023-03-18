@@ -36,7 +36,7 @@ export default function Index({ content, meta }) {
       {/* <Progress></Progress> */}
       {/* <TabChapter></TabChapter> */}
       {/* <Directory md={<MDXRemote components={components} {...content} />} /> */}
-      <Content />
+      <Content md={<MDXRemote components={components} {...content} />} />
       <SectionSponsors />
       <SectionTeam />
       <Box marginBottom={4} paddingX={5}>
