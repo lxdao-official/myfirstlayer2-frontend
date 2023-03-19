@@ -3,7 +3,7 @@ export const light = {
     main: '#FAFAFA',
   },
   alternate: {
-    main: '#FAFAFA',
+    // main: '#FAFAFA',
     dark: '#edf1f7',
   },
   cardShadow: 'rgba(23, 70, 161, .11)',
