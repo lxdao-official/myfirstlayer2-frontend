@@ -1,125 +1,108 @@
-import React from 'react';
-import {
-  Link,
-  Card,
-  Box,
-  Typography,
-  Grid,
-  CardContent,
-  CardActions,
-} from '@mui/material';
 import _ from 'lodash';
-import { useTheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
+import React from 'react';
+
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Grid,
+  Link,
+  Typography,
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
 import StyledToolTip from '../components/StyledToolTip';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
 const coreContributors = [
   {
-    image: '/team/bruce.jpg',
+    image: '/teams/kasoqian.jpg',
     description:
       'Web3 BUIDLER and BELIEVER! Creator of GuoChanLiangXin and MyFirstNFT. Member @theNextDAO. Core contributor @GCLX community.',
+    name: 'kasoqian',
+    twitter: 'https://twitter.com/kasoqian_eth',
+  },
+  {
+    image: '/teams/LouisWang.jpg',
+    description:
+      'Web3 BUIDLER. Artist of GuoChanLiangXin. Member @theNextDAO. 💎  hand.  Core contributor @GCLX community.',
+    name: 'LouisWang',
+    twitter: 'https://twitter.com/lviswang',
+  },
+  {
+    image: '/teams/0xCryptolee.jpg',
+    description:
+      'A Web2 developer with more than 10 years of experience. Now, looking for some fun in Web3.0. Call me John 或者老高. Member @GCLX community.',
+    name: '0xCryptolee',
+    twitter: 'https://twitter.com/IpfSxian',
+  },
+  {
+    image: '/teams/AnImpro.jpg',
+    description: 'Core Contributor @theNextDAO.',
+    name: 'AnImpro',
+    twitter: 'https://twitter.com/0xAnImpro',
+  },
+  {
+    image: '/teams/kahn.jpeg',
+    description:
+      'BUIDLER, Surfer, Burner and Dreamer. Mod @theNextDAO. Lost somewhere in Web3.',
+    name: 'kahn',
+  },
+  {
+    image: '/teams/Jacky.png',
+    description:
+      "A newcomer to Web3. Let's connect and do something fun together! 3n4.pps.eth coming soon☝🏻",
+    name: 'Jacky',
+    twitter: 'https://twitter.com/jacky_luxue',
+  },
+  {
+    image: '/teams/Samo.png',
+    description:
+      'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.',
+    name: 'Samo',
+    twitter: 'https://twitter.com/BirkSamo',
+  },
+  {
+    image: '/teams/zircon.png',
+    description: 'Designer, Crypto & NFT fans',
+    name: 'zircon',
+    twitter: 'https://twitter.com/the_crypto101',
+  },
+  {
+    image: '/teams/huahua.jpg',
+    description: 'Web3 designer and fanart artist.',
+    name: 'huahua',
+  },
+  {
+    image: '/teams/cherryyang.jpg',
+    description: 'She/Her. Web3 BUIDLER. Rug-pull Addict.',
+    name: 'cherryyang',
+    twitter: 'https://twitter.com/cherry_yang_cn',
+  },
+  {
+    image: '/teams/zpan.png',
+    description: 'She/Her. Web3 BUIDLER. Rug-pull Addict.',
+    name: 'zpan',
+    twitter: 'https://twitter.com/0zpan',
+  },
+  {
+    image: '/teams/Dyson.png',
+    description: 'Moonwalker @theNextDAO.',
+    name: 'Dyson',
+    twitter: 'https://twitter.com/Dysonisme',
+  },
+  {
+    image: '/teams/brucexu.eth.png',
+    description: 'I wish to be an interesting piece of code in your metaverse.',
     name: 'brucexu.eth',
     twitter: 'https://twitter.com/brucexu_eth',
   },
   {
-    image: '/team/muxin.png',
-    description:
-      'Web3 BUIDLER. Artist of GuoChanLiangXin. Member @theNextDAO. 💎  hand.  Core contributor @GCLX community.',
-    name: 'Muxin.eth',
-    twitter: 'https://twitter.com/muxin_eth',
-  },
-  {
-    image: '/team/john.jpg',
-    description:
-      'A Web2 developer with more than 10 years of experience. Now, looking for some fun in Web3.0. Call me John 或者老高. Member @GCLX community.',
-    name: 'John',
-    twitter: 'https://twitter.com/0xGao',
-  },
-  {
-    image: '/team/shep.jpg',
-    description: 'Core Contributor @theNextDAO.',
-    name: 'shep.eth',
-    twitter: 'https://twitter.com/shep_eth',
-  },
-  {
-    image: '/team/neethan.jpeg',
-    description:
-      'BUIDLER, Surfer, Burner and Dreamer. Mod @theNextDAO. Lost somewhere in Web3.',
-    name: 'nΞethan',
-    twitter: 'https://twitter.com/neethanverse',
-  },
-  {
-    image: '/team/3n4.png',
-    description:
-      "A newcomer to Web3. Let's connect and do something fun together! 3n4.pps.eth coming soon☝🏻",
-    name: '3n4',
-    twitter: 'https://twitter.com/I_am_Cheng_Kang',
-  },
-  {
-    image: '/team/dissey.jpg',
-    description:
-      'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.',
-    name: 'dissey',
-  },
-  {
-    image: '/team/lyly.jpg',
-    description: 'Designer, Crypto & NFT fans 😁 ✌️',
-    name: 'lyly',
-    twitter: 'https://twitter.com/lyly0x57',
-  },
-  {
-    image: '/team/haha.jpeg',
-    description: 'Web3 designer and fanart artist.',
-    name: 'hahazwei',
-    twitter: 'https://twitter.com/hahazwei',
-  },
-  {
-    image: '/team/penny777.jpg',
-    description: 'The Last Poet of the Crypto World.',
-    name: 'Penny777',
-    twitter: 'https://twitter.com/Penny777_eth',
-  },
-  {
-    image: '/team/PolarBear.jpg',
-    description: 'She/Her. Web3 BUIDLER. Rug-pull Addict.',
-    name: 'PolarBear',
-    twitter: 'https://twitter.com/BiPolar4ever_18',
-  },
-  {
-    image: '/team/allen.png',
-    description: 'Moonwalker @theNextDAO.',
-    name: 'Satoshi Natsu',
-    twitter: 'https://twitter.com/satoshi_natsu',
-  },
-  {
-    image: '/team/entheo_eth.jpg',
-    description: 'I wish to be an interesting piece of code in your metaverse.',
-    name: 'entheo.eth',
-  },
-  {
-    image: '/team/carver.jpg',
+    image: '/teams/JayK.jpg',
     description: 'Front-end developer/solidity, beginner/Web3 rover.',
-    name: 'Carver',
-  },
-  {
-    image: '/team/animpro.png',
-    description: 'Whimsical ronin in Web3.',
-    name: 'animpro.eth',
-    twitter: 'https://twitter.com/0xAnImpro',
-  },
-  {
-    image: '/team/D.jpg',
-    description:
-      "All in crypto. NFT degen. Build of Web3. Let's grow together.",
-    name: 'genghao.eth',
-    twitter: 'https://twitter.com/0xgenghao',
-  },
-  {
-    image: '/team/yootou.png',
-    description: 'Fullstack developer / Web3 builder / I have a dream.',
-    name: 'yootou.eth',
-    twitter: 'https://twitter.com/0xYootou',
+    name: 'JayK',
   },
 ];
 
@@ -299,81 +282,6 @@ const activeContributors = [
     name: 'Kitty',
     twitter: 'https://twitter.com/0xKitty_eth',
   },
-  {
-    image: '/team/spider.png',
-    description:
-      "A spider wandering Web2 and Web3, you can't see me, but I've been weaving.",
-    name: 'Spider',
-  },
-  {
-    image: '/team/ooze.jpg',
-    description: 'This person is lazy@Left nothing',
-    name: 'Ooze',
-    twitter: 'https://twitter.com/0x0oze',
-  },
-  {
-    image: '/team/yanelis.jpeg',
-    description: 'Director of investment CoinMix Global. YanelisDAO Sponsor.',
-    name: 'Yanelis',
-    twitter: 'https://twitter.com/Yanelis_yang',
-  },
-  {
-    image: '/team/bjhh.jpeg',
-    description:
-      'A Web3 builder, a Move contract developer, actively trying fun things.',
-    name: '不霁何虹',
-    twitter: 'https://twitter.com/WGB5445',
-  },
-  {
-    image: '/team/popil.jpeg',
-    description: 'Artist',
-    name: 'popil',
-    twitter: 'https://twitter.com/popilart',
-  },
-  {
-    image: '/team/wangxiaohai.jpg',
-    description: 'A Marxist inside.',
-    name: '王小嗨',
-    twitter: 'https://twitter.com/yeahwong',
-  },
-  {
-    image: '/team/sean.jpeg',
-    description: 'Web3 新人，Web2 游戏产品设计师，JPG 爱好者，币圈韭菜。',
-    name: 'SΞAN',
-    twitter: 'https://twitter.com/shintemy',
-  },
-  {
-    image: '/team/lidamao.jpeg',
-    description: 'Web3 卖萌工程师',
-    name: 'lidamao.eth',
-    twitter: 'https://twitter.com/LeePerfect233',
-  },
-  {
-    image: '/team/clu.jpg',
-    description:
-      'Builder and Dreamer. | @theNextDAO. | Build worlds around dreams, Not dreams around worlds.',
-    name: 'Clu',
-    twitter: 'https://twitter.com/thexclu',
-  },
-  {
-    image: '/team/amadeus.png',
-    description:
-      'Amadeus by Civil Labs, no-code tool for NFT creator, make NFT easier! ',
-    name: 'Amadeus',
-    twitter: 'https://twitter.com/amadeus_nft_io',
-  },
-  {
-    image: '/team/wuya.jpg',
-    description: 'free animtor',
-    name: 'wuya',
-    twitter: 'https://twitter.com/wuyaanimation',
-  },
-  {
-    image: '/team/0xvision.png',
-    description: 'Web2 educator jogging into Web3.',
-    name: '0xVision.eth',
-    twitter: 'https://twitter.com/VisionLG0825',
-  },
 ];
 
 function Contributor(props) {
@@ -401,8 +309,9 @@ function Contributor(props) {
         sx={{
           backgroundImage: 'none',
           backgroundColor: '#F3F3F3',
-          borderRadius: '18px',
-          height: '160px'
+          borderRadius: { xs: '8px', md: '18px' },
+          height: { xs: '72px', md: '160px' },
+          width: { xs: '56px', md: 'auto' },
         }}
       >
         <Box
@@ -410,29 +319,54 @@ function Contributor(props) {
           src={props.image}
           title={props.name}
           sx={{
-            width: '128px',
-            height: '128px',
+            width: { xs: '56px', md: '128px' },
+            height: { xs: '56px', md: '128px' },
             filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
-        <Box component={CardContent} position={'relative'} sx={{
-          padding: '10px',
-          paddingTop: '6px',
-          height: '32px !important'
-        }}>
+        <Box
+          component={CardContent}
+          position={'relative'}
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            // transform: { xs: 'scale(0.5)', md: 'none' },
+            height: {
+              xs: '16px !important',
+              md: '32px !important',
+            },
+            // padding: {
+            //   xs: '0 !important',
+            //   md: '16px 16px 24px 16px',
+            // },
+          }}
+        >
           <Box
             display="flex"
             justifyContent="space-between"
             alignItems="center"
             height="16px"
+            width={'100%'}
           >
-            <Typography sx={{
-              lineHeight: '16px'
-            }} fontWeight={600} fontSize="13px">{props.name}</Typography>
+            <Typography
+              sx={{
+                lineHeight: '16px',
+              }}
+              fontWeight={600}
+              fontSize={{ xs: '12px', md: '13px' }}
+            >
+              {props.name}
+            </Typography>
             {props.twitter && (
-              <Link height="16px" color={'inherit'} target="_blank" href={props.twitter}>
+              <Link
+                height="16px"
+                color={'inherit'}
+                target="_blank"
+                href={props.twitter}
+              >
                 <Box
-                  height="16px"
+                  height={{ xs: '16px', md: '16px' }}
                   color="text.secondary"
                   component="img"
                   src="/icons/twitter.svg"
@@ -441,7 +375,6 @@ function Contributor(props) {
             )}
           </Box>
         </Box>
-
       </Box>
     </Box>
   );
@@ -527,20 +460,12 @@ export default function SectionTeam() {
   const theme = useTheme();
   const t = useTranslations('SectionTeam');
   return (
-    <SectionSimpleWrapper id="team">
+    <SectionSimpleWrapper title={t(`sectionTeam-content-11`)} id="team">
       <Box>
-        <Typography
-          textAlign="center"
-          marginBottom={4}
-          variant="h6"
-          sx={{ fontWeight: 900 }}
-        >
-          {t(`sectionTeam-content-11`)}
-        </Typography>
-        <Box padding={2} marginBottom={8}>
-          <Grid container spacing={3.125}>
+        <Box padding={{ xs: 2, sm: 0 }} marginBottom={8}>
+          <Grid container spacing={{ xs: 2.4, md: 3.125 }}>
             {coreContributors.map((item, i) => (
-              <Grid item xs={12} sm={6} md={12 / 8} key={i}>
+              <Grid item xs={12 / 5} sm={12 / 8} md={12 / 8} key={i}>
                 <Contributor {...item} />
               </Grid>
             ))}
@@ -548,16 +473,16 @@ export default function SectionTeam() {
         </Box>
         <Typography
           textAlign="center"
-          marginBottom={4}
-          variant="h6"
-          sx={{ fontWeight: 900 }}
+          marginTop={{ xs: '90px', sm: '120px' }}
+          marginBottom={{ xs: '30px', sm: '50px' }}
+          sx={{ fontWeight: 800, fontSize: { xs: '20px', sm: '48px' } }}
         >
           {t(`sectionTeam-content-12`)}
         </Typography>
-        <Box padding={2} marginBottom={8}>
+        <Box padding={{ xs: 2, sm: 0 }} marginBottom={8}>
           <Grid container spacing={3.125}>
             {_.shuffle(activeContributors).map((item, i) => (
-              <Grid item xs={6} sm={3} md={12 / 8} key={i}>
+              <Grid item xs={12 / 7} sm={12 / 7} md={12 / 10} key={i}>
                 <SimpleContributor {...item} />
               </Grid>
             ))}

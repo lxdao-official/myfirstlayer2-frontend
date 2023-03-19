@@ -1,15 +1,18 @@
 import React from 'react';
+
 import { Box, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 
 export default function SectionFooter() {
   return (
-    <Box padding={{ xs: 6, sm: "40px" }} display="flex" justifyContent={"center"} borderTop="2px solid #eee"
+    <Box
+      padding={{ xs: 3, sm: 3 }}
+      display="flex"
+      justifyContent={'center'}
+      borderTop="2px solid #eee"
       sx={{
-
-        backgroundColor: '#000',
-        height: '113px'
-
+        background: 'linear-gradient(90deg, #3162E8 0%, #3AD5E3 100%);',
+        height: '80px',
       }}
     >
       <Typography
@@ -47,7 +50,6 @@ export default function SectionFooter() {
       <Divider
         orientation="vertical"
         sx={{
-
           borderColor: '#D9D9D9',
           height: '21px',
           marginTop: '5px',
@@ -87,6 +89,6 @@ export default function SectionFooter() {
       >
         Donate
       </Typography>
-    </Box >
+    </Box>
   );
 }

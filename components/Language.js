@@ -64,18 +64,13 @@ const Language = ({ color }) => {
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
             <Arrow color={color} style={{ rotate: open && '180deg' }} />
-            {/* <Box
-              component="img"
-              src="/arrow.svg"
-              sx={{ rotate: open && '180deg' }}
-            /> */}
           </Box>
         </Box>
         <Menu
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
-          disableScrollLock={false}
+          disableScrollLock={true}
           MenuListProps={{
             'aria-labelledby': 'lock-button',
             role: 'listbox',

@@ -17,9 +17,10 @@
     "@mui/material": "^5.11.10",
     "@mui/styles": "^5.11.11",
     "@next/mdx": "^13.2.1",
-    "@rainbow-me/rainbowkit": "^0.11.0",
+    "@rainbow-me/rainbowkit": "^0.8.0",
     "eslint": "8.34.0",
     "eslint-config-next": "13.2.1",
+    "ethers": "5.7.2",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
@@ -31,7 +32,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.8",
-    "wagmi": "^0.11.0"
+    "wagmi": "0.8.7"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
