@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Box, Typography } from '@mui/material';
 
 export default function SectionSimpleWrapper({ id, title, children }) {
@@ -6,8 +7,7 @@ export default function SectionSimpleWrapper({ id, title, children }) {
 
   return (
     <Box
-      padding={{ xs: 2, md: 4 }}
-      marginTop={{ xs: 4, md: 6 }}
+      marginTop={{ xs: 6.875, sm: 6.875, md: 15 }}
       position="relative"
       className="section"
       id={`section/${id}`}
@@ -21,6 +21,7 @@ export default function SectionSimpleWrapper({ id, title, children }) {
             marginBottom={6}
             sx={{
               fontWeight: 800,
+              fontSize: { xs: '20px', sm: '48px' },
               fontFamily: 'Open Sans',
             }}
           >
