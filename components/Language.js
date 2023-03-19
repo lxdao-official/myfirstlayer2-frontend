@@ -64,11 +64,6 @@ const Language = ({ color }) => {
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
             <Arrow color={color} style={{ rotate: open && '180deg' }} />
-            {/* <Box
-              component="img"
-              src="/arrow.svg"
-              sx={{ rotate: open && '180deg' }}
-            /> */}
           </Box>
         </Box>
         <Menu
