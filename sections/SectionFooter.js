@@ -13,16 +13,18 @@ export default function SectionFooter() {
       sx={{
         background: 'linear-gradient(90deg, #3162E8 0%, #3AD5E3 100%);',
         height: '80px',
+        flexWrap: { xs: 'wrap', sm: 'noWrap' },
+        rowGap: '20px',
       }}
     >
       <Typography
-        variant={'h6'}
         component={'p'}
         color="rgba(255, 255, 255, 0.85)"
         align={'center'}
         fontWeight={400}
-        fontSize="20px"
-        lineHeight="32px"
+        fontSize={'20px'}
+        sx={{ zoom: { xs: 0.5, sm: 1 }, width: { xs: '60%', sm: 'auto' } }}
+        lineHeight={{ xs: '10px', sm: '32px' }}
       >
         Myfirstlayer2 made by LXDAO Team
       </Typography>
@@ -37,13 +39,13 @@ export default function SectionFooter() {
         }}
       />
       <Typography
-        variant={'h6'}
         component={'p'}
         color="rgba(255, 255, 255, 0.85)"
         align={'center'}
         fontWeight={400}
-        fontSize="20px"
-        lineHeight="32px"
+        fontSize={'20px'}
+        sx={{ zoom: { xs: 0.5, sm: 1 }, width: { xs: '40%', sm: 'auto' } }}
+        lineHeight={{ xs: '10px', sm: '32px' }}
       >
         MIT@2023
       </Typography>
@@ -58,13 +60,13 @@ export default function SectionFooter() {
         }}
       />
       <Typography
-        variant={'h6'}
         component={'p'}
         color="rgba(255, 255, 255, 0.85)"
         align={'center'}
         fontWeight={400}
-        fontSize="20px"
-        lineHeight="32px"
+        fontSize={'20px'}
+        sx={{ zoom: { xs: 0.5, sm: 1 }, width: { xs: '60%', sm: 'auto' } }}
+        lineHeight={{ xs: '10px', sm: '32px' }}
       >
         Project on Github
       </Typography>
@@ -79,13 +81,13 @@ export default function SectionFooter() {
         }}
       />
       <Typography
-        variant={'h6'}
         component={'p'}
         color="rgba(255, 255, 255, 0.85)"
         align={'center'}
         fontWeight={400}
-        fontSize="20px"
-        lineHeight="32px"
+        fontSize={'20px'}
+        sx={{ zoom: { xs: 0.5, sm: 1 }, width: { xs: '40%', sm: 'auto' } }}
+        lineHeight={{ xs: '10px', sm: '32px' }}
       >
         Donate
       </Typography>
