@@ -1,19 +1,35 @@
-import { useCallback, useState } from 'react';
-import LanguageIcon from '@mui/icons-material/Language';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
-import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useCallback, useState } from 'react';
+
+import LanguageIcon from '@mui/icons-material/Language';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { borderRadius } from '@mui/system';
 
-const Language = () => {
+import Arrow from './svg/Arrow';
+import Earth from './svg/Earth';
+
+const Language = ({ color }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const router = useRouter();
   const { locale, locales, route } = router;
   const otherLocale = locales?.find((cur) => cur !== locale);
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const text = {
+    zh: {
+      sx: '简',
+      md: '简体中文',
+    },
+    en: {
+      sx: 'EN',
+      md: 'English',
+    },
+  };
 
   const handleClick = (event) => {
     setAnchorEl(event.target);
@@ -29,30 +45,32 @@ const Language = () => {
 
   const LangNode = useCallback(() => {
     return (
-      <Box marginLeft="auto">
-        <Button
+      <Box display="flex" alignItems={'center'}>
+        <Box
           aria-controls={open ? 'language-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
+          sx={{ cursor: 'pointer' }}
           onClick={handleClick}
         >
-          <Box display="flex">
-            <Box component="img" src="/earth.svg" />
+          <Box display="flex" alignItems="center">
+            {!smallScreen && <Earth color={color} />}
             <Typography
-              marginLeft={1}
-              marginRight={0.5}
-              color={'#000'}
-              lineHeight={'26px'}
+              marginLeft={smallScreen ? 0 : 1}
+              marginRight={smallScreen ? 0 : 0.5}
+              color={color}
+              fontSize={smallScreen ? '13px' : '18px'}
             >
-              {locale === 'zh' ? '简体中文' : 'English'}
+              {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
-            <Box
+            <Arrow color={color} style={{ rotate: open && '180deg' }} />
+            {/* <Box
               component="img"
               src="/arrow.svg"
               sx={{ rotate: open && '180deg' }}
-            />
+            /> */}
           </Box>
-        </Button>
+        </Box>
         <Menu
           anchorEl={anchorEl}
           open={open}
