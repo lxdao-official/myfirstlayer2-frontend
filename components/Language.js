@@ -9,7 +9,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { borderRadius } from '@mui/system';
 
-const Language = () => {
+import Arrow from './svg/Arrow';
+import Earth from './svg/Earth';
+
+const Language = ({ color }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const router = useRouter();
@@ -50,21 +53,22 @@ const Language = () => {
           sx={{ cursor: 'pointer' }}
           onClick={handleClick}
         >
-          <Box display="flex">
-            {!smallScreen && <Box component="img" src="/earth.svg" />}
+          <Box display="flex" alignItems="center">
+            {!smallScreen && <Earth color={color} />}
             <Typography
               marginLeft={smallScreen ? 0 : 1}
               marginRight={smallScreen ? 0 : 0.5}
-              color={'#000'}
+              color={color}
               fontSize={smallScreen ? '13px' : '18px'}
             >
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
-            <Box
+            <Arrow color={color} style={{ rotate: open && '180deg' }} />
+            {/* <Box
               component="img"
               src="/arrow.svg"
               sx={{ rotate: open && '180deg' }}
-            />
+            /> */}
           </Box>
         </Box>
         <Menu

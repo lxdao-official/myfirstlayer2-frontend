@@ -18,6 +18,9 @@ import { display } from '@mui/system';
 import Container from '../../components/Container';
 import LXDAOLogo from '../../components/LXDAOLogo';
 import Language from '../../components/Language';
+import MFL2 from '../../components/svg/MFL2';
+import Question from '../../components/svg/Question';
+import Theme from '../../components/svg/Theme';
 import { ColorModeContext } from '../../pages/_app';
 
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
@@ -29,13 +32,14 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const open = Boolean(anchorEl);
   const t = useTranslations('Main');
   const theme = useTheme();
+
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box>
       <Box
         id="fixed-header"
-        backgroundColor="#fff"
+        bgcolor={'alternate.main'}
         position="fixed"
         zIndex={100}
         width={'100vw'}
@@ -64,43 +68,37 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                 flexDirection="row"
                 alignItems="center"
               >
-                <Box
-                  width="82px"
-                  component={'img'}
-                  src={'/icons/logoLight.svg'}
-                />
+                <MFL2 width="82px" color={theme.palette.text.primary} />
                 <Divider
                   orientation="vertical"
                   sx={{
-                    borderColor: '#000',
+                    borderColor: theme.palette.text.primary,
                     height: '16px',
                     marginInline: '15px',
                   }}
                 />
-
                 <LXDAOLogo
                   width={79}
                   height={21}
-                  color={theme.palette.common.black}
+                  color={theme.palette.text.primary}
                 />
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
-                <Box
-                  component="img"
-                  src="/theme.svg"
-                  width="18px"
-                  sx={{ cursor: 'pointer' }}
+                <Theme
+                  width={18}
+                  height={18}
+                  color={theme.palette.text.primary}
+                  style={{ cursor: 'pointer' }}
                   onClick={colorMode.toggleColorMode}
                 />
-                <Box
-                  component="img"
-                  src="/question.svg"
-                  marginX="11px"
-                  width="18px"
-                  sx={{ cursor: 'pointer' }}
+                <Question
+                  width={18}
+                  height={18}
+                  style={{ margin: '11px' }}
+                  color={theme.palette.text.primary}
                 />
-                <Language />
+                <Language color={theme.palette.text.primary} />
               </Box>
             </Stack>
             <Box
@@ -123,7 +121,10 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     cursor: 'pointer',
                     fontSize: '13px',
                     fontWeight: '700',
-                    color: current == 'introduce' ? '#fff' : '#6E6E6E',
+                    color:
+                      current == 'introduce'
+                        ? 'white'
+                        : theme.palette.text.secondary,
                   }}
                   onClick={() => {
                     router.push('/');
@@ -133,7 +134,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   Introduce
                 </Typography>
                 {current == 'introduce' && (
-                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                  <Box width="35px" height="2px" sx={{ background: 'white' }} />
                 )}
               </Box>
               <Box
@@ -149,7 +150,10 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     fontSize: '13px',
 
                     fontWeight: '700',
-                    color: current == 'content' ? '#fff' : '#6E6E6E',
+                    color:
+                      current == 'content'
+                        ? 'white'
+                        : theme.palette.text.secondary,
                   }}
                   onClick={() => {
                     router.push('/');
@@ -159,7 +163,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   Content
                 </Typography>
                 {current == 'content' && (
-                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                  <Box width="35px" height="2px" sx={{ background: 'white' }} />
                 )}
               </Box>
               <Box
@@ -167,7 +171,10 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  color: current == 'joinus' ? '#fff' : '#6E6E6E',
+                  color:
+                    current == 'joinus'
+                      ? 'white'
+                      : theme.palette.text.secondary,
                 }}
               >
                 <Typography
@@ -184,7 +191,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   Join Us
                 </Typography>
                 {current == 'joinus' && (
-                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                  <Box width="35px" height="2px" sx={{ background: 'white' }} />
                 )}
               </Box>
             </Box>
@@ -206,24 +213,19 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               flexDirection="row"
               alignItems="center"
             >
-              <Box
-                width="125px"
-                component={'img'}
-                src={'/icons/logoLight.svg'}
-              />
+              <MFL2 color={theme.palette.text.primary} />
               <Divider
                 orientation="vertical"
                 sx={{
-                  borderColor: '#000',
+                  borderColor: theme.palette.text.primary,
                   height: '24px',
                   marginInline: '20px',
                 }}
               />
-
               <LXDAOLogo
                 width={121}
                 height={32}
-                color={theme.palette.common.black}
+                color={theme.palette.text.primary}
               />
             </Box>
             <Box gap={4} display="flex" alignItems="center">
@@ -239,7 +241,10 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     cursor: 'pointer',
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: current == 'introduce' ? '#000' : '#6E6E6E',
+                    color:
+                      current == 'introduce'
+                        ? theme.palette.text.primary
+                        : theme.palette.text.secondary,
                   }}
                   onClick={() => {
                     router.push('/');
@@ -249,7 +254,11 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   Introduce
                 </Typography>
                 {current == 'introduce' && (
-                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                  <Box
+                    width="35px"
+                    height="2px"
+                    sx={{ background: theme.palette.text.primary }}
+                  />
                 )}
               </Box>
               <Box
@@ -264,7 +273,10 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     cursor: 'pointer',
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: current == 'content' ? '#000' : '#6E6E6E',
+                    color:
+                      current == 'content'
+                        ? theme.palette.text.primary
+                        : theme.palette.text.secondary,
                   }}
                   onClick={() => {
                     router.push('/');
@@ -274,7 +286,11 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   Content
                 </Typography>
                 {current == 'content' && (
-                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                  <Box
+                    width="35px"
+                    height="2px"
+                    sx={{ background: theme.palette.text.primary }}
+                  />
                 )}
               </Box>
               <Box
@@ -282,7 +298,10 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  color: current == 'joinus' ? '#000' : '#6E6E6E',
+                  color:
+                    current == 'joinus'
+                      ? theme.palette.text.primary
+                      : theme.palette.text.secondary,
                 }}
               >
                 <Typography
@@ -299,24 +318,25 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   Join Us
                 </Typography>
                 {current == 'joinus' && (
-                  <Box width="35px" height="2px" sx={{ background: '#000' }} />
+                  <Box
+                    width="35px"
+                    height="2px"
+                    sx={{ background: theme.palette.text.primary }}
+                  />
                 )}
               </Box>
             </Box>
-            <Box sx={{ display: 'flex' }} zIndex={10}>
-              <Box
-                component="img"
-                src="/theme.svg"
-                sx={{ cursor: 'pointer' }}
+            <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
+              <Theme
+                color={theme.palette.text.primary}
+                style={{ cursor: 'pointer' }}
                 onClick={colorMode.toggleColorMode}
               />
-              <Box
-                component="img"
-                src="/question.svg"
-                margin="20px"
-                sx={{ cursor: 'pointer' }}
+              <Question
+                color={theme.palette.text.primary}
+                style={{ margin: '20px' }}
               />
-              <Language />
+              <Language color={theme.palette.text.primary} />
             </Box>
           </Container>
         )}
