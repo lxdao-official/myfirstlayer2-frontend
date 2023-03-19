@@ -75,7 +75,7 @@ const Language = ({ color }) => {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
-          disableScrollLock={false}
+          disableScrollLock={true}
           MenuListProps={{
             'aria-labelledby': 'lock-button',
             role: 'listbox',

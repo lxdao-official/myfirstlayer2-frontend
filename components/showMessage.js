@@ -1,11 +1,11 @@
+import styled from '@emotion/styled';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { ThemeProvider } from '@mui/material/styles';
-import { Box, Dialog, Typography } from '@mui/material';
-import styled from '@emotion/styled';
-import ErrorIcon from '@mui/icons-material/Error';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import { Box, Dialog, Typography } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 
 import getTheme from '../common/theme';
 
@@ -38,6 +38,7 @@ export function SimpleModal(props) {
               <CheckCircleIcon
                 sx={{
                   fontSize: '40px',
+                  marginTop: '5px',
                 }}
                 color="success"
               ></CheckCircleIcon>
@@ -45,6 +46,7 @@ export function SimpleModal(props) {
               <ErrorIcon
                 sx={{
                   fontSize: '40px',
+                  marginTop: '5px',
                 }}
                 color="error"
               ></ErrorIcon>
