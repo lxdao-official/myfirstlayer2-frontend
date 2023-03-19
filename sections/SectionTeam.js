@@ -309,9 +309,9 @@ function Contributor(props) {
         sx={{
           backgroundImage: 'none',
           backgroundColor: '#F3F3F3',
-          borderRadius: { xs: '8px', md: '18px' },
-          height: { xs: '72px', md: '160px' },
-          width: { xs: '56px', md: 'auto' },
+          borderRadius: { xs: '8px', sm: '18px' },
+          height: { xs: '72px', sm: '160px' },
+          width: { xs: '56px', sm: 'auto' },
         }}
       >
         <Box
@@ -319,8 +319,8 @@ function Contributor(props) {
           src={props.image}
           title={props.name}
           sx={{
-            width: { xs: '56px', md: '128px' },
-            height: { xs: '56px', md: '128px' },
+            width: { xs: '56px', sm: '128px' },
+            height: { xs: '56px', sm: '128px' },
             filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
@@ -331,15 +331,12 @@ function Contributor(props) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            // transform: { xs: 'scale(0.5)', md: 'none' },
+            padding: { xs: '15px 10px 10px 10px', sm: '15px 10px 24px 10px' },
+            zoom: { xs: 0.5, sm: 1 },
             height: {
               xs: '16px !important',
               md: '32px !important',
             },
-            // padding: {
-            //   xs: '0 !important',
-            //   md: '16px 16px 24px 16px',
-            // },
           }}
         >
           <Box
