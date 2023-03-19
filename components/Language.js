@@ -41,6 +41,7 @@ const Language = () => {
   };
 
   const LangNode = useCallback(() => {
+
     return (
       <Box display="flex" alignItems={'center'}>
         <Box
@@ -50,7 +51,7 @@ const Language = () => {
           sx={{ cursor: 'pointer' }}
           onClick={handleClick}
         >
-          <Box display="flex">
+          <Box display="flex" >
             {!smallScreen && <Box component="img" src="/earth.svg" />}
             <Typography
               marginLeft={smallScreen ? 0 : 1}
@@ -67,16 +68,17 @@ const Language = () => {
             />
           </Box>
         </Box>
-        <Menu
+        <Menu     id="account-menu"
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
-          disableScrollLock={false}
+          disableScrollLock={true}
           MenuListProps={{
             'aria-labelledby': 'lock-button',
             role: 'listbox',
           }}
           autoFocus={true}
+          
         >
           <MenuItem>
             <Typography variant="body1">
