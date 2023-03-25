@@ -5,6 +5,8 @@ import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head';
 import React from 'react';
+import fs from 'fs';
+import path from 'path';
 
 import { Box } from '@mui/material';
 
@@ -21,9 +23,10 @@ import SectionTeam from '../sections/SectionTeam';
 import SectionTop from '../sections/SectionTop';
 import Directory from '/components/Directory';
 import MyComponent from '/components/MyComponent';
-import getDocBySlug from '/utils';
+import { getDocBySlug, formatDirectory } from '/utils';
 
-export default function Index({ content, meta }) {
+export default function Index({ content, meta, directory }) {
+  console.log('fileNames--------', directory)
   const t = useTranslations('Index');
   const locale = useLocale();
   const components = {
@@ -33,7 +36,7 @@ export default function Index({ content, meta }) {
     <Main>
       <SectionTop />
 
-      <Content md={<MDXRemote components={components} {...content} />} />
+      <Content md={<MDXRemote components={components} {...content} file={directory} />} />
       <SectionMyFirstProject />
       <SectionSponsors />
       <SectionTeam />
@@ -46,13 +49,19 @@ export default function Index({ content, meta }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const { content, meta } = getDocBySlug('blog', locale);
+  const directoryPath = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content');
+  const files = fs.readdirSync(directoryPath);
+  const fileNames = files.map((file) => file);
+  const directory = formatDirectory(fileNames);
+  console.log('fileNames', fileNames);
+  const { content, meta } = getDocBySlug(fileNames[3], locale);
   const mdxSource = await serialize(content);
   return {
     props: {
       messages: (await import(`../locale/${locale}.json`)).default,
       content: mdxSource,
       meta,
+      directory,
     },
   };
 }

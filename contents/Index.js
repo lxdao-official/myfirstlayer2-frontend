@@ -19,10 +19,11 @@ import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 
 export default function Content(props) {
-  console.log('Content props', props)
+  console.log('Content props fileNames', props)
   const theme = useTheme();
 
   const { md } = props;
+  console.log('fileNames', md.props.file);
   const [readData, setReadData] = useState({counter: 32, unRead: 0, currentIndex: 0, actionFrom: 'nextButton'});
 
   console.log('theme.palette.mode', theme.palette.mode)
@@ -54,7 +55,7 @@ export default function Content(props) {
             <TabChapter marginTop={{ xs: '20px', sm: '160px' }}></TabChapter>
           </Box>
           <Hidden smDown>
-            <PcDirectory></PcDirectory>
+            <PcDirectory directoryText={md.props.file}></PcDirectory>
           </Hidden>
           {/* <Test /> */}
         </Box>

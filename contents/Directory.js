@@ -143,6 +143,8 @@ theme.typography.progress = {
 // }
 
 export function PcDirectory(props) {
+  const { directoryText } = props;
+  console.log('directoryText', directoryText)
   const [directory, setDirectory] = useState(directoryText);
 	const contextData = useContext(ReadContext);
 	const { readData, setReadData } = contextData;
@@ -164,28 +166,28 @@ export function PcDirectory(props) {
   });
 
   useEffect(() => {
-    const directoryText = [
-      { text: '前言（Before Layer2）', status: true, main: true },
-      { text: '区块链的不可能三角', status: false, main: false },
-      { text: 'Layer2演进历程', status: true, main: true },
-      { text: '状态通道侧链', status: true, main: false },
-      { text: 'Plasma', status: false, main: false },
-      { text: 'Rollup', status: false, main: false },
-      { text: 'Rollup机制与原理', status: true, main: true, main: false },
-      { text: 'Rollup扩容核心原理之一：压缩', status: false, main: false },
-      { text: 'Optimistic Rollup', status: false, main: false },
-      { text: 'ZK-Rollup', status: false, main: false },
-      { text: 'Layer2未来展望', status: true, main: true },
-      { text: 'Validium', status: false },
-      { text: 'Volition', status: false },
-    ];
+    // const directoryText = [
+    //   { text: '前言（Before Layer2）', status: true, main: true },
+    //   { text: '区块链的不可能三角', status: false, main: false },
+    //   { text: 'Layer2演进历程', status: true, main: true },
+    //   { text: '状态通道侧链', status: true, main: false },
+    //   { text: 'Plasma', status: false, main: false },
+    //   { text: 'Rollup', status: false, main: false },
+    //   { text: 'Rollup机制与原理', status: true, main: true, main: false },
+    //   { text: 'Rollup扩容核心原理之一：压缩', status: false, main: false },
+    //   { text: 'Optimistic Rollup', status: false, main: false },
+    //   { text: 'ZK-Rollup', status: false, main: false },
+    //   { text: 'Layer2未来展望', status: true, main: true },
+    //   { text: 'Validium', status: false },
+    //   { text: 'Volition', status: false },
+    // ];
     let unRead = 0;
-    directoryText.forEach(item => {
+    directory.forEach(item => {
       if (item?.status) {
         unRead++;
       }
     })
-    setReadData({currentIndex, unRead, counter: directoryText.length, asctionFrom: 'nextContent'})
+    setReadData({currentIndex, unRead, counter: directory.length, asctionFrom: 'nextContent'})
   }, [])
 
   useEffect(() => {
