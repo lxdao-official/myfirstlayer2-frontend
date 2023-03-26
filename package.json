@@ -18,6 +18,7 @@
     "@mui/styles": "^5.11.11",
     "@next/mdx": "^13.2.1",
     "@rainbow-me/rainbowkit": "^0.8.0",
+    "@react-spring/web": "^9.7.1",
     "eslint": "8.34.0",
     "eslint-config-next": "13.2.1",
     "ethers": "5.7.2",

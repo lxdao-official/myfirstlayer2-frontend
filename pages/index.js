@@ -23,6 +23,7 @@ import SectionTeam from '../sections/SectionTeam';
 import SectionTop from '../sections/SectionTop';
 import Directory from '/components/Directory';
 import MyComponent from '/components/MyComponent';
+import CompressAni from '/components/animation/CompressAni';
 import { getDocBySlug, formatDirectory } from '/utils';
 
 export default function Index({ content, meta, directory }) {
@@ -31,9 +32,11 @@ export default function Index({ content, meta, directory }) {
   const locale = useLocale();
   const components = {
     MyComponent,
+    CompressAni,
   };
   return (
     <Main>
+      <CompressAni />
       <SectionTop />
 
       <Content md={<MDXRemote components={components} {...content} file={directory} />} />
