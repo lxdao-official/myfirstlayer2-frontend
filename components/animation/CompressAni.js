@@ -62,7 +62,6 @@ export default function CompressAni() {
   };
 
   const handleCompress = () => {
-    console.log(clicks);
     for (let i = 0; i < clicks.length; i++) {
       if (!clicks[i]) {
         let newClick = [...clicks];
@@ -79,7 +78,6 @@ export default function CompressAni() {
   const handleReset = () => {
     setClicks(Array(3).fill(false));
     zeros.map((ele) => {
-      console.log(ele);
       ele[1].start({ to: fromAnimation, from: toAnimation });
     });
   };
