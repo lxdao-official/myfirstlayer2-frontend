@@ -1,18 +1,17 @@
 import matter from 'gray-matter';
 import path from 'path';
-// import fs from 'fs';
-import * as fs from 'fs';
+import fs from 'fs';
 import { serialize } from 'next-mdx-remote/serialize';
-console.log('fs-------------------', fs)
+
 // const fs = require('fs');
 export function getDocBySlug(slug, locale = 'en') {
-  console.log('slug---------------', slug.default)
+  console.log('slug---------------', slug)
   const docsDirectory = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content');
-  console.log('docsDirectory', docsDirectory)
+  // console.log('docsDirectory', docsDirectory)
   const realSlug = slug.replace(/\.mdx$/, '');
-  console.log('realSlug', realSlug);
+  // console.log('realSlug', realSlug);
   const fullPath = path.join(docsDirectory, `${realSlug}`);
-  console.log('fullPath', fullPath)
+  // console.log('fullPath', fullPath)
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { content, data } = matter(fileContents);
 
@@ -25,8 +24,8 @@ export function formatDirectory(fileNames) {
   let directory = [];
 
   formatArr.map((item, index) => directory.push({ text: item, status: false, main: false}));
-  console.log('formatArr fileNames', formatArr)
-  console.log('formatArr directory', directory)
+  // console.log('formatArr fileNames', formatArr)
+  // console.log('formatArr directory', directory)
 
   
   return directory;
