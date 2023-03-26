@@ -80,7 +80,7 @@ export default function CompressAni() {
     setClicks(Array(3).fill(false));
     zeros.map((ele) => {
       console.log(ele);
-      ele[1].start();
+      ele[1].start({ from: fromAnimation });
     });
   };
 
