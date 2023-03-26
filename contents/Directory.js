@@ -29,21 +29,21 @@ import showMessage from '../components/showMessage';
 import Progress from './Progress';
 import { ReadContext } from './context.js';
 
-const directoryText = [
-  { text: '前言（Before Layer2）', status: true, main: true },
-  { text: '区块链的不可能三角', status: false, main: false },
-  { text: 'Layer2演进历程', status: true, main: true },
-  { text: '状态通道侧链', status: true, main: false },
-  { text: 'Plasma', status: false, main: false },
-  { text: 'Rollup', status: false, main: false },
-  { text: 'Rollup机制与原理', status: true, main: true, main: false },
-  { text: 'Rollup扩容核心原理之一：压缩', status: false, main: false },
-  { text: 'Optimistic Rollup', status: false, main: false },
-  { text: 'ZK-Rollup', status: false, main: false },
-  { text: 'Layer2未来展望', status: true, main: true },
-  { text: 'Validium', status: false },
-  { text: 'Volition', status: false },
-];
+// const directoryText = [
+//   { text: '前言（Before Layer2）', status: true, main: true },
+//   { text: '区块链的不可能三角', status: false, main: false },
+//   { text: 'Layer2演进历程', status: true, main: true },
+//   { text: '状态通道侧链', status: true, main: false },
+//   { text: 'Plasma', status: false, main: false },
+//   { text: 'Rollup', status: false, main: false },
+//   { text: 'Rollup机制与原理', status: true, main: true, main: false },
+//   { text: 'Rollup扩容核心原理之一：压缩', status: false, main: false },
+//   { text: 'Optimistic Rollup', status: false, main: false },
+//   { text: 'ZK-Rollup', status: false, main: false },
+//   { text: 'Layer2未来展望', status: true, main: true },
+//   { text: 'Validium', status: false },
+//   { text: 'Volition', status: false },
+// ];
 
 const readStatus = ['/content/read.png', '/content/unread.png'];
 
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   listItem: {
     borderRadius: "10px",
     "&:hover": {
-      background: "#3C3C3C",
+      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',//"#3C3C3C",
       cursor: "pointer",
     },
     // "&.Mui-selected": {
@@ -256,8 +256,10 @@ export function PcDirectory(props) {
       <Box
         sx={{
           width: '247px',
-          // backgroundColor: theme.palette.mode === 'dark' ? '#1E1E1E' : '#ECECEC',//'#ECECEC',
-          backgroundColor: '#1E1E1E',
+          maxHeight: '987px',
+          overflow: 'auto',
+          backgroundColor: theme.palette.mode === 'dark' ? '#1E1E1E' : '#ECECEC',//'#ECECEC',
+          // backgroundColor: '#1E1E1E',
           borderRadius: 2,
           paddingX: '26px',
           paddingBottom: '45px',
