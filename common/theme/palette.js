@@ -1,7 +1,8 @@
 export const light = {
   bodyBg: {
-    main: '#FAFAFA',
+    main: '#f8fafe',
   },
+  header: { main: '#fff' },
   alternate: {
     // main: '#FAFAFA',
     dark: '#edf1f7',
@@ -23,6 +24,8 @@ export const light = {
   text: {
     primary: '#000',
     secondary: '#6E6E6E',
+    third: 'rgba(0, 0, 0, 0.85)',
+    fourth: '#1D1D1D',
   },
   divider: 'rgba(0, 0, 0, 0.12)',
   background: {
@@ -30,13 +33,18 @@ export const light = {
     default: '#ffffff',
     level2: '#f5f5f5',
     level1: '#ffffff',
+    level3: '#FFFFFF',
+  },
+  shadow: {
+    level1: '0px 20px 50px rgba(0, 0, 0, 0.2)',
   },
 };
 
 export const dark = {
   bodyBg: {
-    main: '#1e1e1e',
+    main: '#000000',
   },
+  header: { main: '#000' },
   alternate: {
     main: '#000000',
     dark: '#151a30',
@@ -62,6 +70,8 @@ export const dark = {
   text: {
     primary: '#fff',
     secondary: '#AEAEAE',
+    third: 'rgba(255, 255, 255, 0.85)',
+    fourth: '#555555',
   },
   divider: 'rgba(255, 255, 255, 0.12)',
   background: {
@@ -69,5 +79,9 @@ export const dark = {
     default: '#222B45',
     level2: '#333',
     level1: '#2D3748',
+    level3: '#0F0F0F',
+  },
+  shadow: {
+    level1: '0px 20px 50px 0 rgba(255, 255, 255, 0.2)',
   },
 };

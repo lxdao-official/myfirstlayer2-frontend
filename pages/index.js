@@ -1,12 +1,12 @@
+import fs from 'fs';
 import { LXDAOIntroduction } from 'lxdao-ui';
 import { GetStaticPropsContext } from 'next';
 import { useLocale, useTranslations } from 'next-intl';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head';
-import React from 'react';
-import fs from 'fs';
 import path from 'path';
+import React from 'react';
 
 import { Box } from '@mui/material';
 
@@ -24,10 +24,10 @@ import SectionTop from '../sections/SectionTop';
 import Directory from '/components/Directory';
 import MyComponent from '/components/MyComponent';
 import CompressAni from '/components/animation/CompressAni';
-import { getDocBySlug, formatDirectory } from '/utils';
+import { formatDirectory, getDocBySlug } from '/utils';
 
 export default function Index({ content, meta, directory }) {
-  console.log('fileNames--------', directory)
+  console.log('fileNames--------', directory);
   const t = useTranslations('Index');
   const locale = useLocale();
   const components = {
@@ -36,10 +36,12 @@ export default function Index({ content, meta, directory }) {
   };
   return (
     <Main>
-      <CompressAni />
       <SectionTop />
 
-      <Content md={<MDXRemote components={components} {...content} file={directory} />} />
+      <Content
+        md={<MDXRemote components={components} {...content} file={directory} />}
+      />
+      <CompressAni />
       <SectionMyFirstProject />
       <SectionSponsors />
       <SectionTeam />
@@ -52,7 +54,10 @@ export default function Index({ content, meta, directory }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const directoryPath = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content');
+  const directoryPath = path.join(
+    process.cwd(),
+    '/mdx/zh/MyFirst-Layer2_Content'
+  );
   const files = fs.readdirSync(directoryPath);
   const fileNames = files.map((file) => file);
   const directory = formatDirectory(fileNames);

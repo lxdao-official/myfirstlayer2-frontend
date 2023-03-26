@@ -15,7 +15,6 @@ import {
 import { useTheme } from '@mui/material/styles';
 
 import StyledToolTip from '../components/StyledToolTip';
-import showMessage from '../components/showMessage';
 import { orgDonation, personDonation } from '../donation';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
@@ -26,11 +25,10 @@ function BigAd(props) {
       height={1}
       sx={{
         textDecoration: 'none',
-        transition: 'all .2s ease-in-out',
         '&:hover': {
-          transform: `translateY(-${props.theme.spacing(1 / 2)})`,
+          boxShadow: 'shadow.level1',
         },
-        boxShadow: '0px 2px 8px 0px #0000000A',
+
         borderRadius: '18px',
       }}
     >
@@ -41,7 +39,7 @@ function BigAd(props) {
         display={'flex'}
         flexDirection={'column'}
         sx={{
-          backgroundColor: '#F3F3F3',
+          backgroundColor: 'background.level3',
           borderRadius: '18px',
         }}
       >
@@ -56,10 +54,15 @@ function BigAd(props) {
           }}
         />
         <Box component={CardContent}>
-          <Typography variant={'body1'} fontWeight={600} gutterBottom>
+          <Typography
+            variant={'body1'}
+            fontWeight={600}
+            color="text.primary"
+            gutterBottom
+          >
             {props.title}
           </Typography>
-          <Typography fontSize={'13px'} fontWeight={400} color="text.secondary">
+          <Typography fontSize={'13px'} fontWeight={400} color="text.primary">
             {props.description}
           </Typography>
         </Box>
@@ -73,7 +76,7 @@ function BigAd(props) {
           <Box>
             {props.website && (
               <Link
-                color={'inherit'}
+                color="text.fourth"
                 marginRight="11px"
                 target="_blank"
                 href={props.website}
@@ -87,7 +90,7 @@ function BigAd(props) {
               </Link>
             )}
             {props.twitter && (
-              <Link color={'inherit'} target="_blank" href={props.twitter}>
+              <Link color="text.fourth" target="_blank" href={props.twitter}>
                 <Box
                   width="18px"
                   color="text.secondary"
@@ -97,7 +100,7 @@ function BigAd(props) {
               </Link>
             )}
           </Box>
-          <Box color="text.secondary" variant="h6">
+          <Box color="text.primary" variant="h6">
             +{props.donation}ETH
           </Box>
         </Box>
@@ -144,12 +147,12 @@ function SmallAd(props) {
             width="266px"
             padding={1}
           >
-            <Typography variant={'body2'} color="text.secondary">
+            <Typography variant={'body2'} color="text.primary">
               {props.description}
             </Typography>
             <Box marginTop={2}>
               {props.website && (
-                <Link color={'inherit'} target="_blank" href={props.website}>
+                <Link color="text.fourth" target="_blank" href={props.website}>
                   <Box
                     color="#ccc"
                     width="40px"
@@ -159,7 +162,7 @@ function SmallAd(props) {
                 </Link>
               )}
               {props.twitter && (
-                <Link color={'inherit'} target="_blank" href={props.twitter}>
+                <Link color="text.fourth" target="_blank" href={props.twitter}>
                   <Box
                     width="40px"
                     color="text.secondary"
@@ -169,7 +172,7 @@ function SmallAd(props) {
                 </Link>
               )}
               {props.opensea && (
-                <Link color={'inherit'} target="_blank" href={props.opensea}>
+                <Link color="text.fourth" target="_blank" href={props.opensea}>
                   <Box
                     width="40px"
                     color="text.secondary"
@@ -179,7 +182,7 @@ function SmallAd(props) {
                 </Link>
               )}
               {props.discord && (
-                <Link color={'inherit'} target="_blank" href={props.discord}>
+                <Link color="text.fourth" target="_blank" href={props.discord}>
                   <Box
                     width="40px"
                     color="text.secondary"
@@ -189,7 +192,7 @@ function SmallAd(props) {
                 </Link>
               )}
             </Box>
-            <Box color="text.secondary" fontSize="14px">
+            <Box color="text.primary" fontSize="14px">
               +{props.donation}ETH
             </Box>
           </Box>
@@ -202,7 +205,7 @@ function SmallAd(props) {
           display={'flex'}
           flexDirection={'column'}
           sx={{
-            backgroundColor: '#F3F3F3',
+            backgroundColor: 'background.level3',
             borderRadius: '18px',
           }}
         >

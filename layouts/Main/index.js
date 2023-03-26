@@ -39,7 +39,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
     <Box>
       <Box
         id="fixed-header"
-        bgcolor={'alternate.main'}
+        bgcolor={'header.main'}
         position="fixed"
         zIndex={100}
         width={'100vw'}
@@ -342,7 +342,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
         )}
       </Box>
       <Box
-        bgcolor={'alternate.main'}
+        bgcolor="bodyBg.main"
         component="main"
         id="main"
         mt={smallScreen ? '81px' : '112px'}
