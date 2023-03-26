@@ -23,6 +23,7 @@ import { PcDirectory } from './Directory';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 import { formatDirectory, getDocBySlug } from '../utils';
+import MyComponent from '../components/MyComponent';
 
 // async function getFile() {
 //   console.log('-----fs-----', fs);
@@ -49,18 +50,27 @@ export default function Content(props) {
   //   const fileUrls = files.keys().map(files);
   //   return fileUrls;
   // }
+  const { md } = props;
+
+
+  const [name, setName] = useState(md.props.file[0]?.text);
 
 
   // console.log('Content props fileNames', props)
   const theme = useTheme();
 
-  const { md } = props;
   // console.log('fileNames', md.props.file);
   const [readData, setReadData] = useState({counter: 32, unRead: 0, currentIndex: 0, actionFrom: 'nextButton'});
-
+  const [mdxSource, setMdxSource ] = useState('')
   console.log('theme.palette.mode', theme.palette.mode)
 
-
+  console.log('handleNext name 0', name);
+  useEffect(() => {
+    fetch(`/api/getFile/${name}`)
+    .then(response => response.json())
+    .then(data => { console.log('data------------', data); setMdxSource(data.mdxSource)})
+    .catch(error => console.error('err--------', error));
+  }, [name])
   // useEffect(() => {
   //   console.log('readFileDirectory-----------', readFileDirectory());
   //   const { content, meta } = getDocBySlug(readFileDirectory()[0]);
@@ -70,6 +80,17 @@ export default function Content(props) {
   //   await getFile();
   // }, [])
 
+  const handleNext = (name) => {
+    // if (name.includes('md')) {
+    //   name = name.substr(0, name.length - 3);
+    // }
+    console.log('handleNext name 2', name);
+    setName(name);
+  };
+
+  const components = {
+    MyComponent,
+  };
 
 
   return (
@@ -95,12 +116,14 @@ export default function Content(props) {
                 sm: 8,
               }}
             >
-              {md}
+              {mdxSource && <MDXRemote components={components} {...mdxSource}>
+              </MDXRemote>}
+              {/* {md} */}
             </Box>
             <TabChapter marginTop={{ xs: '20px', sm: '160px' }}></TabChapter>
           </Box>
           <Hidden smDown>
-            <PcDirectory directoryText={md.props.file}></PcDirectory>
+            <PcDirectory directoryText={md.props.file} handleNext={handleNext}></PcDirectory>
           </Hidden>
           {/* <Test /> */}
         </Box>

@@ -141,7 +141,7 @@ theme.typography.progress = {
 // }
 
 export function PcDirectory(props) {
-  const { directoryText } = props;
+  const { directoryText, handleNext } = props;
   console.log('directoryText', directoryText);
   const [directory, setDirectory] = useState(directoryText);
   const contextData = useContext(ReadContext);
@@ -224,7 +224,7 @@ export function PcDirectory(props) {
     }
   }, [isSuccess]);
 
-  const onNext = (index) => {
+  const onNext = (index, name) => {
     console.log('index', index);
     const newArr = [...directory];
     newArr[index] = { ...directory[index], status: true };
@@ -235,6 +235,7 @@ export function PcDirectory(props) {
       counter,
       asctionFrom: 'nextContent',
     });
+    handleNext(name);
   };
 
   console.log('directory', directory);
@@ -290,12 +291,11 @@ export function PcDirectory(props) {
             <Item data={[...row]} key={index} onClick={() => onNext(index)} />
           ))} */}
         {directory?.map((row, index) => {
-          console.log('row', row);
           return (
             <Item
               data={[row]}
               key={index}
-              onNext={() => onNext(index)}
+              onNext={() => onNext(index, row.text)}
               {...props}
             />
           );
@@ -327,7 +327,7 @@ export function MobileDirectory(props) {
   }, [currentIndex]);
   console.log('readData', readData);
 
-  const onNext = (index) => {
+  const onNext = (index, name) => {
     console.log('index', index);
     const newArr = [...directory];
     newArr[index] = { ...directory[index], status: true };
@@ -370,11 +370,11 @@ const Item = (props) => {
     setSelectedIndex(index);
   };
 
-  console.log('props', props);
+  // console.log('props', props);
   const { data, onNext } = props;
   // const theme = useTheme(props);
 
-  console.log('thme', theme);
+  // console.log('thme', theme);
 
   return (
     // <ThemeProvider theme={theme}>
