@@ -19,6 +19,7 @@ export default function SectionSimpleWrapper({ id, title, children }) {
             variant="h3"
             textAlign="center"
             marginBottom={6}
+            color="text.primary"
             sx={{
               fontWeight: 800,
               fontSize: { xs: '20px', sm: '48px' },

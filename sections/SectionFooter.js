@@ -9,9 +9,7 @@ export default function SectionFooter() {
       padding={{ xs: 3, sm: 3 }}
       display="flex"
       justifyContent={'center'}
-      borderTop="2px solid #eee"
       sx={{
-        background: 'linear-gradient(90deg, #3162E8 0%, #3AD5E3 100%);',
         height: '80px',
         flexWrap: { xs: 'wrap', sm: 'noWrap' },
         rowGap: '20px',
@@ -19,7 +17,7 @@ export default function SectionFooter() {
     >
       <Typography
         component={'p'}
-        color="rgba(255, 255, 255, 0.85)"
+        color="text.third"
         align={'center'}
         fontWeight={400}
         fontSize={'20px'}
@@ -40,7 +38,7 @@ export default function SectionFooter() {
       />
       <Typography
         component={'p'}
-        color="rgba(255, 255, 255, 0.85)"
+        color="text.third"
         align={'center'}
         fontWeight={400}
         fontSize={'20px'}
@@ -61,7 +59,7 @@ export default function SectionFooter() {
       />
       <Typography
         component={'p'}
-        color="rgba(255, 255, 255, 0.85)"
+        color="text.third"
         align={'center'}
         fontWeight={400}
         fontSize={'20px'}
@@ -82,7 +80,7 @@ export default function SectionFooter() {
       />
       <Typography
         component={'p'}
-        color="rgba(255, 255, 255, 0.85)"
+        color="text.third"
         align={'center'}
         fontWeight={400}
         fontSize={'20px'}
