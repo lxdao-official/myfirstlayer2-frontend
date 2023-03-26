@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import {
   Box,
   Card,
@@ -10,6 +10,11 @@ import {
   Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import path from 'path';
+
+import { MDXRemote } from 'next-mdx-remote';
+
+import { serialize } from 'next-mdx-remote/serialize';
 
 import Container from '../components/Container';
 import BottomNav from './BottomNav';
@@ -17,16 +22,56 @@ import BottomNav from './BottomNav';
 import { PcDirectory } from './Directory';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
+import { formatDirectory, getDocBySlug } from '../utils';
+
+// async function getFile() {
+//   console.log('-----fs-----', fs);
+//   const directoryPath = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content');
+//   const files = await fs.readdirSync(directoryPath);
+//   const fileNames = files.map((file) => file);
+//   const directory = formatDirectory(fileNames);
+//   const { content, meta } = getDocBySlug(directory[0]?.text, locale);
+//   const mdxSource = await serialize(content);
+//   console.log('----------', files);
+//   console.log('fileNames--------', directory)
+//   console.log('mdxSource--------', mdxSource)
+//   return {
+//     mdxSource,
+//   }
+
+// }
 
 export default function Content(props) {
-  console.log('Content props fileNames', props)
+
+  // const directoryPath = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content');
+  // function readFileDirectory() {
+  //   const files = require.context('/mdx/zh/MyFirst-Layer2_Content', true);
+  //   const fileUrls = files.keys().map(files);
+  //   return fileUrls;
+  // }
+
+
+  // console.log('Content props fileNames', props)
   const theme = useTheme();
 
   const { md } = props;
-  console.log('fileNames', md.props.file);
+  // console.log('fileNames', md.props.file);
   const [readData, setReadData] = useState({counter: 32, unRead: 0, currentIndex: 0, actionFrom: 'nextButton'});
 
   console.log('theme.palette.mode', theme.palette.mode)
+
+
+  // useEffect(() => {
+  //   console.log('readFileDirectory-----------', readFileDirectory());
+  //   const { content, meta } = getDocBySlug(readFileDirectory()[0]);
+  //   console.log('content', content)
+  // }, [])
+  // useEffect(async () => {
+  //   await getFile();
+  // }, [])
+
+
+
   return (
     <ReadContext.Provider value={{readData, setReadData}}>
       <Container marginTop={4}>
@@ -39,9 +84,9 @@ export default function Content(props) {
           >
             <Box
               sx={{
-                // backgroundColor: theme.palette.mode === 'dark' ? '#1E1E1E' : '#ECECEC',
+                backgroundColor: theme.palette.mode === 'dark' ? '#1E1E1E' : '#ECECEC',
                 // width: 920,
-                backgroundColor: '#1E1E1E'
+                // backgroundColor: '#1E1E1E'
               }}
               // width
               borderRadius={2}

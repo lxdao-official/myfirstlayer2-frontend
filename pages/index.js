@@ -24,9 +24,21 @@ import SectionTop from '../sections/SectionTop';
 import Directory from '/components/Directory';
 import MyComponent from '/components/MyComponent';
 import { getDocBySlug, formatDirectory } from '/utils';
+import {
+  setStorage,
+  getStorage,
+  removeStorage,
+} from '../contents/storage';
 
 export default function Index({ content, meta, directory }) {
-  console.log('fileNames--------', directory)
+    // console.log('fs------------------------------', fs)
+  // async function getFile() {
+  //   const directoryPath = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content');
+  //   const files = await fs.readdirSync(directoryPath);
+  //   console.log('----------', files);
+  //   console.log('fileNames--------', directory)    
+  // }
+
   const t = useTranslations('Index');
   const locale = useLocale();
   const components = {
@@ -53,8 +65,10 @@ export async function getStaticProps({ locale }) {
   const files = fs.readdirSync(directoryPath);
   const fileNames = files.map((file) => file);
   const directory = formatDirectory(fileNames);
-  console.log('fileNames', fileNames);
-  const { content, meta } = getDocBySlug(fileNames[3], locale);
+  // console.log('fileNames', fileNames);
+  // console.log('directory', directory);
+
+  const { content, meta } = getDocBySlug(directory[0]?.text, locale);
   const mdxSource = await serialize(content);
   return {
     props: {
