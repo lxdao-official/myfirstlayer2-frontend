@@ -10,12 +10,11 @@ import {
   CardContent,
   Grid,
   Link,
+  SvgIcon,
   Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-import StyledToolTip from '../components/StyledToolTip';
-import showMessage from '../components/showMessage';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
 export const myfirstProjects = [
@@ -52,9 +51,9 @@ function MyFirstCard(props) {
       height={1}
       sx={{
         textDecoration: 'none',
-        transition: 'all .2s ease-in-out',
-
-        boxShadow: '0px 2px 8px 0px #0000000A',
+        '&:hover': {
+          boxShadow: '0px 20px 50px 0 rgba(255, 255, 255, 0.2)',
+        },
         borderRadius: '18px',
       }}
     >
@@ -64,10 +63,13 @@ function MyFirstCard(props) {
         display={'flex'}
         flexDirection={'column'}
         sx={{
-          backgroundColor: '#F3F3F3',
+          backgroundColor: 'background.level3',
           borderRadius: '18px',
           height: '410px',
           padding: '20px',
+          '&:hover': {
+            boxShadow: 'shadow.level1',
+          },
         }}
       >
         <Box display="flex" flexDirection={'row'}>
@@ -101,10 +103,10 @@ function MyFirstCard(props) {
             display={'flex'}
             flexDirection={'column'}
           >
-            <Typography variant="h6" fontWeight={800}>
+            <Typography color="text.primary" variant="h6" fontWeight={800}>
               {props.projectName}
             </Typography>
-            <Typography fontSize={'12px'} fontWeight={400}>
+            <Typography color="text.primary" fontSize={'12px'} fontWeight={400}>
               {props.holder}
             </Typography>
           </Box>
@@ -121,14 +123,19 @@ function MyFirstCard(props) {
           }}
         />
         <Box marginTop={'20px'} marginBottom={'15px'}>
-          <Typography fontSize={'12px'} fontWeight={400} fontFamily="Open Sans">
+          <Typography
+            color="text.primary"
+            fontSize={'12px'}
+            fontWeight={400}
+            fontFamily="Open Sans"
+          >
             {props.description}
           </Typography>
         </Box>
 
         <Box>
           <Link
-            color={'inherit'}
+            color="text.primary"
             target="_blank"
             href={props.url}
             display="flex"
@@ -138,6 +145,7 @@ function MyFirstCard(props) {
             }}
           >
             <Typography
+              color="text.primary"
               fontSize={'12px'}
               fontWeight={600}
               fontFamily="Open Sans"
@@ -145,6 +153,7 @@ function MyFirstCard(props) {
               View More
             </Typography>
             <Box
+              color="text.primary"
               marginLeft={'10px'}
               width="19px"
               component="img"

@@ -1,11 +1,13 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles';
+
 import { Tooltip } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   tooltip: {
     marginTop: '10px !important',
     background: 'transparent',
+    borderRadius: '18px',
   },
 });
 

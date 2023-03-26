@@ -308,7 +308,7 @@ function Contributor(props) {
         flexDirection={'column'}
         sx={{
           backgroundImage: 'none',
-          backgroundColor: '#F3F3F3',
+          backgroundColor: 'background.level3',
           borderRadius: { xs: '8px', sm: '18px' },
           height: { xs: '72px', sm: '160px' },
           width: { xs: '56px', sm: 'auto' },
@@ -358,7 +358,7 @@ function Contributor(props) {
             {props.twitter && (
               <Link
                 height="16px"
-                color={'inherit'}
+                color="text.fourth"
                 target="_blank"
                 href={props.twitter}
               >
@@ -412,13 +412,13 @@ function SimpleContributor(props) {
             >
               {props.twitter && (
                 <Link
-                  color={'inherit'}
+                  color="text.fourth"
                   display="flex"
                   target="_blank"
                   href={props.twitter}
                 >
                   <Box
-                    width="30px"
+                    width="20px"
                     color="text.secondary"
                     component="img"
                     src="/icons/twitter.svg"
@@ -470,6 +470,7 @@ export default function SectionTeam() {
         </Box>
         <Typography
           textAlign="center"
+          color="text.primary"
           marginTop={{ xs: '90px', sm: '120px' }}
           marginBottom={{ xs: '30px', sm: '50px' }}
           sx={{ fontWeight: 800, fontSize: { xs: '20px', sm: '48px' } }}
@@ -477,9 +478,9 @@ export default function SectionTeam() {
           {t(`sectionTeam-content-12`)}
         </Typography>
         <Box padding={{ xs: 2, sm: 0 }} marginBottom={8}>
-          <Grid container spacing={3.125}>
+          <Grid container spacing={2.5}>
             {_.shuffle(activeContributors).map((item, i) => (
-              <Grid item xs={12 / 7} sm={12 / 7} md={12 / 10} key={i}>
+              <Grid item xs={12 / 7} sm={12 / 7} md={12 / 12} key={i}>
                 <SimpleContributor {...item} />
               </Grid>
             ))}

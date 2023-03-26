@@ -1,7 +1,6 @@
-
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { getAccount } from '@wagmi/core';
-import { useEffect, useState, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   useContractWrite,
   usePrepareContractWrite,
@@ -9,17 +8,17 @@ import {
 } from 'wagmi';
 
 import {
+  Avatar,
   Box,
   Button,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
   SwipeableDrawer,
   ThemeProvider,
   Typography,
   createTheme,
   useTheme,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Avatar,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -47,17 +46,17 @@ import { ReadContext } from './context.js';
 
 const readStatus = ['/content/read.png', '/content/unread.png'];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-    overflow: "hidden",
+    boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+    overflow: 'hidden',
     // width: "200px",
   },
   listItem: {
-    borderRadius: "10px",
-    "&:hover": {
-      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',//"#3C3C3C",
-      cursor: "pointer",
+    borderRadius: '10px',
+    '&:hover': {
+      // background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3', //"#3C3C3C",
+      cursor: 'pointer',
     },
     // "&.Mui-selected": {
     //   background: "#3C3C3C",
@@ -65,11 +64,11 @@ const useStyles = makeStyles(theme => ({
     // },
   },
   avatar: {
-    width: "15px", // 图像的大小
+    width: '15px', // 图像的大小
     height: '15px',
   },
   text: {
-    marginLeft: "-30px",
+    marginLeft: '-30px',
     '& .MuiTypography-body1': {
       fontSize: (props) => props.fontSize, // 使用props传入字体大小
     },
@@ -83,7 +82,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1rem',
     fontWeight: 400,
     fontFamily: 'Alibaba PuHuiTi',
-  }
+  },
 }));
 
 const theme = createTheme({
@@ -98,7 +97,7 @@ const theme = createTheme({
       fontWeight: 400,
       fontFamily: 'Alibaba PuHuiTi',
     },
-  }
+  },
 });
 
 theme.typography.progress = {
@@ -107,7 +106,6 @@ theme.typography.progress = {
   fontFamily: 'Open Sans',
   color: '#747474',
 };
-
 
 /**TODO: 后续优化 */
 // function Contents(props) {
@@ -144,11 +142,11 @@ theme.typography.progress = {
 
 export function PcDirectory(props) {
   const { directoryText } = props;
-  console.log('directoryText', directoryText)
+  console.log('directoryText', directoryText);
   const [directory, setDirectory] = useState(directoryText);
-	const contextData = useContext(ReadContext);
-	const { readData, setReadData } = contextData;
-	const { currentIndex, unRead, counter, actionFrom } = readData;
+  const contextData = useContext(ReadContext);
+  const { readData, setReadData } = contextData;
+  const { currentIndex, unRead, counter, actionFrom } = readData;
   const { isConnected } = getAccount();
   const { config } = usePrepareContractWrite({
     address: '0x43c4Ebf956F7804596c333B209Ff246a476594DA',
@@ -158,7 +156,6 @@ export function PcDirectory(props) {
   });
 
   // const theme = useTheme();
-
 
   const { data, write, error, isError } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
@@ -182,23 +179,31 @@ export function PcDirectory(props) {
     //   { text: 'Volition', status: false },
     // ];
     let unRead = 0;
-    directory.forEach(item => {
+    directory.forEach((item) => {
       if (item?.status) {
         unRead++;
       }
-    })
-    setReadData({currentIndex, unRead, counter: directory.length, asctionFrom: 'nextContent'})
-  }, [])
+    });
+    setReadData({
+      currentIndex,
+      unRead,
+      counter: directory.length,
+      asctionFrom: 'nextContent',
+    });
+  }, []);
 
   useEffect(() => {
-		if (actionFrom === 'nextButton') {
-			console.log('22')
-			const newArr = [...directory];
-			newArr[currentIndex - 1] = {...directory[currentIndex - 1], status: true};
-			setDirectory(newArr);
-		}
-	}, [currentIndex])
-	console.log('readData', readData);
+    if (actionFrom === 'nextButton') {
+      console.log('22');
+      const newArr = [...directory];
+      newArr[currentIndex - 1] = {
+        ...directory[currentIndex - 1],
+        status: true,
+      };
+      setDirectory(newArr);
+    }
+  }, [currentIndex]);
+  console.log('readData', readData);
 
   useEffect(() => {
     if (isError) {
@@ -220,14 +225,19 @@ export function PcDirectory(props) {
   }, [isSuccess]);
 
   const onNext = (index) => {
-		console.log('index', index)
-		const newArr = [...directory];
-			newArr[index] = {...directory[index], status: true};
-			setDirectory(newArr);
-			setReadData({currentIndex: index, unRead: unRead + 1, counter, asctionFrom: 'nextContent'})
-	};
+    console.log('index', index);
+    const newArr = [...directory];
+    newArr[index] = { ...directory[index], status: true };
+    setDirectory(newArr);
+    setReadData({
+      currentIndex: index,
+      unRead: unRead + 1,
+      counter,
+      asctionFrom: 'nextContent',
+    });
+  };
 
-  console.log('directory', directory)
+  console.log('directory', directory);
   return (
     <Box>
       <Box>
@@ -258,7 +268,8 @@ export function PcDirectory(props) {
           width: '247px',
           maxHeight: '987px',
           overflow: 'auto',
-          backgroundColor: theme.palette.mode === 'dark' ? '#1E1E1E' : '#ECECEC',//'#ECECEC',
+          backgroundColor:
+            theme.palette.mode === 'dark' ? '#1E1E1E' : '#ECECEC', //'#ECECEC',
           // backgroundColor: '#1E1E1E',
           borderRadius: 2,
           paddingX: '26px',
@@ -266,24 +277,29 @@ export function PcDirectory(props) {
         }}
       >
         {/* <ThemeProvider theme={theme}> */}
-          <Box
-            sx={{
-              textAlign: 'center',
-              paddingY: '20px',
-            }}
-          >
-            <Typography variant="progress">当前浏览进度</Typography>
-          </Box>
-          <Progress></Progress>
-          {/* {directory?.map((row, index) => (
+        <Box
+          sx={{
+            textAlign: 'center',
+            paddingY: '20px',
+          }}
+        >
+          <Typography variant="progress">当前浏览进度</Typography>
+        </Box>
+        <Progress></Progress>
+        {/* {directory?.map((row, index) => (
             <Item data={[...row]} key={index} onClick={() => onNext(index)} />
           ))} */}
-          {
-            directory?.map((row, index) => {
-              console.log('row', row);
-              return <Item data={[row]} key={index} onNext={() => onNext(index)} {...props}/>
-            })
-          }
+        {directory?.map((row, index) => {
+          console.log('row', row);
+          return (
+            <Item
+              data={[row]}
+              key={index}
+              onNext={() => onNext(index)}
+              {...props}
+            />
+          );
+        })}
         {/* </ThemeProvider> */}
       </Box>
     </Box>
@@ -292,29 +308,37 @@ export function PcDirectory(props) {
 
 export function MobileDirectory(props) {
   const [drawerStatus, setDrawerStatus] = useState(false);
-	const [directory, setDirectory] = useState(directoryText);
-	const contextData = useContext(ReadContext);
-	const { readData, setReadData } = contextData;
-	const { currentIndex, unRead, counter, actionFrom } = readData;
-	
-	console.log('readData context', readData);
-	useEffect(() => {
-		if (actionFrom === 'nextButton') {
-			console.log('22')
-			const newArr = [...directory];
-			newArr[currentIndex - 1] = {...directory[currentIndex - 1], status: true};
-			setDirectory(newArr);
-		}
-	}, [currentIndex])
-	console.log('readData', readData);
+  const [directory, setDirectory] = useState(directoryText);
+  const contextData = useContext(ReadContext);
+  const { readData, setReadData } = contextData;
+  const { currentIndex, unRead, counter, actionFrom } = readData;
 
-	const onNext = (index) => {
-		console.log('index', index)
-		const newArr = [...directory];
-			newArr[index] = {...directory[index], status: true};
-			setDirectory(newArr);
-			setReadData({currentIndex: index, unRead: unRead + 1, counter, actionFrom: 'nextContent'})
-	};
+  console.log('readData context', readData);
+  useEffect(() => {
+    if (actionFrom === 'nextButton') {
+      console.log('22');
+      const newArr = [...directory];
+      newArr[currentIndex - 1] = {
+        ...directory[currentIndex - 1],
+        status: true,
+      };
+      setDirectory(newArr);
+    }
+  }, [currentIndex]);
+  console.log('readData', readData);
+
+  const onNext = (index) => {
+    console.log('index', index);
+    const newArr = [...directory];
+    newArr[index] = { ...directory[index], status: true };
+    setDirectory(newArr);
+    setReadData({
+      currentIndex: index,
+      unRead: unRead + 1,
+      counter,
+      actionFrom: 'nextContent',
+    });
+  };
 
   return (
     <Box>
@@ -335,20 +359,16 @@ export function MobileDirectory(props) {
   );
 }
 
-
 const Item = (props) => {
-
-
   const classes = useStyles();
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const handleListItemClick = (item, index) => {
     console.log('item', item);
-    
+
     !item?.status && onNext(index);
     setSelectedIndex(index);
   };
-
 
   console.log('props', props);
   const { data, onNext } = props;
@@ -358,25 +378,33 @@ const Item = (props) => {
 
   return (
     // <ThemeProvider theme={theme}>
-      <Box>
-        {
-          data?.map((item, index) => (
-            <ListItem
-              button
-              selected={selectedIndex === index}
-              onClick={() => handleListItemClick(item, index)}
-              className={classes.listItem}
-            >
-              <ListItemAvatar>
-                <Avatar className={classes.avatar} src={readStatus[item?.status ? 0 : 1]} />
-              </ListItemAvatar>
-              <ListItemText className={[classes.text, item?.main ? classes.mainTitle : classes.subtitle]} primary={item?.text} fontSize={22}></ListItemText>
-            </ListItem>
-          ))
-        }
-      </Box>
+    <Box>
+      {data?.map((item, index) => (
+        <ListItem
+          button
+          selected={selectedIndex === index}
+          onClick={() => handleListItemClick(item, index)}
+          className={classes.listItem}
+        >
+          <ListItemAvatar>
+            <Avatar
+              className={classes.avatar}
+              src={readStatus[item?.status ? 0 : 1]}
+            />
+          </ListItemAvatar>
+          <ListItemText
+            className={[
+              classes.text,
+              item?.main ? classes.mainTitle : classes.subtitle,
+            ]}
+            primary={item?.text}
+            fontSize={22}
+          ></ListItemText>
+        </ListItem>
+      ))}
+    </Box>
     // </ThemeProvider>
-  )
+  );
   // return (
   //   <ThemeProvider theme={theme}>
   //     <Box>

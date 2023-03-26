@@ -60,6 +60,8 @@ const Language = ({ color }) => {
               marginRight={smallScreen ? 0 : 0.5}
               color={color}
               fontSize={smallScreen ? '13px' : '18px'}
+              width={{ xs: 'auto', md: '80px' }}
+              textAlign="center"
             >
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
@@ -77,14 +79,14 @@ const Language = ({ color }) => {
           }}
           autoFocus={true}
         >
-          <MenuItem>
+          <MenuItem onClick={handleClose}>
             <Typography variant="body1">
               <Link href={route} locale="en">
                 English
               </Link>
             </Typography>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleClose}>
             <Typography variant="body1">
               <Link href={route} locale="zh">
                 简体中文
