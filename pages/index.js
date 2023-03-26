@@ -21,6 +21,7 @@ import SectionTeam from '../sections/SectionTeam';
 import SectionTop from '../sections/SectionTop';
 import Directory from '/components/Directory';
 import MyComponent from '/components/MyComponent';
+import CompressAni from '/components/animation/CompressAni';
 import getDocBySlug from '/utils';
 
 export default function Index({ content, meta }) {
@@ -28,11 +29,15 @@ export default function Index({ content, meta }) {
   const locale = useLocale();
   const components = {
     MyComponent,
+    CompressAni,
   };
   return (
     <Main>
-      <SectionTop />
-
+      <CompressAni />
+      {/* <SectionTop /> */}
+      {/* <Progress></Progress> */}
+      {/* <TabChapter></TabChapter> */}
+      {/* <Directory md={<MDXRemote components={components} {...content} />} /> */}
       <Content md={<MDXRemote components={components} {...content} />} />
       <SectionMyFirstProject />
       <SectionSponsors />
