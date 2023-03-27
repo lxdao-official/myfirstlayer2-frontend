@@ -3,7 +3,13 @@ import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 
 import LanguageIcon from '@mui/icons-material/Language';
-import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import {
+  Box,
+  SvgIcon,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -58,13 +64,14 @@ const Language = ({ color }) => {
             <Typography
               marginLeft={smallScreen ? 0 : 1}
               marginRight={smallScreen ? 0 : 0.5}
-              color={color}
+              color="text.primary"
               fontSize={smallScreen ? '13px' : '18px'}
               width={{ xs: 'auto', md: '80px' }}
               textAlign="center"
             >
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
+
             <Arrow color={color} style={{ rotate: open && '180deg' }} />
           </Box>
         </Box>
@@ -105,7 +112,8 @@ const Language = ({ color }) => {
         </Menu>
       </Box>
     );
-  }, [locale, anchorEl]);
+  }, [locale, anchorEl, color]);
+
   return LangNode();
 };
 
