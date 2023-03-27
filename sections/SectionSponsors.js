@@ -15,20 +15,19 @@ import {
 import { useTheme } from '@mui/material/styles';
 
 import StyledToolTip from '../components/StyledToolTip';
+import Twitter from '../components/svg/Twitter';
+import Website from '../components/svg/Website';
 import { orgDonation, personDonation } from '../donation';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
 function BigAd(props) {
+  const theme = useTheme();
   return (
     <Box
       width={1}
       height={1}
       sx={{
         textDecoration: 'none',
-        '&:hover': {
-          boxShadow: 'shadow.level1',
-        },
-
         borderRadius: '18px',
       }}
     >
@@ -39,8 +38,12 @@ function BigAd(props) {
         display={'flex'}
         flexDirection={'column'}
         sx={{
+          boxShadow: 'none',
           backgroundColor: 'background.level3',
           borderRadius: '18px',
+          '&:hover': {
+            boxShadow: theme.palette.shadow.level1,
+          },
         }}
       >
         <Box
@@ -69,39 +72,28 @@ function BigAd(props) {
         <Box flexGrow={1} />
         <Box
           paddingLeft={2}
-          paddingRight={2}
+          paddingRight={'10px'}
           component={CardActions}
-          justifyContent={'space-between'}
+          justifyContent="end"
         >
-          <Box>
+          <Box display="flex" justifyContent="flex-end" gap="10px">
+            {props.twitter && (
+              <Link color="text.icon" target="_blank" href={props.twitter}>
+                <Box width="18px">
+                  <Twitter width="18px" />
+                </Box>
+              </Link>
+            )}
             {props.website && (
               <Link
-                color="text.fourth"
+                color="text.icon"
                 marginRight="11px"
                 target="_blank"
                 href={props.website}
               >
-                <Box
-                  color="#ccc"
-                  width="18px"
-                  component="img"
-                  src="/icons/website.svg"
-                />
+                <Website width="18px" />
               </Link>
             )}
-            {props.twitter && (
-              <Link color="text.fourth" target="_blank" href={props.twitter}>
-                <Box
-                  width="18px"
-                  color="text.secondary"
-                  component="img"
-                  src="/icons/twitter.svg"
-                />
-              </Link>
-            )}
-          </Box>
-          <Box color="text.primary" variant="h6">
-            +{props.donation}ETH
           </Box>
         </Box>
       </Box>
@@ -110,6 +102,7 @@ function BigAd(props) {
 }
 
 function SmallAd(props) {
+  const theme = useTheme();
   if (props.type === 'instruction') {
     return (
       <Box
@@ -138,122 +131,60 @@ function SmallAd(props) {
         textDecoration: 'none',
       }}
     >
-      <StyledToolTip
-        title={
-          <Box
-            component={Card}
-            display={'flex'}
-            flexDirection={'column'}
-            width="266px"
-            padding={1}
-          >
-            <Typography variant={'body2'} color="text.primary">
-              {props.description}
-            </Typography>
-            <Box marginTop={2}>
-              {props.website && (
-                <Link color="text.fourth" target="_blank" href={props.website}>
-                  <Box
-                    color="#ccc"
-                    width="40px"
-                    component="img"
-                    src="/icons/website.svg"
-                  />
-                </Link>
-              )}
-              {props.twitter && (
-                <Link color="text.fourth" target="_blank" href={props.twitter}>
-                  <Box
-                    width="40px"
-                    color="text.secondary"
-                    component="img"
-                    src="/icons/twitter.svg"
-                  />
-                </Link>
-              )}
-              {props.opensea && (
-                <Link color="text.fourth" target="_blank" href={props.opensea}>
-                  <Box
-                    width="40px"
-                    color="text.secondary"
-                    component="img"
-                    src="/icons/opensea.svg"
-                  />
-                </Link>
-              )}
-              {props.discord && (
-                <Link color="text.fourth" target="_blank" href={props.discord}>
-                  <Box
-                    width="40px"
-                    color="text.secondary"
-                    component="img"
-                    src="/icons/discord.svg"
-                  />
-                </Link>
-              )}
-            </Box>
-            <Box color="text.primary" fontSize="14px">
-              +{props.donation}ETH
-            </Box>
-          </Box>
-        }
+      <Box
+        component={Card}
+        width={1}
+        height={1}
+        display={'flex'}
+        flexDirection={'column'}
+        sx={{
+          boxShadow: 'none',
+          backgroundColor: 'background.level3',
+          borderRadius: '18px',
+          '&:hover': {
+            boxShadow: theme.palette.shadow.level2,
+          },
+        }}
       >
         <Box
-          component={Card}
-          width={1}
-          height={1}
-          display={'flex'}
-          flexDirection={'column'}
+          component="img"
+          src={props.image}
+          title={props.title}
           sx={{
-            backgroundColor: 'background.level3',
-            borderRadius: '18px',
+            width: '100%',
+            filter:
+              props.theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
+        />
+        <Box
+          padding="12px !important"
+          component={CardContent}
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
         >
-          <Box
-            component="img"
-            src={props.image}
-            title={props.title}
+          <Typography
+            variant={'body1'}
             sx={{
-              width: '100%',
-              filter:
-                props.theme.palette.mode === 'dark'
-                  ? 'brightness(0.7)'
-                  : 'none',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              fontSize: '14px',
             }}
-          />
-          <Box
-            padding="12px !important"
-            component={CardContent}
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
+            fontWeight={700}
           >
-            <Typography
-              variant={'body1'}
-              sx={{
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis',
-                fontSize: '14px',
-              }}
-              fontWeight={700}
-            >
-              {props.title}
-            </Typography>
-            <Typography
-              variant={'body1'}
-              sx={{
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis',
-                fontSize: '14px',
-              }}
-            >
-              +{props.donation}ETH
-            </Typography>
+            {props.title}
+          </Typography>
+
+          <Box>
+            {props.twitter && (
+              <Link color="text.icon" target="_blank" href={props.twitter}>
+                <Twitter width="18px" />
+              </Link>
+            )}
           </Box>
         </Box>
-      </StyledToolTip>
+      </Box>
     </Box>
   );
 }

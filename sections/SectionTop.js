@@ -29,7 +29,12 @@ export default function SectionTop({ content, meta }) {
         borderRadius={'16px'}
       />
       <Typography
-        sx={{ fontWeight: '400', fontSize: '20px', whiteSpace: 'pre-line' }}
+        sx={{
+          fontWeight: '400',
+          color: 'text.primary',
+          fontSize: '20px',
+          whiteSpace: 'pre-line',
+        }}
       >
         {t('description')}
       </Typography>
