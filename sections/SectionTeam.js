@@ -14,6 +14,7 @@ import {
 import { useTheme } from '@mui/material/styles';
 
 import StyledToolTip from '../components/StyledToolTip';
+import Twitter from '../components/svg/Twitter';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
 const coreContributors = [
@@ -293,10 +294,6 @@ function Contributor(props) {
       height={1}
       sx={{
         textDecoration: 'none',
-        transition: 'all .2s ease-in-out',
-        '&:hover': {
-          transform: `translateY(-${theme.spacing(1 / 2)})`,
-        },
       }}
     >
       <Box
@@ -307,6 +304,7 @@ function Contributor(props) {
         display={'flex'}
         flexDirection={'column'}
         sx={{
+          boxShadow: 'none',
           backgroundImage: 'none',
           backgroundColor: 'background.level3',
           borderRadius: { xs: '8px', sm: '18px' },
@@ -356,18 +354,8 @@ function Contributor(props) {
               {props.name}
             </Typography>
             {props.twitter && (
-              <Link
-                height="16px"
-                color="text.fourth"
-                target="_blank"
-                href={props.twitter}
-              >
-                <Box
-                  height={{ xs: '16px', md: '16px' }}
-                  color="text.secondary"
-                  component="img"
-                  src="/icons/twitter.svg"
-                />
+              <Link height="16px" target="_blank" href={props.twitter}>
+                <Twitter height={{ xs: '16px', md: '16px' }} />
               </Link>
             )}
           </Box>
@@ -412,17 +400,12 @@ function SimpleContributor(props) {
             >
               {props.twitter && (
                 <Link
-                  color="text.fourth"
+                  color="text"
                   display="flex"
                   target="_blank"
                   href={props.twitter}
                 >
-                  <Box
-                    width="20px"
-                    color="text.secondary"
-                    component="img"
-                    src="/icons/twitter.svg"
-                  />
+                  <Twitter width="20px" />
                 </Link>
               )}
             </Box>

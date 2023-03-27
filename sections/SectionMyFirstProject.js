@@ -6,15 +6,13 @@ import {
   Box,
   Button,
   Card,
-  CardActions,
-  CardContent,
   Grid,
   Link,
-  SvgIcon,
   Typography,
+  useTheme,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 
+import MyFirstArrow from '../components/svg/MyFirstArrow';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
 export const myfirstProjects = [
@@ -45,15 +43,15 @@ export const myfirstProjects = [
 ];
 
 function MyFirstCard(props) {
+  const theme = useTheme();
+
   return (
     <Box
       width={1}
       height={1}
       sx={{
         textDecoration: 'none',
-        '&:hover': {
-          boxShadow: '0px 20px 50px 0 rgba(255, 255, 255, 0.2)',
-        },
+        paddingBottom: '50px',
         borderRadius: '18px',
       }}
     >
@@ -68,7 +66,7 @@ function MyFirstCard(props) {
           height: '410px',
           padding: '20px',
           '&:hover': {
-            boxShadow: 'shadow.level1',
+            boxShadow: theme.palette.shadow.level1,
           },
         }}
       >
@@ -152,13 +150,9 @@ function MyFirstCard(props) {
             >
               View More
             </Typography>
-            <Box
-              color="text.primary"
-              marginLeft={'10px'}
-              width="19px"
-              component="img"
-              src="/project/arrow.svg"
-            />
+            <Box color="text.primary" marginLeft={'10px'} width="19px">
+              <MyFirstArrow color="text.primary" />
+            </Box>
           </Link>
         </Box>
       </Box>
