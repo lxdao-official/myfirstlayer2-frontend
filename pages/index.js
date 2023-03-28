@@ -12,10 +12,8 @@ import { Box } from '@mui/material';
 
 import Container from '../components/Container';
 import Content from '../contents/Index';
+import { getStorage, removeStorage, setStorage } from '../contents/storage';
 import Main from '../layouts/Main';
-import ExampleEn from '../mdx/en/example.en.mdx';
-import Example from '../mdx/example.mdx';
-import ExampleZh from '../mdx/zh/example.zh.mdx';
 import SectionFooter from '../sections/SectionFooter';
 import SectionMyFirstProject from '../sections/SectionMyFirstProject';
 import SectionSponsors from '../sections/SectionSponsors';
@@ -23,23 +21,11 @@ import SectionTeam from '../sections/SectionTeam';
 import SectionTop from '../sections/SectionTop';
 import Directory from '/components/Directory';
 import MyComponent from '/components/MyComponent';
+import ZksyncSwap from '/components/ZksyncSwap';
 import CompressAni from '/components/animation/CompressAni';
-import { getDocBySlug, formatDirectory } from '/utils';
-import {
-  setStorage,
-  getStorage,
-  removeStorage,
-} from '../contents/storage';
+import { formatDirectory, getDocBySlug } from '/utils';
 
 export default function Index({ content, meta, directory }) {
-    // console.log('fs------------------------------', fs)
-  // async function getFile() {
-  //   const directoryPath = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content');
-  //   const files = await fs.readdirSync(directoryPath);
-  //   console.log('----------', files);
-  //   console.log('fileNames--------', directory)    
-  // }
-
   const t = useTranslations('Index');
   const locale = useLocale();
   const components = {
@@ -49,11 +35,11 @@ export default function Index({ content, meta, directory }) {
   return (
     <Main>
       <SectionTop />
-
       <Content
         md={<MDXRemote components={components} {...content} file={directory} />}
       />
       <CompressAni />
+      <ZksyncSwap />
       <SectionMyFirstProject />
       <SectionSponsors />
       <SectionTeam />
@@ -73,8 +59,6 @@ export async function getStaticProps({ locale }) {
   const files = fs.readdirSync(directoryPath);
   const fileNames = files.map((file) => file);
   const directory = formatDirectory(fileNames);
-  // console.log('fileNames', fileNames);
-  // console.log('directory', directory);
 
   const { content, meta } = getDocBySlug(directory[0]?.text, locale);
   const mdxSource = await serialize(content);
