@@ -34,6 +34,7 @@ export const light = {
     level2: '#f5f5f5',
     level1: '#ffffff',
     level3: '#FFFFFF',
+    pover: '#ffffff',
   },
   shadow: {
     level1: '0px 20px 50px rgba(0, 0, 0, 0.2)',
@@ -82,6 +83,7 @@ export const dark = {
     level2: '#333',
     level1: '#2D3748',
     level3: '#0F0F0F',
+    pover: '#0F0F0F',
   },
   shadow: {
     level1: '0px 20px 50px 0 rgba(255, 255, 255, 0.2)',

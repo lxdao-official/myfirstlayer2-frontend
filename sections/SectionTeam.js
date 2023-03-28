@@ -378,6 +378,9 @@ function SimpleContributor(props) {
     >
       <StyledToolTip
         enterTouchDelay={0}
+        theme={theme}
+        background={theme.palette.background.pover}
+        boxShadow={theme.palette.shadow.level2}
         title={
           <Box
             component={Card}
@@ -385,26 +388,18 @@ function SimpleContributor(props) {
             flexDirection={'column'}
             width="188px"
             padding={2}
+            sx={{ background: 'transparent', boxShadow: 'none' }}
           >
             <Typography
               variant={'body2'}
-              color="text.secondary"
+              color="text.primary"
               fontSize="0.85rem"
             >
               {props.description}
             </Typography>
-            <Box
-              display="flex"
-              justifyContent={'space-between'}
-              alignItems="center"
-            >
+            <Box display="flex" justifyContent={'end'} alignItems="center">
               {props.twitter && (
-                <Link
-                  color="text"
-                  display="flex"
-                  target="_blank"
-                  href={props.twitter}
-                >
+                <Link display="flex" target="_blank" href={props.twitter}>
                   <Twitter width="20px" />
                 </Link>
               )}

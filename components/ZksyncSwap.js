@@ -6,8 +6,13 @@ export default function ZksyncSwap({ children, title }) {
   const t = useTranslations('PageLayout');
 
   return (
-    <Box width={390}>
-      <iframe width="390" height="700" src="https://zk.amphi.space/" />
+    <Box display="flex" justifyContent="center" marginTop={2}>
+      <iframe
+        style={{ border: 'none' }}
+        width="390"
+        height="750"
+        src="https://zk.amphi.space/"
+      />
     </Box>
   );
 }
