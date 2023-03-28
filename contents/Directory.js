@@ -48,20 +48,30 @@ const readStatus = ['/content/read.png', '/content/unread.png'];
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+    // boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
     overflow: 'hidden',
-    // width: "200px",
+  },
+  listRoot: {
+    overflow: 'hidden',
+    marginTop: '10px',
+    color: theme.palette.mode === 'dark' ? '#fff' : '#000',
   },
   listItem: {
     borderRadius: '10px',
     '&:hover': {
-      // background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3', //"#3C3C3C",
+      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
       cursor: 'pointer',
     },
-    // "&.Mui-selected": {
-    //   background: "#3C3C3C",
-    //   color: "#fff",
-    // },
+    '&:focus': {
+      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+    },
+    "&.Mui-selected": {
+      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+    },
+    '&.Mui-selected:hover': {
+      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+
+    },
   },
   avatar: {
     width: '15px', // 图像的大小
@@ -107,43 +117,12 @@ theme.typography.progress = {
   color: '#747474',
 };
 
-/**TODO: 后续优化 */
-// function Contents(props) {
-//   const [directory, setDirectory] = useState(directoryText);
-// 	const contextData = useContext(ReadContext);
-// 	const { readData, setReadData } = contextData;
-// 	const { currentIndex, unRead, counter, actionFrom } = readData;
-
-//   console.log('readData context', readData);
-// 	useEffect(() => {
-// 		if (actionFrom === 'nextButton') {
-// 			console.log('22')
-// 			const newArr = [...directory];
-// 			newArr[currentIndex - 1] = {...directory[currentIndex - 1], status: true};
-// 			setDirectory(newArr);
-// 		}
-// 	}, [currentIndex])
-// 	console.log('readData', readData);
-
-// 	const onNext = (index) => {
-// 		console.log('index', index)
-// 		const newArr = [...directory];
-// 			newArr[index] = {...directory[index], status: true};
-// 			setDirectory(newArr);
-// 			setReadData({currentIndex: index, unRead: unRead + 1, counter, actionFrom: 'nextContent'})
-// 	};
-
-//   return (
-//     <div>
-
-//     </div>
-//   )
-// }
-
 export function PcDirectory(props) {
   const { directoryText, handleNext } = props;
   console.log('directoryText', directoryText);
   const [directory, setDirectory] = useState(directoryText);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const contextData = useContext(ReadContext);
   const { readData, setReadData } = contextData;
   const { currentIndex, unRead, counter, actionFrom } = readData;
@@ -155,6 +134,7 @@ export function PcDirectory(props) {
     args: [svg],
   });
 
+  console.log('PcDirectory directory', directory);
   // const theme = useTheme();
 
   const { data, write, error, isError } = useContractWrite(config);
@@ -163,21 +143,6 @@ export function PcDirectory(props) {
   });
 
   useEffect(() => {
-    // const directoryText = [
-    //   { text: '前言（Before Layer2）', status: true, main: true },
-    //   { text: '区块链的不可能三角', status: false, main: false },
-    //   { text: 'Layer2演进历程', status: true, main: true },
-    //   { text: '状态通道侧链', status: true, main: false },
-    //   { text: 'Plasma', status: false, main: false },
-    //   { text: 'Rollup', status: false, main: false },
-    //   { text: 'Rollup机制与原理', status: true, main: true, main: false },
-    //   { text: 'Rollup扩容核心原理之一：压缩', status: false, main: false },
-    //   { text: 'Optimistic Rollup', status: false, main: false },
-    //   { text: 'ZK-Rollup', status: false, main: false },
-    //   { text: 'Layer2未来展望', status: true, main: true },
-    //   { text: 'Validium', status: false },
-    //   { text: 'Volition', status: false },
-    // ];
     let unRead = 0;
     directory.forEach((item) => {
       if (item?.status) {
@@ -235,6 +200,7 @@ export function PcDirectory(props) {
       counter,
       asctionFrom: 'nextContent',
     });
+    setSelectedIndex(index);
     handleNext(name);
   };
 
@@ -269,38 +235,38 @@ export function PcDirectory(props) {
           width: '247px',
           maxHeight: '987px',
           overflow: 'auto',
-          backgroundColor:
-            theme.palette.mode === 'dark' ? '#1E1E1E' : '#ECECEC', //'#ECECEC',
-          // backgroundColor: '#1E1E1E',
           borderRadius: 2,
-          paddingX: '26px',
+          paddingX: '11px',
           paddingBottom: '45px',
         }}
+        backgroundColor={theme.palette.mode === 'dark' ? '#0F0F0F' : '#fff'}
+
       >
-        {/* <ThemeProvider theme={theme}> */}
         <Box
           sx={{
             textAlign: 'center',
             paddingY: '20px',
+            color: '#747474',
+            fontSize: '10px',
           }}
         >
           <Typography variant="progress">当前浏览进度</Typography>
+          {/* TODO: dark 有问题 */}
+        <Typography variant="progress">{theme.palette.mode}</Typography>
+
         </Box>
         <Progress></Progress>
-        {/* {directory?.map((row, index) => (
-            <Item data={[...row]} key={index} onClick={() => onNext(index)} />
-          ))} */}
         {directory?.map((row, index) => {
           return (
             <Item
-              data={[row]}
+              rowData={row}
               key={index}
+              selected={selectedIndex === index }
               onNext={() => onNext(index, row.text)}
               {...props}
             />
           );
         })}
-        {/* </ThemeProvider> */}
       </Box>
     </Box>
   );
@@ -361,92 +327,36 @@ export function MobileDirectory(props) {
 
 const Item = (props) => {
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const { rowData, key, selected, onNext } = props;
 
   const handleListItemClick = (item, index) => {
-    console.log('item', item);
-
     !item?.status && onNext(index);
-    setSelectedIndex(index);
   };
 
-  // console.log('props', props);
-  const { data, onNext } = props;
-  // const theme = useTheme(props);
-
-  // console.log('thme', theme);
-
   return (
-    // <ThemeProvider theme={theme}>
-    <Box>
-      {data?.map((item, index) => (
+    <Box className={classes.listRoot}>
         <ListItem
           button
-          selected={selectedIndex === index}
-          onClick={() => handleListItemClick(item, index)}
+          selected={selected}
+          onClick={() => handleListItemClick(rowData, key)}
           className={classes.listItem}
         >
           <ListItemAvatar>
             <Avatar
               className={classes.avatar}
-              src={readStatus[item?.status ? 0 : 1]}
+              src={readStatus[rowData?.status ? 0 : 1]}
             />
           </ListItemAvatar>
           <ListItemText
             className={[
               classes.text,
-              item?.main ? classes.mainTitle : classes.subtitle,
+              rowData?.main ? classes.mainTitle : classes.subtitle,
             ]}
-            primary={item?.text}
+            primary={rowData?.text}
             fontSize={22}
           ></ListItemText>
         </ListItem>
-      ))}
     </Box>
-    // </ThemeProvider>
   );
-  // return (
-  //   <ThemeProvider theme={theme}>
-  //     <Box>
-  //       {data?.map((item, index) => (
-  //         <Box
-  //           key={index}
-  //           display="flex"
-  //           // paddingLeft={!item?.status ? 2 : 0}
-  //           marginTop={1}
-  //           onClick={() => onNext(index)}
-  //         >
-  //           {/* TODO: sm设置无效 */}
-  //           <Box
-  //             backgroundColor="#3C3C3C"
-  //           >
-  //             <Box
-  //               marginRight={1}
-  //               // sm={{
-  //               //   marginTop: 2,
-  //               //   marginRight: 10,
-  //               // }}
-  //               // xs={{
-  //               //   marginTop: 2,
-  //               //   marginRight: 10,
-  //               // }}
-  //               // md={{
-  //               //   marginTop: 2,
-  //               //   marginRight: 10,
-  //               // }}
-  //             >
-  //               <img src={readStatus[item?.status ? 0 : 1]} />
-  //             </Box>
-  //             <Box>
-  //               <Typography variant={item?.main ? 'h6' : 'subtitle1'}>
-  //                 {item?.text}
-  //               </Typography>
-  //             </Box>
-  //           </Box>
-
-  //         </Box>
-  //       ))}
-  //     </Box>
-  //   </ThemeProvider>
-  // );
-};
+}
+  

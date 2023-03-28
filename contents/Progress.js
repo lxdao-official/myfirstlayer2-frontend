@@ -12,15 +12,15 @@ import {
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
     height: 10,
-    borderRadius: 5
+    borderRadius: 5,
+    color: theme.palette.mode === 'dark' ? '#fff' : '#000',
   },
   colorPrimary: {
-    backgroundColor:
-      theme.palette?.grey[theme.palette.type === "light" ? 200 : 700]
+    backgroundColor: theme.palette.mode === 'dark' ? '#4E4E4E' : '#AEAEAE', 
   },
   bar: {
     borderRadius: 5,
-    backgroundColor: "#000"
+    backgroundColor: theme.palette.mode === 'dark' ? '#ffffff' : 'background: #000000',
   }
 }))(LinearProgress);
 
@@ -28,9 +28,6 @@ const useStyles = makeStyles({
   root: {
     flexGrow: 1
   },
-  // text: {
-  //   transform: translateX(x);
-  // }
 });
 
 export default function Progress() {
@@ -44,9 +41,8 @@ export default function Progress() {
 
   return (
     <div className={classes.root}>
-      {/* <Typography textAlign={{ md: }}>当前浏览进度</Typography> */}
       <BorderLinearProgress variant="determinate" value={(unRead / counter) * 100} />
-      <Typography style={{transform: `translateX(${x}%)`, color: 'pink'}}>{ ((unRead / counter) * 100).toFixed(2)}%</Typography>
+      <Typography style={{transform: `translateX(${x}%)`}}>{ ((unRead / counter) * 100).toFixed(2)}%</Typography>
     </div>
   );
 }

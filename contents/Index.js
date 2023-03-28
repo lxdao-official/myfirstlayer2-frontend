@@ -105,11 +105,9 @@ export default function Content(props) {
           >
             <Box
               sx={{
-                backgroundColor: theme.palette.mode === 'dark' ? '#1E1E1E' : '#ECECEC',
-                // width: 920,
-                // backgroundColor: '#1E1E1E'
+                backgroundColor: theme.palette.mode === 'dark' ? '#0F0F0F' : '#ECECEC',
+                maxWidth: '920px',
               }}
-              // width
               borderRadius={2}
               padding={{
                 xs: 2,
