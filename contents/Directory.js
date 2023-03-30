@@ -54,23 +54,22 @@ const useStyles = makeStyles((theme) => ({
   listRoot: {
     overflow: 'hidden',
     marginTop: '10px',
-    color: theme.palette.mode === 'dark' ? '#fff' : '#000',
+    color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
   },
   listItem: {
     borderRadius: '10px',
     '&:hover': {
-      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+      background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
       cursor: 'pointer',
     },
     '&:focus': {
-      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+      background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
     },
-    "&.Mui-selected": {
-      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+    '&.Mui-selected': {
+      background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
     },
     '&.Mui-selected:hover': {
-      background: theme.palette.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
-
+      background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
     },
   },
   avatar: {
@@ -239,8 +238,7 @@ export function PcDirectory(props) {
           paddingX: '11px',
           paddingBottom: '45px',
         }}
-        backgroundColor={theme.palette.mode === 'dark' ? '#0F0F0F' : '#fff'}
-
+        backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
         <Box
           sx={{
@@ -252,8 +250,7 @@ export function PcDirectory(props) {
         >
           <Typography variant="progress">当前浏览进度</Typography>
           {/* TODO: dark 有问题 */}
-        <Typography variant="progress">{theme.palette.mode}</Typography>
-
+          <Typography variant="progress">{theme.palette?.mode}</Typography>
         </Box>
         <Progress></Progress>
         {directory?.map((row, index) => {
@@ -261,7 +258,7 @@ export function PcDirectory(props) {
             <Item
               rowData={row}
               key={index}
-              selected={selectedIndex === index }
+              selected={selectedIndex === index}
               onNext={() => onNext(index, row.text)}
               {...props}
             />
@@ -335,28 +332,27 @@ const Item = (props) => {
 
   return (
     <Box className={classes.listRoot}>
-        <ListItem
-          button
-          selected={selected}
-          onClick={() => handleListItemClick(rowData, key)}
-          className={classes.listItem}
-        >
-          <ListItemAvatar>
-            <Avatar
-              className={classes.avatar}
-              src={readStatus[rowData?.status ? 0 : 1]}
-            />
-          </ListItemAvatar>
-          <ListItemText
-            className={[
-              classes.text,
-              rowData?.main ? classes.mainTitle : classes.subtitle,
-            ]}
-            primary={rowData?.text}
-            fontSize={22}
-          ></ListItemText>
-        </ListItem>
+      <ListItem
+        button
+        selected={selected}
+        onClick={() => handleListItemClick(rowData, key)}
+        className={classes.listItem}
+      >
+        <ListItemAvatar>
+          <Avatar
+            className={classes.avatar}
+            src={readStatus[rowData?.status ? 0 : 1]}
+          />
+        </ListItemAvatar>
+        <ListItemText
+          className={[
+            classes.text,
+            rowData?.main ? classes.mainTitle : classes.subtitle,
+          ]}
+          primary={rowData?.text}
+          fontSize={22}
+        ></ListItemText>
+      </ListItem>
     </Box>
   );
-}
-  
+};
