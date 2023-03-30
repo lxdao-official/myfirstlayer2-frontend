@@ -319,7 +319,7 @@ function Contributor(props) {
           sx={{
             width: { xs: '56px', sm: '128px' },
             height: { xs: '56px', sm: '128px' },
-            filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
+            filter: theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
         <Box

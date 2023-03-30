@@ -53,7 +53,7 @@ function BigAd(props) {
           sx={{
             width: '100%',
             filter:
-              props.theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
+              props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
         <Box component={CardContent}>
@@ -153,7 +153,7 @@ function SmallAd(props) {
           sx={{
             width: '100%',
             filter:
-              props.theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
+              props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
         <Box
