@@ -38,18 +38,16 @@ export default function Progress() {
   let x = 10;
 
   const { readData } = useContext(ReadContext);
-  console.log('readData', readData);
-  console.log('readData?.counter', readData?.counter);
-  const { unRead, counter } = readData;
+  const { read, counter } = readData;
 
   return (
     <Box className={classes.root}>
       <BorderLinearProgress
         variant="determinate"
-        value={(unRead / counter) * 100}
+        value={(read / counter) * 100}
       />
       <Typography style={{ transform: `translateX(${x}%)` }}>
-        {((unRead / counter) * 100).toFixed(2)}%
+        {((read / counter) * 100).toFixed(2)}%
       </Typography>
     </Box>
   );

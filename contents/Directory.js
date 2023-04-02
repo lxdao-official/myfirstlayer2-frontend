@@ -32,23 +32,7 @@ import { ReadContext } from './context.js';
 import down from '../public/content/down.svg';
 import up from '../public/content/up.svg';
 
-// const directoryText = [
-//   { text: '前言（Before Layer2）', status: true, main: true },
-//   { text: '区块链的不可能三角', status: false, main: false },
-//   { text: 'Layer2演进历程', status: true, main: true },
-//   { text: '状态通道侧链', status: true, main: false },
-//   { text: 'Plasma', status: false, main: false },
-//   { text: 'Rollup', status: false, main: false },
-//   { text: 'Rollup机制与原理', status: true, main: true, main: false },
-//   { text: 'Rollup扩容核心原理之一：压缩', status: false, main: false },
-//   { text: 'Optimistic Rollup', status: false, main: false },
-//   { text: 'ZK-Rollup', status: false, main: false },
-//   { text: 'Layer2未来展望', status: true, main: true },
-//   { text: 'Validium', status: false },
-//   { text: 'Volition', status: false },
-// ];
-
-const readStatus = ['/content/read.png', '/content/unread.png'];
+const readStatusImg = ['/content/read.png', '/content/unread.png'];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -121,14 +105,11 @@ theme.typography.progress = {
 };
 
 export function PcDirectory(props) {
-  const { directoryText, handleNext } = props;
-  console.log('directoryText', directoryText);
-  const [directory, setDirectory] = useState(directoryText);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
 
   const contextData = useContext(ReadContext);
   const { readData, setReadData } = contextData;
-  const { currentIndex, unRead, counter, actionFrom } = readData;
+  const { currentIndex, read, counter, actionFrom } = readData;
   const { isConnected } = getAccount();
   const { config } = usePrepareContractWrite({
     address: '0x43c4Ebf956F7804596c333B209Ff246a476594DA',
@@ -137,41 +118,12 @@ export function PcDirectory(props) {
     args: [svg],
   });
 
-  console.log('PcDirectory directory', directory);
   const theme = useTheme();
 
   const { data, write, error, isError } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
-
-  useEffect(() => {
-    let unRead = 0;
-    directory.forEach((item) => {
-      if (item?.status) {
-        unRead++;
-      }
-    });
-    setReadData({
-      currentIndex,
-      unRead,
-      counter: directory.length,
-      asctionFrom: 'nextContent',
-    });
-  }, []);
-
-  useEffect(() => {
-    if (actionFrom === 'nextButton') {
-      console.log('22');
-      const newArr = [...directory];
-      newArr[currentIndex - 1] = {
-        ...directory[currentIndex - 1],
-        status: true,
-      };
-      setDirectory(newArr);
-    }
-  }, [currentIndex]);
-  console.log('readData', readData);
 
   useEffect(() => {
     if (isError) {
@@ -192,22 +144,8 @@ export function PcDirectory(props) {
     }
   }, [isSuccess]);
 
-  const onNext = (index, name) => {
-    console.log('index', index);
-    const newArr = [...directory];
-    newArr[index] = { ...directory[index], status: true };
-    setDirectory(newArr);
-    setReadData({
-      currentIndex: index,
-      unRead: unRead + 1,
-      counter,
-      asctionFrom: 'nextContent',
-    });
-    setSelectedIndex(index);
-    handleNext(name);
-  };
-
   console.log('directory', directory);
+  console.log('readStatus', readStatus)
   return (
     <Box>
       <Box>
@@ -257,13 +195,14 @@ export function PcDirectory(props) {
           <Typography variant="progress">{theme.palette?.mode}</Typography>
         </Box>
         <Progress></Progress>
+        
         {directory?.map((row, index) => {
           return (
             <Item
-              rowData={row}
+              rowData={{...row, status: readStatus[index]}}
               key={index}
               selected={selectedIndex === index}
-              onNext={() => onNext(index, row.text)}
+              onNext={() => onTabChapter('lastOrNext', {index, ...row})}
               {...props}
             />
           );
@@ -274,72 +213,8 @@ export function PcDirectory(props) {
 }
 
 export function MobileDirectory(props) {
-  const { directoryText, handleNext } = props;
-  console.log('directoryText', directoryText);
+  const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
   const [drawerStatus, setDrawerStatus] = useState(false);
-  const [directory, setDirectory] = useState(directoryText);
-  const contextData = useContext(ReadContext);
-  const { readData, setReadData } = contextData;
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const { currentIndex, unRead, counter, actionFrom } = readData;
-
-  console.log('readData context', readData);
-  useEffect(() => {
-    let unRead = 0;
-    directory.forEach((item) => {
-      if (item?.status) {
-        unRead++;
-      }
-    });
-    setReadData({
-      currentIndex,
-      unRead,
-      counter: directory.length,
-      asctionFrom: 'nextContent',
-    });
-  }, []);
-
-  useEffect(() => {
-    if (actionFrom === 'nextButton') {
-      console.log('22');
-      const newArr = [...directory];
-      newArr[currentIndex - 1] = {
-        ...directory[currentIndex - 1],
-        status: true,
-      };
-      setDirectory(newArr);
-    }
-  }, [currentIndex]);
-  // useEffect(() => {
-  //   if (actionFrom === 'nextButton') {
-  //     console.log('22');
-  //     const newArr = [...directory];
-  //     newArr[currentIndex - 1] = {
-  //       ...directory[currentIndex - 1],
-  //       status: true,
-  //     };
-  //     setDirectory(newArr);
-  //   }
-  // }, [currentIndex]);
-  console.log('readData', readData);
-
-  const onNext = (index, name) => {
-    console.log('index', index);
-    const newArr = [...directory];
-    newArr[index] = { ...directory[index], status: true };
-    setDirectory(newArr);
-    setReadData({
-      currentIndex: index,
-      unRead: unRead + 1,
-      counter,
-      actionFrom: 'nextContent',
-    });
-  };
-
-  // const handleOpen = () => {
-    
-  //   setDrawerStatus(true);
-  // }
   return (
     <Box>
       <IconButton
@@ -375,7 +250,13 @@ export function MobileDirectory(props) {
       >
         <Box paddingX={10} height="400px">
           {directory?.map((row, index) => (
-            <Item data={row} key={index} onClick={() => onNext(index)} />
+            <Item
+              rowData={{...row, status: readStatus[index]}}
+              key={index}
+              selected={selectedIndex === index}
+              onNext={() => onTabChapter('lastOrNext', {index, ...row})}
+              {...props}
+            />
           ))}
         </Box>
       </SwipeableDrawer>
@@ -386,7 +267,6 @@ export function MobileDirectory(props) {
 const Item = (props) => {
   const classes = useStyles();
   const { rowData, key, selected, onNext } = props;
-
   const handleListItemClick = (item, index) => {
     !item?.status && onNext(index);
   };
@@ -396,13 +276,13 @@ const Item = (props) => {
       <ListItem
         button
         selected={selected}
-        onClick={() => handleListItemClick(rowData, key)}
+        onClick={onNext}
         className={classes.listItem}
       >
         <ListItemAvatar>
           <Avatar
             className={classes.avatar}
-            src={readStatus[rowData?.status ? 0 : 1]}
+            src={readStatusImg[rowData?.status ? 0 : 1]}
           />
         </ListItemAvatar>
         <ListItemText

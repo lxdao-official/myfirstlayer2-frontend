@@ -15,35 +15,54 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 import Container from '../components/Container';
 import MyComponent from '../components/MyComponent';
 import { formatDirectory, getDocBySlug } from '../utils';
 import BottomNav from './BottomNav';
+import Progress from './Progress';
+
 // import Test from "./Test";
-import { PcDirectory } from './Directory';
+import { PcDirectory, MobileDirectory } from './Directory';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 
-import { useInView } from 'react-intersection-observer';
+import {
+  setStorage,
+  getStorage,
+} from './storage.js';
 
 export default function Content(props) {
   
   const { md } = props;
 
   const [name, setName] = useState(md.props.file[0]?.text);
-
-
   const [readData, setReadData] = useState({
     counter: 32,
-    unRead: 0,
+    read: 1,
     currentIndex: 0,
     actionFrom: 'nextButton',
   });
   const [mdxSource, setMdxSource] = useState('');
+  const [chapterData, setChapterData] = useState({}); 
+  const [directory, setDirectory] = useState(md.props.file);
+  const [readStatus, setReadStatus] = useState([true]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  console.log('handleNext name 0', name);
+
   useEffect(() => {
+    requestMdxSource(name);
+
+    setChapterData({
+      current: md.props.file[readData?.currentIndex]?.text,
+      last: readData?.currentIndex !== 0 ? md.props.file[readData?.currentIndex - 1]?.text : '',
+      next: readData?.currentIndex !== readData.counter ? md.props.file[readData?.currentIndex + 1]?.text : '',
+    })
+  }, [name]);
+
+
+  const requestMdxSource = (name) => {
     fetch(`/api/getFile/${name}`)
       .then((response) => response.json())
       .then((data) => {
@@ -51,12 +70,67 @@ export default function Content(props) {
         setMdxSource(data.mdxSource);
       })
       .catch((error) => console.error('err--------', error));
-  }, [name]);
+  };
 
+  const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
 
-  const handleNext = (name) => {
-    console.log('handleNext name 2', name);
-    setName(name);
+  const handleTabChapter = (action, chapter) => {
+    console.log('action', action);
+    if (!action) {
+      return;
+    }
+
+    let readStatusStore = readStatus;
+
+    if (action === 'last') {
+      if (readStatusStore[readData?.currentIndex - 1] !== true) {
+        
+        readStatusStore[readData?.currentIndex - 1] = true;
+        setReadStatus(readStatusStore)
+        computeReadCount(readStatusStore);
+      }
+
+      setName(chapterData?.last);
+      setSelectedIndex(readData?.currentIndex - 1);
+
+      setReadData({
+        counter: 32,
+        read: computeReadCount(readStatus),
+        currentIndex: readData?.currentIndex - 1,
+        actionFrom: 'nextButton',
+      })
+    }
+    if (action === 'next') {
+      if (readStatusStore[readData?.currentIndex + 1] !== true) {
+        readStatusStore[readData?.currentIndex + 1] = true;
+        setReadStatus(readStatusStore);
+        computeReadCount(readStatusStore);
+      }
+      setName(chapterData?.next);
+      setSelectedIndex(readData?.currentIndex + 1);
+
+      setReadData({
+        counter: 32,
+        read: computeReadCount(readStatusStore),
+        currentIndex: readData?.currentIndex + 1,
+        actionFrom: 'nextButton',
+      })
+    }
+    if (action === 'lastOrNext') {
+      if (readStatusStore[chapter.index] !== true) {
+        readStatusStore[chapter.index] = true;
+        setReadStatus(readStatusStore);
+        computeReadCount(readStatusStore);
+      }
+      setName(chapter.text);
+      setSelectedIndex(chapter?.index);
+      setReadData({
+        counter: 32,
+        read: computeReadCount(readStatusStore),
+        currentIndex: chapter.index,
+        actionFrom: 'nextButton',
+      })      
+    }
   };
 
   const components = {
@@ -65,76 +139,100 @@ export default function Content(props) {
 
   const theme = useTheme();
   console.log('theme.palette?.mode', theme.palette?.mode);
-  const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
 
-  console.log('smallScreen', smallScreen)
+  console.log('mdScreen', mdScreen)
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
-
-      {/* <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          backgroundColor: "pink",
-          paddingBottom: '20px'
-        }}
- > */}
-
-      <Container marginTop={4} >
-              <Box display="flex" justifyContent="space-between">
-                <Box
-                  marginRight={{
-                    xs: 0,
-                    sm: 2,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      backgroundColor:
-                        theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
-                      maxWidth: '920px',//smallScreen ? '920px' : '340px',
-                      color: theme.palette?.mode === 'dark' ? '#fff' : '#000'
-                    }}
-                    borderRadius={2}
-                    padding={{
-                      xs: 2,
-                      sm: 8,
-                    }}
-                    
-                  >
-                    {mdxSource && (
-                      <MDXRemote components={components} {...mdxSource}></MDXRemote>
-                    )}
-                    {/* {md} */}
-                  </Box>
-                  <TabChapter marginTop={{ xs: '20px', sm: '160px' }}></TabChapter>
-                </Box>
-                <Hidden smDown>
-                  <PcDirectory
-                    directoryText={md.props.file}
-                    handleNext={handleNext}
-                  ></PcDirectory>
-                </Hidden>
-                {/* <Test /> */}
+      <Container marginTop={4} paddingX={2}>
+        <Box display="flex" justifyContent="space-between">
+          <Box
+            marginRight={{
+              xs: 0,
+              sm: 2,
+            }}
+            flexGrow={1}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
+                maxWidth: mdScreen ? '920px' : '91vw',
+                color: theme.palette?.mode === 'dark' ? '#fff' : '#000'
+              }}
+              marginRight={2}
+              borderRadius={2}
+              padding={{
+                xs: 2,
+                sm: 8,
+              }}
+            >
+              <Box textDecoration={'none'}>
+                {mdxSource && (
+                  <MDXRemote components={components} {...mdxSource}></MDXRemote>
+                )}
               </Box>
+
+              {/* {md} */}
+            </Box>
+            <TabChapter marginTop={{ xs: '20px', sm: '160px' }} chapterData={chapterData} onTabChapter={handleTabChapter}></TabChapter>
+          </Box>
+          <Hidden smDown>
+            <PcDirectory
+              directory={md.props.file}
+              readStatus={readStatus}
+              selectedIndex={selectedIndex}
+              onTabChapter={handleTabChapter}
+            ></PcDirectory>
+          </Hidden>
+          {/* <Test /> */}
+        </Box>
       </Container>
 
       <Box
         sx={{
-          flexShrink: 0,
           position: 'fixed',
-          zIndex: '1',
           bottom: 0,
           top: "auto",
           width: "100vw",
+          zIndex: '1',
         }}
+        backgroundColor='#ECECEC'
+        display='flex'
+        height={80}
+        alignItems='center'
+        justifyContent='space-around'
+        marginTop={4}
+        paddingX={4}
       >
         <Hidden smUp>
-          <BottomNav directoryText={md.props.file} />
+        {/* <Box
+          backgroundColor='#ECECEC'
+          display='flex'
+          height={80}
+          alignItems='center'
+          justifyContent='space-around'
+          marginTop={4}
+          paddingX={4} */}
+        {/* > */}
+          <Box>
+            <ConnectButton />
+          </Box>
+          <Box flexGrow={2} marginX="20px">
+            <Progress  />
+          </Box>
+          <Hidden smUp>
+            <MobileDirectory
+              directory={directory}
+              readStatus={readStatus}
+              selectedIndex={selectedIndex}
+              onTabChapter={handleTabChapter}
+            ></MobileDirectory>
+          </Hidden>
+        {/* </Box> */}
+          {/* <BottomNav directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}/> */}
         </Hidden>
       </Box>
-      {/* </Box> */}
-
     </ReadContext.Provider>
   );
 }
