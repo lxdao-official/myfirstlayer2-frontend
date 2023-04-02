@@ -11,6 +11,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 import Container from '../components/Container';
+import MintBadge from '../components/MintBadge';
 import Content from '../contents/Index';
 import { getStorage, removeStorage, setStorage } from '../contents/storage';
 import Main from '../layouts/Main';
@@ -21,7 +22,6 @@ import SectionTeam from '../sections/SectionTeam';
 import SectionTop from '../sections/SectionTop';
 import Directory from '/components/Directory';
 import MyComponent from '/components/MyComponent';
-import ZksyncSwap from '/components/ZksyncSwap';
 import CompressAni from '/components/animation/CompressAni';
 import { formatDirectory, getDocBySlug } from '/utils';
 
@@ -39,7 +39,7 @@ export default function Index({ content, meta, directory }) {
         md={<MDXRemote components={components} {...content} file={directory} />}
       />
       <CompressAni />
-      <ZksyncSwap />
+      <MintBadge />
       <SectionMyFirstProject />
       <SectionSponsors />
       <SectionTeam />

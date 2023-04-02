@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAccount, useContractWrite, useWaitForTransaction } from 'wagmi';
 
-import { Box, Button } from '@mui/material';
+import { Box, Button, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 
 import abi from '../abi.json';
-import { uploadPNG } from '../common/ipfs';
-import showMessage from '../components/showMessage';
+import showMessage from './showMessage';
 
-export default function ZksyncSwap({ children, title }) {
+export default function MintBadge() {
   const { address } = useAccount();
+  const theme = useTheme();
   const canvasRef = useRef(null);
   const [imgLoaded, setImgLoaded] = useState(false);
   const [mintLoading, setMintLoading] = useState(false);
@@ -33,7 +33,6 @@ export default function ZksyncSwap({ children, title }) {
       });
       const body = await response.json();
       const { cid } = body;
-      // const cid = await uploadPNG(modifiedImgSrc);
       const data = btoa(
         JSON.stringify({
           name: 'mflayer2-badge',
@@ -90,11 +89,11 @@ export default function ZksyncSwap({ children, title }) {
 
       // 在 canvas 上执行绘制操作
       ctx.fillStyle = '#E9E9E9';
-      ctx.font = '24px Open Sans';
-      ctx.fillText(`timestamp ${new Date().getTime()}`, 100, 488);
+      ctx.font = '96px Open Sans';
+      ctx.fillText(`timestamp ${new Date().getTime()}`, 402, 1902);
       ctx.fillStyle = '#6C6C6C';
-      ctx.font = '10px Open Sans';
-      ctx.fillText(address, 132, 508);
+      ctx.font = '40px Open Sans';
+      ctx.fillText(address, 530, 2033);
 
       // 将修改后的图片转换为 base64 格式
       const modifiedImgSrc = canvas.toDataURL('image/png');
@@ -103,18 +102,48 @@ export default function ZksyncSwap({ children, title }) {
   }, [imgLoaded]);
 
   return (
-    <Stack gap={7} marginTop={2} alignItems="center">
-      <Box>
-        <canvas ref={canvasRef} width={512} height={606}></canvas>
+    <Stack
+      gap={'28px'}
+      marginTop={2}
+      alignItems="center"
+      sx={{
+        background: theme?.palette?.mode === 'dark' ? '#010101' : '#f6f6f6',
+        borderRadius: '18px',
+        paddingY: '28px',
+      }}
+    >
+      <Box sx={{ borderRadius: '18px' }}>
+        <canvas
+          ref={canvasRef}
+          width={2048}
+          height={2427}
+          style={{
+            zoom: 0.18,
+            border: '1px solid #FFFFFF',
+            borderRadius: '98px',
+          }}
+        ></canvas>
       </Box>
 
       <Button
-        fullWidth
         variant="contained"
         disabled={isLoading | mintLoading}
         onClick={handleMint}
+        sx={{
+          width: '265px',
+          height: '64px',
+          fontSize: '20px',
+          fontWeight: '800',
+          textTransform: 'capitalize',
+          borderRadius: '18px',
+          background: '#000',
+          border: '1px solid #FFFFFF',
+          '&:hover': {
+            backgroundColor: '#333333',
+          },
+        }}
       >
-        {isLoading | mintLoading ? 'Minting...' : 'Mint'}
+        {isLoading | mintLoading ? 'Claiming...' : 'Claim'}
       </Button>
     </Stack>
   );
