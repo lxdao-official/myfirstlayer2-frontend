@@ -30,17 +30,18 @@ export default function ZksyncSwap({ children, title }) {
       const cid = await uploadPNG(modifiedImgSrc);
       const data = btoa(
         JSON.stringify({
-          imgurl: `ipfs://${cid}`,
+          name: 'mflayer2-badge',
+          description: 'mflayer2-badge',
+          image: `ipfs://${cid}`,
         })
       );
-      console.log(error);
-      console.log(writeAsync);
       const res = await writeAsync?.({
         recklesslySetUnpreparedArgs: ['data:application/json;base64,' + data],
       });
       console.log(res);
       setMintLoading(false);
     } catch (err) {
+      console.log(err);
       showMessage({
         type: 'error',
         title: 'Estimate Fail',
