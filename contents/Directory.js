@@ -19,6 +19,7 @@ import {
   Typography,
   createTheme,
   useTheme,
+  IconButton,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -28,23 +29,10 @@ import showMessage from '../components/showMessage';
 import Progress from './Progress';
 import { ReadContext } from './context.js';
 
-// const directoryText = [
-//   { text: '前言（Before Layer2）', status: true, main: true },
-//   { text: '区块链的不可能三角', status: false, main: false },
-//   { text: 'Layer2演进历程', status: true, main: true },
-//   { text: '状态通道侧链', status: true, main: false },
-//   { text: 'Plasma', status: false, main: false },
-//   { text: 'Rollup', status: false, main: false },
-//   { text: 'Rollup机制与原理', status: true, main: true, main: false },
-//   { text: 'Rollup扩容核心原理之一：压缩', status: false, main: false },
-//   { text: 'Optimistic Rollup', status: false, main: false },
-//   { text: 'ZK-Rollup', status: false, main: false },
-//   { text: 'Layer2未来展望', status: true, main: true },
-//   { text: 'Validium', status: false },
-//   { text: 'Volition', status: false },
-// ];
+import down from '../public/content/down.svg';
+import up from '../public/content/up.svg';
 
-const readStatus = ['/content/read.png', '/content/unread.png'];
+const readStatusImg = ['/content/read.png', '/content/unread.png'];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -117,14 +105,11 @@ theme.typography.progress = {
 };
 
 export function PcDirectory(props) {
-  const { directoryText, handleNext } = props;
-  console.log('directoryText', directoryText);
-  const [directory, setDirectory] = useState(directoryText);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
 
   const contextData = useContext(ReadContext);
   const { readData, setReadData } = contextData;
-  const { currentIndex, unRead, counter, actionFrom } = readData;
+  const { currentIndex, read, counter, actionFrom } = readData;
   const { isConnected } = getAccount();
   const { config } = usePrepareContractWrite({
     address: '0x43c4Ebf956F7804596c333B209Ff246a476594DA',
@@ -133,41 +118,12 @@ export function PcDirectory(props) {
     args: [svg],
   });
 
-  console.log('PcDirectory directory', directory);
-  // const theme = useTheme();
+  const theme = useTheme();
 
   const { data, write, error, isError } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
-
-  useEffect(() => {
-    let unRead = 0;
-    directory.forEach((item) => {
-      if (item?.status) {
-        unRead++;
-      }
-    });
-    setReadData({
-      currentIndex,
-      unRead,
-      counter: directory.length,
-      asctionFrom: 'nextContent',
-    });
-  }, []);
-
-  useEffect(() => {
-    if (actionFrom === 'nextButton') {
-      console.log('22');
-      const newArr = [...directory];
-      newArr[currentIndex - 1] = {
-        ...directory[currentIndex - 1],
-        status: true,
-      };
-      setDirectory(newArr);
-    }
-  }, [currentIndex]);
-  console.log('readData', readData);
 
   useEffect(() => {
     if (isError) {
@@ -188,22 +144,8 @@ export function PcDirectory(props) {
     }
   }, [isSuccess]);
 
-  const onNext = (index, name) => {
-    console.log('index', index);
-    const newArr = [...directory];
-    newArr[index] = { ...directory[index], status: true };
-    setDirectory(newArr);
-    setReadData({
-      currentIndex: index,
-      unRead: unRead + 1,
-      counter,
-      asctionFrom: 'nextContent',
-    });
-    setSelectedIndex(index);
-    handleNext(name);
-  };
-
   console.log('directory', directory);
+  console.log('readStatus', readStatus)
   return (
     <Box>
       <Box>
@@ -253,13 +195,14 @@ export function PcDirectory(props) {
           <Typography variant="progress">{theme.palette?.mode}</Typography>
         </Box>
         <Progress></Progress>
+        
         {directory?.map((row, index) => {
           return (
             <Item
-              rowData={row}
+              rowData={{...row, status: readStatus[index]}}
               key={index}
               selected={selectedIndex === index}
-              onNext={() => onNext(index, row.text)}
+              onNext={() => onTabChapter('lastOrNext', {index, ...row})}
               {...props}
             />
           );
@@ -270,42 +213,35 @@ export function PcDirectory(props) {
 }
 
 export function MobileDirectory(props) {
+  const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
   const [drawerStatus, setDrawerStatus] = useState(false);
-  const [directory, setDirectory] = useState(directoryText);
-  const contextData = useContext(ReadContext);
-  const { readData, setReadData } = contextData;
-  const { currentIndex, unRead, counter, actionFrom } = readData;
-
-  console.log('readData context', readData);
-  useEffect(() => {
-    if (actionFrom === 'nextButton') {
-      console.log('22');
-      const newArr = [...directory];
-      newArr[currentIndex - 1] = {
-        ...directory[currentIndex - 1],
-        status: true,
-      };
-      setDirectory(newArr);
-    }
-  }, [currentIndex]);
-  console.log('readData', readData);
-
-  const onNext = (index, name) => {
-    console.log('index', index);
-    const newArr = [...directory];
-    newArr[index] = { ...directory[index], status: true };
-    setDirectory(newArr);
-    setReadData({
-      currentIndex: index,
-      unRead: unRead + 1,
-      counter,
-      actionFrom: 'nextContent',
-    });
-  };
-
   return (
     <Box>
-      <Button onClick={() => setDrawerStatus(true)}>bottom</Button>
+      <IconButton
+        sx={{
+          backgroundColor: '#000',
+          width: '28px',
+          height: '28px',
+          // borderRadius: '80%',
+          // alignItems: 'center',
+          textAlign: 'center',
+          // alignContent: 'center',
+        }}
+        onClick={() => setDrawerStatus(true)}
+      >
+        {
+          drawerStatus ? (
+            <svg width="12" height="8" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.72972 0.637692L4.62055 2.74687C4.3794 2.98782 3.98859 2.98787 3.74739 2.74697L1.63704 0.637568C1.33559 0.336258 0.846976 0.336313 0.545597 0.637692C0.244239 0.939051 0.244239 1.42765 0.545597 1.72901L3.31027 4.49368C3.79244 4.97585 4.5742 4.97585 5.05637 4.49368L7.82104 1.72901C8.1224 1.42765 8.1224 0.93905 7.82104 0.637691C7.51968 0.336333 7.03108 0.336333 6.72972 0.637692Z" fill="white"/>
+            </svg>
+          ) : (
+            <svg width="12" height="8" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.63697 4.72901L3.74615 2.61983C3.9873 2.37888 4.3781 2.37883 4.61931 2.61973L6.72966 4.72913C7.03111 5.03044 7.51972 5.03039 7.8211 4.72901C8.12246 4.42765 8.12246 3.93905 7.8211 3.63769L5.05643 0.873023C4.57426 0.390849 3.7925 0.390849 3.31033 0.873023L0.545658 3.63769C0.2443 3.93905 0.244299 4.42765 0.545658 4.72901C0.847017 5.03037 1.33562 5.03037 1.63697 4.72901Z" fill="white"/>
+            </svg>
+          )
+        }
+
+      </IconButton>
       <SwipeableDrawer
         anchor="bottom"
         open={drawerStatus}
@@ -314,7 +250,13 @@ export function MobileDirectory(props) {
       >
         <Box paddingX={10} height="400px">
           {directory?.map((row, index) => (
-            <Item data={[...row]} key={index} onClick={() => onNext(index)} />
+            <Item
+              rowData={{...row, status: readStatus[index]}}
+              key={index}
+              selected={selectedIndex === index}
+              onNext={() => onTabChapter('lastOrNext', {index, ...row})}
+              {...props}
+            />
           ))}
         </Box>
       </SwipeableDrawer>
@@ -325,7 +267,6 @@ export function MobileDirectory(props) {
 const Item = (props) => {
   const classes = useStyles();
   const { rowData, key, selected, onNext } = props;
-
   const handleListItemClick = (item, index) => {
     !item?.status && onNext(index);
   };
@@ -335,13 +276,13 @@ const Item = (props) => {
       <ListItem
         button
         selected={selected}
-        onClick={() => handleListItemClick(rowData, key)}
+        onClick={onNext}
         className={classes.listItem}
       >
         <ListItemAvatar>
           <Avatar
             className={classes.avatar}
-            src={readStatus[rowData?.status ? 0 : 1]}
+            src={readStatusImg[rowData?.status ? 0 : 1]}
           />
         </ListItemAvatar>
         <ListItemText
