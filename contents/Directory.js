@@ -19,6 +19,7 @@ import {
   Typography,
   createTheme,
   useTheme,
+  IconButton,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -27,6 +28,9 @@ import { svg } from '../common/constans';
 import showMessage from '../components/showMessage';
 import Progress from './Progress';
 import { ReadContext } from './context.js';
+
+import down from '../public/content/down.svg';
+import up from '../public/content/up.svg';
 
 // const directoryText = [
 //   { text: '前言（Before Layer2）', status: true, main: true },
@@ -134,7 +138,7 @@ export function PcDirectory(props) {
   });
 
   console.log('PcDirectory directory', directory);
-  // const theme = useTheme();
+  const theme = useTheme();
 
   const { data, write, error, isError } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
@@ -270,13 +274,31 @@ export function PcDirectory(props) {
 }
 
 export function MobileDirectory(props) {
+  const { directoryText, handleNext } = props;
+  console.log('directoryText', directoryText);
   const [drawerStatus, setDrawerStatus] = useState(false);
   const [directory, setDirectory] = useState(directoryText);
   const contextData = useContext(ReadContext);
   const { readData, setReadData } = contextData;
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const { currentIndex, unRead, counter, actionFrom } = readData;
 
   console.log('readData context', readData);
+  useEffect(() => {
+    let unRead = 0;
+    directory.forEach((item) => {
+      if (item?.status) {
+        unRead++;
+      }
+    });
+    setReadData({
+      currentIndex,
+      unRead,
+      counter: directory.length,
+      asctionFrom: 'nextContent',
+    });
+  }, []);
+
   useEffect(() => {
     if (actionFrom === 'nextButton') {
       console.log('22');
@@ -288,6 +310,17 @@ export function MobileDirectory(props) {
       setDirectory(newArr);
     }
   }, [currentIndex]);
+  // useEffect(() => {
+  //   if (actionFrom === 'nextButton') {
+  //     console.log('22');
+  //     const newArr = [...directory];
+  //     newArr[currentIndex - 1] = {
+  //       ...directory[currentIndex - 1],
+  //       status: true,
+  //     };
+  //     setDirectory(newArr);
+  //   }
+  // }, [currentIndex]);
   console.log('readData', readData);
 
   const onNext = (index, name) => {
@@ -303,9 +336,37 @@ export function MobileDirectory(props) {
     });
   };
 
+  // const handleOpen = () => {
+    
+  //   setDrawerStatus(true);
+  // }
   return (
     <Box>
-      <Button onClick={() => setDrawerStatus(true)}>bottom</Button>
+      <IconButton
+        sx={{
+          backgroundColor: '#000',
+          width: '28px',
+          height: '28px',
+          // borderRadius: '80%',
+          // alignItems: 'center',
+          textAlign: 'center',
+          // alignContent: 'center',
+        }}
+        onClick={() => setDrawerStatus(true)}
+      >
+        {
+          drawerStatus ? (
+            <svg width="12" height="8" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.72972 0.637692L4.62055 2.74687C4.3794 2.98782 3.98859 2.98787 3.74739 2.74697L1.63704 0.637568C1.33559 0.336258 0.846976 0.336313 0.545597 0.637692C0.244239 0.939051 0.244239 1.42765 0.545597 1.72901L3.31027 4.49368C3.79244 4.97585 4.5742 4.97585 5.05637 4.49368L7.82104 1.72901C8.1224 1.42765 8.1224 0.93905 7.82104 0.637691C7.51968 0.336333 7.03108 0.336333 6.72972 0.637692Z" fill="white"/>
+            </svg>
+          ) : (
+            <svg width="12" height="8" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.63697 4.72901L3.74615 2.61983C3.9873 2.37888 4.3781 2.37883 4.61931 2.61973L6.72966 4.72913C7.03111 5.03044 7.51972 5.03039 7.8211 4.72901C8.12246 4.42765 8.12246 3.93905 7.8211 3.63769L5.05643 0.873023C4.57426 0.390849 3.7925 0.390849 3.31033 0.873023L0.545658 3.63769C0.2443 3.93905 0.244299 4.42765 0.545658 4.72901C0.847017 5.03037 1.33562 5.03037 1.63697 4.72901Z" fill="white"/>
+            </svg>
+          )
+        }
+
+      </IconButton>
       <SwipeableDrawer
         anchor="bottom"
         open={drawerStatus}
@@ -314,7 +375,7 @@ export function MobileDirectory(props) {
       >
         <Box paddingX={10} height="400px">
           {directory?.map((row, index) => (
-            <Item data={[...row]} key={index} onClick={() => onNext(index)} />
+            <Item data={row} key={index} onClick={() => onNext(index)} />
           ))}
         </Box>
       </SwipeableDrawer>

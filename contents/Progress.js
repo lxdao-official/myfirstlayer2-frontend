@@ -43,7 +43,7 @@ export default function Progress() {
   const { unRead, counter } = readData;
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <BorderLinearProgress
         variant="determinate"
         value={(unRead / counter) * 100}
@@ -51,6 +51,6 @@ export default function Progress() {
       <Typography style={{ transform: `translateX(${x}%)` }}>
         {((unRead / counter) * 100).toFixed(2)}%
       </Typography>
-    </div>
+    </Box>
   );
 }
