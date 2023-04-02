@@ -27,7 +27,13 @@ export default function ZksyncSwap({ children, title }) {
   const handleMint = async () => {
     try {
       setMintLoading(true);
-      const cid = await uploadPNG(modifiedImgSrc);
+      const response = await fetch('/api/upload/png', {
+        method: 'POST',
+        body: modifiedImgSrc,
+      });
+      const body = await response.json();
+      const { cid } = body;
+      // const cid = await uploadPNG(modifiedImgSrc);
       const data = btoa(
         JSON.stringify({
           name: 'mflayer2-badge',

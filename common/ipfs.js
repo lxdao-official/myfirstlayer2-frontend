@@ -15,17 +15,6 @@ const dataURLtoBlob = (dataURL) => {
   return new Blob([u8arr], { type: mime });
 };
 
-const retrieve = async (cid) => {
-  const res = await fetch(`https://${cid}.ipfs.nftstorage.link`);
-  if (!res.ok) {
-    throw new Error(`failed to get ${cid}`);
-  }
-
-  // request succeeded! do something with the response object here...
-  const data = await res.json();
-  return data;
-};
-
 const uploadPNG = async (imgBase64Str) => {
   const client = new NFTStorage({ token: NFT_STORAGE_TOKEN });
   const blob = dataURLtoBlob(imgBase64Str);
@@ -33,4 +22,4 @@ const uploadPNG = async (imgBase64Str) => {
   return cid;
 };
 
-export { uploadPNG, retrieve };
+export { uploadPNG };
