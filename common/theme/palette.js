@@ -59,9 +59,9 @@ export const dark = {
   },
   mode: 'dark',
   primary: {
-    main: '#1976d2',
+    main: '#010101',
     light: '#2196f3',
-    dark: '#0d47a1',
+    dark: '#333333',
     contrastText: '#fff',
   },
   secondary: {
