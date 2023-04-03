@@ -1,6 +1,8 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { getAccount } from '@wagmi/core';
 import { useContext, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+
 import {
   useContractWrite,
   usePrepareContractWrite,
@@ -46,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   listItem: {
     borderRadius: '10px',
+    alignItems: 'flex-start',
     '&:hover': {
       background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
       cursor: 'pointer',
@@ -60,12 +63,22 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
     },
   },
+  avatarContain: {
+    marginTop: '10px',
+    // background: '#000',
+    // position: 'absolute',
+    textAlign: 'end',
+    
+  },
   avatar: {
     width: '15px', // 图像的大小
     height: '15px',
   },
   text: {
     marginLeft: '-30px',
+
+    // top: 0,
+    // width: '10px',
     '& .MuiTypography-body1': {
       fontSize: (props) => props.fontSize, // 使用props传入字体大小
     },
@@ -266,7 +279,17 @@ export function MobileDirectory(props) {
 
 const Item = (props) => {
   const classes = useStyles();
+  const t = useTranslations('Directory');
   const { rowData, key, selected, onNext } = props;
+
+  const formatChapterTitle = (text) => {
+    console.log('Number(text[0])', Number(text[0]));
+    if (Number(text[0]) !== NaN) {
+      return text.substr(4, text.length - 1)
+    }
+    return text;
+  }
+
   const handleListItemClick = (item, index) => {
     !item?.status && onNext(index);
   };
@@ -279,7 +302,7 @@ const Item = (props) => {
         onClick={onNext}
         className={classes.listItem}
       >
-        <ListItemAvatar>
+        <ListItemAvatar className={classes.avatarContain}>
           <Avatar
             className={classes.avatar}
             src={readStatusImg[rowData?.status ? 0 : 1]}
@@ -290,7 +313,7 @@ const Item = (props) => {
             classes.text,
             rowData?.main ? classes.mainTitle : classes.subtitle,
           ]}
-          primary={rowData?.text}
+          primary={t(formatChapterTitle(rowData?.text))}
           fontSize={22}
         ></ListItemText>
       </ListItem>
