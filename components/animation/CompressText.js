@@ -34,11 +34,11 @@ export default function CompressText() {
     width: '0px',
   };
   const deleteStyle = deleteStyle2;
-  const todelete = (api) => {
+  const todelete = (api, onRest = () => {}) => {
     api.start({
       ...deleteStyle1,
       onRest: () => {
-        api.start({ ...deleteStyle2, delay: 500 });
+        api.start({ ...deleteStyle2, delay: 500, onRest: onRest });
       },
     });
   };
@@ -2128,24 +2128,14 @@ export default function CompressText() {
         32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
         50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67,
         68, 69, 70, 71,
-      ].forEach((u) => {
-        as[u].start({
-          ...deleteStyle1,
-          onRest: () => {
-            as[u].start({
-              ...deleteStyle2,
-              delay: 500,
-              onRest: () => {
-                direction &&
-                  [96, 97, 98, 99, 100, 101].forEach((v) => {
-                    toadd(as[v]);
-                  });
-              },
+      ].forEach((v) => {
+        todelete(as[v], () => {
+          direction &&
+            [96, 97, 98, 99, 100, 101].forEach((u) => {
+              toadd(as[u]);
             });
-          },
         });
       });
-
     [
       102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
       117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131,
@@ -2171,24 +2161,14 @@ export default function CompressText() {
         102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115,
         116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129,
         130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141,
-      ].forEach((u) => {
-        as[u].start({
-          ...deleteStyle1,
-          onRest: () => {
-            as[u].start({
-              ...deleteStyle2,
-              delay: 500,
-              onRest: () => {
-                direction &&
-                  [142, 143, 144, 145, 146, 147].forEach((v) => {
-                    toadd(as[v]);
-                  });
-              },
+      ].forEach((v) => {
+        todelete(as[v], () => {
+          direction &&
+            [142, 143, 144, 145, 146, 147].forEach((u) => {
+              toadd(as[u]);
             });
-          },
         });
       });
-
     [206, 207, 208, 209, 210, 211].forEach((v) => {
       todefault(as[v]);
     });
@@ -2204,6 +2184,7 @@ export default function CompressText() {
       todefault(as[v]);
     });
   }
+
   //animation
 
   return (

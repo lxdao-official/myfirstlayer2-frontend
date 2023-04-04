@@ -12,15 +12,15 @@ const aniStrArr = [
   '0186a0', //default
 ];
 // const aniStrArr = [
-//   '11', //default
-//   '22', //default
-//   '33', //default
-//   '44', //default
-//   '55', //delete
-//   '66', //default
-//   '77', //delete
-//   '88', //default
-//   '99', //default
+//   '1', //default
+//   '2', //default
+//   '3', //default
+//   '4', //default
+//   '5', //delete
+//   '6', //default
+//   '7', //delete
+//   '8', //default
+//   '9', //default
 // ];
 const aniStrArrLength = aniStrArr.map((v) => v.length);
 const prefixSum = aniStrArrLength.reduce(
@@ -165,7 +165,7 @@ for (let j = 1; j <= 6; j++) {
     `if (status === ${j}) {` +
     typeArr[j]
       .map((type, index) => {
-        if (type === 'none') {
+        if (type === 'none' || type === 'add') {
           if (j + 1 <= 6 && typeArr[j + 1][index] == 'add') {
             return `
             !direction && [${Array.from(
@@ -179,13 +179,28 @@ for (let j = 1; j <= 6; j++) {
           }
         }
         return `
-          ${
-            type == 'add' || type == 'delete' ? 'direction&&' : ''
-          }[${Array.from(
+          ${type == 'delete' ? 'direction&&' : ''}[${Array.from(
           { length: prefixSum[index + 1] - prefixSum[index] },
           (_, k) => k + prefixSum[index]
         ).join(',')}].forEach((v) => {
-              to${type}(as[v]);
+              to${type}(as[v]${
+          (j == 4 && index == 2) || (j == 5 && index == 5)
+            ? `,() => { 
+            direction &&
+              [${Array.from(
+                {
+                  length:
+                    prefixSum[index + 1 + (index == 2 ? 2 : 1)] -
+                    prefixSum[index + (index == 2 ? 2 : 1)],
+                },
+                (_, k2) => k2 + prefixSum[index + (index == 2 ? 2 : 1)]
+              ).join(',')}].forEach((u) => {
+                toadd(as[u]);
+              });
+          }
+          `
+            : ''
+        });
             })`;
       })
       .join(';\n') +
