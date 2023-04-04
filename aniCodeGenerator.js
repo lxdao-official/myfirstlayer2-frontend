@@ -11,6 +11,17 @@ const aniStrArr = [
   '0000000000000000000000000000000000000000000000000000000000', //default
   '0186a0', //default
 ];
+// const aniStrArr = [
+//   '11', //default
+//   '22', //default
+//   '33', //default
+//   '44', //default
+//   '55', //delete
+//   '66', //default
+//   '77', //delete
+//   '88', //default
+//   '99', //default
+// ];
 const aniStrArrLength = aniStrArr.map((v) => v.length);
 const prefixSum = aniStrArrLength.reduce(
   (pre, cur) => {
@@ -19,7 +30,7 @@ const prefixSum = aniStrArrLength.reduce(
   },
   [0]
 );
-
+console.log({ aniStrArrLength, prefixSum });
 const typeArr = [
   //0
   [
@@ -61,9 +72,9 @@ const typeArr = [
   [
     'delete',
     'none',
-    'delete',
+    'default',
     'none',
-    'add',
+    'none',
     'default',
     'none',
     'none',
@@ -73,6 +84,18 @@ const typeArr = [
   [
     'none',
     'none',
+    'delete',
+    'none',
+    'add',
+    'default',
+    'none',
+    'none',
+    'default',
+  ],
+  //5
+  [
+    'none',
+    'none',
     'none',
     'none',
     'default',
@@ -81,7 +104,7 @@ const typeArr = [
     'none',
     'default',
   ],
-  //5
+  //6
   [
     'none',
     'none',
@@ -93,7 +116,7 @@ const typeArr = [
     'none',
     'default',
   ],
-  //6
+  //7
   [
     'none',
     'none',
@@ -142,12 +165,26 @@ for (let j = 1; j <= 6; j++) {
     `if (status === ${j}) {` +
     typeArr[j]
       .map((type, index) => {
-        if (type === 'none') return '';
-        return `
-            [${Array.from(
+        if (type === 'none') {
+          if (j + 1 <= 6 && typeArr[j + 1][index] == 'add') {
+            return `
+            !direction && [${Array.from(
               { length: prefixSum[index + 1] - prefixSum[index] },
               (_, k) => k + prefixSum[index]
             ).join(',')}].forEach((v) => {
+                toRemove(as[v]);
+              })`;
+          } else {
+            return '';
+          }
+        }
+        return `
+          ${
+            type == 'add' || type == 'delete' ? 'direction&&' : ''
+          }[${Array.from(
+          { length: prefixSum[index + 1] - prefixSum[index] },
+          (_, k) => k + prefixSum[index]
+        ).join(',')}].forEach((v) => {
               to${type}(as[v]);
             })`;
       })
