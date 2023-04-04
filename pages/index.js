@@ -36,12 +36,12 @@ export default function Index({ content, meta, directory }) {
   };
   return (
     <Main>
-      <CompressText />
       <SectionTop />
       <Content
         md={<MDXRemote components={components} {...content} file={directory} />}
       />
-      <CompressAni />
+      <CompressText />
+      {/* <CompressAni /> */}
       <ZksyncSwap />
       <MintBadge />
       <SectionMyFirstProject />

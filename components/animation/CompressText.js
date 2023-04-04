@@ -1,8 +1,8 @@
-import { a, animated, useChain, useSpring } from '@react-spring/web';
+import { animated, useSpring, useTransition } from '@react-spring/web';
 import { delay, remove } from 'lodash';
 import { useEffect, useState } from 'react';
 
-import { Box, Button, Stack } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 
 export default function CompressText() {
   const [status, setStatus] = useState(1);
@@ -15,6 +15,30 @@ export default function CompressText() {
     setStatus(status + 1);
     setDirection(1);
   };
+  const createExplain = (title, content) => {
+    return { title, content };
+  };
+
+  const explain = [
+    createExplain('Method ID', '此状态为原始状态'),
+    createExplain(
+      '代币合约地址',
+      '用科学计数法把转账数量压缩成64位数据，并删除不必要的0。（数量的精度会略微下降，但实践中影响不大）'
+    ),
+    createExplain(
+      '收款的账户地址',
+      '调用的方法如果很常见，可以删除所调用的Method ID，因为如“转账一笔ERC20代币”的交易，可以通过交易内容的特征推测'
+    ),
+    createExplain(
+      '填充的0',
+      '常用行为设置绿色通道（Helper ID）：大部分发送代币的行为都是如USDC、WETH等常用代币，可以用更短的Helper ID表示如“发送USDC”的信息'
+    ),
+    createExplain(
+      '收款的账户地址',
+      '登记一个“电话簿”，纪录收款人地址，将40位的地址压缩为第XXX页的第X个地址。'
+    ),
+    createExplain('提币数量', '如果发送的是ETH，连Helper ID都可以省掉。'),
+  ];
 
   const defaultStyle = {
     opacity: 1,
@@ -2187,62 +2211,130 @@ export default function CompressText() {
 
   //animation
 
+  // const transitions = useTransition(explain[status], {
+  //   from: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
+  //   enter: { opacity: 1, transform: 'translate3d(0,0px,0)' },
+  //   leave: { opacity: 0, transform: 'translate3d(0,40px,0)' },
+  //   exitBeforeEnter: true,
+  // });
+
   return (
-    <Box justifyContent="center" display="flex">
+    <Box justifyContent="center" display="flex" marginTop={'50px'}>
       <Stack
         sx={{
-          width: '400px',
-          height: '300px',
-          left: '0px',
-          top: '0px',
-          background: '#010101',
-          borderRadius: '10px',
-          fontFamily: 'Nanum Brush Script',
-          fontSize: '24px',
-          color: 'white',
+          padding: '30px 65px',
+          background: '#F6F6F6',
+          borderRadius: '18px',
+          textAlign: 'center',
+          width: '790px',
+          alignItems: 'center',
         }}
       >
-        <Box
-          width="400px"
+        <Stack
           sx={{
+            width: '400px',
+            height: '300px',
+            left: '0px',
+            top: '0px',
             px: '48px',
-            pt: '60px',
-            whiteSpace: 'pre-wrap',
-            letterSpacing: '-1px',
+            pt: '30px',
+            pb: '20px',
+            background: '#010101',
+            borderRadius: '10px',
+            fontFamily: 'Nanum Brush Script',
+            fontSize: '24px',
+            color: 'white',
+            justifyContent: 'space-between',
           }}
         >
-          {aniStr.split('').map((v, index) => (
-            <animated.div
-              style={{ display: 'inline-block', ...ss[index] }}
-              key={index}
+          <Box
+            // width="400px"
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              letterSpacing: '-1px',
+              justifyContent: status == 5 || status == 6 ? 'center' : 'start',
+            }}
+          >
+            {aniStr.split('').map((v, index) => (
+              <animated.div
+                style={{ display: 'inline-block', ...ss[index] }}
+                key={index}
+              >
+                {v}
+              </animated.div>
+            ))}
+          </Box>
+          <Stack direction="row" justifyContent="space-between">
+            <Button
+              onClick={handlePre}
+              sx={{
+                fontFamily: 'Nanum Brush Script',
+                fontSize: '24px',
+                color: 'white',
+                textTransform: 'capitalize',
+                // hid: status === 1 ? 'none' : 'block',
+                visibility: status === 1 ? 'hidden' : 'visible',
+              }}
+              startIcon={
+                <Box component={'img'} src="/arrow.svg" width={'30px'} />
+              }
             >
-              {v}
-            </animated.div>
-          ))}
-        </Box>
-        <Stack direction="row" justifyContent="space-between">
-          <Button
-            onClick={handlePre}
-            sx={{
-              fontFamily: 'Nanum Brush Script',
-              fontSize: '24px',
-              color: 'white',
-            }}
-          >
-            pre
-          </Button>
-          {status}
-          <Button
-            onClick={handleAfter}
-            sx={{
-              fontFamily: 'Nanum Brush Script',
-              fontSize: '24px',
-              color: 'white',
-            }}
-          >
-            after
-          </Button>
+              pre
+            </Button>
+            {/* {status} */}
+            <Button
+              onClick={handleAfter}
+              sx={{
+                fontFamily: 'Nanum Brush Script',
+                fontSize: '24px',
+                color: 'white',
+                textTransform: 'capitalize',
+                visibility: status === 5 ? 'hidden' : 'visible',
+              }}
+              endIcon={
+                <Box
+                  component={'img'}
+                  src="/arrow.svg"
+                  width={'30px'}
+                  sx={{ transform: 'rotate(180deg)' }}
+                />
+              }
+            >
+              after
+            </Button>
+          </Stack>
         </Stack>
+        <Typography variant="h4" fontWeight={700} mt="40px">
+          状态{status}
+        </Typography>
+        <Typography variant="body1" mt="20px">
+          {explain[status].title}
+        </Typography>
+        <Typography variant="body2" mt="10px">
+          {explain[status].content}
+        </Typography>
+        {/* {transitions((styles, item) => (
+          <animated.div style={styles}>
+            <Typography variant="h4" fontWeight={700} mt="40px">
+              状态{status}
+            </Typography>
+          </animated.div>
+        ))}
+        {transitions((styles, item) => (
+          <animated.div style={styles}>
+            <Typography variant="body1" mt="20px">
+              {item.title}
+            </Typography>
+          </animated.div>
+        ))}
+        {transitions((styles, item) => (
+          <animated.div style={styles}>
+            <Typography variant="body2" mt="10px">
+              {item.content}
+            </Typography>
+          </animated.div>
+        ))} */}
       </Stack>
     </Box>
   );
