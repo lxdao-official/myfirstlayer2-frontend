@@ -142,13 +142,13 @@ aniStrArr.map((v, index) => {
   right += v.length;
   for (; i < right; i++) {
     usespringStr += `
-            const [s${i}, a${i}] = useSpring(
-            () => ({
-              from: ${typeArr[0][index]}Style,
-            }),
-            []
-          );
-          `;
+const [s${i}, a${i}] = useSpring(
+  () => ({
+    from: ${typeArr[0][index]}Style,
+  }),
+  []
+);
+`;
   }
 });
 
@@ -168,40 +168,41 @@ for (let j = 1; j <= 6; j++) {
         if (type === 'none' || type === 'add') {
           if (j + 1 <= 6 && typeArr[j + 1][index] == 'add') {
             return `
-            !direction && [${Array.from(
-              { length: prefixSum[index + 1] - prefixSum[index] },
-              (_, k) => k + prefixSum[index]
-            ).join(',')}].forEach((v) => {
-                toRemove(as[v]);
-              })`;
+  !direction && [${Array.from(
+    { length: prefixSum[index + 1] - prefixSum[index] },
+    (_, k) => k + prefixSum[index]
+  ).join(',')}].forEach((v) => {
+      toRemove(as[v]);
+    })
+`;
           } else {
             return '';
           }
         }
         return `
-          ${type == 'delete' ? 'direction&&' : ''}[${Array.from(
+  ${type == 'delete' ? 'direction&&' : ''}[${Array.from(
           { length: prefixSum[index + 1] - prefixSum[index] },
           (_, k) => k + prefixSum[index]
         ).join(',')}].forEach((v) => {
-              to${type}(as[v]${
-          (j == 4 && index == 2) || (j == 5 && index == 5)
-            ? `,() => { 
-            direction &&
-              [${Array.from(
-                {
-                  length:
-                    prefixSum[index + 1 + (index == 2 ? 2 : 1)] -
-                    prefixSum[index + (index == 2 ? 2 : 1)],
-                },
-                (_, k2) => k2 + prefixSum[index + (index == 2 ? 2 : 1)]
-              ).join(',')}].forEach((u) => {
-                toadd(as[u]);
-              });
-          }
-          `
-            : ''
-        });
-            })`;
+  to${type}(as[v]
+    ${
+      (j == 4 && index == 2) || (j == 5 && index == 5)
+        ? `,() => { 
+    direction && [${Array.from(
+      {
+        length:
+          prefixSum[index + 1 + (index == 2 ? 2 : 1)] -
+          prefixSum[index + (index == 2 ? 2 : 1)],
+      },
+      (_, k2) => k2 + prefixSum[index + (index == 2 ? 2 : 1)]
+    ).join(',')}].forEach((u) => {
+    toadd(as[u]);
+  });
+}
+`
+        : ''
+    });
+})`;
       })
       .join(';\n') +
     `}`;
