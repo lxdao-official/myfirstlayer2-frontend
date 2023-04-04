@@ -2226,7 +2226,7 @@ export default function CompressText() {
           background: '#F6F6F6',
           borderRadius: '18px',
           textAlign: 'center',
-          width: '790px',
+          width: '530px',
           alignItems: 'center',
         }}
       >
