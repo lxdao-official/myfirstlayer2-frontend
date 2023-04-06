@@ -13,6 +13,7 @@ import { Box } from '@mui/material';
 import Container from '../components/Container';
 import MintBadge from '../components/MintBadge';
 import ZksyncSwap from '../components/ZksyncSwap';
+import CompressText from '../components/animation/CompressText';
 import Content from '../contents/Index';
 import { getStorage, removeStorage, setStorage } from '../contents/storage';
 import Main from '../layouts/Main';
@@ -39,7 +40,8 @@ export default function Index({ content, meta, directory }) {
       <Content
         md={<MDXRemote components={components} {...content} file={directory} />}
       />
-      <CompressAni />
+      <CompressText />
+      {/* <CompressAni /> */}
       <ZksyncSwap />
       <MintBadge />
       <SectionMyFirstProject />
