@@ -1,7 +1,20 @@
-import { responsiveFontSizes } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import shadows from './shadows';
-import { light, dark } from './palette';
+// import SuCaiJiShiKangKangTi2 from './fonts/SuCaiJiShiKangKangTi-2.ttf'
+import { light, dark } from './palette'
+import shadows from './shadows'
+import { responsiveFontSizes } from '@mui/material'
+import { createTheme } from '@mui/material/styles'
+
+// const sucaijishikangkangti = {
+//   fontFamily: 'sucaijishikangkangti',
+//   fontStyle: 'normal',
+//   fontDisplay: 'swap',
+//   fontWeight: 400,
+//   src: `
+//     local('SuCaiJiShiKangKangTi'),
+//     local('SuCaiJiShiKangKangTi-Regular'),
+//     url(${SuCaiJiShiKangKangTi2}) format('ttf')
+//   `,
+// }
 
 const getTheme = (mode) =>
   responsiveFontSizes(
@@ -9,20 +22,7 @@ const getTheme = (mode) =>
       palette: mode === 'light' ? light : dark,
       shadows: shadows(mode),
       typography: {
-        fontFamily: [
-          'Inter',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'Roboto',
-          '"Helvetica Neue"',
-          'Arial',
-          'sans-serif',
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Open Sans"',
-        ].join(','),
+        fontFamily: ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Open Sans"', '"sucaijishikangkangti"'].join(','),
         h1: {
           fontSize: '98px',
           lineHeight: 1.02,
@@ -56,6 +56,13 @@ const getTheme = (mode) =>
           fontSize: '14px',
         },
       },
+      // overrides: {
+      //   MuiCssBaseline: {
+      //     '@global': {
+      //       '@font-face': [sucaijishikangkangti],
+      //     },
+      //   },
+      // },
       zIndex: {
         appBar: 1200,
         drawer: 1300,
@@ -97,6 +104,6 @@ const getTheme = (mode) =>
         },
       },
     })
-  );
+  )
 
-export default getTheme;
+export default getTheme
