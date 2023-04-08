@@ -203,8 +203,6 @@ export function PcDirectory(props) {
             fontSize: '10px',
           }}
         >
-          <Typography variant="progress">当前浏览进度</Typography>
-          {/* TODO: dark 有问题 */}
           <Typography variant="progress">{theme.palette?.mode}</Typography>
         </Box>
         <Progress></Progress>

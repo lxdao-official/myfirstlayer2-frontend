@@ -13,9 +13,10 @@ import { getStorage, removeStorage, setStorage } from './storage.js';
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
-    height: 10,
+    height: 4,
     borderRadius: 5,
     color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+    fontStyle: 'SemiBold',
   },
   colorPrimary: {
     backgroundColor: theme.palette?.mode === 'dark' ? '#4E4E4E' : '#AEAEAE',
@@ -25,13 +26,22 @@ const BorderLinearProgress = withStyles((theme) => ({
     backgroundColor:
       theme.palette?.mode === 'dark' ? '#ffffff' : 'background: #000000',
   },
+
 }))(LinearProgress);
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-});
+  title: {
+    fontSize: '10px', 
+    fontStyle: 'SemiBold',
+    fontWeight: 700,
+    color:  theme.palette?.mode === 'dark' ? '#ffffff' : '#747474',
+    marginBottom: '18px',
+    textAlign: 'center',
+  }
+}));
 
 export default function Progress() {
   const classes = useStyles();
@@ -42,11 +52,12 @@ export default function Progress() {
 
   return (
     <Box className={classes.root}>
+      <Box variant="progress" className={classes.title}>当前浏览进度</Box>
       <BorderLinearProgress
         variant="determinate"
         value={(read / counter) * 100}
       />
-      <Typography style={{ transform: `translateX(${x}%)` }}>
+      <Typography style={{ transform: `translateX(${x}%)`, fontSize: '10px' }}>
         {((read / counter) * 100).toFixed(2)}%
       </Typography>
     </Box>
