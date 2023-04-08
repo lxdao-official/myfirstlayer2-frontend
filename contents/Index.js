@@ -195,6 +195,7 @@ export default function Content(props) {
             {/* <Test /> */}
           </Box>
         </Container>
+        <Hidden smUp>
 
         <Box
           sx={{
@@ -212,7 +213,6 @@ export default function Content(props) {
           marginTop={4}
           paddingX={4}
         >
-          <Hidden smUp>
             {/* <Box
             backgroundColor='#ECECEC'
             display='flex'
@@ -238,8 +238,8 @@ export default function Content(props) {
             </Hidden>
             {/* </Box> */}
             {/* <BottomNav directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}/> */}
-          </Hidden>
         </Box>
+        </Hidden>
 
     </ReadContext.Provider>
   );
