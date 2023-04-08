@@ -14,7 +14,11 @@ import {
 } from '@mui/material';
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { makeStyles } from "@mui/styles";
+import { useTranslations } from 'next-intl';
+
 import { ReadContext } from './context.js';
+import{ formatChapterTitle } from '../utils.js';
+
 import arrowLeft from '../public/content/arrowLeft.svg';
 import arrowRight from '../public/content/arrowRight.svg';
 
@@ -81,6 +85,8 @@ export default function TabChapter(props) {
 
   const classes = useStyles();
 
+  const t = useTranslations('Directory');
+
   return (
     <Box className={classes.main} {...props}>
       <Card 
@@ -98,7 +104,7 @@ export default function TabChapter(props) {
           }
           <Box>
             <Typography fontSize={{xs: '8px', sm: '12px'}}>{chapterData?.last ? '上一章' : '当前章节'}</Typography>
-            <Typography fontSize={{xs: '12px', sm: '18px'}}>{chapterData?.last ? chapterData?.last : chapterData?.current}</Typography>
+            <Typography fontSize={{xs: '12px', sm: '18px'}}>{chapterData?.last ? t(formatChapterTitle(chapterData?.last)) : t(formatChapterTitle(chapterData?.current))}</Typography>
           </Box>
         </CardContent>
       </Card>
@@ -109,7 +115,7 @@ export default function TabChapter(props) {
             <CardContent className={classes.content}>
               <Box>
                 <Typography fontSize={{xs: '8px', sm: '12px'}}>下一章</Typography>
-                <Typography fontSize={{xs: '12px', sm: '18px'}}>{chapterData?.next}</Typography>
+                <Typography fontSize={{xs: '12px', sm: '18px'}}>{t(formatChapterTitle(chapterData?.next))}</Typography>
               </Box>
               <Box fontSize={"8px"}>
                 <svg width="27" height="16" viewBox="0 0 27 16" fill="none" xmlns="http://www.w3.org/2000/svg">

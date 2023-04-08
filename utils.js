@@ -54,3 +54,10 @@ const markdownDir = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content')
   const mdxSource = await serialize(content)
   return { content, mdxSource }
 }
+
+export const formatChapterTitle = (text) => {
+  if (Number(text && text[0]) !== NaN) {
+    return text?.substr(4, text.length - 1)
+  }
+  return text;
+}

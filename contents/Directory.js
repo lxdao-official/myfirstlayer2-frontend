@@ -30,7 +30,7 @@ import { svg } from '../common/constans';
 import showMessage from '../components/showMessage';
 import Progress from './Progress';
 import { ReadContext } from './context.js';
-
+import{ formatChapterTitle } from '../utils.js';
 import down from '../public/content/down.svg';
 import up from '../public/content/up.svg';
 
@@ -277,14 +277,6 @@ const Item = (props) => {
   const classes = useStyles();
   const t = useTranslations('Directory');
   const { rowData, key, selected, onNext } = props;
-
-  const formatChapterTitle = (text) => {
-    console.log('Number(text[0])', Number(text[0]));
-    if (Number(text[0]) !== NaN) {
-      return text.substr(4, text.length - 1)
-    }
-    return text;
-  }
 
   const handleListItemClick = (item, index) => {
     !item?.status && onNext(index);
