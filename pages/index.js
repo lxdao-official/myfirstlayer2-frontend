@@ -24,6 +24,11 @@ import SectionTeam from '../sections/SectionTeam';
 import SectionTop from '../sections/SectionTop';
 import Directory from '/components/Directory';
 import { formatDirectory, getDocBySlug } from '/utils';
+import dynamic from "next/dynamic";
+const ImpossibleTriangle = dynamic(
+  () => import('../components/ImpossibleTriangle'),
+  { ssr: false }
+)
 
 export default function Index({ content, meta, directory }) {
   const t = useTranslations('Index');
@@ -31,6 +36,7 @@ export default function Index({ content, meta, directory }) {
   const components = {};
   return (
     <Main>
+      <ImpossibleTriangle />
       <SectionTop />
       <Content md={<MDXRemote {...content} file={directory} />} />
       <CompressText />
