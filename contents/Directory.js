@@ -187,37 +187,35 @@ export function PcDirectory(props) {
       <Box
         sx={{
           width: '247px',
-          maxHeight: '987px',
-          overflow: 'auto',
+          
           borderRadius: 2,
           paddingX: '11px',
           paddingBottom: '45px',
         }}
         backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
-        <Box
-          sx={{
-            textAlign: 'center',
-            paddingY: '20px',
-            color: '#747474',
-            fontSize: '10px',
-          }}
-        >
-          <Typography variant="progress">{theme.palette?.mode}</Typography>
+        <Box sx={{
+          paddingTop: '18px',
+        }}>
+          <Progress></Progress>
         </Box>
-        <Progress></Progress>
-        
-        {directory?.map((row, index) => {
-          return (
-            <Item
-              rowData={{...row, status: readStatus[index]}}
-              key={index}
-              selected={selectedIndex === index}
-              onNext={() => onTabChapter('lastOrNext', {index, ...row})}
-              {...props}
-            />
-          );
-        })}
+        <Box sx={{
+          maxHeight: '987px',
+          overflow: 'auto',
+        }}>
+          {directory?.map((row, index) => {
+            return (
+              <Item
+                rowData={{...row, status: readStatus[index]}}
+                key={index}
+                selected={selectedIndex === index}
+                onNext={() => onTabChapter('lastOrNext', {index, ...row})}
+                {...props}
+              />
+            );
+          })}
+        </Box>
+
       </Box>
     </Box>
   );
