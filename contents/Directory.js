@@ -224,6 +224,12 @@ export function PcDirectory(props) {
 export function MobileDirectory(props) {
   const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
   const [drawerStatus, setDrawerStatus] = useState(false);
+  
+  const onNext = (action, data) => {
+    onTabChapter(action, data);
+    setDrawerStatus(false);
+  }
+
   return (
     <Box>
       <IconButton
@@ -257,13 +263,13 @@ export function MobileDirectory(props) {
         onClose={() => setDrawerStatus(false)}
         onOpen={() => setDrawerStatus(true)}
       >
-        <Box paddingX={10} height="400px">
+        <Box paddingX={3} height="400px">
           {directory?.map((row, index) => (
             <Item
               rowData={{...row, status: readStatus[index]}}
               key={index}
               selected={selectedIndex === index}
-              onNext={() => onTabChapter('lastOrNext', {index, ...row})}
+              onNext={() => onNext('lastOrNext', {index, ...row})}
               {...props}
             />
           ))}
