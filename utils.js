@@ -10,7 +10,7 @@ export function getDocBySlug(slug, locale = 'en') {
   // console.log('docsDirectory', docsDirectory)
   const realSlug = slug.replace(/\.mdx$/, '');
   // console.log('realSlug', realSlug);
-  const fullPath = path.join(docsDirectory, `${realSlug}`);
+  const fullPath = path.join(docsDirectory, `${realSlug}.md`);
   // console.log('fullPath', fullPath)
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { content, data } = matter(fileContents);
@@ -23,7 +23,7 @@ export function formatDirectory(fileNames) {
 
   let directory = [];
 
-  formatArr.map((item, index) => directory.push({ text: item, status: false, main: false}));
+  formatArr.map((item, index) => directory.push({ text: item.substr(0, item.length - 3), status: false, main: false}));
   // console.log('formatArr fileNames', formatArr)
   // console.log('formatArr directory', directory)
 
@@ -53,4 +53,11 @@ const markdownDir = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content')
   const { content } = matter(fileContents)
   const mdxSource = await serialize(content)
   return { content, mdxSource }
+}
+
+export const formatChapterTitle = (text) => {
+  if (Number(text && text[0]) !== NaN) {
+    return text?.substr(4, text.length - 1)
+  }
+  return text;
 }

@@ -146,100 +146,101 @@ export default function Content(props) {
   console.log('mdScreen', mdScreen);
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
-      <Container marginTop={4} paddingX={2}>
-        <Box display="flex" justifyContent="space-between">
-          <Box
-            marginRight={{
-              xs: 0,
-              sm: 2,
-            }}
-            flexGrow={1}
-          >
+        <Container marginTop={4} paddingX={2}>
+          <Box display="flex" justifyContent="space-between">
             <Box
-              sx={{
-                display: 'flex',
-                backgroundColor:
-                  theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
-                maxWidth: mdScreen ? '920px' : '91vw',
-                color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+              marginRight={{
+                xs: 0,
+                sm: 2,
               }}
-              marginRight={2}
-              borderRadius={2}
-              padding={{
-                xs: 2,
-                sm: 8,
-              }}
+              flexGrow={1}
             >
-              <Box textDecoration={'none'}>
-                {mdxSource && (
-                  <MDXRemote components={components} {...mdxSource}></MDXRemote>
-                )}
+              <Box
+                sx={{
+                  display: 'flex',
+                  backgroundColor:
+                    theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
+                  maxWidth: mdScreen ? '920px' : '100vw',
+                marginRight: mdScreen ? 2 : 0,
+
+                  color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+                }}
+                borderRadius={2}
+                padding={{
+                  xs: 2,
+                  sm: 8,
+                }}
+              >
+                <Box textDecoration={'none'}>
+                  {mdxSource && (
+                    <MDXRemote components={components} {...mdxSource}></MDXRemote>
+                  )}
+                </Box>
+
               </Box>
-
-              {/* {md} */}
+              <TabChapter
+                marginTop={{ xs: '20px', sm: '160px' }}
+                chapterData={chapterData}
+                onTabChapter={handleTabChapter}
+              ></TabChapter>
             </Box>
-            <TabChapter
-              marginTop={{ xs: '20px', sm: '160px' }}
-              chapterData={chapterData}
-              onTabChapter={handleTabChapter}
-            ></TabChapter>
+            <Hidden smDown>
+              <PcDirectory
+                directory={md.props.file}
+                readStatus={readStatus}
+                selectedIndex={selectedIndex}
+                onTabChapter={handleTabChapter}
+              ></PcDirectory>
+            </Hidden>
+            {/* <Test /> */}
           </Box>
-          <Hidden smDown>
-            <PcDirectory
-              directory={md.props.file}
-              readStatus={readStatus}
-              selectedIndex={selectedIndex}
-              onTabChapter={handleTabChapter}
-            ></PcDirectory>
-          </Hidden>
-          {/* <Test /> */}
-        </Box>
-      </Container>
-
-      <Box
-        sx={{
-          position: 'fixed',
-          bottom: 0,
-          top: 'auto',
-          width: '100vw',
-          zIndex: '1',
-        }}
-        backgroundColor="#ECECEC"
-        display="flex"
-        height={80}
-        alignItems="center"
-        justifyContent="space-around"
-        marginTop={4}
-        paddingX={4}
-      >
+        </Container>
         <Hidden smUp>
-          {/* <Box
-          backgroundColor='#ECECEC'
-          display='flex'
+
+        <Box
+          sx={{
+            position: 'fixed',
+            bottom: 0,
+            top: 'auto',
+            width: '100vw',
+            zIndex: '1',
+          }}
+          backgroundColor="#ECECEC"
+          display="flex"
           height={80}
-          alignItems='center'
-          justifyContent='space-around'
+          alignItems="center"
+          justifyContent="space-around"
           marginTop={4}
-          paddingX={4} */}
-          {/* > */}
-          <Box>
-            <ConnectButton />
-          </Box>
-          <Box flexGrow={2} marginX="20px">
-            <Progress />
-          </Box>
-          <Hidden smUp>
-            <MobileDirectory
-              directory={directory}
-              readStatus={readStatus}
-              selectedIndex={selectedIndex}
-              onTabChapter={handleTabChapter}
-            ></MobileDirectory>
-          </Hidden>
-          {/* </Box> */}
-          {/* <BottomNav directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}/> */}
+          paddingX={4}
+        >
+            {/* <Box
+            backgroundColor='#ECECEC'
+            display='flex'
+            height={80}
+            alignItems='center'
+            justifyContent='space-around'
+            marginTop={4}
+            paddingX={4} */}
+            {/* > */}
+            <Box>
+              <ConnectButton />
+            </Box>
+            <Box flexGrow={2} marginX="20px">
+              <Progress />
+            </Box>
+            <Hidden smUp>
+              <MobileDirectory
+                directory={directory}
+                readStatus={readStatus}
+                selectedIndex={selectedIndex}
+                onTabChapter={handleTabChapter}
+              ></MobileDirectory>
+            </Hidden>
+            {/* </Box> */}
+            {/* <BottomNav directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}/> */}
+        </Box>
         </Hidden>
-      </Box>
+
     </ReadContext.Provider>
   );
 }

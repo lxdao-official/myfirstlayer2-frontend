@@ -1,6 +1,8 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { getAccount } from '@wagmi/core';
 import { useContext, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+
 import {
   useContractWrite,
   usePrepareContractWrite,
@@ -28,7 +30,7 @@ import { svg } from '../common/constans';
 import showMessage from '../components/showMessage';
 import Progress from './Progress';
 import { ReadContext } from './context.js';
-
+import{ formatChapterTitle } from '../utils.js';
 import down from '../public/content/down.svg';
 import up from '../public/content/up.svg';
 
@@ -46,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   listItem: {
     borderRadius: '10px',
+    alignItems: 'flex-start',
     '&:hover': {
       background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
       cursor: 'pointer',
@@ -60,12 +63,22 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
     },
   },
+  avatarContain: {
+    marginTop: '10px',
+    // background: '#000',
+    // position: 'absolute',
+    textAlign: 'end',
+    
+  },
   avatar: {
     width: '15px', // 图像的大小
     height: '15px',
   },
   text: {
     marginLeft: '-30px',
+
+    // top: 0,
+    // width: '10px',
     '& .MuiTypography-body1': {
       fontSize: (props) => props.fontSize, // 使用props传入字体大小
     },
@@ -174,39 +187,35 @@ export function PcDirectory(props) {
       <Box
         sx={{
           width: '247px',
-          maxHeight: '987px',
-          overflow: 'auto',
+          
           borderRadius: 2,
           paddingX: '11px',
           paddingBottom: '45px',
         }}
         backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
-        <Box
-          sx={{
-            textAlign: 'center',
-            paddingY: '20px',
-            color: '#747474',
-            fontSize: '10px',
-          }}
-        >
-          <Typography variant="progress">当前浏览进度</Typography>
-          {/* TODO: dark 有问题 */}
-          <Typography variant="progress">{theme.palette?.mode}</Typography>
+        <Box sx={{
+          paddingTop: '18px',
+        }}>
+          <Progress></Progress>
         </Box>
-        <Progress></Progress>
-        
-        {directory?.map((row, index) => {
-          return (
-            <Item
-              rowData={{...row, status: readStatus[index]}}
-              key={index}
-              selected={selectedIndex === index}
-              onNext={() => onTabChapter('lastOrNext', {index, ...row})}
-              {...props}
-            />
-          );
-        })}
+        <Box sx={{
+          maxHeight: '987px',
+          overflow: 'auto',
+        }}>
+          {directory?.map((row, index) => {
+            return (
+              <Item
+                rowData={{...row, status: readStatus[index]}}
+                key={index}
+                selected={selectedIndex === index}
+                onNext={() => onTabChapter('lastOrNext', {index, ...row})}
+                {...props}
+              />
+            );
+          })}
+        </Box>
+
       </Box>
     </Box>
   );
@@ -215,6 +224,12 @@ export function PcDirectory(props) {
 export function MobileDirectory(props) {
   const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
   const [drawerStatus, setDrawerStatus] = useState(false);
+  
+  const onNext = (action, data) => {
+    onTabChapter(action, data);
+    setDrawerStatus(false);
+  }
+
   return (
     <Box>
       <IconButton
@@ -248,13 +263,13 @@ export function MobileDirectory(props) {
         onClose={() => setDrawerStatus(false)}
         onOpen={() => setDrawerStatus(true)}
       >
-        <Box paddingX={10} height="400px">
+        <Box paddingX={3} height="400px">
           {directory?.map((row, index) => (
             <Item
               rowData={{...row, status: readStatus[index]}}
               key={index}
               selected={selectedIndex === index}
-              onNext={() => onTabChapter('lastOrNext', {index, ...row})}
+              onNext={() => onNext('lastOrNext', {index, ...row})}
               {...props}
             />
           ))}
@@ -266,7 +281,9 @@ export function MobileDirectory(props) {
 
 const Item = (props) => {
   const classes = useStyles();
+  const t = useTranslations('Directory');
   const { rowData, key, selected, onNext } = props;
+
   const handleListItemClick = (item, index) => {
     !item?.status && onNext(index);
   };
@@ -279,7 +296,7 @@ const Item = (props) => {
         onClick={onNext}
         className={classes.listItem}
       >
-        <ListItemAvatar>
+        <ListItemAvatar className={classes.avatarContain}>
           <Avatar
             className={classes.avatar}
             src={readStatusImg[rowData?.status ? 0 : 1]}
@@ -290,7 +307,7 @@ const Item = (props) => {
             classes.text,
             rowData?.main ? classes.mainTitle : classes.subtitle,
           ]}
-          primary={rowData?.text}
+          primary={t(formatChapterTitle(rowData?.text))}
           fontSize={22}
         ></ListItemText>
       </ListItem>
