@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "git submodule update --init --recursive && git submodule sync && cd ./mdx/zh/MyFirst-Layer2_Content && git checkout main && cd ../../../ && next dev",
-    "build": "git submodule update && git submodule sync && next build",
+    "build": "git submodule update --init --recursive && git submodule sync && cd ./mdx/zh/MyFirst-Layer2_Content && git checkout main && cd ../../../ && next build",
     "start": "next start",
     "lint": "next lint"
   },
