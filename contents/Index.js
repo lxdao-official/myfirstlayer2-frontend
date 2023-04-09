@@ -93,6 +93,9 @@ export default function Content(props) {
       return;
     }
 
+    const targetElement = document.getElementById('root');
+    targetElement.scrollIntoView({ behavior: 'smooth' });
+
     let readStatusStore = readStatus;
 
     if (action === 'last') {
@@ -158,7 +161,17 @@ export default function Content(props) {
   console.log('mdScreen', mdScreen);
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
-        <Container marginTop={4} paddingX={2}>
+        <Typography id={'root'} sx={{
+          fontSize: mdScreen ? '48px' : '20px',
+          fontStyle: 'ExtraBold',
+          fontFamily: 'Open Sans',
+          color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+          fontWeight: 900,
+          textAlign: 'center',
+          marginTop: '120px',
+          marginBottom: '50px',
+        }}>Start learning</Typography>
+        <Container  paddingX={2}>
           <Box display="flex" justifyContent="space-between" ref={ref}>
             <Box
               marginRight={{
