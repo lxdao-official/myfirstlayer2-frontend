@@ -114,6 +114,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     display: 'flex',
     alignItems: 'center',
+    color: "#fff",
     justifyContent: 'space-between',
   }
 }));
