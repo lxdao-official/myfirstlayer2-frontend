@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import {
   Box,
@@ -23,7 +24,7 @@ import MyComponent from '../components/MyComponent';
 import CompressText from '../components/animation/CompressText';
 import { formatDirectory, getDocBySlug } from '../utils';
 import BottomNav from './BottomNav';
-// import Test from "./Test";
+// import MyBox from "./Test";
 import { MobileDirectory, PcDirectory } from './Directory';
 import Progress from './Progress';
 import TabChapter from './TabChapter';
@@ -45,6 +46,17 @@ export default function Content(props) {
   const [directory, setDirectory] = useState(md.props.file);
   const [readStatus, setReadStatus] = useState([true]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const { ref, inView, entry } = useInView({
+    threshold: 0.3,
+  });
+
+
+  // useEffect(() => {
+  //   console.log('ref', ref, 'in view', inView, 'entry', entry);
+  //   console.log('in view', inView);
+  //   console.log('entry', entry);
+
+  // }, [entry]);
 
   useEffect(() => {
     requestMdxSource(name);
@@ -147,7 +159,7 @@ export default function Content(props) {
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
         <Container marginTop={4} paddingX={2}>
-          <Box display="flex" justifyContent="space-between">
+          <Box display="flex" justifyContent="space-between" ref={ref}>
             <Box
               marginRight={{
                 xs: 0,
@@ -195,51 +207,47 @@ export default function Content(props) {
             {/* <Test /> */}
           </Box>
         </Container>
-        <Hidden smUp>
-
-        <Box
-          sx={{
-            position: 'fixed',
-            bottom: 0,
-            top: 'auto',
-            width: '100vw',
-            zIndex: '1',
-          }}
-          backgroundColor="#ECECEC"
-          display="flex"
-          height={80}
-          alignItems="center"
-          justifyContent="space-around"
-          marginTop={4}
-          paddingX={4}
-        >
-            {/* <Box
-            backgroundColor='#ECECEC'
-            display='flex'
-            height={80}
-            alignItems='center'
-            justifyContent='space-around'
-            marginTop={4}
-            paddingX={4} */}
-            {/* > */}
-            <Box>
-              <ConnectButton />
-            </Box>
-            <Box flexGrow={2} marginX="20px">
-              <Progress />
-            </Box>
+        {
+          inView && (
             <Hidden smUp>
-              <MobileDirectory
-                directory={directory}
-                readStatus={readStatus}
-                selectedIndex={selectedIndex}
-                onTabChapter={handleTabChapter}
-              ></MobileDirectory>
+
+            <Box
+              sx={{
+                position: 'fixed',
+                bottom: 0,
+                top: 'auto',
+                width: '100vw',
+                zIndex: '1',
+                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 1)',
+              }}
+              backgroundColor="#FFFFFF"
+              display="flex"
+              height={80}
+              alignItems="center"
+              justifyContent="space-around"
+              marginTop={4}
+              paddingX={2}
+              
+            >
+
+                <Box>
+                  <ConnectButton />
+                </Box>
+                <Box flexGrow={2} marginX="20px">
+                  <Progress />
+                </Box>
+                <Hidden smUp>
+                  <MobileDirectory
+                    directory={directory}
+                    readStatus={readStatus}
+                    selectedIndex={selectedIndex}
+                    onTabChapter={handleTabChapter}
+                  ></MobileDirectory>
+                </Hidden>
+            </Box>
             </Hidden>
-            {/* </Box> */}
-            {/* <BottomNav directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}/> */}
-        </Box>
-        </Hidden>
+          )
+        }
 
     </ReadContext.Provider>
   );
