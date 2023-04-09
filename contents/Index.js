@@ -9,6 +9,7 @@ import { useTheme } from '@mui/material/styles';
 
 import Container from '../components/Container';
 import Diploma from '../components/Diploma';
+import MintBadge from '../components/MintBadge';
 import ZksyncSwap from '../components/ZksyncSwap';
 import CompressText from '../components/animation/CompressText';
 import { MobileDirectory, PcDirectory } from './Directory';
@@ -125,6 +126,7 @@ export default function Content(props) {
     CompressText,
     ZksyncSwap,
     ImpossibleTriangle,
+    MintBadge,
   };
 
   const theme = useTheme();

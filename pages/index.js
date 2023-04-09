@@ -7,7 +7,6 @@ import React from 'react';
 
 import { Box } from '@mui/material';
 
-import Diploma from '../components/Diploma';
 import Content from '../contents/Index';
 import Main from '../layouts/Main';
 import SectionFooter from '../sections/SectionFooter';
@@ -20,7 +19,6 @@ import { formatDirectory, getDocBySlug } from '/utils';
 export default function Index({ content, directory }) {
   return (
     <Main>
-      {/* <Diploma /> */}
       <SectionTop />
       <Content md={<MDXRemote {...content} file={directory} />} />
       <SectionMyFirstProject />
