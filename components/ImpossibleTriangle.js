@@ -4,43 +4,11 @@ import React, { useEffect, useState } from 'react';
 
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 
-class Vector2 {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  add(vector) {
-    return new Vector2(this.x + vector.x, this.y + vector.y);
-  }
-
-  sub(vector) {
-    return new Vector2(this.x - vector.x, this.y - vector.y);
-  }
-
-  scale(factor) {
-    return new Vector2(this.x * factor, this.y * factor);
-  }
-}
-
-function solveThirdPoint(point1, point2, point3) {
-  const distance = calculateDistance(point1, point2, point3);
-  return point3.add(point1.sub(point2).scale(distance));
-}
-
-function calculateDistance(point1, point2, point3) {
-  const x1 = point1.x;
-  const y1 = point1.y;
-  const x2 = point2.x;
-  const y2 = point2.y;
-  const x3 = point3.x;
-  const y3 = point3.y;
-  return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-}
-
+let side = '';
 export default function ImpossibleTriangle({ children, title }) {
   const t = useTranslations('PageLayout');
   const [dragNodes, setDragNodes] = useState([]);
+  // const [side, setSide] = useState('');
 
   const distanceOfPoint2Line = (point0, point1, point2) => {
     const x = point0.x;
@@ -187,6 +155,9 @@ export default function ImpossibleTriangle({ children, title }) {
   };
 
   const changeColor = (graph, index, color) => {
+    debugger;
+    // setSide(index);
+    side = index;
     const style = { style: { fill: color, stroke: color } };
     const white = { style: { fill: 'white', stroke: 'white' } };
     graph.cfg.nodes.forEach((item) => {
@@ -257,11 +228,6 @@ export default function ImpossibleTriangle({ children, title }) {
   };
 
   const twoPointDistance = (p1, p2) => {
-    let dep = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-    return dep;
-  };
-
-  const solveThirdPoint = (p1, Distance) => {
     let dep = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
     return dep;
   };
@@ -459,7 +425,7 @@ export default function ImpossibleTriangle({ children, title }) {
           const d22 = distanceOfPoint2Line(p2, outerTriangle[1], outerTriangle[2]);
           const d23 = distanceOfPoint2Line(p2, outerTriangle[0], outerTriangle[2]);
           if (d01 < 15 && d11 < 15) {
-            changeColor(graph, 1, '#FF6454');
+            changeColor(graph, 1, '#FF6055');
           } else if (d12 < 15 && d22 < 15) {
             changeColor(graph, 2, '#FFC64E');
           } else if (d03 < 15 && d23 < 15) {
@@ -483,7 +449,6 @@ export default function ImpossibleTriangle({ children, title }) {
       graph.updateItem(nodeItem, {
         size: 20,
       });
-      const index = graph.cfg.nodes.indexOf(nodeItem);
     });
     graph.on('node:mouseleave', (e) => {
       if (e.item && (e.item.getModel().id === '3' || e.item.getModel().id === '4' || e.item.getModel().id === '5')) {
@@ -498,11 +463,51 @@ export default function ImpossibleTriangle({ children, title }) {
     });
     graph.data(data);
     graph.render();
+    // return () => {
+    //   graph.clear();
+    //   window.graph = null;
+    // };
   }, []);
   //57%
+
+  debugger;
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      <Box sx={{ background: '#1E1E1E', width: '400px', height: '300px', borderRadius: '18px', color: 'white' }} id="mountNode"></Box>
+    <Box sx={{ background: '#F6F6F6', paddingBlock: '30px', paddingInline: '65px', marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ background: '#1E1E1E', width: '400px', height: '300px', borderRadius: '18px', color: 'white' }} id="mountNode"></Box>
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+        <Typography fontSize={12} color="#777777" marginBottom="30px">
+          尝试拖拽不可能三角
+        </Typography>
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        {side === 1 ? (
+          <Typography fontSize={30} color="#FF6055" fontWeight={700} marginBottom="20px">
+            高性能&去中心化
+          </Typography>
+        ) : null}
+        {side === 2 ? (
+          <Typography fontSize={30} color="#FFC64E" fontWeight={700} marginBottom="20px">
+            高性能&高安全性
+          </Typography>
+        ) : null}
+        {side === 3 ? (
+          <Typography fontSize={30} color="#5979ED" fontWeight={700} marginBottom="20px">
+            高安全性&去中心化
+          </Typography>
+        ) : null}
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Typography fontSize={14} color="#0D0D0D" fontWeight={400} marginBottom="10px">
+          情况分析
+        </Typography>
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+          由于当前安全性程度过高，此时会导致此条链的性能收到大幅影响，预计会从100TPS(1秒钟处理100条事物)降低到30TPS。
+        </Typography>
+      </Box>
     </Box>
   );
 }

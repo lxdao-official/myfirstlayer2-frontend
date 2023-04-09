@@ -1,20 +1,8 @@
-// import SuCaiJiShiKangKangTi2 from './fonts/SuCaiJiShiKangKangTi-2.ttf'
-import { light, dark } from './palette'
-import shadows from './shadows'
-import { responsiveFontSizes } from '@mui/material'
-import { createTheme } from '@mui/material/styles'
+import { responsiveFontSizes } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
-// const sucaijishikangkangti = {
-//   fontFamily: 'sucaijishikangkangti',
-//   fontStyle: 'normal',
-//   fontDisplay: 'swap',
-//   fontWeight: 400,
-//   src: `
-//     local('SuCaiJiShiKangKangTi'),
-//     local('SuCaiJiShiKangKangTi-Regular'),
-//     url(${SuCaiJiShiKangKangTi2}) format('ttf')
-//   `,
-// }
+import { dark, light } from './palette';
+import shadows from './shadows';
 
 const getTheme = (mode) =>
   responsiveFontSizes(
@@ -56,13 +44,7 @@ const getTheme = (mode) =>
           fontSize: '14px',
         },
       },
-      // overrides: {
-      //   MuiCssBaseline: {
-      //     '@global': {
-      //       '@font-face': [sucaijishikangkangti],
-      //     },
-      //   },
-      // },
+
       zIndex: {
         appBar: 1200,
         drawer: 1300,
@@ -104,6 +86,6 @@ const getTheme = (mode) =>
         },
       },
     })
-  )
+  );
 
-export default getTheme
+export default getTheme;
