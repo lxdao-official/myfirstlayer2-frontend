@@ -128,6 +128,12 @@ export default function TabChapter(props) {
   const t = useTranslations('Directory');
   const mdScreen = useMediaQuery(theme?.breakpoints?.up('md'));
 
+  const handleTabChapter = (action) => {
+    if ((chapterData?.currentIndex === 0 && action === 'last') || (chapterData?.currentIndex === 20 && action === 'next')) {
+      return;
+    }
+    onTabChapter(action);
+  }
   return (
     <>
       <Hidden smDown>
@@ -135,7 +141,7 @@ export default function TabChapter(props) {
             <Card 
               className={classes.container}
               style={{ marginRight: '15px'}}
-              onClick={() => onTabChapter('last')}>
+              onClick={() => handleTabChapter('last')}>
               <CardContent className={classes.content}>
                 {/* {
                   chapterData?.last && ( */}
@@ -153,17 +159,17 @@ export default function TabChapter(props) {
               </CardContent>
             </Card>
 
-            {
-              chapterData?.next && (
+            {/* {
+              chapterData?.next && ( */}
                 <Card
                   className={classes.container}
                 style={{ Left: '15px'}}
-                  onClick={() => onTabChapter('next')}
+                  onClick={() => handleTabChapter('next')}
                 >
                   <CardContent className={classes.content}>
                     <Box>
-                      <Typography style={{fontSize: '12px', fontStyle: 'SemiBold', fontWeight: 200}}>下一章</Typography>
-                      <Typography style={{fontSize: '18px', fontStyle: 'SemiBold', fontWeight: 600}}>{t(formatChapterTitle(chapterData?.next))}</Typography>
+                      <Typography style={{fontSize: '12px', fontStyle: 'SemiBold', fontWeight: 200}}>{chapterData?.next ? '下一章' : '当前章节'}</Typography>
+                      <Typography style={{fontSize: '18px', fontStyle: 'SemiBold', fontWeight: 600}}>{t(formatChapterTitle(chapterData?.next ? chapterData?.next : chapterData?.current))}</Typography>
                     </Box>
                     <Box style={{marginRight: '4px'}}>
                       <svg width="27" height="16" viewBox="0 0 27 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,8 +178,8 @@ export default function TabChapter(props) {
                     </Box>
                   </CardContent>
                 </Card>
-              )
-            }
+              {/* )
+            } */}
 
         </Box>
       </Hidden>
