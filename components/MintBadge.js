@@ -1,11 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  useAccount,
-  useContractWrite,
-  useNetwork,
-  useSwitchNetwork,
-  useWaitForTransaction,
-} from 'wagmi';
+import { useAccount, useContractWrite, useNetwork, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
 
 import { Box, Button, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
@@ -15,13 +9,7 @@ import showMessage from './showMessage';
 
 export default function MintBadge() {
   const { chain } = useNetwork();
-  const {
-    chains,
-    error,
-    isLoading: swichLoading,
-    pendingChainId,
-    switchNetwork,
-  } = useSwitchNetwork();
+  const { chains, error, isLoading: swichLoading, pendingChainId, switchNetwork } = useSwitchNetwork();
 
   const { address } = useAccount();
   const theme = useTheme();
@@ -41,6 +29,14 @@ export default function MintBadge() {
     hash: data?.hash,
   });
   const handleMint = async () => {
+    if (chain?.id != chains[0]?.id) {
+      showMessage({
+        type: 'error',
+        title: 'Wrong Network',
+        body: 'Please switch to Polygon Mainnet.',
+      });
+      return;
+    }
     try {
       // debugger;
       setMintLoading(true);
