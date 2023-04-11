@@ -3,13 +3,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 
 import LanguageIcon from '@mui/icons-material/Language';
-import {
-  Box,
-  SvgIcon,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, SvgIcon, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -52,23 +46,10 @@ const Language = ({ color }) => {
   const LangNode = useCallback(() => {
     return (
       <Box display="flex" alignItems={'center'}>
-        <Box
-          aria-controls={open ? 'language-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          sx={{ cursor: 'pointer' }}
-          onClick={handleClick}
-        >
+        <Box aria-controls={open ? 'language-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} sx={{ cursor: 'pointer' }} onClick={handleClick}>
           <Box display="flex" alignItems="center">
             {!smallScreen && <Earth color={color} />}
-            <Typography
-              marginLeft={smallScreen ? 0 : 1}
-              marginRight={smallScreen ? 0 : 0.5}
-              color="text.primary"
-              fontSize={smallScreen ? '13px' : '18px'}
-              width={{ xs: 'auto', md: '80px' }}
-              textAlign="center"
-            >
+            <Typography marginLeft={smallScreen ? 0 : 1} marginRight={smallScreen ? 0 : 0.5} color="text.primary" fontSize={smallScreen ? '13px' : '18px'} width={{ xs: 'auto', md: '80px' }} textAlign="center">
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
 
@@ -85,6 +66,15 @@ const Language = ({ color }) => {
             role: 'listbox',
           }}
           autoFocus={true}
+          sx={{
+            '&.MuiPopover-root': {
+              width: '140px',
+              '.MuiPaper-root': {
+                boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)',
+                borderRadius: '18px !important',
+              },
+            },
+          }}
         >
           <MenuItem onClick={handleClose}>
             <Typography variant="body1">
@@ -102,9 +92,7 @@ const Language = ({ color }) => {
           </MenuItem>
           <MenuItem
             onClick={() => {
-              alert(
-                'If you want to translate to your native language, please contact us on Discord.'
-              );
+              alert('If you want to translate to your native language, please contact us on Discord.');
             }}
           >
             <Typography variant="body1">Your Lang?</Typography>

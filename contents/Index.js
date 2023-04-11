@@ -1,35 +1,23 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { MDXRemote } from 'next-mdx-remote';
-import { serialize } from 'next-mdx-remote/serialize';
-import path from 'path';
-import { createContext, useContext, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import mdxStyle from './mdx.module.css';
-import {
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  Grid,
-  Hidden,
-  Link,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 
+import { Box, Hidden, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import mdxStyle from './mdx.module.css';
 import Container from '../components/Container';
+import Diploma from '../components/Diploma';
 import MintBadge from '../components/MintBadge';
-import MyComponent from '../components/MyComponent';
+import ZksyncSwap from '../components/ZksyncSwap';
 import CompressText from '../components/animation/CompressText';
-import { formatDirectory, getDocBySlug } from '../utils';
-import BottomNav from './BottomNav';
-// import MyBox from "./Test";
 import { MobileDirectory, PcDirectory } from './Directory';
 import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
-import { getStorage, setStorage } from './storage.js';
+
+const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
 
 export default function Content(props) {
   const { md } = props;
@@ -50,27 +38,13 @@ export default function Content(props) {
     threshold: 0.3,
   });
 
-
-  // useEffect(() => {
-  //   console.log('ref', ref, 'in view', inView, 'entry', entry);
-  //   console.log('in view', inView);
-  //   console.log('entry', entry);
-
-  // }, [entry]);
-
   useEffect(() => {
     requestMdxSource(name);
 
     setChapterData({
       current: md.props.file[readData?.currentIndex]?.text,
-      last:
-        readData?.currentIndex !== 0
-          ? md.props.file[readData?.currentIndex - 1]?.text
-          : '',
-      next:
-        readData?.currentIndex !== readData.counter
-          ? md.props.file[readData?.currentIndex + 1]?.text
-          : '',
+      last: readData?.currentIndex !== 0 ? md.props.file[readData?.currentIndex - 1]?.text : '',
+      next: readData?.currentIndex !== readData.counter ? md.props.file[readData?.currentIndex + 1]?.text : '',
     });
   }, [name]);
 
@@ -86,8 +60,7 @@ export default function Content(props) {
       .catch((error) => console.error('err--------', error));
   };
 
-  const computeReadCount = (arr) =>
-    arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
+  const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
 
   const handleTabChapter = (action, chapter) => {
     console.log('action', action);
@@ -151,9 +124,11 @@ export default function Content(props) {
   };
 
   const components = {
-    MyComponent,
-    MintBadge,
+    Diploma,
     CompressText,
+    ZksyncSwap,
+    ImpossibleTriangle,
+    MintBadge,
   };
 
   const theme = useTheme();
@@ -163,7 +138,9 @@ export default function Content(props) {
   console.log('mdScreen', mdScreen);
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
-        <Typography id={'root'} sx={{
+      <Typography
+        id={'root'}
+        sx={{
           fontSize: mdScreen ? '48px' : '20px',
           fontStyle: 'ExtraBold',
           fontFamily: 'Open Sans',
@@ -172,98 +149,75 @@ export default function Content(props) {
           textAlign: 'center',
           marginTop: '120px',
           marginBottom: '50px',
-        }}>Start learning</Typography>
-        <Container  paddingX={2}>
-          <Box display="flex" justifyContent="space-between" ref={ref}>
-            <Box
-              marginRight={{
-                xs: 0,
-                sm: 2,
-              }}
-              flexGrow={1}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  backgroundColor:
-                    theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
-                  maxWidth: mdScreen ? '920px' : '100vw',
-                marginRight: mdScreen ? 2 : 0,
-
-                  color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-                }}
-                borderRadius={2}
-                padding={{
-                  xs: 2,
-                  sm: 8,
-                }}
-              >
-                <Box className={mdxStyle.root} textDecoration={'none'}>
-                  {mdxSource && (
-                    <MDXRemote components={components} {...mdxSource}></MDXRemote>
-                  )}
-                </Box>
-
-              </Box>
-              <TabChapter
-                marginTop={{ xs: '20px', sm: '160px' }}
-                chapterData={{...chapterData, currentIndex: readData?.currentIndex}}
-                onTabChapter={handleTabChapter}
-              ></TabChapter>
-            </Box>
-            <Hidden smDown>
-              <PcDirectory
-                directory={md.props.file}
-                readStatus={readStatus}
-                selectedIndex={selectedIndex}
-                onTabChapter={handleTabChapter}
-              ></PcDirectory>
-            </Hidden>
-            {/* <Test /> */}
-          </Box>
-        </Container>
-        {
-          inView && (
-            <Hidden smUp>
-
+        }}
+      >
+        Start learning
+      </Typography>
+      <Container paddingX={2}>
+        <Box display="flex" justifyContent="space-between" ref={ref}>
+          <Box
+            marginRight={{
+              xs: 0,
+              sm: 2,
+            }}
+            flexGrow={1}
+          >
             <Box
               sx={{
-                position: 'fixed',
-                bottom: 0,
-                top: 'auto',
-                width: '100vw',
-                zIndex: '1',
-                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 1)',
+                display: 'flex',
+                backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
+                maxWidth: mdScreen ? '920px' : '100vw',
+                marginRight: mdScreen ? 2 : 0,
+
+                color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               }}
-              backgroundColor="#FFFFFF"
-              display="flex"
-              height={80}
-              alignItems="center"
-              justifyContent="space-around"
-              marginTop={4}
-              paddingX={2}
-              
+              borderRadius={2}
+              padding={{
+                xs: 2,
+                sm: 8,
+              }}
             >
-
-                <Box>
-                  <ConnectButton />
-                </Box>
-                <Box flexGrow={2} marginX="20px">
-                  <Progress />
-                </Box>
-                <Hidden smUp>
-                  <MobileDirectory
-                    directory={directory}
-                    readStatus={readStatus}
-                    selectedIndex={selectedIndex}
-                    onTabChapter={handleTabChapter}
-                  ></MobileDirectory>
-                </Hidden>
+              <Box className={mdxStyle.root} textDecoration={'none'}>{mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}</Box>
             </Box>
+            <TabChapter marginTop={{ xs: '20px', sm: '160px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex }} onTabChapter={handleTabChapter}></TabChapter>
+          </Box>
+          <Hidden smDown>
+            <PcDirectory directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
+          </Hidden>
+          {/* <Test /> */}
+        </Box>
+      </Container>
+      {inView && (
+        <Hidden smUp>
+          <Box
+            sx={{
+              position: 'fixed',
+              bottom: 0,
+              top: 'auto',
+              width: '100vw',
+              zIndex: '1',
+              boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 1)',
+            }}
+            backgroundColor="#FFFFFF"
+            display="flex"
+            height={80}
+            alignItems="center"
+            justifyContent="space-around"
+            marginTop={4}
+            paddingX={2}
+          >
+            <Box>
+              <ConnectButton />
+            </Box>
+            <Box flexGrow={2} marginX="20px">
+              <Progress />
+            </Box>
+            <Hidden smUp>
+              <MobileDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></MobileDirectory>
             </Hidden>
-          )
-        }
-
+          </Box>
+        </Hidden>
+      )}
     </ReadContext.Provider>
   );
 }

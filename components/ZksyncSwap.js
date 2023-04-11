@@ -7,12 +7,7 @@ export default function ZksyncSwap({ children, title }) {
 
   return (
     <Box display="flex" justifyContent="center" marginTop={2}>
-      <iframe
-        style={{ border: 'none' }}
-        width="390"
-        height="750"
-        src="https://zk.amphi.space/"
-      />
+      <iframe style={{ border: 'none' }} width="390" height="750" src="https://zk.amphi.space/bridge" />
     </Box>
   );
 }

@@ -7,19 +7,19 @@ const useStyles = makeStyles((theme) => {
   return {
     tooltip: (props) => ({
       marginTop: '10px !important',
-      background: props.background,
+      backgroundColor: props.background,
       borderRadius: '18px',
       boxShadow: props.boxShadow,
     }),
     arrow: (props) => ({
-      color: '#fff',
+      color: props.background,
       fontSize: 16,
       margin: 0,
       '&[data-popper-placement*="top"] $arrow': {
         bottom: '-0.7em',
         '&::before': {
           borderWidth: '0.7em 0.7em 0 0',
-          backgroundColor: props.background,
+          backgroundColor: '#fff',
         },
       },
     }),

@@ -2,15 +2,7 @@ import _ from 'lodash';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
-import {
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  Grid,
-  Link,
-  Typography,
-} from '@mui/material';
+import { Box, Card, CardActions, CardContent, Grid, Link, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import StyledToolTip from '../components/StyledToolTip';
@@ -20,22 +12,19 @@ import SectionSimpleWrapper from './SectionSimpleWrapper';
 const coreContributors = [
   {
     image: '/teams/kasoqian.jpg',
-    description:
-      'Web3 BUIDLER and BELIEVER! Creator of GuoChanLiangXin and MyFirstNFT. Member @theNextDAO. Core contributor @GCLX community.',
+    description: 'Web3 BUIDLER and BELIEVER! Creator of GuoChanLiangXin and MyFirstNFT. Member @theNextDAO. Core contributor @GCLX community.',
     name: 'kasoqian',
     twitter: 'https://twitter.com/kasoqian_eth',
   },
   {
     image: '/teams/LouisWang.jpg',
-    description:
-      'Web3 BUIDLER. Artist of GuoChanLiangXin. Member @theNextDAO. 💎  hand.  Core contributor @GCLX community.',
+    description: 'Web3 BUIDLER. Artist of GuoChanLiangXin. Member @theNextDAO. 💎  hand.  Core contributor @GCLX community.',
     name: 'LouisWang',
     twitter: 'https://twitter.com/lviswang',
   },
   {
     image: '/teams/0xCryptolee.jpg',
-    description:
-      'A Web2 developer with more than 10 years of experience. Now, looking for some fun in Web3.0. Call me John 或者老高. Member @GCLX community.',
+    description: 'A Web2 developer with more than 10 years of experience. Now, looking for some fun in Web3.0. Call me John 或者老高. Member @GCLX community.',
     name: '0xCryptolee',
     twitter: 'https://twitter.com/IpfSxian',
   },
@@ -47,21 +36,18 @@ const coreContributors = [
   },
   {
     image: '/teams/kahn.jpeg',
-    description:
-      'BUIDLER, Surfer, Burner and Dreamer. Mod @theNextDAO. Lost somewhere in Web3.',
+    description: 'BUIDLER, Surfer, Burner and Dreamer. Mod @theNextDAO. Lost somewhere in Web3.',
     name: 'kahn',
   },
   {
     image: '/teams/Jacky.png',
-    description:
-      "A newcomer to Web3. Let's connect and do something fun together! 3n4.pps.eth coming soon☝🏻",
+    description: "A newcomer to Web3. Let's connect and do something fun together! 3n4.pps.eth coming soon☝🏻",
     name: 'Jacky',
     twitter: 'https://twitter.com/jacky_luxue',
   },
   {
     image: '/teams/Samo.png',
-    description:
-      'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.',
+    description: 'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.',
     name: 'Samo',
     twitter: 'https://twitter.com/BirkSamo',
   },
@@ -122,8 +108,7 @@ const activeContributors = [
   },
   {
     image: '/team/dt.jpg',
-    description:
-      'GCLX #711 | Muri #4774 | Fireworks Igniter Di (地) Tui (推) means selling things one by one face to face. This is my way to promote Web3 and my job to earn a living.',
+    description: 'GCLX #711 | Muri #4774 | Fireworks Igniter Di (地) Tui (推) means selling things one by one face to face. This is my way to promote Web3 and my job to earn a living.',
     name: 'DT.acheng',
     twitter: 'https://twitter.com/cryptoacheng',
   },
@@ -141,64 +126,55 @@ const activeContributors = [
   },
   {
     image: '/team/Marvin.jpeg',
-    description:
-      'Web2 Coder, Web3 Player. Crypto Mindset & Education.CFD trader.',
+    description: 'Web2 Coder, Web3 Player. Crypto Mindset & Education.CFD trader.',
     name: 'Marvin',
     twitter: 'https://twitter.com/FlyFlyyeah',
   },
   {
     image: '/team/fencun.jpg',
-    description:
-      'Half a year A7-A4 web3 Connecting plate expert. Proficient in loss investment logic. If you have too much money, please contact me to help you lose it',
+    description: 'Half a year A7-A4 web3 Connecting plate expert. Proficient in loss investment logic. If you have too much money, please contact me to help you lose it',
     name: 'Fencun',
     twitter: 'https://twitter.com/Fencun_nft',
   },
   {
     image: '/team/mz.jpg',
-    description:
-      'A Web2 game developer and engineer trainer with more than 10 years of experience. Now, looking for some fun such as Generative Art in Web3. Call me Michael.',
+    description: 'A Web2 game developer and engineer trainer with more than 10 years of experience. Now, looking for some fun such as Generative Art in Web3. Call me Michael.',
     name: 'Michael Zhu',
     twitter: 'https://twitter.com/artgeek_eth',
   },
   {
     image: '/team/chris.jpg',
-    description:
-      'Five-year-old leek, a fan of NFTs and games, now working as a farmer in Thailand.0dao.',
+    description: 'Five-year-old leek, a fan of NFTs and games, now working as a farmer in Thailand.0dao.',
     name: '0-dao.eth',
     twitter: 'https://www.twitter.com/0d_chao',
   },
   {
     image: '/team/nakke.png',
-    description:
-      'GCLX community contributor | exploring Web3 by night | ultra-marathon runner | 7 continents | Carnegie Mellon | father & husband | mfer | 🇨🇳 🇺🇸 🇭🇰.',
+    description: 'GCLX community contributor | exploring Web3 by night | ultra-marathon runner | 7 continents | Carnegie Mellon | father & husband | mfer | 🇨🇳 🇺🇸 🇭🇰.',
     name: 'nakke',
     twitter: 'https://twitter.com/Nakostoyevsky',
   },
   {
     image: '/team/nathalia.jpeg',
-    description:
-      'A Web2 Operation & MKT with more than 4 years of experiences. Sometime @NexDAO mod. Call me Nathalia~',
+    description: 'A Web2 Operation & MKT with more than 4 years of experiences. Sometime @NexDAO mod. Call me Nathalia~',
     name: 'Nathalia',
     twitter: 'https://twitter.com/ayanyu09',
   },
   {
     image: '/team/kuncle.png',
-    description:
-      '#Web3 Builder | Data Expert at #Crypto #Exchanges | Early Member @theNextDAO | Work in #Singapore',
+    description: '#Web3 Builder | Data Expert at #Crypto #Exchanges | Early Member @theNextDAO | Work in #Singapore',
     name: 'Kuncle',
     twitter: 'https://twitter.com/KingsUncle1',
   },
   {
     image: '/team/yanyan.jpg',
-    description:
-      'A Web2 legal counsel, maybe also a Web3 KOL for nothing and a real believer in CC0.',
+    description: 'A Web2 legal counsel, maybe also a Web3 KOL for nothing and a real believer in CC0.',
     name: 'Yanyan',
     twitter: 'https://twitter.com/seki_maruko',
   },
   {
     image: '/team/skyler.jpeg',
-    description:
-      'A Web2 developer with more than 10 years of experience. Now, looking for some fun in Web3. Call me Skyler.',
+    description: 'A Web2 developer with more than 10 years of experience. Now, looking for some fun in Web3. Call me Skyler.',
     name: 'skyler',
     twitter: 'https://twitter.com/VerySkyler',
   },
@@ -240,22 +216,19 @@ const activeContributors = [
   },
   {
     image: '/team/shenyu.jpeg',
-    description:
-      "Cofounder of F2Pool & Cobo. I'm ready to travel, the Bitcoin is my ticket",
+    description: "Cofounder of F2Pool & Cobo. I'm ready to travel, the Bitcoin is my ticket",
     name: 'DiscusFish',
     twitter: 'https://twitter.com/bitfish1',
   },
   {
     image: '/team/sea.png',
-    description:
-      'Core Contributor @theNextDAO // Web3 entrepreneur // NFT Advisor',
+    description: 'Core Contributor @theNextDAO // Web3 entrepreneur // NFT Advisor',
     name: '0xSea.eth',
     twitter: 'https://twitter.com/_0xSea',
   },
   {
     image: '/team/xing.jpeg',
-    description:
-      'A Web2 developer with more than 10 years of experience. Now, looking for some fun in Web3. Call me Xing.',
+    description: 'A Web2 developer with more than 10 years of experience. Now, looking for some fun in Web3. Call me Xing.',
     name: 'Xing',
     twitter: 'https://twitter.com/nelsonie',
   },
@@ -337,13 +310,7 @@ function Contributor(props) {
             },
           }}
         >
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            height="16px"
-            width={'100%'}
-          >
+          <Box display="flex" justifyContent="space-between" alignItems="center" height="16px" width={'100%'}>
             <Typography
               sx={{
                 lineHeight: '16px',
@@ -382,19 +349,8 @@ function SimpleContributor(props) {
         background={theme.palette.background.pover}
         boxShadow={theme.palette.shadow.level2}
         title={
-          <Box
-            component={Card}
-            display={'flex'}
-            flexDirection={'column'}
-            width="188px"
-            padding={2}
-            sx={{ background: 'transparent', boxShadow: 'none' }}
-          >
-            <Typography
-              variant={'body2'}
-              color="text.primary"
-              fontSize="0.85rem"
-            >
+          <Box component={Card} display={'flex'} flexDirection={'column'} width="188px" padding={2} sx={{ background: 'transparent', boxShadow: 'none' }}>
+            <Typography variant={'body2'} color="text.primary" fontSize="0.85rem">
               {props.description}
             </Typography>
             <Box display="flex" justifyContent={'end'} alignItems="center">
@@ -407,16 +363,7 @@ function SimpleContributor(props) {
           </Box>
         }
       >
-        <Box
-          component={Card}
-          width={1}
-          height={1}
-          borderRadius="50%"
-          boxShadow="none"
-          display={'flex'}
-          flexDirection={'column'}
-          sx={{ backgroundImage: 'none', background: '#fff' }}
-        >
+        <Box component={Card} width={1} height={1} borderRadius="50%" boxShadow="none" display={'flex'} flexDirection={'column'} sx={{ backgroundImage: 'none', background: '#fff' }}>
           <Box
             component="img"
             src={props.image}
@@ -446,13 +393,7 @@ export default function SectionTeam() {
             ))}
           </Grid>
         </Box>
-        <Typography
-          textAlign="center"
-          color="text.primary"
-          marginTop={{ xs: '90px', sm: '120px' }}
-          marginBottom={{ xs: '30px', sm: '50px' }}
-          sx={{ fontWeight: 800, fontSize: { xs: '20px', sm: '48px' } }}
-        >
+        <Typography textAlign="center" color="text.primary" marginTop={{ xs: '90px', sm: '120px' }} marginBottom={{ xs: '30px', sm: '50px' }} sx={{ fontWeight: 800, fontSize: { xs: '20px', sm: '48px' } }}>
           {t(`sectionTeam-content-12`)}
         </Typography>
         <Box padding={{ xs: 2, sm: 0 }} marginBottom={8}>
