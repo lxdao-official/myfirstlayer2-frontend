@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 
 import { Box, Hidden, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-
+import mdxStyle from './mdx.module.css';
 import Container from '../components/Container';
 import Diploma from '../components/Diploma';
 import MintBadge from '../components/MintBadge';
@@ -53,7 +53,9 @@ export default function Content(props) {
       .then((response) => response.json())
       .then((data) => {
         console.log('data------------', data);
-        setMdxSource(data.mdxSource);
+        if (data?.mdxSource) {
+          setMdxSource(data.mdxSource);
+        }
       })
       .catch((error) => console.error('err--------', error));
   };
@@ -175,7 +177,7 @@ export default function Content(props) {
                 sm: 8,
               }}
             >
-              <Box textDecoration={'none'}>{mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}</Box>
+              <Box className={mdxStyle.root} textDecoration={'none'}>{mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}</Box>
             </Box>
             <TabChapter marginTop={{ xs: '20px', sm: '160px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex }} onTabChapter={handleTabChapter}></TabChapter>
           </Box>
