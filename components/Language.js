@@ -65,13 +65,26 @@ const Language = ({ color }) => {
             'aria-labelledby': 'lock-button',
             role: 'listbox',
           }}
-          autoFocus={true}
+          selectedItemColor="red"
+          autoFocus={false}
           sx={{
             '&.MuiPopover-root': {
               width: '140px',
               '.MuiPaper-root': {
-                boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)',
+                boxShadow: theme.palette.shadow.level2,
                 borderRadius: '18px !important',
+                backgroundColor: 'background.level3',
+                display: 'flex',
+                justifyContent: 'center',
+                ul: {
+                  width: '79px',
+                  li: {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    '&:hover': { paddingInline: '10px', background: 'background.hover', borderRadius: '8px' },
+                    '&:focus': { paddingInline: '10px', background: 'background.hover', borderRadius: '8px' },
+                  },
+                },
               },
             },
           }}
