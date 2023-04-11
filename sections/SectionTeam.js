@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
-import { Box, Card, CardActions, CardContent, Grid, Link, Typography } from '@mui/material';
+import { Box, Card, CardContent, Grid, Link, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import StyledToolTip from '../components/StyledToolTip';
