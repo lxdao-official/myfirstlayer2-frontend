@@ -2126,6 +2126,11 @@ export default function CompressText() {
             });
         });
       });
+
+    !direction &&
+      [142, 143, 144, 145, 146, 147].forEach((v) => {
+        todefault(as[v], '#B0B0B0');
+      });
     [206, 207, 208, 209, 210, 211].forEach((v) => {
       todefault(as[v], '#fff');
     });
@@ -2138,7 +2143,7 @@ export default function CompressText() {
       todefault(as[v]);
     });
     [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#B0B0B0');
     });
   }
 
@@ -2236,7 +2241,7 @@ export default function CompressText() {
           {explain[status].title}
         </Typography> */}
         <Typography variant="body2" mt="10px">
-          {status - 1 + '. ' + explain[status - 1].content}
+          {(status != 1 ? status - 1 + '. ' : '') + explain[status - 1].content}
         </Typography>
         {/* {transitions((styles, item) => (
           <animated.div style={styles}>
