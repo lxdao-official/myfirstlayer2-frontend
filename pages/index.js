@@ -19,7 +19,6 @@ import { formatDirectory, getDocBySlug } from '/utils';
 
 export default function Index({ content, directory }) {
   const theme = useTheme();
-  debugger;
   return (
     <Main>
       <SectionTop />

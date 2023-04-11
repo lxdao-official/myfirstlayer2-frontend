@@ -35,11 +35,11 @@ export const light = {
     level1: '#ffffff',
     level3: '#FFFFFF',
     pover: '#ffffff',
+    hover: '#EEEEEE',
   },
   shadow: {
     level1: '0px 20px 50px rgba(0, 0, 0, 0.2)',
-    level2:
-      '0px 2px 8px rgba(0, 0, 0, 0.04), 0px 12px 48px 2px rgba(0, 0, 0, 0.08)',
+    level2: '0px 2px 8px rgba(0, 0, 0, 0.04), 0px 12px 48px 2px rgba(0, 0, 0, 0.08)',
   },
 };
 
@@ -84,10 +84,11 @@ export const dark = {
     level1: '#2D3748',
     level3: '#0F0F0F',
     pover: '#0F0F0F',
+    hover: '#3C3C3C',
   },
+
   shadow: {
     level1: '0px 20px 50px 0 rgba(255, 255, 255, 0.2)',
-    level2:
-      '0px 2px 8px rgba(255, 255, 255, 0.04), 0px 12px 48px 2px rgba(255, 255, 255, 0.08)',
+    level2: '0px 2px 8px rgba(255, 255, 255, 0.04), 0px 12px 48px 2px rgba(255, 255, 255, 0.08)',
   },
 };
