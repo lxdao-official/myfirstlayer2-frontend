@@ -20,7 +20,7 @@ export default function CompressText() {
   };
 
   const explain = [
-    createExplain('Method ID', '此状态为原始状态', 'Method ID  / 填充的0 /  代币合约地址   / 填充的0 /  收款的账户地址  / 提币数量'),
+    createExplain('Method ID', '原始交易数据未经压缩', 'Method ID / 填充的0 / 代币合约地址  / 填充的0 / 收款的账户地址 / 提币数量'),
     createExplain('代币合约地址', '用科学计数法把转账数量压缩成64位数据，并删除不必要的0。（数量的精度会略微下降，但实践中影响不大）', 'Method ID  / 代币合约地址  /  收款的账户地址  / 提币数量'),
     createExplain('收款的账户地址', '调用的方法如果很常见，可以删除所调用的Method ID，因为如“转账一笔ERC20代币”的交易，可以通过交易内容的特征推测', '代币合约地址  /  收款的账户地址  / 提币数量'),
     createExplain('填充的0', '常用行为设置绿色通道（Helper ID）：大部分发送代币的行为都是如USDC、WETH等常用代币，可以用更短的Helper ID表示如“发送USDC”的信息', 'Helper ID  /  收款的账户地址  / 提币数量'),
@@ -2218,7 +2218,7 @@ export default function CompressText() {
                 fontSize: '24px',
                 color: 'white',
                 textTransform: 'capitalize',
-                visibility: status === 5 ? 'hidden' : 'visible',
+                visibility: status === 6 ? 'hidden' : 'visible',
               }}
               endIcon={<Box component={'img'} src="/arrow.svg" width={'30px'} sx={{ transform: 'rotate(180deg)' }} />}
             >
@@ -2227,16 +2227,16 @@ export default function CompressText() {
           </Stack>
         </Stack>
         <Typography variant="h4" fontWeight={700} mt="40px">
-          状态{status}
+          {status == 1 ? '原始状态' : '压缩状态' + (status - 1)}
         </Typography>
         <Typography variant="body2" mt="20px">
-          {explain[status].explain}
+          {explain[status - 1].explain}
         </Typography>
         {/* <Typography variant="body1" mt="10px">
           {explain[status].title}
         </Typography> */}
         <Typography variant="body2" mt="10px">
-          {explain[status].content}
+          {status - 1 + '. ' + explain[status - 1].content}
         </Typography>
         {/* {transitions((styles, item) => (
           <animated.div style={styles}>
