@@ -1,0 +1,42 @@
+.root {
+  width: 100%;
+}
+
+.root div {
+  /* padding: 24px 0; */
+}
+
+.root p {
+  line-height: 24px;
+  font-size: 15px;
+}
+
+.root ul {
+  /* list-style-type: none; */
+  margin: 0;
+  padding: 24px;
+}
+
+.root li {
+  padding-left: '44px';
+  margin-left: '44px';
+  left: '44px';
+  list-style-type: 'none',
+}
+
+.root h1 {
+  margin-bottom: 30px;
+}
+
+.root h2 {
+  margin: 30px 0 20px 0;
+}
+
+.root a {
+  text-decoration: underline;
+}
+
+.root img {
+  padding: 24px 0;
+  width: 100%;
+}

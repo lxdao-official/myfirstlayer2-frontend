@@ -4,7 +4,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-
+import mdxStyle from './mdx.module.css';
 import {
   Box,
   Card,
@@ -79,7 +79,9 @@ export default function Content(props) {
       .then((response) => response.json())
       .then((data) => {
         console.log('data------------', data);
-        setMdxSource(data.mdxSource);
+        if (data?.mdxSource) {
+          setMdxSource(data.mdxSource);
+        }
       })
       .catch((error) => console.error('err--------', error));
   };
@@ -196,7 +198,7 @@ export default function Content(props) {
                   sm: 8,
                 }}
               >
-                <Box textDecoration={'none'}>
+                <Box className={mdxStyle.root} textDecoration={'none'}>
                   {mdxSource && (
                     <MDXRemote components={components} {...mdxSource}></MDXRemote>
                   )}
