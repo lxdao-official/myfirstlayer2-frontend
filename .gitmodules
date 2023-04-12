@@ -1,4 +1,0 @@
-[submodule "MyFirst-Layer2_Content"]
-	path = mdx/zh/MyFirst-Layer2_Content	
-	url = https://github.com/Zbirk/MyFirst-Layer2_Content.git
-	branch = main
