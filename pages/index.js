@@ -35,10 +35,10 @@ export default function Index({ content, directory }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const directoryPath = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content');
+  const directoryPath = path.join(process.cwd(), '/mdx/zh');
   const files = fs.readdirSync(directoryPath);
   const fileNames = files.map((file) => file);
-  const directory = formatDirectory(fileNames).filter((item) => item.text !== 'README' && item.text !== 'SUMMARY');
+  const directory = formatDirectory(fileNames).filter((item) => item.text !== 'TOC' && item.text !== '4.4-bi-ye-zheng-shu' && item.text !== 'README' && item.text !== 'SUMMARY');
 
   const { content, meta } = getDocBySlug(directory[0]?.text, locale);
   const mdxSource = await serialize(content);
