@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Box, Button, Link, Typography, useTheme } from '@mui/material';
+import { Box, Button, Link, Typography, useTheme, useMediaQuery } from '@mui/material';
 
 import MintBadge from './MintBadge';
 
 export default function Diploma() {
   const theme = useTheme();
-
+  const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
   return (
     <Box
       justifyContent="center"
@@ -21,7 +21,7 @@ export default function Diploma() {
         sx={{
           background: theme?.palette?.mode === 'dark' ? '#010101' : '#fff',
           borderRadius: '18px',
-          width: '750px',
+          width: mdScreen ? '750px' : '250px',
           paddingY: '50px',
           paddingX: '65px',
         }}

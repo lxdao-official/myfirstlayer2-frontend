@@ -6,7 +6,7 @@ export default function ZksyncSwap({ children, title }) {
   const t = useTranslations('PageLayout');
 
   return (
-    <Box display="flex" justifyContent="center" marginTop={2}>
+    <Box display="flex" justifyContent="center" marginTop={2} sx={{width: '320px'}}>
       <iframe style={{ border: 'none' }} width="390" height="750" src="https://zk.amphi.space/bridge" />
     </Box>
   );
