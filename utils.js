@@ -19,7 +19,7 @@ export function getDocBySlug(slug, locale = 'en') {
 }
 
 export function formatDirectory(fileNames) {
-  const formatArr = fileNames.slice(2);
+  const formatArr = fileNames.slice(1);
 
   let directory = [];
 

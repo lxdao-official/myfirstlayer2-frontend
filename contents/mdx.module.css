@@ -1,14 +1,21 @@
 .root {
   width: 100%;
+  /* max-width: 100%; */
 }
 
 .root div {
+  max-width: 100%;
   /* padding: 24px 0; */
 }
 
 .root p {
   line-height: 24px;
   font-size: 15px;
+  max-width: 100%;
+}
+
+.root em {
+  max-width: 100%;
 }
 
 .root ul {
@@ -16,12 +23,19 @@
   margin: 0;
   padding: 24px;
 }
+.root ol {
+  /* list-style-type: none; */
+  margin: 0;
+  padding: 24px;
+}
 
 .root li {
+    line-height: 24px;
+  font-size: 15px;
   padding-left: '44px';
   margin-left: '44px';
   left: '44px';
-  list-style-type: 'none',
+  /* list-style-type: 'none'; */
 }
 
 .root h1 {
