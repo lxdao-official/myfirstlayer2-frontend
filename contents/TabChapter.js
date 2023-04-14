@@ -121,7 +121,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TabChapter(props) {
   const { chapterData, onTabChapter } = props;
-  console.log('TabChapter chapterData', chapterData)
 
   const classes = useStyles();
   const theme = useTheme();
@@ -129,7 +128,7 @@ export default function TabChapter(props) {
   const mdScreen = useMediaQuery(theme?.breakpoints?.up('md'));
 
   const handleTabChapter = (action) => {
-    if ((chapterData?.currentIndex === 0 && action === 'last') || (chapterData?.currentIndex === 20 && action === 'next')) {
+    if ((chapterData?.currentIndex === 0 && action === 'last') || (chapterData?.read === chapterData?.counter && action === 'next')) {
       return;
     }
     onTabChapter(action);
