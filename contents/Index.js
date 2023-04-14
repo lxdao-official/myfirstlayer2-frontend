@@ -22,9 +22,10 @@ const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangl
 export default function Content(props) {
   const { md } = props;
 
+  const chapterCount = md.props.file.length;
   const [name, setName] = useState(md.props.file[0]?.text);
   const [readData, setReadData] = useState({
-    counter: 20,
+    counter: chapterCount,
     read: 1,
     currentIndex: 0,
     actionFrom: 'nextButton',
@@ -84,7 +85,7 @@ export default function Content(props) {
       setSelectedIndex(readData?.currentIndex - 1);
 
       setReadData({
-        counter: 20,
+        counter: chapterCount,
         read: computeReadCount(readStatus),
         currentIndex: readData?.currentIndex - 1,
         actionFrom: 'nextButton',
@@ -100,7 +101,7 @@ export default function Content(props) {
       setSelectedIndex(readData?.currentIndex + 1);
 
       setReadData({
-        counter: 20,
+        counter: chapterCount,
         read: computeReadCount(readStatusStore),
         currentIndex: readData?.currentIndex + 1,
         actionFrom: 'nextButton',
@@ -115,7 +116,7 @@ export default function Content(props) {
       setName(chapter.text);
       setSelectedIndex(chapter?.index);
       setReadData({
-        counter: 20,
+        counter: chapterCount,
         read: computeReadCount(readStatusStore),
         currentIndex: chapter.index,
         actionFrom: 'nextButton',
