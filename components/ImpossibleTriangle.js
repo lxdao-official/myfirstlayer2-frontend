@@ -155,7 +155,7 @@ export default function ImpossibleTriangle({ children, title }) {
   };
 
   const changeColor = (graph, index, color) => {
-    debugger;
+    // debugger;
     // setSide(index);
     side = index;
     const style = { style: { fill: color, stroke: color } };
@@ -470,7 +470,12 @@ export default function ImpossibleTriangle({ children, title }) {
   }, []);
   //57%
 
-  debugger;
+  // debugger;
+
+  // const theme = useTheme();
+  // console.log('theme.palette?.mode', theme.palette?.mode);
+  // const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
+
   return (
     <Box sx={{ background: '#F6F6F6', paddingBlock: '30px', paddingInline: '65px', marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>

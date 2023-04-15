@@ -2,7 +2,8 @@ import { animated, useSpring, useTransition } from '@react-spring/web';
 import { delay, remove } from 'lodash';
 import { useEffect, useState } from 'react';
 
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 export default function CompressText() {
   const [status, setStatus] = useState(1);
@@ -2157,6 +2158,11 @@ export default function CompressText() {
   //   exitBeforeEnter: true,
   // });
 
+  const theme = useTheme();
+
+  const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
+
+
   return (
     <Box justifyContent="center" display="flex" marginTop={'50px'}>
       <Stack
@@ -2165,19 +2171,20 @@ export default function CompressText() {
           background: '#F6F6F6',
           borderRadius: '18px',
           textAlign: 'center',
-          width: '530px',
+          width: mdScreen ? '530px' : '300px',
           alignItems: 'center',
         }}
       >
         <Stack
           sx={{
-            width: '400px',
-            height: '300px',
+            width: mdScreen ? '400px' : '280px',
+            // width: '400px',
+            height: mdScreen ? '300px' : '350px',
             left: '0px',
             top: '0px',
-            px: '48px',
-            pt: '30px',
-            pb: '20px',
+            px: mdScreen ? '48px' : '28px',
+            pt: mdScreen ? '30px' : '15px',
+            pb: mdScreen ? '20px' : '0px',
             background: '#010101',
             borderRadius: '10px',
             fontFamily: 'Roboto Mono',

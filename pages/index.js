@@ -1,11 +1,12 @@
+import { LXDAOIntroduction } from '@lxdao/lxdao-ui';
 import fs from 'fs';
-import { LXDAOIntroduction } from 'lxdao-ui';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import React from 'react';
 
 import { Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 import Content from '../contents/Index';
 import Main from '../layouts/Main';
@@ -17,6 +18,7 @@ import SectionTop from '../sections/SectionTop';
 import { formatDirectory, getDocBySlug } from '/utils';
 
 export default function Index({ content, directory }) {
+  const theme = useTheme();
   return (
     <Main>
       <SectionTop />
@@ -25,7 +27,7 @@ export default function Index({ content, directory }) {
       <SectionSponsors />
       <SectionTeam />
       <Box marginBottom={4} paddingX={5}>
-        <LXDAOIntroduction maxWidth="1240px" xsWidth="326px" />
+        <LXDAOIntroduction titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
       </Box>
       <SectionFooter />
     </Main>
@@ -33,10 +35,10 @@ export default function Index({ content, directory }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const directoryPath = path.join(process.cwd(), '/mdx/zh/MyFirst-Layer2_Content');
+  const directoryPath = path.join(process.cwd(), '/mdx/zh');
   const files = fs.readdirSync(directoryPath);
   const fileNames = files.map((file) => file);
-  const directory = formatDirectory(fileNames).filter((item) => item.text !== 'README' && item.text !== 'SUMMARY');
+  const directory = formatDirectory(fileNames).filter((item) => item.text !== 'TOC' && item.text !== 'README' && item.text !== 'SUMMARY');
 
   const { content, meta } = getDocBySlug(directory[0]?.text, locale);
   const mdxSource = await serialize(content);

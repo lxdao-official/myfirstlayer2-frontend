@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAccount, useContractWrite, useNetwork, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
 
-import { Box, Button, useTheme } from '@mui/material';
+import { Box, Button, useTheme, useMediaQuery } from '@mui/material';
 import { Stack } from '@mui/system';
 
 import abi from '../abi.json';
@@ -17,6 +17,8 @@ export default function MintBadge() {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [mintLoading, setMintLoading] = useState(false);
   const [modifiedImgSrc, setModifiedImgSrc] = useState('');
+
+  const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const { data, writeAsync } = useContractWrite({
     address: '0x43c4Ebf956F7804596c333B209Ff246a476594DA',
@@ -81,13 +83,14 @@ export default function MintBadge() {
   useEffect(() => {
     // 获取 canvas 元素和上下文对象
     const canvas = canvasRef.current;
+    console.log('canvas', canvas);
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = '#1E1E1E';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // 在组件加载时，加载图片
     const img = new Image();
-    img.src = '/icons/badge.svg';
+    img.src = mdScreen ? '/icons/badge.svg' : '/icons/badge1.svg';
     img.onload = () => {
       // 将图片绘制到 canvas 上
       ctx.drawImage(img, 0, 0);
@@ -104,16 +107,17 @@ export default function MintBadge() {
       // 在 canvas 上执行绘制操作
       ctx.fillStyle = '#E9E9E9';
       ctx.font = '96px Open Sans';
-      ctx.fillText(`timestamp ${new Date().getTime()}`, 402, 1902);
+      ctx.fillText(`timestamp ${new Date().getTime()}`, mdScreen ? 402 : 190, mdScreen ? 1902 : 1702);
       ctx.fillStyle = '#6C6C6C';
       ctx.font = '40px Open Sans';
-      ctx.fillText(address, 530, 2033);
+      ctx.fillText(address, 530, mdScreen ? 2033 : 1600);
 
       // 将修改后的图片转换为 base64 格式
       const modifiedImgSrc = canvas.toDataURL('image/png');
       setModifiedImgSrc(modifiedImgSrc);
     }
   }, [imgLoaded]);
+
 
   return (
     <Stack
@@ -124,13 +128,14 @@ export default function MintBadge() {
         background: theme?.palette?.mode === 'dark' ? '#010101' : '#f6f6f6',
         borderRadius: '18px',
         paddingY: '28px',
+        // width: ''
       }}
     >
       <Box sx={{ borderRadius: '18px' }}>
         <canvas
           ref={canvasRef}
-          width={2048}
-          height={2427}
+          width={mdScreen ? 2048 : 1524}
+          height={mdScreen ? 2427 : 2000}
           style={{
             zoom: 0.18,
             border: '1px solid #FFFFFF',
