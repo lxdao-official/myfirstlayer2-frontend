@@ -2,15 +2,7 @@ import { useTranslations } from 'next-intl';
 import React from 'react';
 
 import AddIcon from '@mui/icons-material/Add';
-import {
-  Box,
-  Button,
-  Card,
-  Grid,
-  Link,
-  Typography,
-  useTheme,
-} from '@mui/material';
+import { Box, Button, Card, Grid, Link, Typography, useTheme } from '@mui/material';
 
 import MyFirstArrow from '../components/svg/MyFirstArrow';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
@@ -95,12 +87,7 @@ function MyFirstCard(props) {
               }}
             />
           </Box>
-          <Box
-            marginLeft={'15px'}
-            boxShadow="none"
-            display={'flex'}
-            flexDirection={'column'}
-          >
+          <Box marginLeft={'15px'} boxShadow="none" display={'flex'} flexDirection={'column'}>
             <Typography color="text.primary" variant="h6" fontWeight={800}>
               {props.projectName}
             </Typography>
@@ -116,17 +103,11 @@ function MyFirstCard(props) {
           title={props.title}
           sx={{
             width: '100%',
-            filter:
-              props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
+            filter: props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
         <Box marginTop={'20px'} marginBottom={'15px'}>
-          <Typography
-            color="text.primary"
-            fontSize={'12px'}
-            fontWeight={400}
-            fontFamily="Open Sans"
-          >
+          <Typography color="text.primary" fontSize={'12px'} fontWeight={400} fontFamily="Open Sans">
             {props.description}
           </Typography>
         </Box>
@@ -142,12 +123,7 @@ function MyFirstCard(props) {
               textDecoration: 'none',
             }}
           >
-            <Typography
-              color="text.primary"
-              fontSize={'12px'}
-              fontWeight={600}
-              fontFamily="Open Sans"
-            >
+            <Typography color="text.primary" fontSize={'12px'} fontWeight={600} fontFamily="Open Sans">
               View More
             </Typography>
             <Box color="text.primary" marginLeft={'10px'} width="19px">
@@ -165,7 +141,7 @@ export default function SectionMyFirstProject() {
   const t = useTranslations('SectionMyFirstProject');
 
   return (
-    <SectionSimpleWrapper title={t(`sectionMyFirst-title-10`)} id="next">
+    <SectionSimpleWrapper id="next">
       <Box padding={{ xs: 2, sm: 0 }}>
         <Grid container spacing={3.125}>
           {myfirstProjects.map((item, i) => (

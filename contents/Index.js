@@ -4,9 +4,9 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Box, Hidden, Typography, useMediaQuery } from '@mui/material';
+import { Box, Hidden, Link, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import mdxStyle from './mdx.module.css';
+
 import Container from '../components/Container';
 import Diploma from '../components/Diploma';
 import MintBadge from '../components/MintBadge';
@@ -16,6 +16,7 @@ import { MobileDirectory, PcDirectory } from './Directory';
 import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
+import mdxStyle from './mdx.module.css';
 
 const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
 
@@ -139,6 +140,7 @@ export default function Content(props) {
   console.log('mdScreen', mdScreen);
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
+      <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
       <Typography
         id={'root'}
         sx={{
@@ -151,9 +153,7 @@ export default function Content(props) {
           marginTop: '120px',
           marginBottom: '50px',
         }}
-      >
-        Start learning
-      </Typography>
+      ></Typography>
       <Container paddingX={2}>
         <Box display="flex" justifyContent="space-between" ref={ref}>
           <Box
@@ -178,7 +178,9 @@ export default function Content(props) {
                 sm: 8,
               }}
             >
-              <Box className={mdxStyle.root} textDecoration={'none'}>{mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}</Box>
+              <Box className={mdxStyle.root} textDecoration={'none'}>
+                {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
+              </Box>
             </Box>
             <TabChapter marginTop={{ xs: '20px', sm: '160px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex }} onTabChapter={handleTabChapter}></TabChapter>
           </Box>
