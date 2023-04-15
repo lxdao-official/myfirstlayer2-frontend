@@ -5,7 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import React from 'react';
 
-import { Box } from '@mui/material';
+import { Box, Link } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import Content from '../contents/Index';
@@ -26,7 +26,7 @@ export default function Index({ content, directory }) {
       <SectionMyFirstProject />
       <SectionSponsors />
       <SectionTeam />
-      <Box marginBottom={4} paddingX={5}>
+      <Box id="joinus" marginBottom={4} paddingX={5}>
         <LXDAOIntroduction titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
       </Box>
       <SectionFooter />

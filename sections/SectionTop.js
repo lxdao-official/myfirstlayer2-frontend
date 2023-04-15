@@ -1,7 +1,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
 
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 
 import Container from '../components/Container';
 
@@ -10,6 +10,7 @@ export default function SectionTop({ content, meta }) {
 
   return (
     <Container id="top-section">
+      <Link id="introduce" sx={{ position: 'relative', top: '-80px' }}></Link>
       <Typography
         sx={{
           textTransform: 'uppercase',
@@ -21,13 +22,7 @@ export default function SectionTop({ content, meta }) {
       >
         {t('title')}
       </Typography>
-      <Box
-        component="img"
-        src="/images/top-background.png"
-        my={'30px'}
-        width={'100%'}
-        borderRadius={'16px'}
-      />
+      <Box component="img" src="/images/top-background.png" my={'30px'} width={'100%'} borderRadius={'16px'} />
       <Typography
         sx={{
           fontWeight: '400',
