@@ -180,7 +180,7 @@ export default function Content(props) {
             >
               <Box className={mdxStyle.root} textDecoration={'none'}>{mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}</Box>
             </Box>
-            <TabChapter marginTop={{ xs: '20px', sm: '160px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex }} onTabChapter={handleTabChapter}></TabChapter>
+            <TabChapter marginTop={{ xs: '20px', sm: '160px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter}} onTabChapter={handleTabChapter}></TabChapter>
           </Box>
           <Hidden smDown>
             <PcDirectory directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
