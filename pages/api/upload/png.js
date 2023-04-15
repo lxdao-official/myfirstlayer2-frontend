@@ -1,5 +1,13 @@
 import { uploadPNG } from '../../../common/ipfs';
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '4mb', // Set desired value here
+    },
+  },
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req, res) => {
   try {

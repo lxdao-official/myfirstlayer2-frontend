@@ -16,38 +16,26 @@ export default function CompressText() {
     setStatus(status + 1);
     setDirection(1);
   };
-  const createExplain = (title, content) => {
-    return { title, content };
+  const createExplain = (title, content, explain) => {
+    return { title, content, explain };
   };
 
   const explain = [
-    createExplain('Method ID', '此状态为原始状态'),
-    createExplain(
-      '代币合约地址',
-      '用科学计数法把转账数量压缩成64位数据，并删除不必要的0。（数量的精度会略微下降，但实践中影响不大）'
-    ),
-    createExplain(
-      '收款的账户地址',
-      '调用的方法如果很常见，可以删除所调用的Method ID，因为如“转账一笔ERC20代币”的交易，可以通过交易内容的特征推测'
-    ),
-    createExplain(
-      '填充的0',
-      '常用行为设置绿色通道（Helper ID）：大部分发送代币的行为都是如USDC、WETH等常用代币，可以用更短的Helper ID表示如“发送USDC”的信息'
-    ),
-    createExplain(
-      '收款的账户地址',
-      '登记一个“电话簿”，纪录收款人地址，将40位的地址压缩为第XXX页的第X个地址。'
-    ),
-    createExplain('提币数量', '如果发送的是ETH，连Helper ID都可以省掉。'),
+    createExplain('Method ID', '原始交易数据未经压缩', 'Method ID / 填充的0 / 代币合约地址  / 填充的0 / 收款的账户地址  / 填充的0 /  提币数量'),
+    createExplain('代币合约地址', '用科学计数法把转账数量压缩成64位数据，并删除不必要的0。（数量的精度会略微下降，但实践中影响不大）', 'Method ID  / 代币合约地址  /  收款的账户地址  / 提币数量'),
+    createExplain('收款的账户地址', '调用的方法如果很常见，可以删除所调用的Method ID，因为如“转账一笔ERC20代币”的交易，可以通过交易内容的特征推测', '代币合约地址  /  收款的账户地址  / 提币数量'),
+    createExplain('填充的0', '常用行为设置绿色通道（Helper ID）：大部分发送代币的行为都是如USDC、WETH等常用代币，可以用更短的Helper ID表示如“发送USDC”的信息', 'Helper ID  /  收款的账户地址  / 提币数量'),
+    createExplain('收款的账户地址', '登记一个“电话簿”，纪录收款人地址，将40位的地址压缩为第XXX页的第X个地址。', 'Helper ID  /  收款账户“电话簿”编号  / 提币数量'),
+    createExplain('提币数量', '如果发送的是ETH，连Helper ID都可以省掉。', '收款账户“电话簿”编号  / 提币数量'),
   ];
 
   const defaultStyle = {
     opacity: 1,
-    color: 'white',
+    // color: 'white',
     width: '10px',
     delay: 500,
   };
-  const todefault = (api) => [api.start(defaultStyle)];
+  const todefault = (api, endColor = '#fff') => [api.start({ ...defaultStyle, color: endColor })];
   const deleteStyle1 = {
     opacity: 1,
     color: 'yellow',
@@ -74,14 +62,14 @@ export default function CompressText() {
   };
   const addStyle2 = {
     opacity: 1,
-    color: 'white',
+    // color: 'white',
     width: '10px',
   };
-  const toadd = (api) => {
+  const toadd = (api, endColor = '#fff') => {
     api.start({
       ...addStyle1,
       onRest: () => {
-        api.start({ ...addStyle2, delay: 500 });
+        api.start({ ...addStyle2, delay: 500, color: endColor });
       },
     });
   };
@@ -2028,145 +2016,95 @@ export default function CompressText() {
 
   if (status === 1) {
     [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#fff');
     });
 
-    [
-      8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
-      27, 28, 29, 30, 31,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31].forEach((v) => {
+      todefault(as[v], '#B0B0B0');
     });
 
-    [
-      32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
-      50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67,
-      68, 69, 70, 71,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
+      todefault(as[v], '#fff');
     });
 
-    [
-      72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89,
-      90, 91, 92, 93, 94, 95,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95].forEach((v) => {
+      todefault(as[v], '#B0B0B0');
     });
-    [
-      102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
-      117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131,
-      132, 133, 134, 135, 136, 137, 138, 139, 140, 141,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
+      todefault(as[v], '#fff');
     });
-    [
-      148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162,
-      163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177,
-      178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192,
-      193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171].forEach((v) => {
+      todefault(as[v], '#B0B0B0');
     });
 
+    [172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205].forEach((v) => {
+      todefault(as[v], '#fff');
+    });
     [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#fff');
     });
   } else if (status === 2) {
     [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#B0B0B0');
     });
 
     direction &&
-      [
-        8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
-        26, 27, 28, 29, 30, 31,
-      ].forEach((v) => {
+      [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31].forEach((v) => {
         todelete(as[v]);
       });
 
-    [
-      32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
-      50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67,
-      68, 69, 70, 71,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
+      todefault(as[v], '#B0B0B0');
     });
 
     direction &&
-      [
-        72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89,
-        90, 91, 92, 93, 94, 95,
-      ].forEach((v) => {
+      [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95].forEach((v) => {
         todelete(as[v]);
       });
-    [
-      102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
-      117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131,
-      132, 133, 134, 135, 136, 137, 138, 139, 140, 141,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
+      todefault(as[v], '#fff');
     });
     direction &&
       [
-        148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161,
-        162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175,
-        176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189,
-        190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203,
-        204, 205,
+        148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205,
       ].forEach((v) => {
         todelete(as[v]);
       });
 
     [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#B0B0B0');
     });
   } else if (status === 3) {
     direction &&
       [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
         todelete(as[v]);
       });
-    [
-      32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
-      50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67,
-      68, 69, 70, 71,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
+      todefault(as[v], '#fff');
     });
     !direction &&
       [96, 97, 98, 99, 100, 101].forEach((v) => {
         toRemove(as[v]);
       });
 
-    [
-      102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
-      117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131,
-      132, 133, 134, 135, 136, 137, 138, 139, 140, 141,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
+      todefault(as[v], '#B0B0B0');
     });
     [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#fff');
     });
   } else if (status === 4) {
     direction &&
-      [
-        32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
-        50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67,
-        68, 69, 70, 71,
-      ].forEach((v) => {
+      [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
         todelete(as[v], () => {
           direction &&
             [96, 97, 98, 99, 100, 101].forEach((u) => {
-              toadd(as[u]);
+              toadd(as[u], '#fff');
             });
         });
       });
-    [
-      102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
-      117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131,
-      132, 133, 134, 135, 136, 137, 138, 139, 140, 141,
-    ].forEach((v) => {
-      todefault(as[v]);
+    [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
+      todefault(as[v], '#B0B0B0');
     });
 
     !direction &&
@@ -2174,28 +2112,29 @@ export default function CompressText() {
         toRemove(as[v]);
       });
     [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#fff');
     });
   } else if (status === 5) {
     [96, 97, 98, 99, 100, 101].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#fff');
     });
 
     direction &&
-      [
-        102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115,
-        116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129,
-        130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141,
-      ].forEach((v) => {
+      [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
         todelete(as[v], () => {
           direction &&
             [142, 143, 144, 145, 146, 147].forEach((u) => {
-              toadd(as[u]);
+              toadd(as[u], '#B0B0B0');
             });
         });
       });
+
+    !direction &&
+      [142, 143, 144, 145, 146, 147].forEach((v) => {
+        todefault(as[v], '#B0B0B0');
+      });
     [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#fff');
     });
   } else if (status === 6) {
     direction &&
@@ -2206,7 +2145,7 @@ export default function CompressText() {
       todefault(as[v]);
     });
     [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v]);
+      todefault(as[v], '#B0B0B0');
     });
   }
 
@@ -2248,8 +2187,8 @@ export default function CompressText() {
             pb: mdScreen ? '20px' : '0px',
             background: '#010101',
             borderRadius: '10px',
-            fontFamily: 'Nanum Brush Script',
-            fontSize: '24px',
+            fontFamily: 'Roboto Mono',
+            fontSize: '15px',
             color: 'white',
             justifyContent: 'space-between',
           }}
@@ -2264,10 +2203,7 @@ export default function CompressText() {
             }}
           >
             {aniStr.split('').map((v, index) => (
-              <animated.div
-                style={{ display: 'inline-block', ...ss[index] }}
-                key={index}
-              >
+              <animated.div style={{ display: 'inline-block', ...ss[index] }} key={index}>
                 {v}
               </animated.div>
             ))}
@@ -2283,9 +2219,7 @@ export default function CompressText() {
                 // hid: status === 1 ? 'none' : 'block',
                 visibility: status === 1 ? 'hidden' : 'visible',
               }}
-              startIcon={
-                <Box component={'img'} src="/arrow.svg" width={'30px'} />
-              }
+              startIcon={<Box component={'img'} src="/arrow.svg" width={'30px'} />}
             >
               pre
             </Button>
@@ -2297,29 +2231,25 @@ export default function CompressText() {
                 fontSize: '24px',
                 color: 'white',
                 textTransform: 'capitalize',
-                visibility: status === 5 ? 'hidden' : 'visible',
+                visibility: status === 6 ? 'hidden' : 'visible',
               }}
-              endIcon={
-                <Box
-                  component={'img'}
-                  src="/arrow.svg"
-                  width={'30px'}
-                  sx={{ transform: 'rotate(180deg)' }}
-                />
-              }
+              endIcon={<Box component={'img'} src="/arrow.svg" width={'30px'} sx={{ transform: 'rotate(180deg)' }} />}
             >
               after
             </Button>
           </Stack>
         </Stack>
         <Typography variant="h4" fontWeight={700} mt="40px">
-          状态{status}
+          {status == 1 ? '原始状态' : '压缩状态' + (status - 1)}
         </Typography>
-        <Typography variant="body1" mt="20px">
+        <Typography variant="body2" mt="20px">
+          {explain[status - 1].explain}
+        </Typography>
+        {/* <Typography variant="body1" mt="10px">
           {explain[status].title}
-        </Typography>
+        </Typography> */}
         <Typography variant="body2" mt="10px">
-          {explain[status].content}
+          {(status != 1 ? status - 1 + '. ' : '') + explain[status - 1].content}
         </Typography>
         {/* {transitions((styles, item) => (
           <animated.div style={styles}>

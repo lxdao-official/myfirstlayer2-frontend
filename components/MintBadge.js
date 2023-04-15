@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useAccount, useContractWrite, useWaitForTransaction } from 'wagmi';
+import { useAccount, useContractWrite, useNetwork, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
 
 import { Box, Button, useTheme, useMediaQuery } from '@mui/material';
 import { Stack } from '@mui/system';
@@ -8,6 +8,9 @@ import abi from '../abi.json';
 import showMessage from './showMessage';
 
 export default function MintBadge() {
+  const { chain } = useNetwork();
+  const { chains, error, isLoading: swichLoading, pendingChainId, switchNetwork } = useSwitchNetwork();
+
   const { address } = useAccount();
   const theme = useTheme();
   const canvasRef = useRef(null);
@@ -22,13 +25,24 @@ export default function MintBadge() {
     abi: abi,
     functionName: 'mint',
     mode: 'recklesslyUnprepared',
+    chainId: 420,
   });
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
   const handleMint = async () => {
+    if (chain?.id != chains[0]?.id) {
+      showMessage({
+        type: 'error',
+        title: 'Wrong Network',
+        body: 'Please switch to Polygon Mainnet.',
+      });
+      return;
+    }
     try {
+      // debugger;
       setMintLoading(true);
+      console.log(modifiedImgSrc);
       const response = await fetch('/api/upload/png', {
         method: 'POST',
         body: modifiedImgSrc,
@@ -129,27 +143,49 @@ export default function MintBadge() {
           }}
         ></canvas>
       </Box>
-
-      <Button
-        variant="contained"
-        disabled={isLoading | mintLoading}
-        onClick={handleMint}
-        sx={{
-          width: '265px',
-          height: '64px',
-          fontSize: '20px',
-          fontWeight: '800',
-          textTransform: 'capitalize',
-          borderRadius: '18px',
-          background: '#000',
-          border: '1px solid #FFFFFF',
-          '&:hover': {
-            backgroundColor: '#333333',
-          },
-        }}
-      >
-        {isLoading | mintLoading ? 'Claiming...' : 'Claim'}
-      </Button>
+      {chain?.id != chains[0]?.id ? (
+        <Button
+          variant="contained"
+          disabled={swichLoading}
+          onClick={() => switchNetwork?.(chains[0].id)}
+          sx={{
+            width: '265px',
+            height: '64px',
+            fontSize: '20px',
+            fontWeight: '800',
+            textTransform: 'capitalize',
+            borderRadius: '18px',
+            background: '#000',
+            border: '1px solid #FFFFFF',
+            '&:hover': {
+              backgroundColor: '#333333',
+            },
+          }}
+        >
+          {swichLoading ? 'Changing...' : 'Change Network'}
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          disabled={isLoading | mintLoading}
+          onClick={handleMint}
+          sx={{
+            width: '265px',
+            height: '64px',
+            fontSize: '20px',
+            fontWeight: '800',
+            textTransform: 'capitalize',
+            borderRadius: '18px',
+            background: '#000',
+            border: '1px solid #FFFFFF',
+            '&:hover': {
+              backgroundColor: '#333333',
+            },
+          }}
+        >
+          {isLoading | mintLoading ? 'Claiming...' : 'Claim'}
+        </Button>
+      )}
     </Stack>
   );
 }
