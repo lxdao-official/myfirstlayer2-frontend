@@ -27,7 +27,7 @@ export default function Diploma() {
         }}
       >
         <Box sx={{ borderRadius: '18px' }}>
-          <Typography
+          {/* <Typography
             sx={{
               fontSize: { md: '36px', sm: '36px' },
               fontStyle: 'ExtraBold',
@@ -39,7 +39,18 @@ export default function Diploma() {
             }}
           >
             结业认证
-          </Typography>
+          </Typography> */}
+          <h1 style={{
+            fontSize: { md: '36px', sm: '36px' },
+            fontStyle: 'ExtraBold',
+            fontFamily: 'Open Sans',
+            color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+            fontWeight: 700,
+            textAlign: 'center',
+            marginBottom: '30px',
+          }}>
+            结业认证
+          </h1>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
           <Typography
@@ -133,7 +144,13 @@ export default function Diploma() {
               }}
             >
               <Link target="_blank" href="https://faucet.paradigm.xyz/">
-                OP testnet
+                <h2 style={{
+                  fontSize: '48px',
+                  fontFamily: 'Open Sans',
+                  fontWeight: 800,
+                }}>
+                  OP testnet
+                </h2>
               </Link>
             </Typography>
           </Box>
