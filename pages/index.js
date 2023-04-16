@@ -14,14 +14,12 @@ import SectionFooter from '../sections/SectionFooter';
 import SectionMyFirstProject from '../sections/SectionMyFirstProject';
 import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
-import SectionTop from '../sections/SectionTop';
 import { formatDirectory, getDocBySlug } from '/utils';
 
 export default function Index({ content, directory }) {
   const theme = useTheme();
   return (
     <Main>
-      <SectionTop />
       <Content md={<MDXRemote {...content} file={directory} />} />
       <SectionMyFirstProject />
       <SectionSponsors />

@@ -141,19 +141,6 @@ export default function Content(props) {
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
       <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
-      <Typography
-        id={'root'}
-        sx={{
-          fontSize: mdScreen ? '48px' : '20px',
-          fontStyle: 'ExtraBold',
-          fontFamily: 'Open Sans',
-          color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-          fontWeight: 900,
-          textAlign: 'center',
-          marginTop: '120px',
-          marginBottom: '50px',
-        }}
-      ></Typography>
       <Container paddingX={2}>
         <Box display="flex" justifyContent="space-between" ref={ref}>
           <Box
