@@ -14,16 +14,17 @@ export default function Diploma() {
       sx={{
         background: theme?.palette?.mode === 'dark' ? '#010101' : '#fff',
         borderRadius: '18px',
-        marginTop: '30px',
+        // marginTop: '30px',
       }}
     >
       <Box
         sx={{
           background: theme?.palette?.mode === 'dark' ? '#010101' : '#fff',
           borderRadius: '18px',
-          width: mdScreen ? '750px' : '250px',
-          paddingY: '50px',
-          paddingX: '65px',
+          // width: mdScreen ? '750px' : '250px',
+          // paddingY: '50px',
+          // paddingX: '65px',
+          paddingBottom: '20px',
         }}
       >
         <Box sx={{ borderRadius: '18px' }}>
@@ -47,7 +48,7 @@ export default function Diploma() {
             color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
             fontWeight: 700,
             textAlign: 'center',
-            marginBottom: '30px',
+            // marginBottom: '30px',
           }}>
             结业认证
           </h1>
@@ -60,7 +61,7 @@ export default function Diploma() {
               fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
-              marginTop: '30px',
+              // marginTop: '30px',
             }}
           >
             恭喜您完成了MyFirstLayer2全部章节内容的学习!
@@ -195,7 +196,7 @@ export default function Diploma() {
               fontWeight: 400,
 
               marginTop: '30px',
-              marginBottom: '10px',
+              // marginBottom: '10px',
             }}
           >
             到这里，您已经成功地领取了结业徽章!希望这枚徽章能够成为您不断前行的鼓励与动力，也期待您在今后的人生道路上继续保持追求学习的态度，获得更多的成就与荣誉。
