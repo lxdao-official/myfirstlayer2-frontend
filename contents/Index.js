@@ -141,6 +141,7 @@ export default function Content(props) {
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
       <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
+      <Typography id={'root'}></Typography>
       <Container paddingX={2}>
         <Box display="flex" justifyContent="space-between" ref={ref}>
           <Box

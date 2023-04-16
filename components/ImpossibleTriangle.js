@@ -506,10 +506,10 @@ export default function ImpossibleTriangle({ children, title }) {
         {side === 1 ? (
           <Box>
             <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              追求去中心化程度和安全性，采用更多的节点和更公平的出块方式，值得信赖。但为了允许低性能节点参与验证，协调全球网络延迟，导致每秒可处理的交易数较低，牺牲了性能。
+              追求可扩展性（即性能）和去中心化程度，为保证去中心化采用了较多验证节点，为了追求性能提高了出块速度，或采用了特殊的共识机制。但提高出块速度容易导致大规模区块重组，更复杂的共识机制容易导致全网宕机等安全事故，牺牲了安全性。
             </Typography>
             <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              代表区块链：BTC、ETH
+              代表区块链：Polygon、Solana
             </Typography>
           </Box>
         ) : null}
@@ -526,10 +526,10 @@ export default function ImpossibleTriangle({ children, title }) {
         {side === 3 ? (
           <Box>
             <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              追求可扩展性（即性能）和去中心化程度，为保证去中心化采用了较多验证节点，为了追求性能提高了出块速度，或采用了特殊的共识机制。但提高出块速度容易导致大规模区块重组，更复杂的共识机制容易导致全网宕机等安全事故，牺牲了安全性。
+              追求去中心化程度和安全性，采用更多的节点和更公平的出块方式，值得信赖。但为了允许低性能节点参与验证，协调全球网络延迟，导致每秒可处理的交易数较低，牺牲了性能。
             </Typography>
             <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              代表区块链：Polygon、Solana
+              代表区块链：BTC、ETH
             </Typography>
           </Box>
         ) : null}
