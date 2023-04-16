@@ -104,8 +104,8 @@ export function PcDirectory(props) {
 
   const theme = useTheme();
 
-  console.log('directory', directory);
-  console.log('readStatus', readStatus);
+  // console.log('directory', directory);
+  // console.log('readStatus', readStatus);
   return (
     <Box>
       <Box>
