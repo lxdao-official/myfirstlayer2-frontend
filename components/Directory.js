@@ -1,12 +1,9 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { test } from 'gray-matter';
-import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
-import { Box, Card, CardActions, CardContent, Grid, Link, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import Container from './Container';
-import MyComponent from '/components/MyComponent';
 
 const readStatus = ['/content/read.png', '/content/unread.png'];
 
@@ -30,9 +27,6 @@ const directoryText = [
 ];
 
 export default function Directory(props) {
-  // const components = {
-  //   MyComponent,
-  // };
   const { md } = props;
   // console.log('props', props);
   return (
@@ -45,12 +39,7 @@ export default function Directory(props) {
         marginRight={4}
         borderRadius={2}
       >
-        <Box padding={8}>
-          {/* <MDXRemote {...mdxSource} /> */}
-          {/* <MDXRemote components={components} {...mdxSource} /> */}
-          {md}
-          {/* {test()} */}
-        </Box>
+        <Box padding={8}>{md}</Box>
       </Box>
 
       <Box>
