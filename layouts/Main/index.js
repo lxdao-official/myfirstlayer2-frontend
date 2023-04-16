@@ -2,17 +2,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 
-import {
-  Box,
-  Divider,
-  Link,
-  Menu,
-  MenuItem,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, Divider, Link, Menu, MenuItem, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { display } from '@mui/system';
 
 import Container from '../../components/Container';
@@ -37,37 +27,11 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
 
   return (
     <Box>
-      <Box
-        id="fixed-header"
-        bgcolor={'header.main'}
-        position="fixed"
-        zIndex={100}
-        width={'100vw'}
-        top={0}
-      >
+      <Box id="fixed-header" bgcolor={'header.main'} position="fixed" zIndex={100} width={'100vw'} top={0}>
         {smallScreen ? (
-          <Container
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            padding={0}
-          >
-            <Stack
-              width="100%"
-              height="45px"
-              paddingLeft="24px"
-              paddingRight="12px"
-              direction="row"
-              justifyContent="space-between"
-            >
-              <Box
-                display="flex"
-                component="a"
-                href="/"
-                title="theFront"
-                flexDirection="row"
-                alignItems="center"
-              >
+          <Container display="flex" flexDirection="column" alignItems="center" padding={0}>
+            <Stack width="100%" height="45px" paddingLeft="24px" paddingRight="12px" direction="row" justifyContent="space-between">
+              <Box display="flex" component="a" href="/" title="theFront" flexDirection="row" alignItems="center">
                 <MFL2 width="82px" color={theme.palette.text.primary} />
                 <Divider
                   orientation="vertical"
@@ -77,38 +41,16 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     marginInline: '15px',
                   }}
                 />
-                <LXDAOLogo
-                  width={79}
-                  height={21}
-                  color={theme.palette.text.primary}
-                />
+                <LXDAOLogo width={79} height={21} color={theme.palette.text.primary} />
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
-                <Theme
-                  width={18}
-                  height={18}
-                  color={theme.palette.text.primary}
-                  style={{ cursor: 'pointer' }}
-                  onClick={colorMode.toggleColorMode}
-                />
-                <Question
-                  width={18}
-                  height={18}
-                  style={{ margin: '11px' }}
-                  color={theme.palette.text.primary}
-                />
+                <Theme width={18} height={18} color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} />
+                <Question width={18} height={18} style={{ margin: '11px' }} color={theme.palette.text.primary} />
                 <Language color={theme.palette.text.primary} />
               </Box>
             </Stack>
-            <Box
-              width="100%"
-              height={'36px'}
-              justifyContent="space-evenly"
-              alignItems="center"
-              display="flex"
-              backgroundColor="black"
-            >
+            <Box width="100%" height={'36px'} justifyContent="space-evenly" alignItems="center" display="flex" backgroundColor="black">
               <Box
                 sx={{
                   display: 'flex',
@@ -121,21 +63,19 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     cursor: 'pointer',
                     fontSize: '13px',
                     fontWeight: '700',
-                    color:
-                      current == 'introduce'
-                        ? 'white'
-                        : theme.palette.text.secondary,
-                  }}
-                  onClick={() => {
-                    router.push('/');
-                    setCurrent('introduce');
+                    color: current == 'introduce' ? 'white' : theme.palette.text.secondary,
                   }}
                 >
-                  Introduce
+                  <Link
+                    sx={{
+                      textDecoration: 'none',
+                    }}
+                    href="#introduce"
+                  >
+                    Introduce
+                  </Link>
                 </Typography>
-                {current == 'introduce' && (
-                  <Box width="35px" height="2px" sx={{ background: 'white' }} />
-                )}
+                {current == 'introduce' && <Box width="35px" height="2px" sx={{ background: 'white' }} />}
               </Box>
               <Box
                 sx={{
@@ -150,31 +90,26 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     fontSize: '13px',
 
                     fontWeight: '700',
-                    color:
-                      current == 'content'
-                        ? 'white'
-                        : theme.palette.text.secondary,
-                  }}
-                  onClick={() => {
-                    router.push('/');
-                    setCurrent('content');
+                    color: current == 'content' ? 'white' : theme.palette.text.secondary,
                   }}
                 >
-                  Content
+                  <Link
+                    sx={{
+                      textDecoration: 'none',
+                    }}
+                    href="#content"
+                  >
+                    Content
+                  </Link>
                 </Typography>
-                {current == 'content' && (
-                  <Box width="35px" height="2px" sx={{ background: 'white' }} />
-                )}
+                {current == 'content' && <Box width="35px" height="2px" sx={{ background: 'white' }} />}
               </Box>
               <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  color:
-                    current == 'joinus'
-                      ? 'white'
-                      : theme.palette.text.secondary,
+                  color: current == 'joinus' ? 'white' : theme.palette.text.secondary,
                 }}
               >
                 <Typography
@@ -183,36 +118,23 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     fontSize: '13px',
                     fontWeight: '700',
                   }}
-                  onClick={() => {
-                    router.push('/');
-                    setCurrent('joinus');
-                  }}
                 >
-                  Join Us
+                  <Link
+                    sx={{
+                      textDecoration: 'none',
+                    }}
+                    href="#oinus"
+                  >
+                    Join Us
+                  </Link>
                 </Typography>
-                {current == 'joinus' && (
-                  <Box width="35px" height="2px" sx={{ background: 'white' }} />
-                )}
+                {current == 'joinus' && <Box width="35px" height="2px" sx={{ background: 'white' }} />}
               </Box>
             </Box>
           </Container>
         ) : (
-          <Container
-            paddingY={1}
-            display="flex"
-            flexDirection="row"
-            alignItems="center"
-            justifyContent="space-between"
-            height="112px"
-          >
-            <Box
-              display="flex"
-              component="a"
-              href="/"
-              title="theFront"
-              flexDirection="row"
-              alignItems="center"
-            >
+          <Container paddingY={1} display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" height="80px">
+            <Box display="flex" component="a" href="/" title="theFront" flexDirection="row" alignItems="center">
               <MFL2 color={theme.palette.text.primary} />
               <Divider
                 orientation="vertical"
@@ -222,11 +144,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   marginInline: '20px',
                 }}
               />
-              <LXDAOLogo
-                width={121}
-                height={32}
-                color={theme.palette.text.primary}
-              />
+              <LXDAOLogo width={121} height={32} color={theme.palette.text.primary} />
             </Box>
             <Box gap={4} display="flex" alignItems="center">
               <Box
@@ -241,25 +159,18 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     cursor: 'pointer',
                     fontSize: '20px',
                     fontWeight: '700',
-                    color:
-                      current == 'introduce'
-                        ? theme.palette.text.primary
-                        : theme.palette.text.secondary,
-                  }}
-                  onClick={() => {
-                    router.push('/');
-                    setCurrent('introduce');
+                    color: current == 'introduce' ? theme.palette.text.primary : theme.palette.text.secondary,
                   }}
                 >
-                  Introduce
+                  <Link
+                    sx={{
+                      textDecoration: 'none',
+                    }}
+                    href="#introduce"
+                  >
+                    Introduce
+                  </Link>
                 </Typography>
-                {current == 'introduce' && (
-                  <Box
-                    width="35px"
-                    height="2px"
-                    sx={{ background: theme.palette.text.primary }}
-                  />
-                )}
               </Box>
               <Box
                 sx={{
@@ -273,35 +184,25 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     cursor: 'pointer',
                     fontSize: '20px',
                     fontWeight: '700',
-                    color:
-                      current == 'content'
-                        ? theme.palette.text.primary
-                        : theme.palette.text.secondary,
-                  }}
-                  onClick={() => {
-                    router.push('/');
-                    setCurrent('content');
+                    color: current == 'content' ? theme.palette.text.primary : theme.palette.text.secondary,
                   }}
                 >
-                  Content
+                  <Link
+                    sx={{
+                      textDecoration: 'none',
+                    }}
+                    href="#content"
+                  >
+                    Content
+                  </Link>
                 </Typography>
-                {current == 'content' && (
-                  <Box
-                    width="35px"
-                    height="2px"
-                    sx={{ background: theme.palette.text.primary }}
-                  />
-                )}
               </Box>
               <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  color:
-                    current == 'joinus'
-                      ? theme.palette.text.primary
-                      : theme.palette.text.secondary,
+                  color: current == 'joinus' ? theme.palette.text.primary : theme.palette.text.secondary,
                 }}
               >
                 <Typography
@@ -310,43 +211,27 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     fontSize: '20px',
                     fontWeight: '700',
                   }}
-                  onClick={() => {
-                    router.push('/');
-                    setCurrent('joinus');
-                  }}
                 >
-                  Join Us
+                  <Link
+                    sx={{
+                      textDecoration: 'none',
+                    }}
+                    href="#joinus"
+                  >
+                    Join Us
+                  </Link>
                 </Typography>
-                {current == 'joinus' && (
-                  <Box
-                    width="35px"
-                    height="2px"
-                    sx={{ background: theme.palette.text.primary }}
-                  />
-                )}
               </Box>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
-              <Theme
-                color={theme.palette.text.primary}
-                style={{ cursor: 'pointer' }}
-                onClick={colorMode.toggleColorMode}
-              />
-              <Question
-                color={theme.palette.text.primary}
-                style={{ margin: '20px' }}
-              />
+              <Theme color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} />
+              <Question color={theme.palette.text.primary} style={{ margin: '20px' }} />
               <Language color={theme.palette.text.primary} />
             </Box>
           </Container>
         )}
       </Box>
-      <Box
-        bgcolor="bodyBg.main"
-        component="main"
-        id="main"
-        mt={smallScreen ? '81px' : '112px'}
-      >
+      <Box bgcolor="bodyBg.main" component="main" id="main" mt={smallScreen ? '80px' : '80px'}>
         {children}
       </Box>
     </Box>
