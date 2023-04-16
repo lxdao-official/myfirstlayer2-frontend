@@ -12,6 +12,7 @@ import MFL2 from '../../components/svg/MFL2';
 import Question from '../../components/svg/Question';
 import Theme from '../../components/svg/Theme';
 import { ColorModeContext } from '../../pages/_app';
+import SectionTop from '../../sections/SectionTop';
 
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
 
   return (
     <Box>
-      <Box id="fixed-header" bgcolor={'header.main'} position="fixed" zIndex={100} width={'100vw'} top={0}>
+      <Box id="fixed-header" bgcolor={'header.main'} paddingX="50px" position="fixed" zIndex={100} width={'100vw'} top={0}>
         {smallScreen ? (
           <Container display="flex" flexDirection="column" alignItems="center" padding={0}>
             <Stack width="100%" height="45px" paddingLeft="24px" paddingRight="12px" direction="row" justifyContent="space-between">
@@ -71,6 +72,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                       textDecoration: 'none',
                     }}
                     href="#introduce"
+                    target="_self"
                   >
                     Introduce
                   </Link>
@@ -98,6 +100,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                       textDecoration: 'none',
                     }}
                     href="#content"
+                    target="_self"
                   >
                     Content
                   </Link>
@@ -124,6 +127,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                       textDecoration: 'none',
                     }}
                     href="#oinus"
+                    target="_self"
                   >
                     Join Us
                   </Link>
@@ -133,7 +137,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
             </Box>
           </Container>
         ) : (
-          <Container paddingY={1} display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" height="80px">
+          <Container maxWidth="100%" paddingX={0} paddingY={1} display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" height="80px">
             <Box display="flex" component="a" href="/" title="theFront" flexDirection="row" alignItems="center">
               <MFL2 color={theme.palette.text.primary} />
               <Divider
@@ -167,6 +171,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                       textDecoration: 'none',
                     }}
                     href="#introduce"
+                    target="_self"
                   >
                     Introduce
                   </Link>
@@ -192,6 +197,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                       textDecoration: 'none',
                     }}
                     href="#content"
+                    target="_self"
                   >
                     Content
                   </Link>
@@ -217,6 +223,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                       textDecoration: 'none',
                     }}
                     href="#joinus"
+                    target="_self"
                   >
                     Join Us
                   </Link>
@@ -231,7 +238,8 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
           </Container>
         )}
       </Box>
-      <Box bgcolor="bodyBg.main" component="main" id="main" mt={smallScreen ? '80px' : '80px'}>
+      <SectionTop width={'100vw'} />
+      <Box bgcolor="bodyBg.main" component="main" id="main" paddingTop={{ sx: '80px', md: '120px' }}>
         {children}
       </Box>
     </Box>
