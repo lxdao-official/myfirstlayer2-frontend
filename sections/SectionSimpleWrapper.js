@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Box, Typography } from '@mui/material';
 
 export default function SectionSimpleWrapper({ id, title, children }) {
@@ -6,8 +7,7 @@ export default function SectionSimpleWrapper({ id, title, children }) {
 
   return (
     <Box
-      padding={{ xs: 2, md: 4 }}
-      marginTop={{ xs: 4, md: 6 }}
+      marginTop={{ xs: 6.875, sm: 6.875, md: 15 }}
       position="relative"
       className="section"
       id={`section/${id}`}
@@ -16,11 +16,14 @@ export default function SectionSimpleWrapper({ id, title, children }) {
       <Box>
         <Box display="flex" justifyContent="center">
           <Typography
-            variant="h5"
+            variant="h3"
             textAlign="center"
             marginBottom={6}
+            color="text.primary"
             sx={{
-              fontWeight: 700,
+              fontWeight: 800,
+              fontSize: { xs: '20px', sm: '48px' },
+              fontFamily: 'Open Sans',
             }}
           >
             {title}
@@ -28,7 +31,7 @@ export default function SectionSimpleWrapper({ id, title, children }) {
         </Box>
         <Box
           overflow="hidden"
-          maxWidth={{ sm: 720, md: 960, lg: 1280 }}
+          maxWidth={{ sm: 720, md: 960, lg: 1200 }}
           margin="0 auto"
         >
           {children}

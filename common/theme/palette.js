@@ -1,6 +1,10 @@
 export const light = {
+  bodyBg: {
+    main: '#f8fafe',
+  },
+  header: { main: '#fff' },
   alternate: {
-    main: '#f7faff',
+    // main: '#FAFAFA',
     dark: '#edf1f7',
   },
   cardShadow: 'rgba(23, 70, 161, .11)',
@@ -18,8 +22,10 @@ export const light = {
     contrastText: 'rgba(0, 0, 0, 0.87)',
   },
   text: {
-    primary: '#1e2022',
-    secondary: '#525f6c',
+    primary: '#000',
+    secondary: '#6E6E6E',
+    third: 'rgba(0, 0, 0, 0.85)',
+    icon: '#1D1D1D',
   },
   divider: 'rgba(0, 0, 0, 0.12)',
   background: {
@@ -27,12 +33,23 @@ export const light = {
     default: '#ffffff',
     level2: '#f5f5f5',
     level1: '#ffffff',
+    level3: '#FFFFFF',
+    pover: '#ffffff',
+    hover: '#EEEEEE',
+  },
+  shadow: {
+    level1: '0px 20px 50px rgba(0, 0, 0, 0.2)',
+    level2: '0px 2px 8px rgba(0, 0, 0, 0.04), 0px 12px 48px 2px rgba(0, 0, 0, 0.08)',
   },
 };
 
 export const dark = {
+  bodyBg: {
+    main: '#000000',
+  },
+  header: { main: '#000' },
   alternate: {
-    main: '#1a2138',
+    main: '#000000',
     dark: '#151a30',
   },
   cardShadow: 'rgba(0, 0, 0, .11)',
@@ -42,9 +59,9 @@ export const dark = {
   },
   mode: 'dark',
   primary: {
-    main: '#1976d2',
+    main: '#010101',
     light: '#2196f3',
-    dark: '#0d47a1',
+    dark: '#333333',
     contrastText: '#fff',
   },
   secondary: {
@@ -54,8 +71,10 @@ export const dark = {
     contrastText: 'rgba(0, 0, 0, 0.87)',
   },
   text: {
-    primary: '#EEEEEF',
-    secondary: '#AEB0B4',
+    primary: '#fff',
+    secondary: '#AEAEAE',
+    third: 'rgba(255, 255, 255, 0.85)',
+    icon: '#555555',
   },
   divider: 'rgba(255, 255, 255, 0.12)',
   background: {
@@ -63,5 +82,13 @@ export const dark = {
     default: '#222B45',
     level2: '#333',
     level1: '#2D3748',
+    level3: '#0F0F0F',
+    pover: '#0F0F0F',
+    hover: '#3C3C3C',
+  },
+
+  shadow: {
+    level1: '0px 20px 50px 0 rgba(255, 255, 255, 0.2)',
+    level2: '0px 2px 8px rgba(255, 255, 255, 0.04), 0px 12px 48px 2px rgba(255, 255, 255, 0.08)',
   },
 };

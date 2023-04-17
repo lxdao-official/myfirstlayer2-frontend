@@ -1,47 +1,37 @@
-// import { activatei18n } from '../i18n';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
-
 import LanguageIcon from '@mui/icons-material/Language';
-import { Typography } from '@mui/material';
-import Box from '@mui/material/Box';
+import { Box, SvgIcon, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { borderRadius } from '@mui/system';
+import Arrow from './svg/Arrow';
+import Earth from './svg/Earth';
 
-// export default function LocaleSwitcher() {
-//   const t = useTranslations('LocaleSwitcher');
-
-//   const { locale, locales, route } = useRouter();
-//   const otherLocale = locales?.find((cur) => cur !== locale);
-
-//   return (
-//     <Link href={route} locale={otherLocale}>
-//       {t('switchLocale', { locale: otherLocale })}
-//     </Link>
-//   );
-// }
-
-const Language = () => {
-  // const locale = useLocale();
-  // const localeLang = window.localStorage.getItem('locale');
+const Language = ({ color }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  // const navigatorLang = navigator.language || navigator.userLanguage;
-  // const navigatorLanguage = navigatorLang.substr(0, 2);
-  // const [lang, setLang] = useState(
-  //   localeLang ? localeLang : navigatorLanguage === 'zh' ? 'zh' : 'en'
-  // );
-  // const t = useTranslations('LocaleSwitcher');
   const router = useRouter();
   const { locale, locales, route } = router;
   const otherLocale = locales?.find((cur) => cur !== locale);
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const text = {
+    zh: {
+      sx: '简',
+      md: '简体中文',
+    },
+    en: {
+      sx: 'EN',
+      md: 'English',
+    },
+  };
 
   const handleClick = (event) => {
-    setAnchorEl(event.target);
+    setAnchorEl(event.target.parentElement);
   };
 
   const handleClose = (value) => {
@@ -49,82 +39,75 @@ const Language = () => {
   };
 
   const setLanguage = (value) => {
-    // setLang(value);
-    // activatei18n(value);
-
-    // localStorage.setItem('locale', value);
-    debugger;
     router.push('/' + (value === 'en' ? '' : value));
-  };
-
-  const handleLangSelect = (value) => {
-    setLanguage(value);
   };
 
   const LangNode = useCallback(() => {
     return (
-      <Box marginLeft="auto">
-        <Button
-          aria-controls={open ? 'language-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClick}
-        >
-          <Box display="flex">
-            <Box component="img" src="/earth.svg" />
-            <Typography
-              marginLeft={1}
-              marginRight={0.5}
-              color={'#000'}
-              lineHeight={'26px'}
-            >
-              {locale === 'zh' ? '简体中文' : 'English'}
+      <Box display="flex" alignItems={'center'}>
+        <Box aria-controls={open ? 'language-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} sx={{ cursor: 'pointer' }} onClick={handleClick}>
+          <Box display="flex" alignItems="center">
+            {!smallScreen && <Earth color={color} />}
+            <Typography marginLeft={smallScreen ? 0 : 1} marginRight={smallScreen ? 0 : 0.5} fontWeight={400} color="text.primary" fontSize={smallScreen ? '13px' : '18px'} width={{ xs: 'auto', md: '75px' }} textAlign="center">
+              {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
-            <Box
-              component="img"
-              src="/arrow.svg"
-              sx={{ rotate: open && '180deg' }}
-            />
+            <Arrow color={color} style={{ rotate: open && '180deg' }} />
           </Box>
-        </Button>
+        </Box>
         <Menu
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
-          disableScrollLock={false}
+          disableScrollLock={true}
           MenuListProps={{
             'aria-labelledby': 'lock-button',
             role: 'listbox',
           }}
-          autoFocus={true}
+          autoFocus={false}
+          sx={{
+            '&.MuiPopover-root': {
+              width: '160px',
+              paddingY: '10px',
+              marginTop: '12px',
+              '.MuiPaper-root': {
+                boxShadow: theme.palette.shadow.level2,
+                borderRadius: '18px !important',
+                backgroundColor: 'background.level3',
+                display: 'flex',
+                justifyContent: 'center',
+                ul: {
+                  paddingY: '10px',
+                  width: '109px',
+                  li: {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    '&:hover': { paddingInline: '10px', background: 'background.hover', borderRadius: '8px' },
+                    '&:focus': { paddingInline: '10px', background: 'background.hover', borderRadius: '8px' },
+                  },
+                },
+              },
+            },
+          }}
         >
-          <MenuItem>
+          <MenuItem onClick={handleClose}>
             <Typography variant="body1">
               <Link href={route} locale="en">
                 English
               </Link>
             </Typography>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleClose}>
             <Typography variant="body1">
               <Link href={route} locale="zh">
                 简体中文
               </Link>
             </Typography>
           </MenuItem>
-          <MenuItem
-            onClick={() => {
-              alert(
-                'If you want to translate to your native language, please contact us on Discord.'
-              );
-            }}
-          >
-            <Typography variant="body1">Your Lang?</Typography>
-          </MenuItem>
         </Menu>
       </Box>
     );
-  }, [locale, anchorEl]);
+  }, [locale, anchorEl, color]);
+
   return LangNode();
 };
 

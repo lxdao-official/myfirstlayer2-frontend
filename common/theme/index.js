@@ -1,7 +1,8 @@
 import { responsiveFontSizes } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
+
+import { dark, light } from './palette';
 import shadows from './shadows';
-import { light, dark } from './palette';
 
 const getTheme = (mode) =>
   responsiveFontSizes(
@@ -9,19 +10,7 @@ const getTheme = (mode) =>
       palette: mode === 'light' ? light : dark,
       shadows: shadows(mode),
       typography: {
-        fontFamily: [
-          'Inter',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'Roboto',
-          '"Helvetica Neue"',
-          'Arial',
-          'sans-serif',
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-        ].join(','),
+        fontFamily: ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Open Sans"', '"sucaijishikangkangti"'].join(','),
         h1: {
           fontSize: '98px',
           lineHeight: 1.02,
@@ -31,7 +20,7 @@ const getTheme = (mode) =>
           fontSize: '56px',
         },
         h3: {
-          fontSize: '42px',
+          fontSize: '48px',
         },
         h4: {
           fontSize: '30px',
@@ -55,6 +44,7 @@ const getTheme = (mode) =>
           fontSize: '14px',
         },
       },
+
       zIndex: {
         appBar: 1200,
         drawer: 1300,
