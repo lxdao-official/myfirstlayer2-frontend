@@ -25,7 +25,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const theme = useTheme();
 
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
-
   return (
     <Box>
       <Box id="fixed-header" bgcolor={'header.main'} paddingX="50px" position="fixed" zIndex={100} width={'100vw'} top={0}>
@@ -46,7 +45,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
-                <Theme width={18} height={18} color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} />
+                {/* <Theme width={18} height={18} color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
                 <Question width={18} height={18} style={{ margin: '11px' }} color={theme.palette.text.primary} />
                 <Language color={theme.palette.text.primary} />
               </Box>
@@ -64,12 +63,12 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     cursor: 'pointer',
                     fontSize: '13px',
                     fontWeight: '700',
-                    color: current == 'introduce' ? 'white' : theme.palette.text.secondary,
                   }}
                 >
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      color: theme.palette.text.secondary,
                     }}
                     href="#introduce"
                     target="_self"
@@ -90,14 +89,13 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   sx={{
                     cursor: 'pointer',
                     fontSize: '13px',
-
                     fontWeight: '700',
-                    color: current == 'content' ? 'white' : theme.palette.text.secondary,
                   }}
                 >
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      color: theme.palette.text.secondary,
                     }}
                     href="#content"
                     target="_self"
@@ -112,7 +110,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  color: current == 'joinus' ? 'white' : theme.palette.text.secondary,
                 }}
               >
                 <Typography
@@ -125,6 +122,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      color: theme.palette.text.secondary,
                     }}
                     href="#oinus"
                     target="_self"
@@ -160,15 +158,15 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               >
                 <Typography
                   sx={{
-                    cursor: 'pointer',
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: current == 'introduce' ? theme.palette.text.primary : theme.palette.text.secondary,
                   }}
                 >
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      color: theme.palette.text.secondary,
+                      cursor: 'pointer',
                     }}
                     href="#introduce"
                     target="_self"
@@ -189,12 +187,13 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     cursor: 'pointer',
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: current == 'content' ? theme.palette.text.primary : theme.palette.text.secondary,
                   }}
                 >
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      cursor: 'pointer',
+                      color: theme.palette.text.secondary,
                     }}
                     href="#content"
                     target="_self"
@@ -208,7 +207,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  color: current == 'joinus' ? theme.palette.text.primary : theme.palette.text.secondary,
+                  color: theme.palette.text.secondary,
                 }}
               >
                 <Typography
@@ -221,6 +220,8 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      cursor: 'pointer',
+                      color: theme.palette.text.secondary,
                     }}
                     href="#joinus"
                     target="_self"
@@ -231,7 +232,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               </Box>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
-              <Theme color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} />
+              {/* <Theme color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
               <Question color={theme.palette.text.primary} style={{ margin: '20px' }} />
               <Language color={theme.palette.text.primary} />
             </Box>

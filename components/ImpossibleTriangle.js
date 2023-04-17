@@ -248,10 +248,6 @@ export default function ImpossibleTriangle({ children, title }) {
   };
 
   useEffect(() => {
-    if (window.graph) {
-      return;
-    }
-
     const graph = new G6.Graph({
       container: 'mountNode', // String | HTMLElement，必须，容器 id 或容器本身
       width: 400, // Number，必须，图的宽度
@@ -285,6 +281,7 @@ export default function ImpossibleTriangle({ children, title }) {
         },
       },
     });
+
     window.graph = graph;
     graph.on('node:dragend', (e) => {
       const index = graph.cfg.nodes.indexOf(e.target.cfg.parent.cfg.item);
@@ -463,10 +460,10 @@ export default function ImpossibleTriangle({ children, title }) {
     });
     graph.data(data);
     graph.render();
-    // return () => {
-    //   graph.clear();
-    //   window.graph = null;
-    // };
+    return () => {
+      graph.clear();
+      graph.destroy();
+    };
   }, []);
   //57%
 
