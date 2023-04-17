@@ -1,3 +1,4 @@
+前言
 1.1 区块链提高性能的尝试
 1.2 区块链的不可能三角
 1.3 纵向扩展： Layer 2
@@ -16,11 +17,12 @@
 4.2 Deneb 更新与 Layer 2
 4.3 账户抽象与大规模应用
 
+Foreword
 1.1 Attempts for improvement
 1.2 Blockchain's Impossibility Triangle
 1.3 Layer 2
 2.1 State Channels 
-2.2 Sidechains
+2.2 Side Chain
 2.3 Plasma
 2.4 Rollup
 3.1 How to Compress
