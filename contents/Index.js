@@ -66,7 +66,7 @@ export default function Content(props) {
   const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
 
   const handleTabChapter = (action, chapter) => {
-    console.log('action', action);
+    // console.log('action', action);
     if (!action) {
       return;
     }
@@ -110,7 +110,7 @@ export default function Content(props) {
       });
     }
     if (action === 'lastOrNext') {
-      console.log('chapter', chapter.index);
+      // console.log('chapter', chapter.index);
       if (readStatusStore[chapter.index] !== true) {
         readStatusStore[chapter.index] = true;
         setReadStatus(readStatusStore);
@@ -136,15 +136,18 @@ export default function Content(props) {
   };
 
   const theme = useTheme();
-  console.log('theme.palette?.mode', theme.palette?.mode);
+  // console.log('theme.palette?.mode', theme.palette?.mode);
   const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
 
-  console.log('mdScreen', mdScreen);
+  // console.log('mdScreen', mdScreen);
 
   useEffect(() => {
-    console.log('readStatus', readStatus);
-    setStorage('readStatus', JSON.stringify({ data: readStatus }));
-    setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+    if (readStatus.length > 1) {
+      setStorage('readStatus', JSON.stringify({ data: readStatus }));
+    }
+    if (selectedIndex) {
+      setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+    }
   }, [readStatus, selectedIndex]);
 
   useEffect(() => {
@@ -155,6 +158,13 @@ export default function Content(props) {
     }
     if (selectedIndexStore) {
       setSelectedIndex(JSON.parse(selectedIndexStore).data);
+      setName(md.props.file[selectedIndex]?.text);
+      setReadData({
+        counter: chapterCount,
+        read: computeReadCount(readStatus),
+        currentIndex: selectedIndex,
+        actionFrom: 'nextButton',
+      });
     }
   }, []);
 
