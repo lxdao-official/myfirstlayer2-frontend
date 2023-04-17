@@ -17,6 +17,7 @@ import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 import mdxStyle from './mdx.module.css';
+import { getStorage, removeStorage, setStorage } from './storage.js';
 
 const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
 
@@ -109,6 +110,7 @@ export default function Content(props) {
       });
     }
     if (action === 'lastOrNext') {
+      console.log('chapter', chapter.index);
       if (readStatusStore[chapter.index] !== true) {
         readStatusStore[chapter.index] = true;
         setReadStatus(readStatusStore);
@@ -138,6 +140,24 @@ export default function Content(props) {
   const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   console.log('mdScreen', mdScreen);
+
+  useEffect(() => {
+    console.log('readStatus', readStatus);
+    setStorage('readStatus', JSON.stringify({ data: readStatus }));
+    setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+  }, [readStatus, selectedIndex]);
+
+  useEffect(() => {
+    const readStatusStore = getStorage('readStatus');
+    const selectedIndexStore = getStorage('selectedIndex');
+    if (readStatusStore) {
+      setReadStatus(JSON.parse(readStatusStore).data);
+    }
+    if (selectedIndexStore) {
+      setSelectedIndex(JSON.parse(selectedIndexStore).data);
+    }
+  }, []);
+
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
       <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
