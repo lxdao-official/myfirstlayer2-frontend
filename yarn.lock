@@ -1010,6 +1010,11 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
+"@lxdao/lxdao-ui@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.npmmirror.com/@lxdao/lxdao-ui/-/lxdao-ui-0.1.17.tgz#f6b9978011437fb87ca2c04ea9ad6ee4718f8396"
+  integrity sha512-Gvz5ghc8S6+ZZRSlYMNSwoeWDacENknOO1qbUYP3IhRXKYZQitSNoUmrkhKL3abfvbLUFWfur1cVoLkE4HMx+w==
+
 "@mdx-js/loader@^2.3.0":
   version "2.3.0"
   resolved "https://registry.npmmirror.com/@mdx-js/loader/-/loader-2.3.0.tgz#56a6b07eb0027b6407e953a97c52bd8619601161"
@@ -4915,11 +4920,6 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
-
-lxdao-ui@^0.1.15:
-  version "0.1.15"
-  resolved "https://mirrors.cloud.tencent.com/npm/lxdao-ui/-/lxdao-ui-0.1.15.tgz#ecf246284fc0f548877c84af1280173bb4fe1944"
-  integrity sha512-VakZoZG6ayCVn5KtgNz+Dl2JmFP8x70A3jP1OHZT1z9cZDOC2l0NPeIQr1zf9IT/Xvq7ZcFDlcfXrNvghdOeDw==
 
 map-obj@^1.0.0:
   version "1.0.1"
