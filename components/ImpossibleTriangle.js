@@ -115,7 +115,7 @@ export default function ImpossibleTriangle({ children, title }) {
       },
       {
         id: '4',
-        label: '高性能',
+        label: '可扩展性',
         ...outerTriangle[1],
         size: 5,
         style: {
@@ -130,7 +130,7 @@ export default function ImpossibleTriangle({ children, title }) {
       },
       {
         id: '5',
-        label: '高安全性',
+        label: '安全性',
         ...outerTriangle[2],
         size: 5,
         style: {
@@ -470,12 +470,6 @@ export default function ImpossibleTriangle({ children, title }) {
   }, []);
   //57%
 
-  // debugger;
-
-  // const theme = useTheme();
-  // console.log('theme.palette?.mode', theme.palette?.mode);
-  // const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
-
   return (
     <Box sx={{ background: '#F6F6F6', paddingBlock: '30px', paddingInline: '65px', marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -489,17 +483,17 @@ export default function ImpossibleTriangle({ children, title }) {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         {side === 1 ? (
           <Typography fontSize={30} color="#FF6055" fontWeight={700} marginBottom="20px">
-            高性能&去中心化
+            高可扩展性 & 高去中心化
           </Typography>
         ) : null}
         {side === 2 ? (
           <Typography fontSize={30} color="#FFC64E" fontWeight={700} marginBottom="20px">
-            高性能&高安全性
+            高安全性 & 高可扩展性
           </Typography>
         ) : null}
         {side === 3 ? (
           <Typography fontSize={30} color="#5979ED" fontWeight={700} marginBottom="20px">
-            高安全性&去中心化
+            高去中心化 & 高安全性
           </Typography>
         ) : null}
       </Box>
@@ -509,9 +503,36 @@ export default function ImpossibleTriangle({ children, title }) {
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-          由于当前安全性程度过高，此时会导致此条链的性能收到大幅影响，预计会从100TPS(1秒钟处理100条事物)降低到30TPS。
-        </Typography>
+        {side === 1 ? (
+          <Box>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              追求可扩展性（即性能）和去中心化程度，为保证去中心化采用了较多验证节点，为了追求性能提高了出块速度，或采用了特殊的共识机制。但提高出块速度容易导致大规模区块重组，更复杂的共识机制容易导致全网宕机等安全事故，牺牲了安全性。
+            </Typography>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              代表区块链：Polygon、Solana
+            </Typography>
+          </Box>
+        ) : null}
+        {side === 2 ? (
+          <Box>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              追求安全性和可扩展性（即性能），往往采用少数超级节点进行通讯，超级节点拥有更强的性能和更好的网络环境，彼此之间能实现超高速的通讯。但参与门槛过高，牺牲了去中心化程度。
+            </Typography>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              代表区块链：BSC、EOS、TRON
+            </Typography>
+          </Box>
+        ) : null}
+        {side === 3 ? (
+          <Box>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              追求去中心化程度和安全性，采用更多的节点和更公平的出块方式，值得信赖。但为了允许低性能节点参与验证，协调全球网络延迟，导致每秒可处理的交易数较低，牺牲了性能。
+            </Typography>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              代表区块链：BTC、ETH
+            </Typography>
+          </Box>
+        ) : null}
       </Box>
     </Box>
   );
