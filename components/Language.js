@@ -1,14 +1,13 @@
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
-
 import LanguageIcon from '@mui/icons-material/Language';
 import { Box, SvgIcon, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { borderRadius } from '@mui/system';
-
 import Arrow from './svg/Arrow';
 import Earth from './svg/Earth';
 
