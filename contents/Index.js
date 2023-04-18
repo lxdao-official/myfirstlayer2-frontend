@@ -17,6 +17,7 @@ import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 import mdxStyle from './mdx.module.css';
+import Loading from './Loading';
 
 const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
 
@@ -36,6 +37,7 @@ export default function Content(props) {
   const [directory, setDirectory] = useState(md.props.file);
   const [readStatus, setReadStatus] = useState([true]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isLoading, setLoading] = useState(false);
   const { ref, inView, entry } = useInView({
     threshold: 0.3,
   });
@@ -51,6 +53,8 @@ export default function Content(props) {
   }, [name]);
 
   const requestMdxSource = (name) => {
+    setLoading(true)
+
     fetch(`/api/getFile/${name}`)
       .then((response) => response.json())
       .then((data) => {
@@ -58,8 +62,10 @@ export default function Content(props) {
         if (data?.mdxSource) {
           setMdxSource(data.mdxSource);
         }
+        setLoading(false);
       })
       .catch((error) => console.error('err--------', error));
+
   };
 
   const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
@@ -175,6 +181,7 @@ export default function Content(props) {
           <Hidden smDown>
             <PcDirectory directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
           </Hidden>
+          {isLoading && <Loading />}
           {/* <Test /> */}
         </Box>
       </Container>
