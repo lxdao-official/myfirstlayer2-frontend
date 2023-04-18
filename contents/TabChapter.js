@@ -121,7 +121,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TabChapter(props) {
   const { chapterData, onTabChapter } = props;
-  console.log('TabChapter chapterData', chapterData)
 
   const classes = useStyles();
   const theme = useTheme();
@@ -129,7 +128,7 @@ export default function TabChapter(props) {
   const mdScreen = useMediaQuery(theme?.breakpoints?.up('md'));
 
   const handleTabChapter = (action) => {
-    if ((chapterData?.currentIndex === 0 && action === 'last') || (chapterData?.currentIndex === 20 && action === 'next')) {
+    if ((chapterData?.currentIndex === 0 && action === 'last') || (chapterData?.read === chapterData?.counter && action === 'next')) {
       return;
     }
     onTabChapter(action);
@@ -206,16 +205,16 @@ export default function TabChapter(props) {
               </Box>
             </Box>
 
-            {
-              chapterData?.next && (
+            {/* {
+              chapterData?.next && ( */}
                 <Box
                   className={classes.mobileContainer}
                   onClick={() => onTabChapter('next')}
                 >
                   <Box className={classes.mobileContent}>
                     <Box>
-                      <Typography style={{fontSize: '8px', fontStyle: 'SemiBold', fontWeight: 200}}>下一章</Typography>
-                      <Typography style={{fontSize: '14px', fontStyle: 'SemiBold', fontWeight: 600}}>{t(formatChapterTitle(chapterData?.next))}</Typography>
+                      <Typography style={{fontSize: '8px', fontStyle: 'SemiBold', fontWeight: 200}}>{chapterData?.next ? '下一章' : '当前章节'}</Typography>
+                      <Typography style={{fontSize: '14px', fontStyle: 'SemiBold', fontWeight: 600}}>{t(formatChapterTitle(chapterData?.next ? chapterData?.next : chapterData?.current))}</Typography>
                     </Box>
                     <Box fontSize={"8px"}>
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -224,8 +223,8 @@ export default function TabChapter(props) {
                     </Box>
                   </Box>
                 </Box>
-              )
-            }
+            {/* //   )
+            // } */}
 
         </Box>
       </Hidden>

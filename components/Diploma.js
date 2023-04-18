@@ -14,20 +14,21 @@ export default function Diploma() {
       sx={{
         background: theme?.palette?.mode === 'dark' ? '#010101' : '#fff',
         borderRadius: '18px',
-        marginTop: '30px',
+        // marginTop: '30px',
       }}
     >
       <Box
         sx={{
           background: theme?.palette?.mode === 'dark' ? '#010101' : '#fff',
           borderRadius: '18px',
-          width: mdScreen ? '750px' : '250px',
-          paddingY: '50px',
-          paddingX: '65px',
+          // width: mdScreen ? '750px' : '250px',
+          // paddingY: '50px',
+          // paddingX: '65px',
+          paddingBottom: '20px',
         }}
       >
         <Box sx={{ borderRadius: '18px' }}>
-          <Typography
+          {/* <Typography
             sx={{
               fontSize: { md: '36px', sm: '36px' },
               fontStyle: 'ExtraBold',
@@ -39,7 +40,18 @@ export default function Diploma() {
             }}
           >
             结业认证
-          </Typography>
+          </Typography> */}
+          <h1 style={{
+            fontSize: { md: '36px', sm: '36px' },
+            fontStyle: 'ExtraBold',
+            fontFamily: 'Open Sans',
+            color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+            fontWeight: 700,
+            textAlign: 'center',
+            // marginBottom: '30px',
+          }}>
+            结业认证
+          </h1>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
           <Typography
@@ -49,10 +61,10 @@ export default function Diploma() {
               fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
-              marginTop: '30px',
+              // marginTop: '30px',
             }}
           >
-            恭喜您完成了MyFirstLayer2全部章节内容的学习!
+            恭喜您完成了 MyFirstLayer 2 全部章节内容的学习！
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
@@ -93,7 +105,7 @@ export default function Diploma() {
               fontWeight: 400,
             }}
           >
-            1.在网站主页上点击“connect wallet“按钮，链接钱包；
+            1. 点击网站主页右上角的“Connect Wallet”按钮，连接钱包；（请切换至 Optimism 网络）
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
@@ -107,7 +119,7 @@ export default function Diploma() {
               marginBottom: '30px',
             }}
           >
-            2.于OP testnet水龙头地址领取测试代币；
+            2.于OP testnet水龙头地址领取测试代币；（暂时留测试网的链接，未来只留下 OP 主网的Claim交互组件）
           </Typography>
         </Box>
         <Box
@@ -133,7 +145,13 @@ export default function Diploma() {
               }}
             >
               <Link target="_blank" href="https://faucet.paradigm.xyz/">
-                OP testnet
+                <h2 style={{
+                  fontSize: '48px',
+                  fontFamily: 'Open Sans',
+                  fontWeight: 800,
+                }}>
+                  OP testnet
+                </h2>
               </Link>
             </Typography>
           </Box>
@@ -163,7 +181,7 @@ export default function Diploma() {
               marginBottom: '10px',
             }}
           >
-            3.点击“claim按钮即可成功获得结业徽章!
+            3.点击“claim”按钮即可成功获得结业徽章！
           </Typography>
         </Box>
         <MintBadge />
@@ -178,10 +196,10 @@ export default function Diploma() {
               fontWeight: 400,
 
               marginTop: '30px',
-              marginBottom: '10px',
+              // marginBottom: '10px',
             }}
           >
-            到这里，您已经成功地领取了结业徽章!希望这枚徽章能够成为您不断前行的鼓励与动力，也期待您在今后的人生道路上继续保持追求学习的态度，获得更多的成就与荣誉。
+            到这里，您已经成功地领取了结业徽章！希望这枚徽章能够成为您不断前行的鼓励与动力，也期待您继续保持追求学习的态度，在 Web3 的世界扬帆起航！
           </Typography>
         </Box>
       </Box>

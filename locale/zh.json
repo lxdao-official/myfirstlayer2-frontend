@@ -1,7 +1,9 @@
 {
   "Index": {
     "title": "Welcome to My first layer2.",
-    "description": "Myfirstlayer2是LXDAO”my first”系列的第2个教育公益类产品。\n网上的区块链layer2知识分散且难以学习，本产品通过文字+图片+动画的形式向web3用户普及所有layer2知识。\n该作品由以太坊基金会赞助，LXDAO团队制作，非常感谢以太坊基金会对web3生态的支持。"
+    "description1": "MyFirstLayer 2 是 LXDAO “My First” 系列的第 2 个教育公益类产品。",
+    "description2": "网上的区块链 Layer 2 知识分散且难以学习，本产品通过文字 + 图片 + 动画的形式向 Web3 用户普及所有 Layer 2 知识。",
+    "description3": "该作品由以太坊基金会赞助， LXDAO 团队制作，非常感谢以太坊基金会对 Web3 生态的支持。"
   },
 
   "PageLayout": {

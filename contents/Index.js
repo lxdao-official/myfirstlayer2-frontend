@@ -4,9 +4,9 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Box, Hidden, Typography, useMediaQuery } from '@mui/material';
+import { Box, Hidden, Link, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import mdxStyle from './mdx.module.css';
+
 import Container from '../components/Container';
 import Diploma from '../components/Diploma';
 import MintBadge from '../components/MintBadge';
@@ -16,15 +16,18 @@ import { MobileDirectory, PcDirectory } from './Directory';
 import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
+import mdxStyle from './mdx.module.css';
+import Loading from './Loading';
 
 const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
 
 export default function Content(props) {
   const { md } = props;
 
+  const chapterCount = md.props.file.length;
   const [name, setName] = useState(md.props.file[0]?.text);
   const [readData, setReadData] = useState({
-    counter: 20,
+    counter: chapterCount,
     read: 1,
     currentIndex: 0,
     actionFrom: 'nextButton',
@@ -34,6 +37,7 @@ export default function Content(props) {
   const [directory, setDirectory] = useState(md.props.file);
   const [readStatus, setReadStatus] = useState([true]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isLoading, setLoading] = useState(false);
   const { ref, inView, entry } = useInView({
     threshold: 0.3,
   });
@@ -49,6 +53,8 @@ export default function Content(props) {
   }, [name]);
 
   const requestMdxSource = (name) => {
+    setLoading(true)
+
     fetch(`/api/getFile/${name}`)
       .then((response) => response.json())
       .then((data) => {
@@ -56,8 +62,10 @@ export default function Content(props) {
         if (data?.mdxSource) {
           setMdxSource(data.mdxSource);
         }
+        setLoading(false);
       })
       .catch((error) => console.error('err--------', error));
+
   };
 
   const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
@@ -84,7 +92,7 @@ export default function Content(props) {
       setSelectedIndex(readData?.currentIndex - 1);
 
       setReadData({
-        counter: 20,
+        counter: chapterCount,
         read: computeReadCount(readStatus),
         currentIndex: readData?.currentIndex - 1,
         actionFrom: 'nextButton',
@@ -100,7 +108,7 @@ export default function Content(props) {
       setSelectedIndex(readData?.currentIndex + 1);
 
       setReadData({
-        counter: 20,
+        counter: chapterCount,
         read: computeReadCount(readStatusStore),
         currentIndex: readData?.currentIndex + 1,
         actionFrom: 'nextButton',
@@ -115,7 +123,7 @@ export default function Content(props) {
       setName(chapter.text);
       setSelectedIndex(chapter?.index);
       setReadData({
-        counter: 20,
+        counter: chapterCount,
         read: computeReadCount(readStatusStore),
         currentIndex: chapter.index,
         actionFrom: 'nextButton',
@@ -138,21 +146,8 @@ export default function Content(props) {
   console.log('mdScreen', mdScreen);
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
-      <Typography
-        id={'root'}
-        sx={{
-          fontSize: mdScreen ? '48px' : '20px',
-          fontStyle: 'ExtraBold',
-          fontFamily: 'Open Sans',
-          color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-          fontWeight: 900,
-          textAlign: 'center',
-          marginTop: '120px',
-          marginBottom: '50px',
-        }}
-      >
-        Start learning
-      </Typography>
+      <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
+      <Typography id={'root'}></Typography>
       <Container paddingX={2}>
         <Box display="flex" justifyContent="space-between" ref={ref}>
           <Box
@@ -177,13 +172,16 @@ export default function Content(props) {
                 sm: 8,
               }}
             >
-              <Box className={mdxStyle.root} textDecoration={'none'}>{mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}</Box>
+              <Box className={mdxStyle.root} textDecoration={'none'}>
+                {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
+              </Box>
             </Box>
-            <TabChapter marginTop={{ xs: '20px', sm: '160px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex }} onTabChapter={handleTabChapter}></TabChapter>
+            <TabChapter marginTop={{ xs: '20px', sm: '160px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
           </Box>
           <Hidden smDown>
             <PcDirectory directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
           </Hidden>
+          {isLoading && <Loading />}
           {/* <Test /> */}
         </Box>
       </Container>

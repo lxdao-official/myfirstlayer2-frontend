@@ -17,5 +17,5 @@ export default async function handler(req, res) {
   const { content, meta } = getDocBySlug(name);
   const mdxSource = await serialize(content);
 
-  res.status(200).json({ mdxSource });
+  res.status(200).json({ mdxSource, code: 200 });
 }

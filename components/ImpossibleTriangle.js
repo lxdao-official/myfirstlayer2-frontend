@@ -33,6 +33,11 @@ export default function ImpossibleTriangle({ children, title }) {
 
   const area = 16560;
 
+  // const center = { x: 138 + 69, y: 94 + 60 };
+  const center0 = { x: 138 + 72, y: 94 + 40 };
+  const center1 = { x: 165, y: 202 }; //{ x: 138 + 68 - 23, y: 94 + 60 + 20 };
+  const center2 = { x: 258, y: 202 }; //{ x: 138 + 69 + 23, y: 94 + 60 - 20 };
+
   const [innerPoints, setInnerPoints] = useState([
     {
       x: 212,
@@ -66,6 +71,18 @@ export default function ImpossibleTriangle({ children, title }) {
     {
       x: 100 + 216,
       y: 50 + 188,
+    },
+  ];
+
+  const innerNearOuterTriangle = [
+    {
+      x: 212,
+      y: 50 + 10,
+    },
+    { x: 100 + 10, y: 50 + 188 - 5 },
+    {
+      x: 100 + 216 - 10,
+      y: 50 + 188 - 5,
     },
   ];
 
@@ -115,7 +132,7 @@ export default function ImpossibleTriangle({ children, title }) {
       },
       {
         id: '4',
-        label: '高性能',
+        label: '可扩展性',
         ...outerTriangle[1],
         size: 5,
         style: {
@@ -130,7 +147,7 @@ export default function ImpossibleTriangle({ children, title }) {
       },
       {
         id: '5',
-        label: '高安全性',
+        label: '安全性',
         ...outerTriangle[2],
         size: 5,
         style: {
@@ -153,6 +170,8 @@ export default function ImpossibleTriangle({ children, title }) {
       { source: '5', target: '3', style: { lineWidth: 5 } },
     ],
   };
+
+  const triggerDis = 25;
 
   const changeColor = (graph, index, color) => {
     // debugger;
@@ -248,15 +267,11 @@ export default function ImpossibleTriangle({ children, title }) {
   };
 
   useEffect(() => {
-    if (window.graph) {
-      return;
-    }
-
     const graph = new G6.Graph({
-      container: 'mountNode', // String | HTMLElement，必须，容器 id 或容器本身
-      width: 400, // Number，必须，图的宽度
-      height: 300, // Number，必须，图的高度
-      animate: true, // Boolean，可选，切换布局时是否使用动画过度
+      container: 'mountNode',
+      width: 400,
+      height: 300,
+      animate: true,
 
       modes: {
         default: [
@@ -285,6 +300,7 @@ export default function ImpossibleTriangle({ children, title }) {
         },
       },
     });
+
     window.graph = graph;
     graph.on('node:dragend', (e) => {
       const index = graph.cfg.nodes.indexOf(e.target.cfg.parent.cfg.item);
@@ -306,133 +322,49 @@ export default function ImpossibleTriangle({ children, title }) {
       if (!isIn) {
         // point is out of triangle
         graph.updateItem(nodeItem, {
-          x: innerPoints[index].x,
-          y: innerPoints[index].y,
+          x: innerNearOuterTriangle[index].x,
+          y: innerNearOuterTriangle[index].y,
         });
       } else {
-        if (index === 0) {
-          const node1 = graph.cfg.nodes[1];
-          const node2 = graph.cfg.nodes[2];
+        const p0 = graph.cfg.nodes[0]._cfg.model;
+        const p1 = graph.cfg.nodes[1]._cfg.model;
+        const p2 = graph.cfg.nodes[2]._cfg.model;
 
-          const node2Point = {
-            x: node2._cfg.model.x + (nodeItem._cfg.model.x - innerPoints[index].x),
-            y: node2._cfg.model.y + (nodeItem._cfg.model.y - innerPoints[index].y),
-          };
-
-          const node1Point = {
-            x: node1._cfg.model.x,
-            y: node1._cfg.model.y + (nodeItem._cfg.model.y - innerPoints[index].y),
-          };
-
-          // const node2Point = {
-          //   x: node2._cfg.model.x + (nodeItem._cfg.model.x - innerPoints[index].x),
-          //   y: node2._cfg.model.y + (nodeItem._cfg.model.y - innerPoints[index].y),
-          // };
-
-          const disP0P1 = twoPointDistance(nodeItem._cfg.model, node1._cfg.model);
-
-          // const node2Point = {
-          //   x: (node1._cfg.model.x + nodeItem._cfg.model.x) / 2,
-          //   y: (node1._cfg.model.y + nodeItem._cfg.model.y) / 2,
-          // };
-
-          if (!pointInTriangle(node2Point.x, node2Point.y) || !pointInTriangle(node1Point.x, node1Point.y)) {
-            graph.updateItem(nodeItem, {
-              x: innerPoints[index].x,
-              y: innerPoints[index].y,
-            });
-            return;
-          }
-          graph.updateItem(node2, node2Point);
-          // graph.updateItem(node1, node1Point);
-        } else if (index === 1) {
-          const node0 = graph.cfg.nodes[0];
-          const node2 = graph.cfg.nodes[2];
-          const node0Point = {
-            x: node0._cfg.model.x + (nodeItem._cfg.model.x - innerPoints[index].x),
-            y: node0._cfg.model.y + (nodeItem._cfg.model.y - innerPoints[index].y),
-          };
-
-          const node2Point = {
-            x: node2._cfg.model.x,
-            y: node2._cfg.model.y + (nodeItem._cfg.model.y - innerPoints[index].y),
-          };
-          if (!pointInTriangle(node0Point.x, node0Point.y) || !pointInTriangle(node2Point.x, node2Point.y)) {
-            graph.updateItem(nodeItem, {
-              x: innerPoints[index].x,
-              y: innerPoints[index].y,
-            });
-            return;
-          }
-          graph.updateItem(node0, node0Point);
-          graph.updateItem(node2, node2Point);
-        } else if (index == 2) {
-          const node0 = graph.cfg.nodes[0];
-          const node1 = graph.cfg.nodes[1];
-          const node0Point = {
-            x: node0._cfg.model.x,
-            y: node0._cfg.model.y + (nodeItem._cfg.model.y - innerPoints[index].y),
-          };
-
-          const node1Point = {
-            x: node1._cfg.model.x + (nodeItem._cfg.model.x - innerPoints[index].x),
-            y: node1._cfg.model.y + (nodeItem._cfg.model.y - innerPoints[index].y),
-          };
-          if (!pointInTriangle(node0Point.x, node0Point.y) || !pointInTriangle(node1Point.x, node1Point.y)) {
-            graph.updateItem(nodeItem, {
-              x: innerPoints[index].x,
-              y: innerPoints[index].y,
-            });
-            return;
-          }
-          graph.updateItem(node0, node0Point);
-          graph.updateItem(node1, node1Point);
-        }
-        if (dragNodes.length <= 1) {
-          if (!dragNodes.includes(index)) {
-            dragNodes.push(index);
-          }
-
-          setDragNodes([...dragNodes]);
-          if (dragNodes.length === 1) {
-            setTimeout(() => {
-              if (dragNodes.length === 1) {
-                graph.updateItem(graph.cfg.nodes[0], {
-                  x: oldInner[0].x,
-                  y: oldInner[0].y,
-                });
-                graph.updateItem(graph.cfg.nodes[1], {
-                  x: oldInner[1].x,
-                  y: oldInner[1].y,
-                });
-                graph.updateItem(graph.cfg.nodes[2], {
-                  x: oldInner[2].x,
-                  y: oldInner[2].y,
-                });
-              }
-            }, 5000);
-            setDragNodes([]);
-          }
-        } else {
-          const p0 = graph.cfg.nodes[0]._cfg.model;
-          const p1 = graph.cfg.nodes[1]._cfg.model;
-          const p2 = graph.cfg.nodes[2]._cfg.model;
-
-          const d01 = distanceOfPoint2Line(p0, outerTriangle[0], outerTriangle[1]);
-          const d03 = distanceOfPoint2Line(p0, outerTriangle[0], outerTriangle[2]);
-          const d11 = distanceOfPoint2Line(p1, outerTriangle[0], outerTriangle[1]);
-          const d12 = distanceOfPoint2Line(p1, outerTriangle[1], outerTriangle[2]);
-          const d22 = distanceOfPoint2Line(p2, outerTriangle[1], outerTriangle[2]);
-          const d23 = distanceOfPoint2Line(p2, outerTriangle[0], outerTriangle[2]);
-          if (d01 < 15 && d11 < 15) {
+        const dis0 = twoPointDistance(p0, outerTriangle[0]);
+        const dis1 = twoPointDistance(p1, outerTriangle[1]);
+        const dis2 = twoPointDistance(p2, outerTriangle[2]);
+        const node0 = graph.cfg.nodes[0];
+        const node1 = graph.cfg.nodes[1];
+        const node2 = graph.cfg.nodes[2];
+        console.log('node0', node0._cfg.model.x, node0._cfg.model.y);
+        console.log('node1', node1._cfg.model.x, node1._cfg.model.y);
+        console.log('node2', node2._cfg.model.x, node2._cfg.model.y);
+        if (dis0 < triggerDis && dis1 < triggerDis && dis2 < triggerDis) {
+          if (nodeItem === node0) {
+            graph.updateItem(node2, center2);
             changeColor(graph, 1, '#FF6055');
-          } else if (d12 < 15 && d22 < 15) {
+          } else if (nodeItem === node1) {
+            graph.updateItem(node0, center0);
             changeColor(graph, 2, '#FFC64E');
-          } else if (d03 < 15 && d23 < 15) {
+          } else {
+            graph.updateItem(node1, center1);
             changeColor(graph, 3, '#5979ED');
           }
-          setDragNodes([]);
+        } else {
+          if (dis0 < triggerDis && dis1 < triggerDis) {
+            graph.updateItem(node2, center2);
+            changeColor(graph, 1, '#FF6055');
+          } else if (dis1 < triggerDis && dis2 < triggerDis) {
+            graph.updateItem(node0, center0);
+            changeColor(graph, 2, '#FFC64E');
+          } else if (dis0 < triggerDis && dis2 < triggerDis) {
+            graph.updateItem(node1, center1);
+            changeColor(graph, 3, '#5979ED');
+          }
         }
+
+        setDragNodes([]);
+        // }
         innerPoints[index].y = nodeItem._cfg.model.y;
         innerPoints[index].x = nodeItem._cfg.model.x;
         setInnerPoints([...innerPoints]);
@@ -463,18 +395,12 @@ export default function ImpossibleTriangle({ children, title }) {
     });
     graph.data(data);
     graph.render();
-    // return () => {
-    //   graph.clear();
-    //   window.graph = null;
-    // };
+    return () => {
+      graph.clear();
+      graph.destroy();
+    };
   }, []);
   //57%
-
-  // debugger;
-
-  // const theme = useTheme();
-  // console.log('theme.palette?.mode', theme.palette?.mode);
-  // const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <Box sx={{ background: '#F6F6F6', paddingBlock: '30px', paddingInline: '65px', marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -489,17 +415,17 @@ export default function ImpossibleTriangle({ children, title }) {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         {side === 1 ? (
           <Typography fontSize={30} color="#FF6055" fontWeight={700} marginBottom="20px">
-            高性能&去中心化
+            高可扩展性 & 高去中心化
           </Typography>
         ) : null}
         {side === 2 ? (
           <Typography fontSize={30} color="#FFC64E" fontWeight={700} marginBottom="20px">
-            高性能&高安全性
+            高安全性 & 高可扩展性
           </Typography>
         ) : null}
         {side === 3 ? (
           <Typography fontSize={30} color="#5979ED" fontWeight={700} marginBottom="20px">
-            高安全性&去中心化
+            高去中心化 & 高安全性
           </Typography>
         ) : null}
       </Box>
@@ -509,9 +435,36 @@ export default function ImpossibleTriangle({ children, title }) {
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-          由于当前安全性程度过高，此时会导致此条链的性能收到大幅影响，预计会从100TPS(1秒钟处理100条事物)降低到30TPS。
-        </Typography>
+        {side === 1 ? (
+          <Box>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              追求可扩展性（即性能）和去中心化程度，为保证去中心化采用了较多验证节点，为了追求性能提高了出块速度，或采用了特殊的共识机制。但提高出块速度容易导致大规模区块重组，更复杂的共识机制容易导致全网宕机等安全事故，牺牲了安全性。
+            </Typography>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              代表区块链：Polygon、Solana
+            </Typography>
+          </Box>
+        ) : null}
+        {side === 2 ? (
+          <Box>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              追求安全性和可扩展性（即性能），往往采用少数超级节点进行通讯，超级节点拥有更强的性能和更好的网络环境，彼此之间能实现超高速的通讯。但参与门槛过高，牺牲了去中心化程度。
+            </Typography>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              代表区块链：BSC、EOS、TRON
+            </Typography>
+          </Box>
+        ) : null}
+        {side === 3 ? (
+          <Box>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              追求去中心化程度和安全性，采用更多的节点和更公平的出块方式，值得信赖。但为了允许低性能节点参与验证，协调全球网络延迟，导致每秒可处理的交易数较低，牺牲了性能。
+            </Typography>
+            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
+              代表区块链：BTC、ETH
+            </Typography>
+          </Box>
+        ) : null}
       </Box>
     </Box>
   );
