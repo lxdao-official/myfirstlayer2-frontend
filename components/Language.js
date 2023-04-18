@@ -1,14 +1,13 @@
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
-
 import LanguageIcon from '@mui/icons-material/Language';
 import { Box, SvgIcon, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { borderRadius } from '@mui/system';
-
 import Arrow from './svg/Arrow';
 import Earth from './svg/Earth';
 
@@ -32,7 +31,7 @@ const Language = ({ color }) => {
   };
 
   const handleClick = (event) => {
-    setAnchorEl(event.target);
+    setAnchorEl(event.target.parentElement);
   };
 
   const handleClose = (value) => {
@@ -49,10 +48,9 @@ const Language = ({ color }) => {
         <Box aria-controls={open ? 'language-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} sx={{ cursor: 'pointer' }} onClick={handleClick}>
           <Box display="flex" alignItems="center">
             {!smallScreen && <Earth color={color} />}
-            <Typography marginLeft={smallScreen ? 0 : 1} marginRight={smallScreen ? 0 : 0.5} color="text.primary" fontSize={smallScreen ? '13px' : '18px'} width={{ xs: 'auto', md: '80px' }} textAlign="center">
+            <Typography marginLeft={smallScreen ? 0 : 1} marginRight={smallScreen ? 0 : 0.5} fontWeight={400} color="text.primary" fontSize={smallScreen ? '13px' : '18px'} width={{ xs: 'auto', md: '75px' }} textAlign="center">
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
-
             <Arrow color={color} style={{ rotate: open && '180deg' }} />
           </Box>
         </Box>
@@ -65,11 +63,12 @@ const Language = ({ color }) => {
             'aria-labelledby': 'lock-button',
             role: 'listbox',
           }}
-          selectedItemColor="red"
           autoFocus={false}
           sx={{
             '&.MuiPopover-root': {
-              width: '140px',
+              width: '160px',
+              paddingY: '10px',
+              marginTop: '12px',
               '.MuiPaper-root': {
                 boxShadow: theme.palette.shadow.level2,
                 borderRadius: '18px !important',
@@ -77,7 +76,8 @@ const Language = ({ color }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 ul: {
-                  width: '79px',
+                  paddingY: '10px',
+                  width: '109px',
                   li: {
                     display: 'flex',
                     justifyContent: 'center',
@@ -102,13 +102,6 @@ const Language = ({ color }) => {
                 简体中文
               </Link>
             </Typography>
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              alert('If you want to translate to your native language, please contact us on Discord.');
-            }}
-          >
-            <Typography variant="body1">Your Lang?</Typography>
           </MenuItem>
         </Menu>
       </Box>
