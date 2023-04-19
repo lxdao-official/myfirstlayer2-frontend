@@ -25,7 +25,7 @@ export default function Content(props) {
   const { md } = props;
 
   const chapterCount = md.props.file.length;
-  const [name, setName] = useState(md.props.file[0]?.text);
+  const [name, setName] = useState(md.props.file[1]?.text);
   const [readData, setReadData] = useState({
     counter: chapterCount,
     read: 1,
@@ -72,10 +72,10 @@ export default function Content(props) {
 
   const handleTabChapter = (action, chapter) => {
     console.log('action', action);
+    console.log('chapter', chapter);
     if (!action) {
       return;
     }
-
     const targetElement = document.getElementById('root');
     targetElement.scrollIntoView({ behavior: 'smooth' });
 

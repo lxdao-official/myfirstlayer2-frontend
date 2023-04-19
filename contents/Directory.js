@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   listItem: {
     borderRadius: '10px',
-    alignItems: 'flex-start',
+    padding: '12px',
     '&:hover': {
       background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
       cursor: 'pointer',
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     '&:focus': {
       background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
     },
-    '&.Mui-selected': {
+    '&:active': {
       background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
     },
     '&.Mui-selected:hover': {
@@ -46,10 +46,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   avatarContain: {
-    marginTop: '10px',
-    // background: '#000',
-    // position: 'absolute',
-    textAlign: 'end',
+    paddingRight: '10px',
   },
   avatar: {
     width: '15px', // 图像的大小
@@ -205,12 +202,33 @@ const Item = (props) => {
 
   return (
     <Box className={classes.listRoot}>
-      <ListItem button selected={selected} onClick={onNext} className={classes.listItem}>
-        <ListItemAvatar className={classes.avatarContain}>
-          <Avatar className={classes.avatar} src={readStatusImg[rowData?.status ? 0 : 1]} />
-        </ListItemAvatar>
-        <ListItemText className={[classes.text, rowData?.main ? classes.mainTitle : classes.subtitle]} primary={t(formatChapterTitle(rowData?.text))} fontSize={22}></ListItemText>
-      </ListItem>
+      <Box button selected={selected} onClick={onNext}
+        className={classes.listItem}
+        sx={{
+          background: selected ? theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3' : '',
+        }}
+      >
+        <Box
+          sx={{
+            paddingLeft: rowData?.main ? 0 : '26px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <Box className={classes.avatarContain}>
+            <Avatar className={classes.avatar} src={readStatusImg[rowData?.status ? 0 : 1]} />
+          </Box>
+          <Box
+            fontSize={22}
+            sx={{
+              fontStyle: rowData?.main ? 'Bold' : 'Regular',
+              fontWeight: rowData?.main ? 700 : 400,
+              fontSize: '14px',
+            }}
+          >{t(formatChapterTitle(rowData?.text))}</Box>
+          </Box>
+
+      </Box>
     </Box>
   );
 };
