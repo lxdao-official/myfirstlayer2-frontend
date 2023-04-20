@@ -13,11 +13,12 @@ import MintBadge from '../components/MintBadge';
 import ZksyncSwap from '../components/ZksyncSwap';
 import CompressText from '../components/animation/CompressText';
 import { MobileDirectory, PcDirectory } from './Directory';
+import Loading from './Loading';
 import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 import mdxStyle from './mdx.module.css';
-import Loading from './Loading';
+import { getStorage, removeStorage, setStorage } from './storage.js';
 
 const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
 
@@ -53,7 +54,7 @@ export default function Content(props) {
   }, [name]);
 
   const requestMdxSource = (name) => {
-    setLoading(true)
+    setLoading(true);
 
     fetch(`/api/getFile/${name}`)
       .then((response) => response.json())
@@ -65,13 +66,12 @@ export default function Content(props) {
         setLoading(false);
       })
       .catch((error) => console.error('err--------', error));
-
   };
 
   const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
 
   const handleTabChapter = (action, chapter) => {
-    console.log('action', action);
+    // console.log('action', action);
     if (!action) {
       return;
     }
@@ -115,6 +115,7 @@ export default function Content(props) {
       });
     }
     if (action === 'lastOrNext') {
+      // console.log('chapter', chapter.index);
       if (readStatusStore[chapter.index] !== true) {
         readStatusStore[chapter.index] = true;
         setReadStatus(readStatusStore);
@@ -140,10 +141,38 @@ export default function Content(props) {
   };
 
   const theme = useTheme();
-  console.log('theme.palette?.mode', theme.palette?.mode);
+  // console.log('theme.palette?.mode', theme.palette?.mode);
   const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
 
-  console.log('mdScreen', mdScreen);
+  // console.log('mdScreen', mdScreen);
+
+  useEffect(() => {
+    if (readStatus.length > 1) {
+      setStorage('readStatus', JSON.stringify({ data: readStatus }));
+    }
+    if (selectedIndex) {
+      setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+    }
+  }, [readStatus, selectedIndex]);
+
+  useEffect(() => {
+    const readStatusStore = getStorage('readStatus');
+    const selectedIndexStore = getStorage('selectedIndex');
+    if (readStatusStore) {
+      setReadStatus(JSON.parse(readStatusStore).data);
+    }
+    if (selectedIndexStore) {
+      setSelectedIndex(JSON.parse(selectedIndexStore).data);
+      setName(md.props.file[selectedIndex]?.text);
+      setReadData({
+        counter: chapterCount,
+        read: computeReadCount(readStatus),
+        currentIndex: selectedIndex,
+        actionFrom: 'nextButton',
+      });
+    }
+  }, []);
+
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
       <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
