@@ -65,7 +65,7 @@ const Footer = () => {
   const theme = useTheme();
   return (
     <Box sx={{ background: '#ffffff' }} width="100%">
-      <Container paddingX={0} paddingY={{ md: '50px', xs: '44px' }} margin="0 auto">
+      <Container paddingY={{ md: '50px', xs: '44px' }} margin="0 auto">
         <Box display="flex" flexDirection={{ lg: 'row', md: 'column', xs: 'column' }}>
           <Grid container spacing={{ lg: 6, md: 12, xs: 12 }} flex={2}>
             <Grid item lg={4} md={4} xs={6}>
