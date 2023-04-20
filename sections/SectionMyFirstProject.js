@@ -43,7 +43,7 @@ function MyFirstCard(props) {
       height={1}
       sx={{
         textDecoration: 'none',
-        paddingBottom: '50px',
+        paddingBottom: { xs: 0, md: '50px' },
         borderRadius: '18px',
       }}
     >
@@ -143,7 +143,7 @@ export default function SectionMyFirstProject() {
   return (
     <SectionSimpleWrapper id="next">
       <Box padding={{ xs: 2, sm: 0 }}>
-        <Grid container spacing={3.125}>
+        <Grid container spacing={{ xs: 3.125, sm: 2 }}>
           {myfirstProjects.map((item, i) => (
             <Grid rowGap="25px" item xs={12} sm={6} md={4} key={i}>
               <MyFirstCard theme={theme} {...item} />

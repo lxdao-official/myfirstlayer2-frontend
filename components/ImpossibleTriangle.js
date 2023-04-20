@@ -405,7 +405,7 @@ export default function ImpossibleTriangle({ children, title }) {
   return (
     <Box sx={{ background: '#F6F6F6', paddingBlock: '30px', paddingInline: '65px', marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Box sx={{ background: '#1E1E1E', width: '400px', height: '300px', borderRadius: '18px', color: 'white' }} id="mountNode"></Box>
+        <Box sx={{ background: '#1E1E1E', width: '400px', height: '300px', borderRadius: '18px', color: 'white', '&>canvas': { zoom: { xs: 0.58, md: 1 } } }} id="mountNode"></Box>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
         <Typography fontSize={12} color="#777777" marginBottom="30px">
