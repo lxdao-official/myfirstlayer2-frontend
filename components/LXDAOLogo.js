@@ -24,20 +24,20 @@ export default function LXDAOLogo({ color, width, height, ...rest }) {
       />
       <defs>
         <linearGradient id="paint0_linear_1025_1442" x1="32.6146" y1="15.5555" x2="-1.2278" y2="15.5555" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#00FB8C" />
-          <stop offset="0.0971267" stop-color="#64CCEB" />
-          <stop offset="0.276683" stop-color="#64CCEB" />
-          <stop offset="0.319606" stop-color="#64CCEB" />
-          <stop offset="0.697546" stop-color="#0F39D9" />
-          <stop offset="0.806149" stop-color="#0F39D9" />
-          <stop offset="1" stop-color="#64CCEB" />
+          <stop stopColor="#00FB8C" />
+          <stop offset="0.0971267" stopColor="#64CCEB" />
+          <stop offset="0.276683" stopColor="#64CCEB" />
+          <stop offset="0.319606" stopColor="#64CCEB" />
+          <stop offset="0.697546" stopColor="#0F39D9" />
+          <stop offset="0.806149" stopColor="#0F39D9" />
+          <stop offset="1" stopColor="#64CCEB" />
         </linearGradient>
         <linearGradient id="paint1_linear_1025_1442" x1="32.1299" y1="26.7954" x2="21.6615" y2="20.6602" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#00FB8C" />
-          <stop offset="0.0958371" stop-color="#64CCEB" />
-          <stop offset="0.477009" stop-color="#64CCEB" />
-          <stop offset="0.646695" stop-color="#64CCEB" />
-          <stop offset="1" stop-color="#0F39D9" />
+          <stop stopColor="#00FB8C" />
+          <stop offset="0.0958371" stopColor="#64CCEB" />
+          <stop offset="0.477009" stopColor="#64CCEB" />
+          <stop offset="0.646695" stopColor="#64CCEB" />
+          <stop offset="1" stopColor="#0F39D9" />
         </linearGradient>
       </defs>
     </svg>

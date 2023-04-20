@@ -13,6 +13,7 @@ import MintBadge from '../components/MintBadge';
 import ZksyncSwap from '../components/ZksyncSwap';
 import CompressText from '../components/animation/CompressText';
 import { MobileDirectory, PcDirectory } from './Directory';
+import Loading from './Loading';
 import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
@@ -37,6 +38,7 @@ export default function Content(props) {
   const [directory, setDirectory] = useState(md.props.file);
   const [readStatus, setReadStatus] = useState([true]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isLoading, setLoading] = useState(false);
   const { ref, inView, entry } = useInView({
     threshold: 0.3,
   });
@@ -52,6 +54,8 @@ export default function Content(props) {
   }, [name]);
 
   const requestMdxSource = (name) => {
+    setLoading(true);
+
     fetch(`/api/getFile/${name}`)
       .then((response) => response.json())
       .then((data) => {
@@ -59,6 +63,7 @@ export default function Content(props) {
         if (data?.mdxSource) {
           setMdxSource(data.mdxSource);
         }
+        setLoading(false);
       })
       .catch((error) => console.error('err--------', error));
   };
@@ -200,11 +205,12 @@ export default function Content(props) {
                 {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
               </Box>
             </Box>
-            <TabChapter marginTop={{ xs: '20px', sm: '160px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex }} onTabChapter={handleTabChapter}></TabChapter>
+            <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
           </Box>
           <Hidden smDown>
             <PcDirectory directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
           </Hidden>
+          {isLoading && <Loading />}
           {/* <Test /> */}
         </Box>
       </Container>

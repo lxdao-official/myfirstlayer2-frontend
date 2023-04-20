@@ -1,7 +1,9 @@
 {
   "Index": {
-    "title": "WELCOME TO \nMY FIRST LAYER2.",
-    "description": "Myfirstlayer2是LXDAO”my first”系列的第2个教育公益类产品。\n网上的区块链layer2知识分散且难以学习，本产品通过文字+图片+动画的形式向web3用户普及所有layer2知识。\n该作品由以太坊基金会赞助，LXDAO团队制作，非常感谢以太坊基金会对web3生态的支持。"
+    "title": "Welcome to My first layer2.",
+    "description1": "MyFirstLayer 2 是 LXDAO “ My First ” 系列的第 2 个教育公益类产品。",
+    "description2": "网上的区块链 Layer 2 知识分散且难以学习，本产品通过文字 + 图片 + 动画的形式向 Web3 用户普及所有 Layer 2 知识。",
+    "description3": "该作品由以太坊基金会赞助， LXDAO 团队制作，非常感谢以太坊基金会对 Web3 生态的支持。"
   },
 
   "PageLayout": {
@@ -23,23 +25,24 @@
     "sectionMyFirst-title-10": "My First series"
   },
   "Directory": {
-    "qu-kuai-lian-ti-gao-xing-neng-de-chang-shi": "1.1 区块链提高性能的尝试",
-    "qu-kuai-lian-de-bu-ke-neng-san-jiao": "1.2 区块链的不可能三角",
-    "zong-xiang-kuo-zhan-layer2": "1.3 纵向扩展：Layer2",
-    "zhuang-tai-tong-dao": "2.1 状态通道（原型机：状态通道）",
-    "ce-lian-bao-shou-zheng-yi-de-ce-lian-cha-qiang-ren-yi-de-ce-lian": "2.2 侧链（饱受争议的侧链/差强人意的侧链）",
-    "plasma-xi-ren-de-jin-bu-plasma": "2.3 Plasma（喜人的进步：Plasma）",
-    "rollup-shi-yong-de-da-bao-rollup": "2.4 Rollup（实用的打包：Rollup）",
-    "ru-he-ya-suo": "3.1 如何压缩",
-    "jin-yi-bu-ya-suo": "3.2 进一步压缩",
+    "foreword": "前言",
+    "attempts-for-improvement": "1.1 区块链提高性能的尝试",
+    "blockchain-s-impossibility-triangle": "1.2 区块链的不可能三角",
+    "layer2": "1.3 纵向扩展：Layer2",
+    "state-channels": "2.1 状态通道（原型机：状态通道）",
+    "side-chain": "2.2 侧链（饱受争议的侧链/差强人意的侧链）",
+    "plasma": "2.3 Plasma（喜人的进步：Plasma）",
+    "rollup": "2.4 Rollup（实用的打包：Rollup）",
+    "compress": "3.1 如何压缩",
+    "further-compression": "3.2 进一步压缩",
     "optimistic-rollup": "3.3 Optimistic Rollup",
     "zero-knowledge-rollup": "3.4 Zero-Knowledge Rollup",
-    "rollup-shi-cao-building": "3.5 Rollup实操",
-    "ji-shu-yuan-li-stark-vs-snark-building": "3.6 ZK技术原理 STARK vs SNARK",
-    "zk-vm-vs-zk-evm-building": "3.7 ZK发展路线 ZK-VM vs ZK-EVM",
-    "qi-ta-jie-jue-fang-an-validium-he-volition": "4.1 其它解决方案：Validium和Volition",
-    "deneb-geng-xin-yu-layer2": "4.2 Deneb更新与Layer2",
-    "zhang-hu-chou-xiang-yu-da-gui-mo-ying-yong-building": "4.3 账户抽象与大规模应用",
-    "bi-ye-zheng-shu": "4.4 毕业证书"
+    "rollup-practice": "3.5 Rollup实操",
+    "stark-vs-snark": "3.6 ZK技术原理 STARK vs SNARK",
+    "zk-vm-vs-zk-evm": "3.7 ZK发展路线 ZK-VM vs ZK-EVM",
+    "validium-and-volition": "4.1 其它解决方案：Validium和Volition",
+    "deneb-and-layer2": "4.2 Deneb更新与Layer2",
+    "account-abstraction": "4.3 账户抽象与大规模应用",
+    "diploma": "4.4 毕业证书"
   }
 }

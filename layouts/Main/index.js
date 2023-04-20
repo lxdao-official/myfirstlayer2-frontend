@@ -25,7 +25,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const theme = useTheme();
 
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
-
   return (
     <Box>
       <Box id="fixed-header" bgcolor={'header.main'} paddingX="50px" position="fixed" zIndex={100} width={'100vw'} top={0}>
@@ -46,12 +45,12 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
-                <Theme width={18} height={18} color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} />
-                <Question width={18} height={18} style={{ margin: '11px' }} color={theme.palette.text.primary} />
+                {/* <Theme width={18} height={18} color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
+                <Question width={19} height={19} style={{ margin: '11px' }} color={theme.palette.text.primary} />
                 <Language color={theme.palette.text.primary} />
               </Box>
             </Stack>
-            <Box width="100%" height={'36px'} justifyContent="space-evenly" alignItems="center" display="flex" backgroundColor="black">
+            <Box width="100%" height={'36px'} justifyContent="space-evenly" alignItems="center" display="flex">
               <Box
                 sx={{
                   display: 'flex',
@@ -64,12 +63,12 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     cursor: 'pointer',
                     fontSize: '13px',
                     fontWeight: '700',
-                    color: current == 'introduce' ? 'white' : theme.palette.text.secondary,
                   }}
                 >
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      color: theme.palette.text.primary,
                     }}
                     href="#introduce"
                     target="_self"
@@ -77,7 +76,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     Introduce
                   </Link>
                 </Typography>
-                {current == 'introduce' && <Box width="35px" height="2px" sx={{ background: 'white' }} />}
               </Box>
               <Box
                 sx={{
@@ -90,14 +88,13 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   sx={{
                     cursor: 'pointer',
                     fontSize: '13px',
-
                     fontWeight: '700',
-                    color: current == 'content' ? 'white' : theme.palette.text.secondary,
                   }}
                 >
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      color: theme.palette.text.primary,
                     }}
                     href="#content"
                     target="_self"
@@ -105,14 +102,12 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     Content
                   </Link>
                 </Typography>
-                {current == 'content' && <Box width="35px" height="2px" sx={{ background: 'white' }} />}
               </Box>
               <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  color: current == 'joinus' ? 'white' : theme.palette.text.secondary,
                 }}
               >
                 <Typography
@@ -125,6 +120,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      color: theme.palette.text.primary,
                     }}
                     href="#oinus"
                     target="_self"
@@ -132,12 +128,11 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                     Join Us
                   </Link>
                 </Typography>
-                {current == 'joinus' && <Box width="35px" height="2px" sx={{ background: 'white' }} />}
               </Box>
             </Box>
           </Container>
         ) : (
-          <Container maxWidth="100%" paddingX={0} paddingY={1} display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" height="80px">
+          <Container maxWidth="100%" paddingX={0} paddingY={1} display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" height="60px">
             <Box display="flex" component="a" href="/" title="theFront" flexDirection="row" alignItems="center">
               <MFL2 color={theme.palette.text.primary} />
               <Divider
@@ -160,15 +155,15 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               >
                 <Typography
                   sx={{
-                    cursor: 'pointer',
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    color: current == 'introduce' ? theme.palette.text.primary : theme.palette.text.secondary,
+                    fontSize: '15px',
+                    fontWeight: '400',
                   }}
                 >
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      color: theme.palette.text.primary,
+                      cursor: 'pointer',
                     }}
                     href="#introduce"
                     target="_self"
@@ -187,14 +182,15 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                 <Typography
                   sx={{
                     cursor: 'pointer',
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    color: current == 'content' ? theme.palette.text.primary : theme.palette.text.secondary,
+                    fontSize: '15px',
+                    fontWeight: '400',
                   }}
                 >
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      cursor: 'pointer',
+                      color: theme.palette.text.primary,
                     }}
                     href="#content"
                     target="_self"
@@ -208,19 +204,19 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  color: current == 'joinus' ? theme.palette.text.primary : theme.palette.text.secondary,
                 }}
               >
                 <Typography
                   sx={{
-                    cursor: 'pointer',
-                    fontSize: '20px',
-                    fontWeight: '700',
+                    fontSize: '15px',
+                    fontWeight: '400',
                   }}
                 >
                   <Link
                     sx={{
                       textDecoration: 'none',
+                      cursor: 'pointer',
+                      color: theme.palette.text.primary,
                     }}
                     href="#joinus"
                     target="_self"
@@ -231,8 +227,8 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               </Box>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
-              <Theme color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} />
-              <Question color={theme.palette.text.primary} style={{ margin: '20px' }} />
+              {/* <Theme color={theme.palette.text.primary} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
+              <Question color={theme.palette.text.primary} style={{ margin: '12.5px' }} />
               <Language color={theme.palette.text.primary} />
             </Box>
           </Container>

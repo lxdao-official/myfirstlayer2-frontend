@@ -25,7 +25,7 @@ export default function Index({ content, directory }) {
       <SectionSponsors />
       <SectionTeam />
       <Box id="joinus" marginBottom={4} paddingX={5}>
-        <LXDAOIntroduction titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
+        <LXDAOIntroduction imgBackground={`${theme?.palette.bodyBg.main}`} titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
       </Box>
       <SectionFooter />
     </Main>
