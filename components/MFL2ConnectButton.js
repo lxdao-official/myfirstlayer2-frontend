@@ -149,6 +149,7 @@ export const MFL2ConnectButton = () => {
                         color="white"
                         width="12"
                         height="7"
+                        style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
                         onClick={() => {
                           setOpen(!open);
                         }}
