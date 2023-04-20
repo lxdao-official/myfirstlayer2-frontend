@@ -104,6 +104,6 @@ export default function SectionTop({ content, meta }) {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </Container>
   );
 }
