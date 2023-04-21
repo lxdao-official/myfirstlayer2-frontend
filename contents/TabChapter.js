@@ -136,6 +136,7 @@ export default function TabChapter(props) {
   const t = useTranslations('Directory');
   const mdScreen = useMediaQuery(theme?.breakpoints?.up('md'));
 
+  console.log('shuang chapterData', chapterData);
   const handleTabChapter = (action) => {
     if ((chapterData?.currentIndex === 0 && action === 'last') || (chapterData?.read === chapterData?.counter && action === 'next')) {
       return;

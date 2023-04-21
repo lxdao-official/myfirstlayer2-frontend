@@ -99,9 +99,16 @@ export function PcDirectory(props) {
   const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
 
   const theme = useTheme();
+  const mainArr = [0, 5, 10, 18];
 
   console.log('directory', directory);
   console.log('readStatus', readStatus);
+  console.log('selectedIndex', selectedIndex);
+
+
+  // const onNext = (action, data) => {
+  //   onTabChapter(action, data);
+  // };
   return (
     <Box>
       <Box>
@@ -133,7 +140,7 @@ export function PcDirectory(props) {
           }}
         >
           {directory?.map((row, index) => {
-            return <Item rowData={{ ...row, status: readStatus[index] }} key={index} selected={selectedIndex === index} onNext={() => onTabChapter('lastOrNext', { index, ...row })} {...props} />;
+            return <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onTabChapter('lastOrNext', { index, ...row })} {...props} />;
           })}
         </Box>
       </Box>

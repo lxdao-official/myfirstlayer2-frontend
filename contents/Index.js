@@ -18,25 +18,31 @@ import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 import mdxStyle from './mdx.module.css';
 import Loading from './Loading';
+import { forEach } from 'lodash';
 
 const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
 
 export default function Content(props) {
   const { md } = props;
 
-  const chapterCount = md.props.file.length;
+  const chapterCount = md.props.file.length - 4;
   const [name, setName] = useState(md.props.file[1]?.text);
   const [readData, setReadData] = useState({
     counter: chapterCount,
     read: 1,
-    currentIndex: 0,
+    currentIndex: 1,
     actionFrom: 'nextButton',
   });
   const [mdxSource, setMdxSource] = useState('');
-  const [chapterData, setChapterData] = useState({});
+
   const [directory, setDirectory] = useState(md.props.file);
   const [readStatus, setReadStatus] = useState([true]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [chapterData, setChapterData] = useState({
+    current: directory[1].text,
+    last: '',
+    next: directory[2].text,
+  });
   const [isLoading, setLoading] = useState(false);
   const { ref, inView, entry } = useInView({
     threshold: 0.3,
@@ -45,13 +51,14 @@ export default function Content(props) {
   useEffect(() => {
     requestMdxSource(name);
 
-    setChapterData({
-      current: md.props.file[readData?.currentIndex]?.text,
-      last: readData?.currentIndex !== 0 ? md.props.file[readData?.currentIndex - 1]?.text : '',
-      next: readData?.currentIndex !== readData.counter ? md.props.file[readData?.currentIndex + 1]?.text : '',
-    });
+    // setChapterData({
+    //   current: chapterData?.current, //md.props.file[readData?.currentIndex]?.text,
+    //   last: chapterData?.last,//readData?.currentIndex !== 1 ? md.props.file[readData?.currentIndex - 1]?.text : '',
+    //   next: chapterData?.next,//readData?.currentIndex !== readData.counter ? md.props.file[readData?.currentIndex + 1]?.text : '',
+    // });
   }, [name]);
 
+  console.log('shuang seee', selectedIndex)
   const requestMdxSource = (name) => {
     setLoading(true)
 
@@ -68,11 +75,25 @@ export default function Content(props) {
 
   };
 
-  const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
+  // const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
 
+  const computeReadCount = (arr) => {
+    let count = 1;
+
+    for(let el of arr) {
+      console.log('shuang chapter el', el)
+      if (!el.main&&el?.status) {
+        count++;
+      }
+    }
+    console.log('shuang chapter count', count);
+    return count;
+  }
   const handleTabChapter = (action, chapter) => {
     console.log('action', action);
     console.log('chapter', chapter);
+    const mainArr = [0, 5, 10, 18];
+
     if (!action) {
       return;
     }
@@ -82,14 +103,67 @@ export default function Content(props) {
     let readStatusStore = readStatus;
 
     if (action === 'last') {
+      if (selectedIndex === 1) {
+        return;
+      }
+
       if (readStatusStore[readData?.currentIndex - 1] !== true) {
         readStatusStore[readData?.currentIndex - 1] = true;
         setReadStatus(readStatusStore);
         computeReadCount(readStatusStore);
       }
 
-      setName(chapterData?.last);
-      setSelectedIndex(readData?.currentIndex - 1);
+      let newState = directory;
+      let lastChapter = directory[selectedIndex];
+      if (mainArr.includes(selectedIndex - 1)) {
+        newState[selectedIndex - 1] = {
+          text: newState[selectedIndex - 1]?.text,
+          main: true,
+          index: selectedIndex - 1,
+          status: true,
+        }
+
+        newState[selectedIndex - 2] = {
+          text: newState[selectedIndex - 2]?.text,
+          main: false,
+          index: selectedIndex - 2,
+          status: true,
+        }
+
+        setChapterData({
+          current: directory[selectedIndex -2]?.text,
+          last: mainArr.includes(selectedIndex - 1) ? directory[selectedIndex - 3]?.text : directory[selectedIndex - 2]?.text,
+          next: directory[selectedIndex]?.text,
+        });
+        setSelectedIndex(selectedIndex - 2);
+
+        setName(newState[selectedIndex - 2]?.text);
+      } else {
+        console.log('shuang --selectedIndex', selectedIndex);
+        setChapterData({
+          current: directory[selectedIndex - 1]?.text,
+          last: selectedIndex - 2 === 0 ? '' :  mainArr.includes(selectedIndex - 2) ? directory[selectedIndex - 3]?.text : directory[selectedIndex - 2]?.text,
+          next: directory[selectedIndex]?.text,
+        });
+        
+        newState[selectedIndex - 1] = {
+          text: newState[selectedIndex - 1]?.text,
+          main: false,
+          index: selectedIndex - 1,
+          status: true,
+        }
+        setSelectedIndex(selectedIndex - 1);
+
+        setName(newState[selectedIndex - 1]?.text);
+
+
+      }
+      
+      setDirectory(newState);
+
+
+      // setName(chapterData?.last);
+      // setSelectedIndex(readData?.currentIndex - 1);
 
       setReadData({
         counter: chapterCount,
@@ -99,33 +173,144 @@ export default function Content(props) {
       });
     }
     if (action === 'next') {
+      if (selectedIndex === chapterCount + 3) {
+        return;
+      }
       if (readStatusStore[readData?.currentIndex + 1] !== true) {
         readStatusStore[readData?.currentIndex + 1] = true;
         setReadStatus(readStatusStore);
         computeReadCount(readStatusStore);
       }
-      setName(chapterData?.next);
-      setSelectedIndex(readData?.currentIndex + 1);
+      let newState = directory;
+      let nextChapter = directory[selectedIndex + 1];
+      if (mainArr.includes(selectedIndex + 1)) {
+
+        newState[selectedIndex + 1] = {
+          text: newState[selectedIndex + 1]?.text,
+          main: true,
+          index: selectedIndex + 1,
+          status: true,
+        }
+
+        newState[selectedIndex + 2] = {
+          text: newState[selectedIndex + 2]?.text,
+          main: false,
+          index: selectedIndex + 2,
+          status: true,
+        }
+
+        setChapterData({
+          current: directory[selectedIndex + 2]?.text,
+          last: selectedIndex !== 1 ? directory[selectedIndex]?.text : '',
+          next: selectedIndex !== chapterCount ? directory[selectedIndex + 3]?.text : '',
+        });
+        setSelectedIndex(selectedIndex + 2);
+
+        setName(newState[selectedIndex + 2]?.text);
+      } else {
+        console.log('--selectedIndex', selectedIndex);
+        setChapterData({
+          current: directory[selectedIndex + 1]?.text,
+          last: directory[selectedIndex]?.text,
+          next: mainArr.includes(selectedIndex + 2) ? directory[selectedIndex + 3]?.text : directory[selectedIndex + 2]?.text,
+        });
+        
+        newState[selectedIndex + 1] = {
+          text: newState[selectedIndex + 1]?.text,
+          main: false,
+          index: selectedIndex + 1,
+          status: true,
+        }
+        setSelectedIndex(selectedIndex + 1);
+
+        setName(newState[selectedIndex + 1]?.text);
+
+
+      }
+      
+      setDirectory(newState);
+      // setName(chapterData?.next);
+      // setSelectedIndex(selectedIndex + 1);
 
       setReadData({
         counter: chapterCount,
         read: computeReadCount(readStatusStore),
-        currentIndex: readData?.currentIndex + 1,
+        currentIndex: mainArr.includes(selectedIndex + 1) ? selectedIndex + 2 : selectedIndex + 1,
         actionFrom: 'nextButton',
       });
     }
     if (action === 'lastOrNext') {
-      if (readStatusStore[chapter.index] !== true) {
-        readStatusStore[chapter.index] = true;
-        setReadStatus(readStatusStore);
-        computeReadCount(readStatusStore);
+      let newState = directory;
+      let params = {};
+
+      if (mainArr.includes(chapter?.index)) {
+
+        if (!chapter?.status) {
+          params = {
+            ...directory[chapter?.index + 1],
+          }
+  
+          newState[chapter.index + 1] = {
+            text: newState[chapter.index + 1]?.text,
+            main: false,
+            index: chapter.index + 1,
+            status: true,
+          }          
+        }
+        setChapterData({
+          current: newState[chapter?.index + 1].text,
+          last: chapter?.index === 0 ? '' : newState[chapter.index - 1].text,
+          next: newState[chapter.index + 2].text,
+        });
+        setName(newState[chapter.index + 1]?.text);
+      } else {
+        if (!chapter?.status) {
+          if (chapter?.index > mainArr[1] && chapter?.index < mainArr[2]) {
+            newState[mainArr[1]] = {
+              ...newState[mainArr[1]],
+              status: true,
+            }
+          }
+
+          if (chapter?.index > mainArr[2] && chapter?.index < mainArr[3]) {
+            newState[mainArr[2]] = {
+              ...newState[mainArr[2]],
+              status: true,
+            }
+          }
+
+          if (chapter?.index > mainArr[3]) {
+            newState[mainArr[3]] = {
+              ...newState[mainArr[3]],
+              status: true,
+            }
+          }          
+        }
+
+        console.log('------newState', newState);
+        console.log('-chapter?.index-', chapter?.index, chapterCount)
+        setChapterData({
+          current: newState[chapter?.index].text,
+          last: chapter?.index - 1 === 0 ? '' : mainArr.includes(chapter?.index - 1) ? newState[chapter.index - 2].text : newState[chapter.index - 1].text,
+          next: chapter?.index !== chapterCount + 3 && newState[chapter.index + 1].text,
+        });
+        setName(newState[chapter.index]?.text);
       }
-      setName(chapter.text);
+      
+      if (!chapter?.status) {
+        newState[chapter.index] = {
+          ...chapter,
+          status: true,
+        }
+  
+        setDirectory(newState);
+      }
+
       setSelectedIndex(chapter?.index);
       setReadData({
-        counter: chapterCount,
-        read: computeReadCount(readStatusStore),
-        currentIndex: chapter.index,
+        counter: chapterCount + 3,
+        read: computeReadCount(newState),
+        currentIndex: mainArr.includes(chapter?.index) ? chapter?.index + 1 : chapter?.index,
         actionFrom: 'nextButton',
       });
     }
@@ -161,7 +346,7 @@ export default function Content(props) {
               sx={{
                 display: 'flex',
                 backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
-                maxWidth: mdScreen ? '920px' : '100vw',
+                maxWidth: mdScreen ? '1300px' : '100vw',
                 marginRight: mdScreen ? 2 : 0,
 
                 color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
