@@ -25,6 +25,13 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const theme = useTheme();
 
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  useEffect(() => {
+    const font = new FontFace('sucaijishikangkangti', 'url(/font/sucaijishikangkangti-2-webfont.woff2)');
+    document.fonts.add(font);
+    font.load();
+  }, []);
+
   return (
     <Box>
       <Box id="fixed-header" bgcolor={'header.main'} paddingX="50px" position="fixed" zIndex={100} width={'100vw'} top={0}>

@@ -3,11 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @font-face {
   font-family: 'sucaijishikangkangti';
+  src: url('/font/sucaijishikangkangti-2-webfont.eot');
+  src: url('/font/sucaijishikangkangti-2-webfont.eot?#iefix') format('embedded-opentype'), url('/font/sucaijishikangkangti-2-webfont.woff2') format('woff2'), url('/font/sucaijishikangkangti-2-webfont.woff') format('woff'), url('/font/sucaijishikangkangti-2-webfont.ttf') format('truetype'),
+    url('/font/sucaijishikangkangti-2-webfont.svg#sucaijishikangkangtiregular') format('svg');
+  font-weight: normal;
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/font/SuCaiJiShiKangKangTi-2.ttf') format('ttf');
 }
+
 :root {
   --max-width: 1200px;
   --border-radius: 12px;
