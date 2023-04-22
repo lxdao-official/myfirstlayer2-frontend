@@ -392,7 +392,7 @@ export default function Content(props) {
                   width={mdScreen ? '1200px' : '100vw'}
                   sx={{
                     height: '100vh',
-                    marginRight: '32px',
+                    marginRight: mdScreen ? '32px' : 0,
                     // backgroundColor: '#fff',
                   }}
                 >

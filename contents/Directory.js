@@ -190,7 +190,7 @@ export function MobileDirectory(props) {
       <SwipeableDrawer anchor="bottom" open={drawerStatus} onClose={() => setDrawerStatus(false)} onOpen={() => setDrawerStatus(true)}>
         <Box paddingX={3} height="400px">
           {directory?.map((row, index) => (
-            <Item rowData={{ ...row, status: readStatus[index] }} key={index} selected={selectedIndex === index} onNext={() => onNext('lastOrNext', { index, ...row })} {...props} />
+            <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onNext('lastOrNext', { index, ...row })} {...props} />
           ))}
         </Box>
       </SwipeableDrawer>
