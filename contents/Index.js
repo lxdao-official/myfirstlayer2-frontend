@@ -79,10 +79,8 @@ export default function Content(props) {
   // const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
 
   const computeReadCount = (arr) => {
-    let count = 1;
-
+    let count = 0;
     for(let el of arr) {
-      console.log('shuang chapter el', el)
       if (!el?.main&&el?.status) {
         count++;
       }
@@ -168,7 +166,7 @@ export default function Content(props) {
 
       setReadData({
         counter: chapterCount,
-        read: computeReadCount(readStatus),
+        read: computeReadCount(newState),
         currentIndex: readData?.currentIndex - 1,
         actionFrom: 'nextButton',
       });
@@ -233,9 +231,16 @@ export default function Content(props) {
       // setName(chapterData?.next);
       // setSelectedIndex(selectedIndex + 1);
 
+      // setReadData({
+      //   counter: chapterCount,
+      //   read: computeReadCount(newState),
+      //   currentIndex: mainArr.includes(chapter?.index) ? chapter?.index + 1 : chapter?.index,
+      //   actionFrom: 'nextButton',
+      // });
+
       setReadData({
         counter: chapterCount,
-        read: computeReadCount(readStatusStore),
+        read: computeReadCount(newState),
         currentIndex: mainArr.includes(selectedIndex + 1) ? selectedIndex + 2 : selectedIndex + 1,
         actionFrom: 'nextButton',
       });
@@ -263,6 +268,8 @@ export default function Content(props) {
           last: chapter?.index === 0 ? '' : newState[chapter.index - 1].text,
           next: newState[chapter.index + 2].text,
         });
+      setSelectedIndex(chapter?.index + 1);
+
         setName(newState[chapter.index + 1]?.text);
       } else {
         if (!chapter?.status) {
@@ -295,6 +302,8 @@ export default function Content(props) {
           last: chapter?.index - 1 === 0 ? '' : mainArr.includes(chapter?.index - 1) ? newState[chapter.index - 2].text : newState[chapter.index - 1].text,
           next: chapter?.index !== chapterCount + 3 && newState[chapter.index + 1].text,
         });
+      setSelectedIndex(chapter?.index);
+
         setName(newState[chapter.index]?.text);
       }
       
@@ -307,9 +316,8 @@ export default function Content(props) {
         setDirectory(newState);
       }
 
-      setSelectedIndex(chapter?.index);
       setReadData({
-        counter: chapterCount + 3,
+        counter: chapterCount,
         read: computeReadCount(newState),
         currentIndex: mainArr.includes(chapter?.index) ? chapter?.index + 1 : chapter?.index,
         actionFrom: 'nextButton',
@@ -331,32 +339,32 @@ export default function Content(props) {
 
   // console.log('mdScreen', mdScreen);
 
-  useEffect(() => {
-    if (readStatus.length > 1) {
-      setStorage('readStatus', JSON.stringify({ data: readStatus }));
-    }
-    if (selectedIndex) {
-      setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
-    }
-  }, [readStatus, selectedIndex]);
+  // useEffect(() => {
+  //   if (readStatus.length > 1) {
+  //     setStorage('readStatus', JSON.stringify({ data: readStatus }));
+  //   }
+  //   if (selectedIndex) {
+  //     setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+  //   }
+  // }, [readStatus, selectedIndex]);
 
-  useEffect(() => {
-    const readStatusStore = getStorage('readStatus');
-    const selectedIndexStore = getStorage('selectedIndex');
-    if (readStatusStore) {
-      setReadStatus(JSON.parse(readStatusStore).data);
-    }
-    if (selectedIndexStore) {
-      setSelectedIndex(JSON.parse(selectedIndexStore).data);
-      setName(md.props.file[selectedIndex]?.text);
-      setReadData({
-        counter: chapterCount,
-        read: computeReadCount(readStatus),
-        currentIndex: selectedIndex,
-        actionFrom: 'nextButton',
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   const readStatusStore = getStorage('readStatus');
+  //   const selectedIndexStore = getStorage('selectedIndex');
+  //   if (readStatusStore) {
+  //     setReadStatus(JSON.parse(readStatusStore).data);
+  //   }
+  //   if (selectedIndexStore) {
+  //     setSelectedIndex(JSON.parse(selectedIndexStore).data);
+  //     setName(md.props.file[selectedIndex]?.text);
+  //     setReadData({
+  //       counter: chapterCount,
+  //       read: computeReadCount(readStatus),
+  //       currentIndex: selectedIndex,
+  //       actionFrom: 'nextButton',
+  //     });
+  //   }
+  // }, []);
 
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
