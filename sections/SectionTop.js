@@ -48,20 +48,13 @@ export default function SectionTop({ content, meta }) {
           MY FIRST LAYER2.
         </Typography>
         <Typography sx={{ display: { xs: 'block', md: 'none' }, paddingTop: '20px', fontFamily: 'Alibaba PuHuiTi', margin: 'auto', letterSpacing: '0.5px', width: { xs: '323px', md: '1200px' }, color: '#D4D4D4', fontWeight: '400', fontSize: { xs: '10px', md: '20px' }, whiteSpace: 'pre-line' }}>
-          {t('description1')}
           {t('description2')}
-          {t('description3')}
         </Typography>
 
         <Typography sx={{ display: { xs: 'none', md: 'block' }, paddingTop: '32px', fontFamily: 'Alibaba PuHuiTi', margin: 'auto', letterSpacing: '0.5px', width: { xs: '323px', md: '1200px' }, color: '#D4D4D4', fontWeight: '400', fontSize: { xs: '10px', md: '20px' }, whiteSpace: 'pre-line' }}>
-          {t('description1')}
+          {t('description')}
         </Typography>
-        <Typography sx={{ display: { xs: 'none', md: 'block' }, fontFamily: 'Alibaba PuHuiTi', margin: 'auto', letterSpacing: '0.5px', width: { xs: '323px', md: '1200px' }, color: '#D4D4D4', fontWeight: '400', fontSize: { xs: '10px', md: '20px' }, whiteSpace: 'pre-line' }}>
-          {t('description2')}
-        </Typography>
-        <Typography sx={{ display: { xs: 'none', md: 'block' }, fontFamily: 'Alibaba PuHuiTi', margin: 'auto', letterSpacing: '0.5px', width: { xs: '323px', md: '1200px' }, color: '#D4D4D4', fontWeight: '400', fontSize: { xs: '10px', md: '20px' }, whiteSpace: 'pre-line' }}>
-          {t('description3')}
-        </Typography>
+
         <Box
           sx={{
             paddingTop: { xs: '20px', md: '80px' },

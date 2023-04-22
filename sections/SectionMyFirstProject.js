@@ -141,7 +141,7 @@ export default function SectionMyFirstProject() {
   const t = useTranslations('SectionMyFirstProject');
 
   return (
-    <SectionSimpleWrapper id="next">
+    <SectionSimpleWrapper childOverflow="visible" id="next">
       <Box padding={{ xs: 2, sm: 0 }}>
         <Grid container spacing={{ xs: 3.125, sm: 2 }}>
           {myfirstProjects.map((item, i) => (
