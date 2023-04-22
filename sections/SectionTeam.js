@@ -11,6 +11,12 @@ import SectionSimpleWrapper from './SectionSimpleWrapper';
 
 const coreContributors = [
   {
+    image: '/teams/brucexu.eth.png',
+    description: 'I wish to be an interesting piece of code in your metaverse.',
+    name: 'brucexu.eth',
+    twitter: 'https://twitter.com/brucexu_eth',
+  },
+  {
     image: '/teams/kasoqian.jpg',
     description: 'Web3 BUIDLER and BELIEVER! Creator of GuoChanLiangXin and MyFirstNFT. Member @theNextDAO. Core contributor @GCLX community.',
     name: 'kasoqian',
@@ -81,15 +87,15 @@ const coreContributors = [
     twitter: 'https://twitter.com/Dysonisme',
   },
   {
-    image: '/teams/brucexu.eth.png',
-    description: 'I wish to be an interesting piece of code in your metaverse.',
-    name: 'brucexu.eth',
-    twitter: 'https://twitter.com/brucexu_eth',
-  },
-  {
     image: '/teams/JayK.jpg',
     description: 'Front-end developer/solidity, beginner/Web3 rover.',
     name: 'JayK',
+  },
+  {
+    image: '/teams/0x1998.jpg',
+    description: 'Fullstack developer / Web3 builder / I have a dream.',
+    name: '0x1998',
+    twitter: 'https://twitter.com/0x1998',
   },
 ];
 
@@ -393,10 +399,10 @@ export default function SectionTeam() {
             ))}
           </Grid>
         </Box>
-        <Typography textAlign="center" color="text.primary" marginTop={{ xs: '90px', sm: '120px' }} marginBottom={{ xs: '30px', sm: '50px' }} sx={{ fontWeight: 800, fontSize: { xs: '20px', sm: '48px' } }}>
+        <Typography textAlign="center" color="text.primary" marginTop={{ xs: '50px', sm: '120px' }} marginBottom={{ xs: 0, sm: '35px' }} sx={{ fontWeight: 800, fontSize: { xs: '20px', sm: '48px' } }}>
           {t(`sectionTeam-content-12`)}
         </Typography>
-        <Box padding={{ xs: 2, sm: 0 }} marginBottom={8}>
+        <Box padding={{ xs: 2, sm: 0 }}>
           <Grid container spacing={2.5}>
             {_.shuffle(activeContributors).map((item, i) => (
               <Grid item xs={12 / 7} sm={12 / 7} md={12 / 12} key={i}>

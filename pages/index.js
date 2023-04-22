@@ -11,7 +11,6 @@ import { useTheme } from '@mui/material/styles';
 import Footer from '../components/Footer';
 import Content from '../contents/Index';
 import Main from '../layouts/Main';
-import SectionFooter from '../sections/SectionFooter';
 import SectionMyFirstProject from '../sections/SectionMyFirstProject';
 import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
@@ -25,10 +24,9 @@ export default function Index({ content, directory }) {
       <SectionMyFirstProject />
       <SectionSponsors />
       <SectionTeam />
-      <Box id="joinus" marginBottom={4} paddingX={5}>
+      <Box id="joinus" paddingTop={{ xs: '50px', md: 15 }} marginBottom={{ xs: '50px', md: 15 }} paddingX={5}>
         <LXDAOIntroduction imgBackground={`${theme?.palette.bodyBg.main}`} titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
       </Box>
-      {/* <SectionFooter /> */}
       <Footer />
     </Main>
   );
@@ -38,7 +36,7 @@ export async function getStaticProps({ locale }) {
   const directoryPath = path.join(process.cwd(), '/mdx/zh');
   const files = fs.readdirSync(directoryPath);
   const fileNames = files.map((file) => file);
-  const directory = formatDirectory(fileNames);//.filter((item) => item.text !== 'TOC' && item.text !== 'README' && item.text !== 'SUMMARY');
+  const directory = formatDirectory(fileNames); //.filter((item) => item.text !== 'TOC' && item.text !== 'README' && item.text !== 'SUMMARY');
 
   const { content, meta } = getDocBySlug(directory[1]?.text, locale);
   const mdxSource = await serialize(content);
