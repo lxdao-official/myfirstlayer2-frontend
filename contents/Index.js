@@ -392,7 +392,8 @@ export default function Content(props) {
                   width={mdScreen ? '1200px' : '100vw'}
                   sx={{
                     height: '100vh',
-                    marginRight: mdScreen ? '32px' : 0,
+                    marginRight: mdScreen ? '32px' : 0
+                    ,
                     // backgroundColor: '#fff',
                   }}
                 >
@@ -436,7 +437,7 @@ export default function Content(props) {
               position: 'sticky',
               // position: 'fixed',
               top: 0,
-              backgroundColor: '#000',
+              // backgroundColor: '#000',
               maxHeight: '1200px',
             }}>
               <Hidden smDown>
