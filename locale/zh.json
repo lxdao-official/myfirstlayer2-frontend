@@ -43,6 +43,10 @@
     "validium-and-volition": "4.1 其它解决方案：Validium和Volition",
     "deneb-and-layer2": "4.2 Deneb更新与Layer2",
     "account-abstraction": "4.3 账户抽象与大规模应用",
-    "diploma": "4.4 毕业证书"
+    "diploma": "4.4 毕业证书",
+    "Before Layer2": "1.前沿（Before Layer2）",
+    "Layer2 Evolution course": "2.Layer2 演进历程",
+    "Rollup Principle": "3.Rollup 机制与原理",
+    "Layer2 Future And Prospect": "4.Layer2 未来与展望"
   }
 }
