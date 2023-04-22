@@ -8,6 +8,7 @@ import React from 'react';
 import { Box, Link } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
+import Footer from '../components/Footer';
 import Content from '../contents/Index';
 import Main from '../layouts/Main';
 import SectionFooter from '../sections/SectionFooter';
@@ -27,7 +28,8 @@ export default function Index({ content, directory }) {
       <Box id="joinus" marginBottom={4} paddingX={5}>
         <LXDAOIntroduction imgBackground={`${theme?.palette.bodyBg.main}`} titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
       </Box>
-      <SectionFooter />
+      {/* <SectionFooter /> */}
+      <Footer />
     </Main>
   );
 }
