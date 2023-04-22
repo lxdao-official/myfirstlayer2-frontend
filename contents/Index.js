@@ -370,6 +370,7 @@ export default function Content(props) {
     <ReadContext.Provider value={{ readData, setReadData }}>
       <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
       <Typography id={'root'}></Typography>
+      <Box sx={{height: mdScreen ? '1200px' : '100vh', overflow: 'scroll',}}>
       <Container paddingX={2}>
         {/* {
           isLoading ? 
@@ -380,8 +381,6 @@ export default function Content(props) {
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
-              // height: '100%',
-              // backgroundColor: 'pink',
             }}
           >
            {
@@ -394,7 +393,6 @@ export default function Content(props) {
                     height: '100vh',
                     marginRight: mdScreen ? '32px' : 0
                     ,
-                    // backgroundColor: '#fff',
                   }}
                 >
                   <Box className={mdxStyle.root} textDecoration={'none'}>
@@ -408,7 +406,6 @@ export default function Content(props) {
                     sm: 2,
                   }}
                   flexGrow={1}
-                  // height={'auto'}
                 >
                   <Box
                     sx={{
@@ -435,9 +432,7 @@ export default function Content(props) {
             <Box sx={{
               position: '-webkit-sticky',
               position: 'sticky',
-              // position: 'fixed',
-              top: 0,
-              // backgroundColor: '#000',
+              top: '5%',
               maxHeight: '1200px',
             }}>
               <Hidden smDown>
@@ -450,7 +445,7 @@ export default function Content(props) {
         {/* }  */}
 
       </Container>
-
+      </Box>
       {inView && (
         <Hidden smUp>
           <Box
