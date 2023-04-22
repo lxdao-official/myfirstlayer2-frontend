@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Box, Hidden, Link, Typography, useMediaQuery } from '@mui/material';
+import { Box, Hidden, Link, Typography, useMediaQuery, Skeleton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import Container from '../components/Container';
@@ -70,7 +70,8 @@ export default function Content(props) {
         if (data?.mdxSource) {
           setMdxSource(data.mdxSource);
         }
-        setLoading(false);
+        setTimeout(() => setLoading(false), 800);
+        
       })
       .catch((error) => console.error('err--------', error));
   };
@@ -82,7 +83,7 @@ export default function Content(props) {
 
     for(let el of arr) {
       console.log('shuang chapter el', el)
-      if (!el.main&&el?.status) {
+      if (!el?.main&&el?.status) {
         count++;
       }
     }
@@ -362,42 +363,85 @@ export default function Content(props) {
       <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
       <Typography id={'root'}></Typography>
       <Container paddingX={2}>
-        <Box display="flex" justifyContent="space-between" ref={ref}>
-          <Box
-            marginRight={{
-              xs: 0,
-              sm: 2,
+        {/* {
+          isLoading ? 
+            <Skeleton animation="wave" height={'100vh'}></Skeleton>
+          : */}
+          <Box 
+            ref={ref}
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              // height: '100%',
+              // backgroundColor: 'pink',
             }}
-            flexGrow={1}
           >
-            <Box
-              sx={{
-                display: 'flex',
-                backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
-                maxWidth: mdScreen ? '1300px' : '100vw',
-                marginRight: mdScreen ? 2 : 0,
+           {
+              isLoading ? 
+                <Skeleton
+                  animation="wave"
+                  variant='rect'
+                  width={mdScreen ? '1200px' : '100vw'}
+                  sx={{
+                    height: '100vh',
+                    marginRight: '32px',
+                    // backgroundColor: '#fff',
+                  }}
+                >
+                  <Box className={mdxStyle.root} textDecoration={'none'}>
+                      {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
+                  </Box>
+                </Skeleton>
+                :
+                <Box
+                  marginRight={{
+                    xs: 0,
+                    sm: 2,
+                  }}
+                  flexGrow={1}
+                  // height={'auto'}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
+                      maxWidth: mdScreen ? '1200px' : '100vw',
+                      marginRight: mdScreen ? 2 : 0,
 
-                color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-              }}
-              borderRadius={2}
-              padding={{
-                xs: 2,
-                sm: 8,
-              }}
-            >
-              <Box className={mdxStyle.root} textDecoration={'none'}>
-                {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
-              </Box>
+                      color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+                    }}
+                    borderRadius={2}
+                    padding={{
+                      xs: 2,
+                      sm: 8,
+                    }}
+                  >
+                    <Box className={mdxStyle.root} textDecoration={'none'}>
+                      {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
+                    </Box>
+                  </Box>
+                  <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
+                </Box>
+            }
+            <Box sx={{
+              position: '-webkit-sticky',
+              position: 'sticky',
+              // position: 'fixed',
+              top: 0,
+              backgroundColor: '#000',
+              maxHeight: '1200px',
+            }}>
+              <Hidden smDown>
+                <PcDirectory directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
+              </Hidden>
             </Box>
-            <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
+            {/* {isLoading && <Loading />} */}
+            {/* <Test /> */}
           </Box>
-          <Hidden smDown>
-            <PcDirectory directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
-          </Hidden>
-          {isLoading && <Loading />}
-          {/* <Test /> */}
-        </Box>
+        {/* }  */}
+
       </Container>
+
       {inView && (
         <Hidden smUp>
           <Box
