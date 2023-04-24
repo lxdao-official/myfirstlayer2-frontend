@@ -349,37 +349,16 @@ function SimpleContributor(props) {
         textDecoration: 'none',
       }}
     >
-      <StyledToolTip
-        enterTouchDelay={0}
-        theme={theme}
-        background={theme.palette.background.pover}
-        boxShadow={theme.palette.shadow.level2}
-        title={
-          <Box component={Card} display={'flex'} flexDirection={'column'} width="188px" padding={2} sx={{ background: 'transparent', boxShadow: 'none' }}>
-            <Typography variant={'body2'} color="text.primary" fontSize="0.85rem">
-              {props.description}
-            </Typography>
-            <Box display="flex" justifyContent={'end'} alignItems="center">
-              {props.twitter && (
-                <Link display="flex" target="_blank" href={props.twitter}>
-                  <Twitter width="20px" />
-                </Link>
-              )}
-            </Box>
-          </Box>
-        }
-      >
-        <Box component={Card} width={1} height={1} borderRadius="50%" boxShadow="none" display={'flex'} flexDirection={'column'} sx={{ backgroundImage: 'none', background: '#fff' }}>
-          <Box
-            component="img"
-            src={props.image}
-            title={props.name}
-            sx={{
-              width: '100%',
-            }}
-          />
-        </Box>
-      </StyledToolTip>
+      <Box component={Card} width={1} height={1} borderRadius="50%" boxShadow="none" display={'flex'} flexDirection={'column'} sx={{ backgroundImage: 'none', background: '#fff' }}>
+        <Box
+          component="img"
+          src={props.image}
+          title={props.name}
+          sx={{
+            width: '100%',
+          }}
+        />
+      </Box>
     </Box>
   );
 }
@@ -390,22 +369,22 @@ export default function SectionTeam() {
   return (
     <SectionSimpleWrapper title={t(`sectionTeam-content-11`)} id="team">
       <Box>
-        <Box padding={{ xs: 2, sm: 0 }} marginBottom={8}>
-          <Grid container spacing={{ xs: 2.4, md: 3.125 }}>
-            {coreContributors.map((item, i) => (
-              <Grid item xs={12 / 5} sm={12 / 8} md={12 / 8} key={i}>
-                <Contributor {...item} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-        <Typography textAlign="center" color="text.primary" marginTop={{ xs: '50px', sm: '120px' }} marginBottom={{ xs: 0, sm: '35px' }} sx={{ fontWeight: 800, fontSize: { xs: '20px', sm: '48px' } }}>
-          {t(`sectionTeam-content-12`)}
-        </Typography>
         <Box padding={{ xs: 2, sm: 0 }}>
           <Grid container spacing={2.5}>
-            {_.shuffle(activeContributors).map((item, i) => (
-              <Grid item xs={12 / 7} sm={12 / 7} md={12 / 12} key={i}>
+            {coreContributors.map((item, i) => (
+              <Grid
+                sx={{ cursor: 'pointer' }}
+                onClick={() => {
+                  if (item.twitter) {
+                    window.open(item.twitter, '_blank');
+                  }
+                }}
+                item
+                xs={12 / 7}
+                sm={12 / 7}
+                md={12 / 12}
+                key={i}
+              >
                 <SimpleContributor {...item} />
               </Grid>
             ))}
