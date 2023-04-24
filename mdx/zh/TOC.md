@@ -1,4 +1,10 @@
 前言
+
+1. Before Layer 2
+2. Layer 2 演进历程
+3. Rollup 机制与原理
+4. Layer2 未来与展望
+
 1.1 区块链提高性能的尝试
 1.2 区块链的不可能三角
 1.3 纵向扩展： Layer 2
@@ -17,7 +23,16 @@
 4.2 Deneb 更新与 Layer 2
 4.3 账户抽象与大规模应用
 
+&nbsp; 
+
 Foreword
+
+_英文标题暂代如下，等待翻译润色_
+1. Before Layer 2
+2. The History of Layer 2 
+3. The Mechanism of Rollup
+4. The Future of Layer 2
+
 1.1 Attempts for improvement
 1.2 Blockchain's Impossibility Triangle
 1.3 Layer 2
