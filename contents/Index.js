@@ -379,10 +379,6 @@ export default function Content(props) {
       <Typography id={'root'}></Typography>
       <Box sx={{ height: mdScreen ? '1200px' : '100vh', overflow: 'scroll' }}>
         <Container paddingX={2}>
-          {/* {
-          isLoading ? 
-            <Skeleton animation="wave" height={'100vh'}></Skeleton>
-          : */}
           <Box
             ref={ref}
             sx={{
@@ -406,19 +402,16 @@ export default function Content(props) {
               </Skeleton>
             ) : (
               <Box
-                marginRight={{
-                  xs: 0,
-                  sm: 2,
+                sx={{
+                  marginRight: mdScreen ? '32px' : 0,
+                  flexGrow: 1,
                 }}
-                flexGrow={1}
               >
                 <Box
                   sx={{
                     display: 'flex',
                     backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
                     maxWidth: mdScreen ? '1200px' : '100vw',
-                    marginRight: mdScreen ? 2 : 0,
-
                     color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
                   }}
                   borderRadius={2}
@@ -446,10 +439,7 @@ export default function Content(props) {
                 <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
               </Hidden>
             </Box>
-            {/* {isLoading && <Loading />} */}
-            {/* <Test /> */}
           </Box>
-          {/* }  */}
         </Container>
       </Box>
       {inView && (
