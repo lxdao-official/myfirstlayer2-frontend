@@ -17,8 +17,6 @@ import SectionTop from '../../sections/SectionTop';
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const router = useRouter();
 
-  const colorMode = useContext(ColorModeContext);
-  const [current, setCurrent] = useState('introduce');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const t = useTranslations('Main');
