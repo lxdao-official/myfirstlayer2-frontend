@@ -49,6 +49,9 @@
     "Before Layer2": "1.Before Layer2",
     "Layer2 Evolution course": "2.Layer2 Evolution Course",
     "Rollup Principle": "3.Rollup Principle",
-    "Layer2 Future And Prospect": "4.Layer2 Future And Prospect"
+    "Layer2 Future And Prospect": "4.Layer2 Future And Prospect",
+    "next-chapter": "Next chapter",
+    "previous-chapter": "Previous chapter",
+    "current-chapter": "Current chapter"
   }
 }
