@@ -5,7 +5,7 @@ MyFirstLayer2 is an education project for newbies to learn and interact with Lay
 - MyFirstLayer2 Website:
 - MyFirstLayer2 Twitter:
 - LXDAO Website: <https://lxdao.io/>
-- LXDAO Forum: <https://forum.lxdao.io/c/projects/001-mfnft/14>
+- LXDAO Forum: <https://forum.lxdao.io/c/projects/010-myfirstlayer2/28>
 - LXDAO Discord: <https://discord.lxdao.io>
 - LXDAO Twitter: <https://twitter.com/LXDAO_Official>
 
