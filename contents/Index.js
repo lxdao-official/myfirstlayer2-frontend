@@ -1,10 +1,12 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { read } from 'fs';
+import { forEach } from 'lodash';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Box, Hidden, Link, Typography, useMediaQuery, Skeleton } from '@mui/material';
+import { Box, Hidden, Link, Skeleton, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import Container from '../components/Container';
@@ -18,7 +20,6 @@ import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 import mdxStyle from './mdx.module.css';
-import { forEach } from 'lodash';
 import { getStorage, removeStorage, setStorage } from './storage.js';
 
 const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
@@ -59,7 +60,7 @@ export default function Content(props) {
     // });
   }, [name]);
 
-  console.log('shuang seee', selectedIndex)
+  console.log('shuang seee', selectedIndex);
   const requestMdxSource = (name) => {
     setLoading(true);
 
@@ -71,7 +72,6 @@ export default function Content(props) {
           setMdxSource(data.mdxSource);
         }
         setTimeout(() => setLoading(false), 800);
-        
       })
       .catch((error) => console.error('err--------', error));
   };
@@ -80,14 +80,14 @@ export default function Content(props) {
 
   const computeReadCount = (arr) => {
     let count = 0;
-    for(let el of arr) {
-      if (!el?.main&&el?.status) {
+    for (let el of arr) {
+      if (!el?.main && el?.status) {
         count++;
       }
     }
     console.log('shuang chapter count', count);
     return count;
-  }
+  };
   const handleTabChapter = (action, chapter) => {
     console.log('action', action);
     console.log('chapter', chapter);
@@ -120,17 +120,17 @@ export default function Content(props) {
           main: true,
           index: selectedIndex - 1,
           status: true,
-        }
+        };
 
         newState[selectedIndex - 2] = {
           text: newState[selectedIndex - 2]?.text,
           main: false,
           index: selectedIndex - 2,
           status: true,
-        }
+        };
 
         setChapterData({
-          current: directory[selectedIndex -2]?.text,
+          current: directory[selectedIndex - 2]?.text,
           last: mainArr.includes(selectedIndex - 1) ? directory[selectedIndex - 3]?.text : directory[selectedIndex - 2]?.text,
           next: directory[selectedIndex]?.text,
         });
@@ -141,25 +141,22 @@ export default function Content(props) {
         console.log('shuang --selectedIndex', selectedIndex);
         setChapterData({
           current: directory[selectedIndex - 1]?.text,
-          last: selectedIndex - 2 === 0 ? '' :  mainArr.includes(selectedIndex - 2) ? directory[selectedIndex - 3]?.text : directory[selectedIndex - 2]?.text,
+          last: selectedIndex - 2 === 0 ? '' : mainArr.includes(selectedIndex - 2) ? directory[selectedIndex - 3]?.text : directory[selectedIndex - 2]?.text,
           next: directory[selectedIndex]?.text,
         });
-        
+
         newState[selectedIndex - 1] = {
           text: newState[selectedIndex - 1]?.text,
           main: false,
           index: selectedIndex - 1,
           status: true,
-        }
+        };
         setSelectedIndex(selectedIndex - 1);
 
         setName(newState[selectedIndex - 1]?.text);
-
-
       }
-      
-      setDirectory(newState);
 
+      setDirectory(newState);
 
       // setName(chapterData?.last);
       // setSelectedIndex(readData?.currentIndex - 1);
@@ -183,20 +180,19 @@ export default function Content(props) {
       let newState = directory;
       let nextChapter = directory[selectedIndex + 1];
       if (mainArr.includes(selectedIndex + 1)) {
-
         newState[selectedIndex + 1] = {
           text: newState[selectedIndex + 1]?.text,
           main: true,
           index: selectedIndex + 1,
           status: true,
-        }
+        };
 
         newState[selectedIndex + 2] = {
           text: newState[selectedIndex + 2]?.text,
           main: false,
           index: selectedIndex + 2,
           status: true,
-        }
+        };
 
         setChapterData({
           current: directory[selectedIndex + 2]?.text,
@@ -213,20 +209,18 @@ export default function Content(props) {
           last: directory[selectedIndex]?.text,
           next: mainArr.includes(selectedIndex + 2) ? directory[selectedIndex + 3]?.text : directory[selectedIndex + 2]?.text,
         });
-        
+
         newState[selectedIndex + 1] = {
           text: newState[selectedIndex + 1]?.text,
           main: false,
           index: selectedIndex + 1,
           status: true,
-        }
+        };
         setSelectedIndex(selectedIndex + 1);
 
         setName(newState[selectedIndex + 1]?.text);
-
-
       }
-      
+
       setDirectory(newState);
       // setName(chapterData?.next);
       // setSelectedIndex(selectedIndex + 1);
@@ -250,25 +244,24 @@ export default function Content(props) {
       let params = {};
 
       if (mainArr.includes(chapter?.index)) {
-
         if (!chapter?.status) {
           params = {
             ...directory[chapter?.index + 1],
-          }
-  
+          };
+
           newState[chapter.index + 1] = {
             text: newState[chapter.index + 1]?.text,
             main: false,
             index: chapter.index + 1,
             status: true,
-          }          
+          };
         }
         setChapterData({
           current: newState[chapter?.index + 1].text,
           last: chapter?.index === 0 ? '' : newState[chapter.index - 1].text,
           next: newState[chapter.index + 2].text,
         });
-      setSelectedIndex(chapter?.index + 1);
+        setSelectedIndex(chapter?.index + 1);
 
         setName(newState[chapter.index + 1]?.text);
       } else {
@@ -277,42 +270,42 @@ export default function Content(props) {
             newState[mainArr[1]] = {
               ...newState[mainArr[1]],
               status: true,
-            }
+            };
           }
 
           if (chapter?.index > mainArr[2] && chapter?.index < mainArr[3]) {
             newState[mainArr[2]] = {
               ...newState[mainArr[2]],
               status: true,
-            }
+            };
           }
 
           if (chapter?.index > mainArr[3]) {
             newState[mainArr[3]] = {
               ...newState[mainArr[3]],
               status: true,
-            }
-          }          
+            };
+          }
         }
 
         console.log('------newState', newState);
-        console.log('-chapter?.index-', chapter?.index, chapterCount)
+        console.log('-chapter?.index-', chapter?.index, chapterCount);
         setChapterData({
           current: newState[chapter?.index].text,
           last: chapter?.index - 1 === 0 ? '' : mainArr.includes(chapter?.index - 1) ? newState[chapter.index - 2].text : newState[chapter.index - 1].text,
           next: chapter?.index !== chapterCount + 3 && newState[chapter.index + 1].text,
         });
-      setSelectedIndex(chapter?.index);
+        setSelectedIndex(chapter?.index);
 
         setName(newState[chapter.index]?.text);
       }
-      
+
       if (!chapter?.status) {
         newState[chapter.index] = {
           ...chapter,
           status: true,
-        }
-  
+        };
+
         setDirectory(newState);
       }
 
@@ -339,112 +332,119 @@ export default function Content(props) {
 
   // console.log('mdScreen', mdScreen);
 
-  // useEffect(() => {
-  //   if (readStatus.length > 1) {
-  //     setStorage('readStatus', JSON.stringify({ data: readStatus }));
-  //   }
-  //   if (selectedIndex) {
-  //     setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
-  //   }
-  // }, [readStatus, selectedIndex]);
+  useEffect(() => {
+    const readed = directory.reduce((acc, cur) => {
+      acc += cur.status;
+      return acc;
+    }, 0);
+    console.log(readed);
+    if (readed > 2) {
+      console.log(readed);
+      console.log('setting dir', { directory });
+      setStorage('directoryStatus', JSON.stringify({ data: directory }));
+    }
+    if (selectedIndex > 1) {
+      setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+    }
+  }, [readStatus, selectedIndex]);
 
-  // useEffect(() => {
-  //   const readStatusStore = getStorage('readStatus');
-  //   const selectedIndexStore = getStorage('selectedIndex');
-  //   if (readStatusStore) {
-  //     setReadStatus(JSON.parse(readStatusStore).data);
-  //   }
-  //   if (selectedIndexStore) {
-  //     setSelectedIndex(JSON.parse(selectedIndexStore).data);
-  //     setName(md.props.file[selectedIndex]?.text);
-  //     setReadData({
-  //       counter: chapterCount,
-  //       read: computeReadCount(readStatus),
-  //       currentIndex: selectedIndex,
-  //       actionFrom: 'nextButton',
-  //     });
-  //   }
-  // }, []);
+  useEffect(() => {
+    const directoryStatus = getStorage('directoryStatus');
+    const selectedIndexStore = getStorage('selectedIndex');
+    if (directoryStatus) {
+      console.log('data111:', JSON.parse(directoryStatus).data);
+      setDirectory(JSON.parse(directoryStatus).data);
+    }
+    if (selectedIndexStore) {
+      setSelectedIndex(JSON.parse(selectedIndexStore).data);
+      setName(md.props.file[selectedIndex]?.text);
+      setReadData({
+        counter: chapterCount,
+        read: computeReadCount(readStatus),
+        currentIndex: selectedIndex,
+        actionFrom: 'nextButton',
+      });
+    }
+  }, []);
 
   return (
     <ReadContext.Provider value={{ readData, setReadData }}>
       <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
       <Typography id={'root'}></Typography>
-      <Box sx={{height: mdScreen ? '1200px' : '100vh', overflow: 'scroll',}}>
-      <Container paddingX={2}>
-        {/* {
+      <Box sx={{ height: mdScreen ? '1200px' : '100vh', overflow: 'scroll' }}>
+        <Container paddingX={2}>
+          {/* {
           isLoading ? 
             <Skeleton animation="wave" height={'100vh'}></Skeleton>
           : */}
-          <Box 
+          <Box
             ref={ref}
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
             }}
           >
-           {
-              isLoading ? 
-                <Skeleton
-                  animation="wave"
-                  variant='rect'
-                  width={mdScreen ? '1200px' : '100vw'}
+            {isLoading ? (
+              <Skeleton
+                animation="wave"
+                variant="rect"
+                width={mdScreen ? '1200px' : '100vw'}
+                sx={{
+                  height: '100vh',
+                  marginRight: mdScreen ? '32px' : 0,
+                }}
+              >
+                <Box className={mdxStyle.root} textDecoration={'none'}>
+                  {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
+                </Box>
+              </Skeleton>
+            ) : (
+              <Box
+                marginRight={{
+                  xs: 0,
+                  sm: 2,
+                }}
+                flexGrow={1}
+              >
+                <Box
                   sx={{
-                    height: '100vh',
-                    marginRight: mdScreen ? '32px' : 0
-                    ,
+                    display: 'flex',
+                    backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
+                    maxWidth: mdScreen ? '1200px' : '100vw',
+                    marginRight: mdScreen ? 2 : 0,
+
+                    color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+                  }}
+                  borderRadius={2}
+                  padding={{
+                    xs: 2,
+                    sm: 8,
                   }}
                 >
                   <Box className={mdxStyle.root} textDecoration={'none'}>
-                      {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
+                    {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
                   </Box>
-                </Skeleton>
-                :
-                <Box
-                  marginRight={{
-                    xs: 0,
-                    sm: 2,
-                  }}
-                  flexGrow={1}
-                >
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
-                      maxWidth: mdScreen ? '1200px' : '100vw',
-                      marginRight: mdScreen ? 2 : 0,
-
-                      color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-                    }}
-                    borderRadius={2}
-                    padding={{
-                      xs: 2,
-                      sm: 8,
-                    }}
-                  >
-                    <Box className={mdxStyle.root} textDecoration={'none'}>
-                      {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
-                    </Box>
-                  </Box>
-                  <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
                 </Box>
-            }
-            <Box sx={{
-              position: '-webkit-sticky',
-              position: 'sticky',
-              top: '5%',
-              maxHeight: '1200px',
-            }}>
+                <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
+              </Box>
+            )}
+            <Box
+              sx={{
+                position: '-webkit-sticky',
+                position: 'sticky',
+                top: '5%',
+                maxHeight: '1200px',
+              }}
+            >
               <Hidden smDown>
-                <PcDirectory directory={md.props.file} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
+                <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
               </Hidden>
             </Box>
             {/* {isLoading && <Loading />} */}
             {/* <Test /> */}
           </Box>
-        {/* }  */}
-
-      </Container>
+          {/* }  */}
+        </Container>
       </Box>
       {inView && (
         <Hidden smUp>
