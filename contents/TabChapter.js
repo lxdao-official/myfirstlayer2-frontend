@@ -121,20 +121,22 @@ export default function TabChapter(props) {
     }
     onTabChapter(action);
   };
+
+
   return (
     <>
       <Hidden smDown>
         <Box className={classes.root} {...props}>
           <Box className={classes.container} onClick={() => handleTabChapter('last')}>
             <Box className={classes.content}>
-              <Box sx={{ display: 'flex', width: '85px' }}>
+              <Box sx={{ display: 'flex', width: '85px', alignItems: 'center' }}>
                 <svg width="27" height="16" viewBox="0 0 27 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M26 9C26.5523 9 27 8.55228 27 8C27 7.44772 26.5523 7 26 7V9ZM0.292892 7.29289C-0.0976315 7.68342 -0.0976315 8.31658 0.292892 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928932C7.68054 0.538408 7.04738 0.538408 6.65685 0.928932L0.292892 7.29289ZM26 7L1 7V9L26 9V7Z"
                     fill="white"
                   />
                 </svg>
-                <Typography style={{ fontSize: '12px', fontStyle: 'SemiBold', fontWeight: 200, paddingLeft: '5px' }}>{chapterData?.last ? '上一章' : '当前章节'}</Typography>
+                <Typography style={{ fontSize: '12px', fontStyle: 'SemiBold', fontWeight: 200, paddingLeft: '5px' }}>{chapterData?.last ? t('previous-chapter') : t('current-chapter')}</Typography>
               </Box>
               <Box style={{ paddingLeft: '10px' }}>
                 <Typography style={{ fontSize: '18px', fontStyle: 'SemiBold', fontWeight: 600 }}>{chapterData?.last ? t(formatChapterTitle(chapterData?.last)) : t(formatChapterTitle(chapterData?.current))}</Typography>
@@ -147,8 +149,8 @@ export default function TabChapter(props) {
               <Box>
                 <Typography style={{ fontSize: '18px', fontStyle: 'SemiBold', fontWeight: 600 }}>{t(formatChapterTitle(chapterData?.next ? chapterData?.next : chapterData?.current))}</Typography>
               </Box>
-              <Box style={{ display: 'flex', width: '85px' }}>
-                <Typography style={{ fontSize: '12px', fontStyle: 'SemiBold', fontWeight: 200, paddingRight: '5px' }}>{chapterData?.next ? '下一章' : '当前章节'}</Typography>
+              <Box style={{ display: 'flex', width: '85px', alignItems: 'center' }}>
+                <Typography style={{ fontSize: '12px', fontStyle: 'SemiBold', fontWeight: 200, paddingRight: '5px' }}>{chapterData?.next ? t('next-chapter') : t('current-chapter')}</Typography>
                 <svg width="27" height="16" viewBox="0 0 27 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M1 9C0.447715 9 0 8.55228 0 8C0 7.44772 0.447715 7 1 7L1 9ZM26.7071 7.29289C27.0976 7.68342 27.0976 8.31658 26.7071 8.70711L20.3431 15.0711C19.9526 15.4616 19.3195 15.4616 18.9289 15.0711C18.5384 14.6805 18.5384 14.0474 18.9289 13.6569L24.5858 8L18.9289 2.34315C18.5384 1.95262 18.5384 1.31946 18.9289 0.928932C19.3195 0.538408 19.9526 0.538408 20.3431 0.928932L26.7071 7.29289ZM1 7L26 7V9L1 9L1 7Z"
@@ -166,7 +168,7 @@ export default function TabChapter(props) {
           <Box className={classes.mobileContainer} onClick={() => onTabChapter('last')}>
             <Box className={classes.mobileContent}>
               <Box>
-                <Typography style={{ fontSize: '8px', fontStyle: 'SemiBold', fontWeight: 200 }}>{chapterData?.last ? '上一章' : '当前章节'}</Typography>
+                <Typography style={{ fontSize: '8px', fontStyle: 'SemiBold', fontWeight: 200 }}>{chapterData?.last ? t('previous-chapter') : t('current-chapter')}</Typography>
                 <Typography style={{ fontSize: '14px', fontStyle: 'SemiBold', fontWeight: 600 }}>{chapterData?.last ? t(formatChapterTitle(chapterData?.last)) : t(formatChapterTitle(chapterData?.current))}</Typography>
               </Box>
               {/* {
@@ -189,7 +191,7 @@ export default function TabChapter(props) {
           <Box className={classes.mobileContainer} onClick={() => onTabChapter('next')}>
             <Box className={classes.mobileContent}>
               <Box>
-                <Typography style={{ fontSize: '8px', fontStyle: 'SemiBold', fontWeight: 200 }}>{chapterData?.next ? '下一章' : '当前章节'}</Typography>
+                <Typography style={{ fontSize: '8px', fontStyle: 'SemiBold', fontWeight: 200 }}>{chapterData?.next ? t('next-chapter') : t('current-chapter')}</Typography>
                 <Typography style={{ fontSize: '14px', fontStyle: 'SemiBold', fontWeight: 600 }}>{t(formatChapterTitle(chapterData?.next ? chapterData?.next : chapterData?.current))}</Typography>
               </Box>
               <Box fontSize={'8px'}>
