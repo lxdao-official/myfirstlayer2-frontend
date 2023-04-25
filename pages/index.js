@@ -38,7 +38,7 @@ export async function getStaticProps({ locale }) {
   const fileNames = files.map((file) => file);
   const directory = formatDirectory(fileNames); //.filter((item) => item.text !== 'TOC' && item.text !== 'README' && item.text !== 'SUMMARY');
 
-  const { content, meta } = getDocBySlug(directory[1]?.text, locale);
+  const { content, meta } = getDocBySlug(directory[0]?.text, locale);
   const mdxSource = await serialize(content);
   return {
     props: {

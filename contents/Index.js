@@ -28,20 +28,20 @@ export default function Content(props) {
   const { md } = props;
 
   const chapterCount = md.props.file.length - 4;
-  const [name, setName] = useState(md.props.file[1]?.text);
+  const [name, setName] = useState(md.props.file[0]?.text);
   const [readData, setReadData] = useState({
     counter: chapterCount,
     read: 1,
-    currentIndex: 1,
+    currentIndex: 0,
     actionFrom: 'nextButton',
   });
   const [mdxSource, setMdxSource] = useState('');
 
   const [directory, setDirectory] = useState(md.props.file);
   const [readStatus, setReadStatus] = useState([true]);
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [chapterData, setChapterData] = useState({
-    current: directory[1].text,
+    current: directory[0].text,
     last: '',
     next: directory[2].text,
   });
@@ -80,18 +80,18 @@ export default function Content(props) {
 
   const computeReadCount = (arr) => {
     let count = 0;
-    for (let el of arr) {
-      if (!el?.main && el?.status) {
+    for (let index in arr) {
+      if (!arr[index].main && arr[index]?.status || (arr[index].main && (+index === 0  || +index === arr.length - 1)) && arr[index]?.status ) {
+        console.log('arr', arr[index])
         count++;
       }
     }
-    console.log('shuang chapter count', count);
     return count;
   };
   const handleTabChapter = (action, chapter) => {
     console.log('action', action);
     console.log('chapter', chapter);
-    const mainArr = [0, 5, 10, 18];
+    const mainArr = [1, 5, 10, 18];
 
     if (!action) {
       return;
@@ -144,7 +144,6 @@ export default function Content(props) {
           last: selectedIndex - 2 === 0 ? '' : mainArr.includes(selectedIndex - 2) ? directory[selectedIndex - 3]?.text : directory[selectedIndex - 2]?.text,
           next: directory[selectedIndex]?.text,
         });
-
         newState[selectedIndex - 1] = {
           text: newState[selectedIndex - 1]?.text,
           main: false,
@@ -285,6 +284,13 @@ export default function Content(props) {
               ...newState[mainArr[3]],
               status: true,
             };
+          }
+
+          if (chapter?.index === directory.length - 1) {
+            newState[chapter?.index] = {
+              ...newState[chapter?.index],
+              status: true,
+            }
           }
         }
 

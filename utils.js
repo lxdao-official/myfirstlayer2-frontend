@@ -27,10 +27,15 @@ export function formatDirectory(fileNames) {
   directory = directory.filter((item) => item.text !== 'TOC' && item.text !== 'README' && item.text !== 'SUMMARY');
   
   directory.unshift({
-    text: '1.0-Before Layer2',
+    text: '1.0-foreword',
     status: true,
     main: true,
-  });
+  })
+  directory[1] = {
+    text: '1.0-Before Layer2',
+    status: false,
+    main: true,
+  }
   directory.splice(5, 0, {
     text: '2.0-Layer2 Evolution course',
     status: false,
@@ -46,8 +51,11 @@ export function formatDirectory(fileNames) {
     status: false,
     main: true,
   })
+  directory[directory.length - 1] = {
+    ...directory[directory.length - 1],
+    main: true,
+  }
 
-  directory[1] = {...directory[1], status: true};
   console.log('directory', directory)
 
 
