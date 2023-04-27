@@ -15,6 +15,7 @@ import SectionMyFirstProject from '../sections/SectionMyFirstProject';
 import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
 import { formatDirectory, getDocBySlug } from '/utils';
+import { DIRECTORY_NAME } from '../common/constans';
 
 export default function Index({ content, directory }) {
   const theme = useTheme();
@@ -33,19 +34,14 @@ export default function Index({ content, directory }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const directoryPath = path.join(process.cwd(), '/mdx/zh');
-  const files = fs.readdirSync(directoryPath);
-  const fileNames = files.map((file) => file);
-  const directory = formatDirectory(fileNames); //.filter((item) => item.text !== 'TOC' && item.text !== 'README' && item.text !== 'SUMMARY');
-
-  const { content, meta } = getDocBySlug(directory[0]?.text, locale);
+  const { content, meta } = getDocBySlug(DIRECTORY_NAME[0]?.text, locale);
   const mdxSource = await serialize(content);
   return {
     props: {
       messages: (await import(`../locale/${locale}.json`)).default,
       content: mdxSource,
       meta,
-      directory,
+      directory: DIRECTORY_NAME,
     },
   };
 }
