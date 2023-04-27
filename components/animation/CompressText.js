@@ -2045,7 +2045,7 @@ export default function CompressText() {
     });
   } else if (status === 2) {
     [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
+      todefault(as[v], '#fff');
     });
 
     direction &&
