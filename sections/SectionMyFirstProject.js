@@ -148,13 +148,13 @@ export default function SectionMyFirstProject() {
   return (
     <SectionSimpleWrapper childOverflow="visible" id="next">
       <Box padding={{ xs: 2, sm: 0 }}>
-        <Grid sx={{ display: { md: 'flex', xs: 'none' } }} container spacing={{ xs: 3.125, sm: 2 }}>
+        {/* <Grid sx={{ display: { md: 'flex', xs: 'none' } }} container spacing={{ xs: 3.125, sm: 2 }}>
           {myfirstProjects.map((item, i) => (
             <Grid rowGap="25px" item xs={12} sm={6} md={4} key={i}>
               <MyFirstCard theme={theme} {...item} />
             </Grid>
           ))}
-        </Grid>
+        </Grid> */}
         <Grid sx={{ display: { md: 'none', xs: 'flex' } }} container spacing={{ xs: '15px' }}>
           <Swiper
             style={{ marginLeft: '15px', height: '320px' }}
