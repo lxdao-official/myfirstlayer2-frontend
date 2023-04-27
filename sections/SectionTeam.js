@@ -16,6 +16,7 @@ const coreContributors = [
     name: 'brucexu.eth',
     twitter: 'https://twitter.com/brucexu_eth',
   },
+
   {
     image: '/teams/kasoqian.jpg',
     description: 'Web3 BUIDLER and BELIEVER! Creator of GuoChanLiangXin and MyFirstNFT. Member @theNextDAO. Core contributor @GCLX community.',
@@ -33,6 +34,12 @@ const coreContributors = [
     description: 'A Web2 developer with more than 10 years of experience. Now, looking for some fun in Web3.0. Call me John 或者老高. Member @GCLX community.',
     name: '0xCryptolee',
     twitter: 'https://twitter.com/IpfSxian',
+  },
+  {
+    image: '/teams/0xhardman.jpg',
+    description: 'Web3 believer and builder | Loving to try something new | Inspired to become a digital nomad | Member of BUPT3',
+    name: '0xhardman.eth',
+    twitter: 'https://twitter.com/0xhardman',
   },
   {
     image: '/teams/AnImpro.jpg',
