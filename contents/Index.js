@@ -81,16 +81,14 @@ export default function Content(props) {
   const computeReadCount = (arr) => {
     let count = 0;
     for (let index in arr) {
-      if (!arr[index].main && arr[index]?.status || (arr[index].main && (+index === 0  || +index === arr.length - 1)) && arr[index]?.status ) {
-        console.log('arr', arr[index])
+      if ((!arr[index].main && arr[index]?.status) || (arr[index].main && (+index === 0 || +index === arr.length - 1) && arr[index]?.status)) {
+        console.log('arr', arr[index]);
         count++;
       }
     }
     return count;
   };
   const handleTabChapter = (action, chapter) => {
-    console.log('action', action);
-    console.log('chapter', chapter);
     const mainArr = [1, 5, 10, 18];
 
     if (!action) {
@@ -113,7 +111,7 @@ export default function Content(props) {
       }
 
       let newState = directory;
-      let lastChapter = directory[selectedIndex];
+
       if (mainArr.includes(selectedIndex - 1)) {
         newState[selectedIndex - 1] = {
           text: newState[selectedIndex - 1]?.text,
@@ -290,7 +288,7 @@ export default function Content(props) {
             newState[chapter?.index] = {
               ...newState[chapter?.index],
               status: true,
-            }
+            };
           }
         }
 
@@ -345,20 +343,17 @@ export default function Content(props) {
     }, 0);
     console.log(readed);
     if (readed > 2) {
-      console.log(readed);
-      console.log('setting dir', { directory });
       setStorage('directoryStatus', JSON.stringify({ data: directory }));
     }
     if (selectedIndex > 1) {
       setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
     }
-  }, [readStatus, selectedIndex]);
+  }, [directory, selectedIndex]);
 
   useEffect(() => {
     const directoryStatus = getStorage('directoryStatus');
     const selectedIndexStore = getStorage('selectedIndex');
     if (directoryStatus) {
-      console.log('data111:', JSON.parse(directoryStatus).data);
       setDirectory(JSON.parse(directoryStatus).data);
     }
     if (selectedIndexStore) {
@@ -366,7 +361,7 @@ export default function Content(props) {
       setName(md.props.file[selectedIndex]?.text);
       setReadData({
         counter: chapterCount,
-        read: computeReadCount(readStatus),
+        read: computeReadCount(directory),
         currentIndex: selectedIndex,
         actionFrom: 'nextButton',
       });
