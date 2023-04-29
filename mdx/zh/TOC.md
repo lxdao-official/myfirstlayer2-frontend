@@ -1,7 +1,7 @@
 前言
 
 1. Before Layer 2
-2. Layer 2 演进历程
+2. Layer 2 发展史
 3. Rollup 机制与原理
 4. Layer2 未来与展望
 
