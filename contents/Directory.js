@@ -9,7 +9,6 @@ import { makeStyles } from '@mui/styles';
 
 import abi from '../abi.json';
 import { svg } from '../common/constans';
-import { MFL2ConnectButton } from '../components/MFL2ConnectButton';
 import showMessage from '../components/showMessage';
 import down from '../public/content/down.svg';
 import up from '../public/content/up.svg';
@@ -112,11 +111,6 @@ export function PcDirectory(props) {
   // };
   return (
     <Box>
-      <Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center', width: '247px' }} marginBottom={3}>
-          <MFL2ConnectButton />
-        </Box>
-      </Box>
       <Box
         sx={{
           width: '247px',
