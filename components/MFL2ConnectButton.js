@@ -1,57 +1,58 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { switchNetwork } from '@wagmi/core';
-import { useState } from 'react';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { switchNetwork } from "@wagmi/core";
+import { useState } from "react";
 
-import { Box, Button, Menu, MenuItem, alpha, styled } from '@mui/material';
+import { Box, Button, Menu, MenuItem, alpha, styled } from "@mui/material";
 
-import Arrow from './svg/Arrow';
+import Arrow from "./svg/Arrow";
 
 const NormalButton = styled(Button)({
-  borderRadius: '18px',
-  width: '247px',
-  height: '54px',
-  fontSize: '20px',
-  textTransform: 'capitalize',
-  fontWeight: '800',
-  backgroundColor: '#000',
-  color: '#fff',
-  '&:hover': {
-    backgroundColor: '#414141',
+  borderRadius: "18px",
+  width: "145px",
+  height: "29px",
+  fontSize: "12px",
+  textTransform: "capitalize",
+  fontWeight: "500",
+  backgroundColor: "#000",
+  border: "1px solid #fff",
+  color: "#fff",
+  "&:hover": {
+    backgroundColor: "#414141",
     // borderColor: '#0062cc',
-    boxShadow: 'none',
+    boxShadow: "none",
   },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#626262',
-    borderColor: '#626262',
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: "#626262",
+    borderColor: "#626262",
   },
-  '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0, 0, 0, 0.5)',
+  "&:focus": {
+    boxShadow: "0 0 0 0.2rem rgba(0, 0, 0, 0.5)",
   },
 });
 
 const IconButton = styled(Button)({
-  display: 'flex',
-  alignItems: 'center',
-  width: '227px',
-  height: '40px',
-  fontSize: '16px',
-  color: 'white',
-  textTransform: 'capitalize',
-  borderRadius: '8px',
-  '&:hover': {
-    backgroundColor: '#414141',
-    boxShadow: 'none',
+  display: "flex",
+  alignItems: "center",
+  width: "145px",
+  height: "29px",
+  fontSize: "12px",
+  color: "white",
+  textTransform: "capitalize",
+  borderRadius: "8px",
+  "&:hover": {
+    backgroundColor: "#414141",
+    boxShadow: "none",
   },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#626262',
-    borderColor: '#626262',
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: "#626262",
+    borderColor: "#626262",
   },
-  '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0, 0, 0, 0.5)',
+  "&:focus": {
+    boxShadow: "0 0 0 0.2rem rgba(0, 0, 0, 0.5)",
   },
-  '&:disabled': { color: 'white' },
+  "&:disabled": { color: "white" },
 });
 
 export const MFL2ConnectButton = () => {
@@ -60,60 +61,78 @@ export const MFL2ConnectButton = () => {
   const chains = [
     {
       chainId: 420,
-      chainName: 'optimism goerli',
-      icon: '/icons/op.png',
+      chainName: "optimism goerli",
+      icon: "/icons/op.png",
     },
     {
       chainId: 421613,
-      chainName: 'Arbitrum Goerli',
-      icon: '/icons/ab.png',
+      chainName: "Arbitrum Goerli",
+      icon: "/icons/ab.png",
     },
     {
       chainId: 280,
-      chainName: 'zkSync Era Testnet',
-      icon: '/icons/zk.png',
+      chainName: "zkSync Era Testnet",
+      icon: "/icons/zk.png",
     },
   ];
   //   const open = Boolean(anchorEl);
 
   return (
     <ConnectButton.Custom>
-      {({ account, chain, openAccountModal, openChainModal, openConnectModal, authenticationStatus, mounted }) => {
+      {({
+        account,
+        chain,
+        openAccountModal,
+        openChainModal,
+        openConnectModal,
+        authenticationStatus,
+        mounted,
+      }) => {
         // Note: If your app doesn't use authentication, you
         // can remove all 'authenticationStatus' checks
-        const ready = mounted && authenticationStatus !== 'loading';
-        const connected = ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated');
+        const ready = mounted && authenticationStatus !== "loading";
+        const connected =
+          ready &&
+          account &&
+          chain &&
+          (!authenticationStatus || authenticationStatus === "authenticated");
         return (
           <Box
             {...(!ready && {
-              'aria-hidden': true,
+              "aria-hidden": true,
               sx: {
-                width: '247px',
+                width: "145px",
                 opacity: 0,
-                pointerEvents: 'none',
-                userSelect: 'none',
+                pointerEvents: "none",
+                userSelect: "none",
               },
             })}
           >
             {(() => {
               if (!connected) {
-                return <NormalButton onClick={openConnectModal}>Connect Wallet</NormalButton>;
+                return (
+                  <NormalButton onClick={openConnectModal}>
+                    Connect Wallet
+                  </NormalButton>
+                );
               }
               if (chain.unsupported) {
                 return (
                   //   <Button variant="contained" sx={{ borderRadius: '18px', width: '247px', height: '54px', fontSize: '20px', textTransform: 'capitalize', fontWeight: '800' }} onClick={openChainModal}>
                   //     Wrong network
                   //   </Button>
-                  <NormalButton onClick={openChainModal}>Wrong network</NormalButton>
+                  <NormalButton onClick={openChainModal}>
+                    Wrong network
+                  </NormalButton>
                 );
               }
               return (
-                <Box sx={{ position: 'flex', flexDirection: 'col' }}>
+                <Box sx={{ position: "flex", flexDirection: "col" }}>
                   <NormalButton
                     sx={{
                       ...(open && {
-                        borderEndEndRadius: '0',
-                        borderEndStartRadius: '0',
+                        borderEndEndRadius: "0",
+                        borderEndStartRadius: "0",
                       }),
                     }}
                     // onClick={(e) => {
@@ -122,20 +141,22 @@ export const MFL2ConnectButton = () => {
                     // //   openAccountModal();
                     // }}
                   >
-                    <span onClick={openAccountModal}>{account.displayName}</span>
+                    <span onClick={openAccountModal}>
+                      {account.displayName}
+                    </span>
                     <Box
                       sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
                       onClick={() => {
                         setOpen(!open);
                       }}
                     >
                       <Box
-                        component={'img'}
-                        alt={chain.name ?? 'Chain icon'}
+                        component={"img"}
+                        alt={chain.name ?? "Chain icon"}
                         src={
                           chains.filter((v) => {
                             if (v.chainId == chain.id) {
@@ -143,13 +164,20 @@ export const MFL2ConnectButton = () => {
                             }
                           })[0].icon
                         }
-                        style={{ width: 27, height: 27, marginLeft: '10px', marginRight: '6px' }}
+                        style={{
+                          width: 27,
+                          height: 27,
+                          marginLeft: "10px",
+                          marginRight: "6px",
+                        }}
                       />
                       <Arrow
                         color="white"
                         width="12"
                         height="7"
-                        style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                        style={{
+                          transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                        }}
                         onClick={() => {
                           setOpen(!open);
                         }}
@@ -157,10 +185,20 @@ export const MFL2ConnectButton = () => {
                     </Box>
                   </NormalButton>
                   {open && (
-                    <Box sx={{ padding: '10px', position: 'absolute', zIndex: '100', background: '#000', color: '#fff', borderEndEndRadius: '18px', borderEndStartRadius: '18px' }}>
+                    <Box
+                      sx={{
+                        padding: "10px",
+                        position: "absolute",
+                        zIndex: "100",
+                        background: "#000",
+                        color: "#fff",
+                        borderEndEndRadius: "18px",
+                        borderEndStartRadius: "18px",
+                      }}
+                    >
                       {chains.map((v, i) => (
                         <IconButton
-                          sx={{ position: 'flex', justifyContent: 'start' }}
+                          sx={{ position: "flex", justifyContent: "start" }}
                           key={i}
                           disabled={i >= 1}
                           onClick={async () => {
@@ -168,7 +206,19 @@ export const MFL2ConnectButton = () => {
                             setOpen(!open);
                           }}
                         >
-                          {v.icon && <Box component={'img'} alt={v.chainName ?? 'Chain icon'} src={v.icon} style={{ width: 27, height: 27, marginRight: '10px', marginLeft: '24px' }} />}
+                          {v.icon && (
+                            <Box
+                              component={"img"}
+                              alt={v.chainName ?? "Chain icon"}
+                              src={v.icon}
+                              style={{
+                                width: 27,
+                                height: 27,
+                                marginRight: "10px",
+                                marginLeft: "24px",
+                              }}
+                            />
+                          )}
                           {v.chainName}
                         </IconButton>
                       ))}
