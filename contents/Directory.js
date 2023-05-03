@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme) => ({
   },
   listRoot: {
     overflow: 'hidden',
-    marginTop: '10px',
+    marginTop: '2px',
     color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
   },
   listItem: {
     borderRadius: '10px',
-    padding: '12px',
+    padding: '10px 0',
     '&:hover': {
       background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
       cursor: 'pointer',
@@ -134,10 +134,10 @@ export function PcDirectory(props) {
           <Progress></Progress>
         </Box>
         <Box
-          sx={{
-            maxHeight: '987px',
-            overflow: 'auto',
-          }}
+          // sx={{
+          //   maxHeight: '987px',
+          //   overflow: 'auto',
+          // }}
         >
           {directory?.map((row, index) => {
             return <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onTabChapter('lastOrNext', { index, ...row })} {...props} />;
@@ -226,7 +226,6 @@ const Item = (props) => {
             <Avatar className={classes.avatar} src={readStatusImg[rowData?.status ? 0 : 1]} />
           </Box>
           <Box
-            fontSize={22}
             sx={{
               fontStyle: rowData?.main ? 'Bold' : 'Regular',
               fontWeight: rowData?.main ? 700 : 400,
