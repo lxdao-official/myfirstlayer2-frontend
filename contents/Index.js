@@ -3,9 +3,10 @@ import { read } from 'fs';
 import { forEach } from 'lodash';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+// import { Affix } from 'antd';
 import { Box, Hidden, Link, Skeleton, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
@@ -49,6 +50,8 @@ export default function Content(props) {
   const { ref, inView, entry } = useInView({
     threshold: 0.3,
   });
+  // const elementRef = useRef(null);
+  // const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
     requestMdxSource(name);
@@ -59,6 +62,32 @@ export default function Content(props) {
     //   next: chapterData?.next,//readData?.currentIndex !== readData.counter ? md.props.file[readData?.currentIndex + 1]?.text : '',
     // });
   }, [name]);
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           setIsIntersecting(true)
+  //           console.log('Element is visible');
+  //           // Do something when element is visible
+  //         } else {
+  //           setIsIntersecting(false)
+
+  //         }
+  //       });
+  //     },
+  //     { threshold: 0.5 }
+  //   );
+
+  //   if (elementRef.current) {
+  //     observer.observe(elementRef.current);
+  //   }
+
+  //   return () => {
+  //     observer.unobserve(elementRef.current);
+  //   };
+  // }, []);
 
   console.log('shuang seee', selectedIndex);
   const requestMdxSource = (name) => {
@@ -261,6 +290,17 @@ export default function Content(props) {
         setSelectedIndex(chapter?.index + 1);
 
         setName(newState[chapter.index + 1]?.text);
+      } else if(chapter.index === 0) {
+        if (!chapter?.status) {
+          setChapterData({
+            current: newState[chapter?.index].text,
+            last: '',
+            next: newState[chapter.index + 2].text,
+          });
+          setSelectedIndex(chapter?.index);
+  
+          setName(newState[chapter.index]?.text);
+        }
       } else {
         if (!chapter?.status) {
           if (chapter?.index > mainArr[1] && chapter?.index < mainArr[2]) {
@@ -353,16 +393,19 @@ export default function Content(props) {
   useEffect(() => {
     const directoryStatus = getStorage('directoryStatus');
     const selectedIndexStore = getStorage('selectedIndex');
+    const jsonDirectory = JSON.parse(directoryStatus).data;
+    const jsonSelect = JSON.parse(selectedIndexStore).data;
     if (directoryStatus) {
       setDirectory(JSON.parse(directoryStatus).data);
     }
     if (selectedIndexStore) {
       setSelectedIndex(JSON.parse(selectedIndexStore).data);
-      setName(md.props.file[selectedIndex]?.text);
+
+      setName(jsonDirectory[jsonSelect]?.text);
       setReadData({
         counter: chapterCount,
-        read: computeReadCount(directory),
-        currentIndex: selectedIndex,
+        read: computeReadCount(jsonDirectory),
+        currentIndex: jsonSelect.data,
         actionFrom: 'nextButton',
       });
     }
@@ -372,15 +415,43 @@ export default function Content(props) {
     <ReadContext.Provider value={{ readData, setReadData }}>
       <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
       <Typography id={'root'}></Typography>
-      <Box sx={{ height: mdScreen ? '1200px' : '100vh', overflow: 'scroll' }}>
+      {/* <Box sx={{background: 'green', display: 'flex' }}> */}
+
         <Container paddingX={2}>
           <Box
             ref={ref}
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
+              height: '100%',
             }}
           >
+  
+            {/* {
+              isIntersecting ? (
+                <Box>
+                  <Hidden smDown>
+                      <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
+                    </Hidden>
+                </Box>
+              ) : (
+                <Affix>
+                      <Hidden smDown>
+                        <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
+                      </Hidden>
+                    </Affix >
+              )
+            } */}
+
+            <Hidden smDown>
+              <Box sx={{
+                // position: isIntersecting ? 'fixed' : 'static',
+                top: 0,
+              }}>
+                <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
+              </Box>
+            </Hidden>
+    
             {isLoading ? (
               <Skeleton
                 animation="wave"
@@ -388,7 +459,8 @@ export default function Content(props) {
                 width={mdScreen ? '1200px' : '100vw'}
                 sx={{
                   height: '100vh',
-                  marginRight: mdScreen ? '32px' : 0,
+                  marginLeft: mdScreen ? '32px' : 0,
+                  
                 }}
               >
                 <Box className={mdxStyle.root} textDecoration={'none'}>
@@ -398,8 +470,9 @@ export default function Content(props) {
             ) : (
               <Box
                 sx={{
-                  marginRight: mdScreen ? '32px' : 0,
+                  // marginRight: mdScreen ? '32px' : 0,
                   flexGrow: 1,
+                  marginLeft: mdScreen ? '32px' : 0,
                 }}
               >
                 <Box
@@ -419,24 +492,15 @@ export default function Content(props) {
                     {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
                   </Box>
                 </Box>
-                <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
+                {/* <div ref={elementRef}> */}
+                  <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
+                {/* </div> */}
               </Box>
             )}
-            <Box
-              sx={{
-                position: '-webkit-sticky',
-                position: 'sticky',
-                top: '5%',
-                maxHeight: '1200px',
-              }}
-            >
-              <Hidden smDown>
-                <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
-              </Hidden>
-            </Box>
+
           </Box>
         </Container>
-      </Box>
+      {/* </Box> */}
       {inView && (
         <Hidden smUp>
           <Box
