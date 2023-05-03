@@ -8,12 +8,8 @@ import { formatDirectory, getDocBySlug } from '../../../utils';
 export default async function handler(req, res) {
   let { name } = req.query;
 
-  console.log('name------------', name);
-  const directoryPath = path.join(process.cwd(), '/mdx/zh');
+  console.log('req md name->', name);
 
-  const files = fs.readdirSync('./mdx/zh');
-  const fileNames = files.map((file) => file);
-  const directory = formatDirectory(fileNames);
   const { content, meta } = getDocBySlug(name);
   const mdxSource = await serialize(content);
 

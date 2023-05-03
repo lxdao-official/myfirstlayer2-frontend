@@ -2,16 +2,7 @@ import { useTranslations } from 'next-intl';
 import React from 'react';
 
 import AddIcon from '@mui/icons-material/Add';
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Grid,
-  Link,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, Grid, Link, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import StyledToolTip from '../components/StyledToolTip';
@@ -52,17 +43,11 @@ function BigAd(props) {
           title={props.title}
           sx={{
             width: '100%',
-            filter:
-              props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
+            filter: props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
         <Box component={CardContent}>
-          <Typography
-            variant={'body1'}
-            fontWeight={600}
-            color="text.primary"
-            gutterBottom
-          >
+          <Typography variant={'body1'} fontWeight={600} color="text.primary" gutterBottom>
             {props.title}
           </Typography>
           <Typography fontSize={'13px'} fontWeight={400} color="text.primary">
@@ -70,12 +55,7 @@ function BigAd(props) {
           </Typography>
         </Box>
         <Box flexGrow={1} />
-        <Box
-          paddingLeft={2}
-          paddingRight={'10px'}
-          component={CardActions}
-          justifyContent="end"
-        >
+        <Box paddingLeft={2} paddingRight={'10px'} component={CardActions} justifyContent="end">
           <Box display="flex" justifyContent="flex-end" gap="10px">
             {props.twitter && (
               <Link color="text.icon" target="_blank" href={props.twitter}>
@@ -85,12 +65,7 @@ function BigAd(props) {
               </Link>
             )}
             {props.website && (
-              <Link
-                color="text.icon"
-                marginRight="11px"
-                target="_blank"
-                href={props.website}
-              >
+              <Link color="text.icon" marginRight="11px" target="_blank" href={props.website}>
                 <Website width="18px" />
               </Link>
             )}
@@ -112,13 +87,7 @@ function SmallAd(props) {
           textDecoration: 'none',
         }}
       >
-        <Box
-          width={1}
-          height={1}
-          display={'flex'}
-          flexDirection={'column'}
-          position="relative"
-        ></Box>
+        <Box width={1} height={1} display={'flex'} flexDirection={'column'} position="relative"></Box>
       </Box>
     );
   }
@@ -152,17 +121,10 @@ function SmallAd(props) {
           title={props.title}
           sx={{
             width: '100%',
-            filter:
-              props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
+            filter: props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
-        <Box
-          padding="12px !important"
-          component={CardContent}
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-        >
+        <Box padding="12px !important" component={CardContent} display="flex" justifyContent="space-between" alignItems="center">
           <Typography
             variant={'body1'}
             sx={{
@@ -195,8 +157,16 @@ export default function SectionSponsors() {
 
   return (
     <SectionSimpleWrapper title={t(`sectionSponsors-title-10`)} id="next">
-      <Box padding={{ xs: 2, sm: 0 }}>
-        <Grid container spacing={3.125}>
+      <Box padding={{ xs: 1, sm: 0 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '30px' }}>
+          {orgDonation.map((item, i) => {
+            return (
+              <Link key={i} target="_blank" href={item.website}>
+                <Box sx={{ mx: '35px' }} component="img" src={item.image} height="44px" width="full" />
+              </Link>
+            );
+          })}
+          {/* <Grid container spacing={3.125}>
           {orgDonation.map((item, i) => (
             <Grid rowGap="55px" item xs={12} sm={6} md={12 / 5} key={i}>
               <BigAd theme={theme} {...item} />
@@ -207,7 +177,8 @@ export default function SectionSponsors() {
               <SmallAd theme={theme} {...item} />
             </Grid>
           ))}
-        </Grid>
+        </Grid> */}
+        </Box>
       </Box>
     </SectionSimpleWrapper>
   );

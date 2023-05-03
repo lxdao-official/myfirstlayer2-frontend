@@ -1,14 +1,19 @@
 import G6 from '@antv/g6';
 import { useTranslations } from 'next-intl';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 
-let side = '';
+// let side = '';
 export default function ImpossibleTriangle({ children, title }) {
   const t = useTranslations('PageLayout');
+
   const [dragNodes, setDragNodes] = useState([]);
-  // const [side, setSide] = useState('');
+  const dragNodesRef = useRef(null);
+  dragNodesRef.current = dragNodes;
+  const [side, setSide] = useState('');
+  const sideRef = useRef(null);
+  sideRef.current = side;
 
   const distanceOfPoint2Line = (point0, point1, point2) => {
     const x = point0.x;
@@ -33,14 +38,14 @@ export default function ImpossibleTriangle({ children, title }) {
 
   const area = 16560;
 
-  // const center = { x: 138 + 69, y: 94 + 60 };
-  const center0 = { x: 138 + 72, y: 94 + 40 };
-  const center1 = { x: 165, y: 202 }; //{ x: 138 + 68 - 23, y: 94 + 60 + 20 };
-  const center2 = { x: 258, y: 202 }; //{ x: 138 + 69 + 23, y: 94 + 60 - 20 };
+  const center = { x: 138 + 69, y: 94 + 80 };
+  const center0 = { x: 138 + 69, y: 94 + 70 };
+  const center1 = { x: 185, y: 94 + 100 }; //{ x: 138 + 68 - 23, y: 94 + 60 + 20 };
+  const center2 = { x: 138 + 82, y: 94 + 80 }; //{ x: 138 + 69 + 23, y: 94 + 60 - 20 };
 
   const [innerPoints, setInnerPoints] = useState([
     {
-      x: 212,
+      x: 138 + 69,
       y: 94,
     },
     { x: 138, y: 94 + 120 },
@@ -52,7 +57,7 @@ export default function ImpossibleTriangle({ children, title }) {
 
   const oldInner = [
     {
-      x: 212,
+      x: 138 + 69,
       y: 94,
     },
     { x: 138, y: 94 + 120 },
@@ -64,7 +69,7 @@ export default function ImpossibleTriangle({ children, title }) {
 
   const outerTriangle = [
     {
-      x: 212,
+      x: 138 + 69,
       y: 50,
     },
     { x: 100, y: 50 + 188 },
@@ -76,7 +81,7 @@ export default function ImpossibleTriangle({ children, title }) {
 
   const innerNearOuterTriangle = [
     {
-      x: 212,
+      x: 138 + 69,
       y: 50 + 10,
     },
     { x: 100 + 10, y: 50 + 188 - 5 },
@@ -171,12 +176,12 @@ export default function ImpossibleTriangle({ children, title }) {
     ],
   };
 
-  const triggerDis = 25;
+  const triggerDis = 30;
 
   const changeColor = (graph, index, color) => {
     // debugger;
-    // setSide(index);
-    side = index;
+    setSide(index);
+    // side = index;
     const style = { style: { fill: color, stroke: color } };
     const white = { style: { fill: 'white', stroke: 'white' } };
     graph.cfg.nodes.forEach((item) => {
@@ -278,11 +283,14 @@ export default function ImpossibleTriangle({ children, title }) {
           {
             type: 'drag-node',
             enableDelegate: false,
-            // shouldBegin: (e) => {
-            //   debugger;
-            //   // 不允许拖拽 id 为 'node1' 的节点
-            //   if (e.item && e.item.getModel().id === "node1") return false;
-            // },
+            shouldBegin: (e) => {
+              // 不允许拖拽 id 为 'node1' 的节点
+
+              if (e.item && (e.item.getModel().id === '3' || e.item.getModel().id === '4' || e.item.getModel().id === '5')) {
+                return false;
+              }
+              return true;
+            },
             shouldEnd: (e) => {
               return true;
             },
@@ -304,6 +312,9 @@ export default function ImpossibleTriangle({ children, title }) {
     window.graph = graph;
     graph.on('node:dragend', (e) => {
       const index = graph.cfg.nodes.indexOf(e.target.cfg.parent.cfg.item);
+      if (index === 3 || index === 4 || index === 5) {
+        return;
+      }
       const outer = graph.cfg.nodes[index + 3];
       const isIn = pointInTriangle(e.canvasX, e.canvasY);
       const dis = twoPointDistance(
@@ -318,56 +329,123 @@ export default function ImpossibleTriangle({ children, title }) {
       );
       const nodeItem = e.item;
       console.log(isIn, dis);
-
       if (!isIn) {
         // point is out of triangle
         graph.updateItem(nodeItem, {
           x: innerNearOuterTriangle[index].x,
           y: innerNearOuterTriangle[index].y,
         });
-      } else {
-        const p0 = graph.cfg.nodes[0]._cfg.model;
-        const p1 = graph.cfg.nodes[1]._cfg.model;
-        const p2 = graph.cfg.nodes[2]._cfg.model;
+      }
 
-        const dis0 = twoPointDistance(p0, outerTriangle[0]);
-        const dis1 = twoPointDistance(p1, outerTriangle[1]);
-        const dis2 = twoPointDistance(p2, outerTriangle[2]);
-        const node0 = graph.cfg.nodes[0];
-        const node1 = graph.cfg.nodes[1];
-        const node2 = graph.cfg.nodes[2];
-        console.log('node0', node0._cfg.model.x, node0._cfg.model.y);
-        console.log('node1', node1._cfg.model.x, node1._cfg.model.y);
-        console.log('node2', node2._cfg.model.x, node2._cfg.model.y);
-        if (dis0 < triggerDis && dis1 < triggerDis && dis2 < triggerDis) {
-          if (nodeItem === node0) {
-            graph.updateItem(node2, center2);
-            changeColor(graph, 1, '#FF6055');
-          } else if (nodeItem === node1) {
-            graph.updateItem(node0, center0);
-            changeColor(graph, 2, '#FFC64E');
-          } else {
-            graph.updateItem(node1, center1);
-            changeColor(graph, 3, '#5979ED');
-          }
+      const p0 = graph.cfg.nodes[0]._cfg.model;
+      const p1 = graph.cfg.nodes[1]._cfg.model;
+      const p2 = graph.cfg.nodes[2]._cfg.model;
+      const node0 = graph.cfg.nodes[0];
+      const node1 = graph.cfg.nodes[1];
+      const node2 = graph.cfg.nodes[2];
+      if (nodeItem === node0) {
+        const d012 = distanceOfPoint2Line(p0, outerTriangle[1], outerTriangle[2]);
+        console.log('d012', d012);
+        if (d012 < 140) {
+          graph.updateItem(nodeItem, {
+            x: center.x,
+            y: center.y,
+          });
+          graph.updateItem(node1, {
+            x: innerNearOuterTriangle[1].x,
+            y: innerNearOuterTriangle[1].y,
+          });
+          graph.updateItem(node2, {
+            x: innerNearOuterTriangle[2].x,
+            y: innerNearOuterTriangle[2].y,
+          });
+        }
+      } else if (nodeItem === node1) {
+        const d102 = distanceOfPoint2Line(p1, outerTriangle[0], outerTriangle[2]);
+        console.log('d102', d102);
+        if (d102 < 140) {
+          graph.updateItem(nodeItem, {
+            x: center.x,
+            y: center.y,
+          });
+          graph.updateItem(node0, {
+            x: innerNearOuterTriangle[0].x,
+            y: innerNearOuterTriangle[0].y,
+          });
+          graph.updateItem(node2, {
+            x: innerNearOuterTriangle[2].x,
+            y: innerNearOuterTriangle[2].y,
+          });
+        }
+      } else {
+        const d201 = distanceOfPoint2Line(p2, outerTriangle[0], outerTriangle[1]);
+        console.log('d201', d201);
+        if (d201 < 140) {
+          graph.updateItem(nodeItem, {
+            x: center.x,
+            y: center.y,
+          });
+          graph.updateItem(node0, {
+            x: innerNearOuterTriangle[0].x,
+            y: innerNearOuterTriangle[0].y,
+          });
+          graph.updateItem(node1, {
+            x: innerNearOuterTriangle[1].x,
+            y: innerNearOuterTriangle[1].y,
+          });
+        }
+      }
+
+      const dis0 = twoPointDistance(p0, outerTriangle[0]);
+      const dis1 = twoPointDistance(p1, outerTriangle[1]);
+      const dis2 = twoPointDistance(p2, outerTriangle[2]);
+
+      if (dis0 < triggerDis && dis1 < triggerDis && dis2 < triggerDis) {
+        if (nodeItem === node0) {
+          graph.updateItem(node2, center2); //2
+          changeColor(graph, 1, '#FF6055');
+        } else if (nodeItem === node1) {
+          graph.updateItem(node0, center0); //0
+          changeColor(graph, 2, '#FFC64E');
         } else {
-          if (dis0 < triggerDis && dis1 < triggerDis) {
-            graph.updateItem(node2, center2);
-            changeColor(graph, 1, '#FF6055');
-          } else if (dis1 < triggerDis && dis2 < triggerDis) {
-            graph.updateItem(node0, center0);
-            changeColor(graph, 2, '#FFC64E');
-          } else if (dis0 < triggerDis && dis2 < triggerDis) {
-            graph.updateItem(node1, center1);
-            changeColor(graph, 3, '#5979ED');
-          }
+          graph.updateItem(node1, center1); //1
+          changeColor(graph, 3, '#5979ED');
+        }
+      } else {
+        if (dis0 < triggerDis && dis1 < triggerDis) {
+          graph.updateItem(node2, center2); //2
+          changeColor(graph, 1, '#FF6055');
+        } else if (dis1 < triggerDis && dis2 < triggerDis) {
+          graph.updateItem(node0, center0); //0
+          changeColor(graph, 2, '#FFC64E');
+        } else if (dis0 < triggerDis && dis2 < triggerDis) {
+          graph.updateItem(node1, center1); //1
+          changeColor(graph, 3, '#5979ED');
         }
 
-        setDragNodes([]);
-        // }
         innerPoints[index].y = nodeItem._cfg.model.y;
         innerPoints[index].x = nodeItem._cfg.model.x;
         setInnerPoints([...innerPoints]);
+      }
+      dragNodesRef.current.push(index);
+      setDragNodes([...dragNodesRef.current]);
+      if (dragNodesRef.current.length === 1) {
+        setTimeout(() => {
+          if (dragNodesRef.current.length === 1) {
+            graph.updateItem(graph.cfg.nodes[0], {
+              x: oldInner[0].x,
+              y: oldInner[0].y,
+            });
+            graph.updateItem(graph.cfg.nodes[1], {
+              x: oldInner[1].x,
+              y: oldInner[1].y,
+            });
+            graph.updateItem(graph.cfg.nodes[2], {
+              x: oldInner[2].x,
+              y: oldInner[2].y,
+            });
+          }
+        }, 5000);
       }
     });
 
@@ -405,7 +483,7 @@ export default function ImpossibleTriangle({ children, title }) {
   return (
     <Box sx={{ background: '#F6F6F6', paddingBlock: '30px', paddingInline: '65px', marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Box sx={{ background: '#1E1E1E', width: '400px', height: '300px', borderRadius: '18px', color: 'white' }} id="mountNode"></Box>
+        <Box sx={{ background: '#1E1E1E', borderRadius: '18px', color: 'white', '&>canvas': { zoom: { xs: 0.58, md: 1 } } }} id="mountNode"></Box>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
         <Typography fontSize={12} color="#777777" marginBottom="30px">
@@ -413,17 +491,17 @@ export default function ImpossibleTriangle({ children, title }) {
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        {side === 1 ? (
+        {sideRef.current === 1 ? (
           <Typography fontSize={30} color="#FF6055" fontWeight={700} marginBottom="20px">
             高可扩展性 & 高去中心化
           </Typography>
         ) : null}
-        {side === 2 ? (
+        {sideRef.current === 2 ? (
           <Typography fontSize={30} color="#FFC64E" fontWeight={700} marginBottom="20px">
             高安全性 & 高可扩展性
           </Typography>
         ) : null}
-        {side === 3 ? (
+        {sideRef.current === 3 ? (
           <Typography fontSize={30} color="#5979ED" fontWeight={700} marginBottom="20px">
             高去中心化 & 高安全性
           </Typography>
@@ -435,7 +513,7 @@ export default function ImpossibleTriangle({ children, title }) {
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        {side === 1 ? (
+        {sideRef.current === 1 ? (
           <Box>
             <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
               追求可扩展性（即性能）和去中心化程度，为保证去中心化采用了较多验证节点，为了追求性能提高了出块速度，或采用了特殊的共识机制。但提高出块速度容易导致大规模区块重组，更复杂的共识机制容易导致全网宕机等安全事故，牺牲了安全性。
@@ -445,7 +523,7 @@ export default function ImpossibleTriangle({ children, title }) {
             </Typography>
           </Box>
         ) : null}
-        {side === 2 ? (
+        {sideRef.current === 2 ? (
           <Box>
             <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
               追求安全性和可扩展性（即性能），往往采用少数超级节点进行通讯，超级节点拥有更强的性能和更好的网络环境，彼此之间能实现超高速的通讯。但参与门槛过高，牺牲了去中心化程度。
@@ -455,7 +533,7 @@ export default function ImpossibleTriangle({ children, title }) {
             </Typography>
           </Box>
         ) : null}
-        {side === 3 ? (
+        {sideRef.current === 3 ? (
           <Box>
             <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
               追求去中心化程度和安全性，采用更多的节点和更公平的出块方式，值得信赖。但为了允许低性能节点参与验证，协调全球网络延迟，导致每秒可处理的交易数较低，牺牲了性能。
