@@ -47,7 +47,7 @@ const Language = ({ color }) => {
         <Box aria-controls={open ? 'language-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} sx={{ cursor: 'pointer' }} onClick={handleClick}>
           <Box display="flex" alignItems="center">
             {!smallScreen && <Earth color={color} />}
-            <Typography marginLeft={smallScreen ? 0 : '5px'} marginRight={smallScreen ? 0 : '5px'} fontWeight={400} color="text.primary" fontSize={'12px'} width={{ xs: 'auto', md: '50px' }} textAlign="center">
+            <Typography marginLeft={smallScreen ? 0 : '5px'} marginRight={smallScreen ? 0 : '5px'} fontWeight={400} color={color} fontSize={'12px'} width={{ xs: 'auto', md: '50px' }} textAlign="center">
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
             <Arrow color={color} style={{ rotate: open && '180deg' }} />
