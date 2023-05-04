@@ -393,19 +393,19 @@ export default function Content(props) {
   useEffect(() => {
     const directoryStatus = getStorage('directoryStatus');
     const selectedIndexStore = getStorage('selectedIndex');
-    const jsonDirectory = JSON.parse(directoryStatus).data;
-    const jsonSelect = JSON.parse(selectedIndexStore).data;
+    const jsonDirectory = JSON.parse(directoryStatus)?.data;
+    const jsonSelect = JSON.parse(selectedIndexStore)?.data;
     if (directoryStatus) {
       setDirectory(JSON.parse(directoryStatus).data);
     }
     if (selectedIndexStore) {
-      setSelectedIndex(JSON.parse(selectedIndexStore).data);
+      setSelectedIndex(JSON.parse(selectedIndexStore)?.data);
 
       setName(jsonDirectory[jsonSelect]?.text);
       setReadData({
         counter: chapterCount,
         read: computeReadCount(jsonDirectory),
-        currentIndex: jsonSelect.data,
+        currentIndex: jsonSelect?.data,
         actionFrom: 'nextButton',
       });
     }
