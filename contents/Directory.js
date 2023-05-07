@@ -207,11 +207,12 @@ const Item = (props) => {
         className={classes.listItem}
         sx={{
           background: selected ? theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3' : '',
+          paddingX: 2,
         }}
       >
         <Box
           sx={{
-            paddingLeft: rowData?.main ? 0 : '26px',
+            paddingLeft: rowData?.main ? '8px' : '26px',
             display: 'flex',
             alignItems: 'center',
           }}

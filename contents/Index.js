@@ -118,6 +118,7 @@ export default function Content(props) {
     return count;
   };
   const handleTabChapter = (action, chapter) => {
+    console.log('chapter index', chapter);
     const mainArr = [1, 5, 10, 18];
 
     if (!action) {
@@ -291,7 +292,7 @@ export default function Content(props) {
 
         setName(newState[chapter.index + 1]?.text);
       } else if(chapter.index === 0) {
-        if (!chapter?.status) {
+        // if (!chapter?.status) {
           setChapterData({
             current: newState[chapter?.index].text,
             last: '',
@@ -300,7 +301,7 @@ export default function Content(props) {
           setSelectedIndex(chapter?.index);
   
           setName(newState[chapter.index]?.text);
-        }
+        // }
       } else {
         if (!chapter?.status) {
           if (chapter?.index > mainArr[1] && chapter?.index < mainArr[2]) {
