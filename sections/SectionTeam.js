@@ -2,10 +2,9 @@ import _ from 'lodash';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
-import { Box, Card, CardContent, Grid, Link, Typography } from '@mui/material';
+import { Box, Card, CardContent, Grid, Link, Tooltip, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-import StyledToolTip from '../components/StyledToolTip';
 import Twitter from '../components/svg/Twitter';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
@@ -346,8 +345,6 @@ function Contributor(props) {
 }
 
 function SimpleContributor(props) {
-  const theme = useTheme();
-
   return (
     <Box
       width={1}
@@ -357,14 +354,16 @@ function SimpleContributor(props) {
       }}
     >
       <Box component={Card} width={1} height={1} borderRadius="50%" boxShadow="none" display={'flex'} flexDirection={'column'} sx={{ backgroundImage: 'none', background: '#fff' }}>
-        <Box
-          component="img"
-          src={props.image}
-          title={props.name}
-          sx={{
-            width: '100%',
-          }}
-        />
+        <Tooltip title={props.name}>
+          <Box
+            component="img"
+            src={props.image}
+            title={props.name}
+            sx={{
+              width: '100%',
+            }}
+          />
+        </Tooltip>
       </Box>
     </Box>
   );
@@ -374,8 +373,8 @@ export default function SectionTeam() {
   const theme = useTheme();
   const t = useTranslations('SectionTeam');
   return (
-    <SectionSimpleWrapper title={t(`sectionTeam-content-11`)} id="team">
-      <Box>
+    <SectionSimpleWrapper title={t(`sectionTeam-content-11`)} desc="Description of contributor value" id="team">
+      <Box mt={{ sx: '30px', sm: '60px' }}>
         <Box padding={{ xs: 2, sm: 0 }}>
           <Grid container spacing={2.5}>
             {coreContributors.map((item, i) => (
