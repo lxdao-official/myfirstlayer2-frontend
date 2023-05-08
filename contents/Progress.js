@@ -1,13 +1,6 @@
 import { useContext } from 'react';
 
-import {
-  Box,
-  CircularProgress,
-  LinearProgress,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, CircularProgress, LinearProgress, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { makeStyles, withStyles } from '@mui/styles';
 
 import { ReadContext } from './context.js';
@@ -25,10 +18,8 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
   bar: {
     borderRadius: 5,
-    backgroundColor:
-      theme.palette?.mode === 'dark' ? '#ffffff' : 'background: #000000',
+    backgroundColor: theme.palette?.mode === 'dark' ? '#ffffff' : 'background: #000000',
   },
-
 }))(LinearProgress);
 
 const useStyles = makeStyles((theme) => ({
@@ -38,24 +29,24 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontStyle: 'SemiBold',
     fontWeight: 700,
-    color:  theme.palette?.mode === 'dark' ? '#ffffff' : '#747474',
+    color: theme.palette?.mode === 'dark' ? '#ffffff' : '#747474',
     // marginBottom: '18px',
     // textAlign: 'center',
   },
   data: {
-    color:  theme?.palette?.mode === 'dark' ? '#fff' : '#000',
-  }
+    color: theme?.palette?.mode === 'dark' ? '#fff' : '#000',
+  },
 }));
 
 export default function Progress() {
   const classes = useStyles();
-  let x = 10;
 
   const { readData } = useContext(ReadContext);
   const { read, counter } = readData;
+  let x = (read / counter) * 100;
 
   const th = useTheme();
-  
+
   const mdScreen = useMediaQuery(th?.breakpoints?.up('md'));
 
   return (
@@ -63,17 +54,17 @@ export default function Progress() {
       <Box
         variant="progress"
         className={classes.title}
-        sx={{ 
+        sx={{
           marginBottom: mdScreen ? '18px' : '6px',
           textAlign: mdScreen ? 'center' : 'left',
           fontSize: mdScreen ? '12px' : '8px',
-        }}>当前浏览进度</Box>
-      <BorderLinearProgress
-        variant="determinate"
-        value={(read / counter) * 100}
-      />
+        }}
+      >
+        当前浏览进度
+      </Box>
+      <BorderLinearProgress variant="determinate" value={x} />
       <Box className={classes.data} style={{ transform: `translateX(${x}%)`, fontSize: '10px' }}>
-        {((read / counter) * 100).toFixed(2)}%
+        {x.toFixed(2)}%
       </Box>
     </Box>
   );

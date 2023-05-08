@@ -25,7 +25,7 @@ export default function CompressText() {
     createExplain('代币合约地址', '用科学计数法把转账数量压缩成64位数据，并删除不必要的0。（数量的精度会略微下降，但实践中影响不大）', 'Method ID  / 代币合约地址  /  收款的账户地址  / 提币数量'),
     createExplain('收款的账户地址', '调用的方法如果很常见，可以删除所调用的Method ID，因为如“转账一笔ERC20代币”的交易，可以通过交易内容的特征推测', '代币合约地址  /  收款的账户地址  / 提币数量'),
     createExplain('填充的0', '常用行为设置绿色通道（Helper ID）：大部分发送代币的行为都是如USDC、WETH等常用代币，可以用更短的Helper ID表示如“发送USDC”的信息', 'Helper ID  /  收款的账户地址  / 提币数量'),
-    createExplain('收款的账户地址', '登记一个“电话簿”，纪录收款人地址，将40位的地址压缩为第XXX页的第X个地址。', 'Helper ID  /  收款账户“电话簿”编号  / 提币数量'),
+    createExplain('收款的账户地址', '登记一个“电话簿”，记录收款人地址，将40位的地址压缩为第XXX页的第X个地址。', 'Helper ID  /  收款账户“电话簿”编号  / 提币数量'),
     createExplain('提币数量', '如果发送的是ETH，连Helper ID都可以省掉。', '收款账户“电话簿”编号  / 提币数量'),
   ];
 
@@ -2045,7 +2045,7 @@ export default function CompressText() {
     });
   } else if (status === 2) {
     [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
+      todefault(as[v], '#fff');
     });
 
     direction &&
@@ -2161,7 +2161,6 @@ export default function CompressText() {
   const theme = useTheme();
 
   const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
-
 
   return (
     <Box justifyContent="center" display="flex" marginTop={'50px'}>

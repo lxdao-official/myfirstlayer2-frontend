@@ -1,7 +1,8 @@
+import { ethers } from 'ethers';
 import { useEffect, useRef, useState } from 'react';
-import { useAccount, useContractWrite, useNetwork, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
+import { useAccount, useBalance, useContractWrite, useNetwork, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
 
-import { Box, Button, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Button, useMediaQuery, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 
 import abi from '../abi.json';
@@ -17,7 +18,9 @@ export default function MintBadge() {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [mintLoading, setMintLoading] = useState(false);
   const [modifiedImgSrc, setModifiedImgSrc] = useState('');
-
+  const balance = useBalance({
+    address,
+  });
   const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const { data, writeAsync } = useContractWrite({
@@ -35,11 +38,13 @@ export default function MintBadge() {
       showMessage({
         type: 'error',
         title: 'Wrong Network',
-        body: 'Please switch to Polygon Mainnet.',
+        body: 'Please Switch to Optimism Mainnet.',
       });
       return;
     }
     try {
+      debugger;
+
       // debugger;
       setMintLoading(true);
       console.log(modifiedImgSrc);
@@ -56,6 +61,24 @@ export default function MintBadge() {
           image: `ipfs://${cid}`,
         })
       );
+      const providerGoerli = new ethers.providers.JsonRpcProvider(`https://opt-goerli.g.alchemy.com/v2/0nH0WXQaohzjhfuOIsjzYWj6MnJpl_4E`);
+      const gasPrice = await providerGoerli.getGasPrice();
+
+      const gasUnits = await new ethers.Contract(address, abi, providerGoerli).estimateGas.mint('data:application/json;base64,' + data);
+
+      const transactionFee = gasPrice.mul(gasUnits).mul(3);
+      console.log('transactionFee in wei: ' + transactionFee.toString());
+      console.log('transactionFee in ether: ' + ethers.utils.formatUnits(transactionFee, 'ether'));
+      console.log('balance: ', balance);
+      if (transactionFee > balance.data.value) {
+        showMessage({
+          type: 'error',
+          title: 'Estimate Fail',
+          body: '您的账户中没有足够的ETH可以支付网络上的交易费用。',
+        });
+        setMintLoading(false);
+        return;
+      }
       const res = await writeAsync?.({
         recklesslySetUnpreparedArgs: ['data:application/json;base64,' + data],
       });
@@ -117,7 +140,6 @@ export default function MintBadge() {
       setModifiedImgSrc(modifiedImgSrc);
     }
   }, [imgLoaded]);
-
 
   return (
     <Stack

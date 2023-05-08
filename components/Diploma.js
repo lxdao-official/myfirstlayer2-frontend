@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Box, Button, Link, Typography, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Button, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import MintBadge from './MintBadge';
 
@@ -41,15 +41,17 @@ export default function Diploma() {
           >
             结业认证
           </Typography> */}
-          <h1 style={{
-            fontSize: { md: '36px', sm: '36px' },
-            fontStyle: 'ExtraBold',
-            fontFamily: 'Open Sans',
-            color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-            fontWeight: 700,
-            textAlign: 'center',
-            // marginBottom: '30px',
-          }}>
+          <h1
+            style={{
+              fontSize: { md: '36px', sm: '36px' },
+              fontStyle: 'ExtraBold',
+              fontFamily: 'Open Sans',
+              color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+              fontWeight: 700,
+              textAlign: 'center',
+              // marginBottom: '30px',
+            }}
+          >
             结业认证
           </h1>
         </Box>
@@ -105,7 +107,7 @@ export default function Diploma() {
               fontWeight: 400,
             }}
           >
-            1. 点击网站主页右上角的“Connect Wallet”按钮，连接钱包；（请切换至 Optimism 网络）
+            1. 点击网站主页右上角的 “ Connect Wallet ” 按钮，连接钱包；（请切换至 Optimism 网络）
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
@@ -119,7 +121,7 @@ export default function Diploma() {
               marginBottom: '30px',
             }}
           >
-            2.于OP testnet水龙头地址领取测试代币；（暂时留测试网的链接，未来只留下 OP 主网的Claim交互组件）
+            2*.于 OP testnet 水龙头地址领取测试代币；（暂时留测试网的链接，未来只留下 OP 主网的 Claim 交互组件）
           </Typography>
         </Box>
         <Box
@@ -145,11 +147,13 @@ export default function Diploma() {
               }}
             >
               <Link target="_blank" href="https://faucet.paradigm.xyz/">
-                <h2 style={{
-                  fontSize: '48px',
-                  fontFamily: 'Open Sans',
-                  fontWeight: 800,
-                }}>
+                <h2
+                  style={{
+                    fontSize: '48px',
+                    fontFamily: 'Open Sans',
+                    fontWeight: 800,
+                  }}
+                >
                   OP testnet
                 </h2>
               </Link>
@@ -181,7 +185,7 @@ export default function Diploma() {
               marginBottom: '10px',
             }}
           >
-            3.点击“claim”按钮即可成功获得结业徽章！
+            3.点击 “ Claim ” 按钮即可成功获得结业徽章！
           </Typography>
         </Box>
         <MintBadge />

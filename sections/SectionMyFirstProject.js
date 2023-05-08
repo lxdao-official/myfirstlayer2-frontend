@@ -1,5 +1,10 @@
 import { useTranslations } from 'next-intl';
 import React from 'react';
+import { Pagination } from 'swiper';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import AddIcon from '@mui/icons-material/Add';
 import { Box, Button, Card, Grid, Link, Typography, useTheme } from '@mui/material';
@@ -43,8 +48,8 @@ function MyFirstCard(props) {
       height={1}
       sx={{
         textDecoration: 'none',
-        paddingBottom: '50px',
-        borderRadius: '18px',
+        paddingBottom: { xs: 0, md: '50px' },
+        borderRadius: { xs: '8px', md: '18px' },
       }}
     >
       <Box
@@ -54,19 +59,19 @@ function MyFirstCard(props) {
         flexDirection={'column'}
         sx={{
           backgroundColor: 'background.level3',
-          borderRadius: '18px',
-          height: '410px',
-          padding: '20px',
+          borderRadius: { xs: '8px', md: '18px' },
+          height: { xs: '290px', md: '410px' },
+          padding: { xs: '10px', md: '20px' },
           '&:hover': {
-            boxShadow: theme.palette.shadow.level1,
+            boxShadow: { xs: 'none', md: theme.palette.shadow.level1 },
           },
         }}
       >
         <Box display="flex" flexDirection={'row'}>
           <Box
             component={Card}
-            width={'80px'}
-            height={'80px'}
+            width={{ xs: '40px', md: '80px' }}
+            height={{ xs: '40px', md: '80px' }}
             borderRadius="50%"
             boxShadow="none"
             display={'flex'}
@@ -83,21 +88,21 @@ function MyFirstCard(props) {
               src={props.image}
               title={props.projectName}
               sx={{
-                width: '56px',
+                width: { xs: '28px', md: '56px' },
               }}
             />
           </Box>
           <Box marginLeft={'15px'} boxShadow="none" display={'flex'} flexDirection={'column'}>
-            <Typography color="text.primary" variant="h6" fontWeight={800}>
+            <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} fontWeight={800}>
               {props.projectName}
             </Typography>
-            <Typography color="text.primary" fontSize={'12px'} fontWeight={400}>
+            <Typography color="text.primary" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
               {props.holder}
             </Typography>
           </Box>
         </Box>
         <Box
-          marginTop={'20px'}
+          marginTop={{ xs: '10px', md: '20px' }}
           component="img"
           src={props.bigImage}
           title={props.title}
@@ -106,13 +111,13 @@ function MyFirstCard(props) {
             filter: props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
-        <Box marginTop={'20px'} marginBottom={'15px'}>
+        <Box marginTop={{ xs: '10px', md: '20px' }} marginBottom={{ xs: '10px', md: '15px' }}>
           <Typography color="text.primary" fontSize={'12px'} fontWeight={400} fontFamily="Open Sans">
             {props.description}
           </Typography>
         </Box>
 
-        <Box>
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
           <Link
             color="text.primary"
             target="_blank"
@@ -141,14 +146,32 @@ export default function SectionMyFirstProject() {
   const t = useTranslations('SectionMyFirstProject');
 
   return (
-    <SectionSimpleWrapper id="next">
+    <SectionSimpleWrapper childOverflow="visible" id="next">
       <Box padding={{ xs: 2, sm: 0 }}>
-        <Grid container spacing={3.125}>
+        <Grid sx={{ display: { sm: 'flex', xs: 'none' } }} container spacing={{ xs: 3.125, sm: 2 }}>
           {myfirstProjects.map((item, i) => (
             <Grid rowGap="25px" item xs={12} sm={6} md={4} key={i}>
               <MyFirstCard theme={theme} {...item} />
             </Grid>
           ))}
+        </Grid>
+        <Grid sx={{ display: { sm: 'none', xs: 'flex' } }} container spacing={{ xs: '15px' }}>
+          <Swiper
+            style={{ marginLeft: '15px', height: '320px' }}
+            slidesPerView={1.53}
+            centeredSlides={false}
+            spaceBetween={15}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+          >
+            {myfirstProjects.map((item, i) => (
+              <SwiperSlide key={i}>
+                <MyFirstCard theme={theme} {...item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </Grid>
       </Box>
     </SectionSimpleWrapper>
