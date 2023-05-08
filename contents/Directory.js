@@ -1,22 +1,10 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { getAccount } from '@wagmi/core';
 import { useTranslations } from 'next-intl';
-import { useContext, useEffect, useState } from 'react';
-import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
 
-import { Avatar, Box, Button, IconButton, ListItem, ListItemAvatar, ListItemText, SwipeableDrawer, ThemeProvider, Typography, createTheme, useTheme } from '@mui/material';
+import { Box, Divider, IconButton, SwipeableDrawer, Typography, createTheme, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-import abi from '../abi.json';
-import { svg } from '../common/constans';
-import showMessage from '../components/showMessage';
-import down from '../public/content/down.svg';
-import up from '../public/content/up.svg';
 import { formatChapterTitle } from '../utils.js';
 import Progress from './Progress';
-import { ReadContext } from './context.js';
-
-const readStatusImg = ['/content/read.png', '/content/unread.png'];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,43 +84,40 @@ theme.typography.progress = {
 };
 
 export function PcDirectory(props) {
-  const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
+  const { directory, selectedIndex, onTabChapter } = props;
 
   const theme = useTheme();
-  const mainArr = [0, 5, 10, 18];
 
-  console.log('directory', directory);
-  console.log('readStatus', readStatus);
-  console.log('selectedIndex', selectedIndex);
-
-
-  // const onNext = (action, data) => {
-  //   onTabChapter(action, data);
-  // };
   return (
     <Box>
       <Box
         sx={{
+          paddingTop: '18px',
           width: '247px',
-          borderRadius: 2,
-          paddingX: '11px',
-          paddingBottom: '45px',
+          borderRadius: '18px',
+          paddingX: '26px',
+          py: '32px',
+          mb: '32px',
         }}
         backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
-        <Box
-          sx={{
-            paddingTop: '18px',
-          }}
-        >
-          <Progress></Progress>
-        </Box>
-        <Box
-          // sx={{
-          //   maxHeight: '987px',
-          //   overflow: 'auto',
-          // }}
-        >
+        <Progress></Progress>
+      </Box>
+      <Box
+        sx={{
+          width: '247px',
+          borderRadius: '18px',
+          pt: '30px',
+          pb: '43px',
+          paddingX: '11px',
+        }}
+        backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
+      >
+        <Typography fontSize="24px" px="10px">
+          目录
+        </Typography>
+        <Divider></Divider>
+        <Box>
           {directory?.map((row, index) => {
             return <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onTabChapter('lastOrNext', { index, ...row })} {...props} />;
           })}
@@ -158,10 +143,7 @@ export function MobileDirectory(props) {
           backgroundColor: '#000',
           width: '28px',
           height: '28px',
-          // borderRadius: '80%',
-          // alignItems: 'center',
           textAlign: 'center',
-          // alignContent: 'center',
         }}
         onClick={() => setDrawerStatus(true)}
       >
@@ -195,18 +177,17 @@ export function MobileDirectory(props) {
 const Item = (props) => {
   const classes = useStyles();
   const t = useTranslations('Directory');
-  const { rowData, key, selected, onNext } = props;
-
-  const handleListItemClick = (item, index) => {
-    !item?.status && onNext(index);
-  };
+  const { rowData, selected, onNext } = props;
 
   return (
     <Box className={classes.listRoot}>
-      <Box button selected={selected} onClick={onNext}
+      <Box
+        button
+        selected={selected}
+        onClick={onNext}
         className={classes.listItem}
         sx={{
-          background: selected ? theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3' : '',
+          background: selected ? (theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3') : '',
           paddingX: 2,
         }}
       >
@@ -217,18 +198,27 @@ const Item = (props) => {
             alignItems: 'center',
           }}
         >
-          <Box className={classes.avatarContain}>
-            <Avatar className={classes.avatar} src={readStatusImg[rowData?.status ? 0 : 1]} />
-          </Box>
+          {!rowData?.main && (
+            <Box
+              sx={{
+                height: '12px',
+                width: '3px',
+                borderRadius: '3px',
+                backgroundColor: rowData?.status ? '#39DC7A' : '#ddd',
+                marginRight: '10px',
+              }}
+            />
+          )}
           <Box
             sx={{
               fontStyle: rowData?.main ? 'Bold' : 'Regular',
               fontWeight: rowData?.main ? 700 : 400,
               fontSize: '14px',
             }}
-          >{t(formatChapterTitle(rowData?.text))}</Box>
+          >
+            {t(formatChapterTitle(rowData?.text))}
           </Box>
-
+        </Box>
       </Box>
     </Box>
   );
