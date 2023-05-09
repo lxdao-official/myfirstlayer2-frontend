@@ -1,7 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 // import { Affix } from 'antd';
@@ -95,8 +95,8 @@ export default function Content(props) {
       .catch((error) => console.error('[request mdx err]', error));
   };
 
-
   const computeReadCount = (arr) => {
+    if (!arr) return 0;
     let count = 0;
     for (let index in arr) {
       if ((!arr[index].main && arr[index]?.status) || (arr[index].main && (+index === 0 || +index === arr.length - 1) && arr[index]?.status)) {
@@ -233,7 +233,6 @@ export default function Content(props) {
 
       setDirectory(newState);
 
-
       setReadData({
         counter: chapterCount,
         read: computeReadCount(newState),
@@ -260,16 +259,16 @@ export default function Content(props) {
         setSelectedIndex(chapter?.index + 1);
 
         setName(newState[chapter.index + 1]?.text);
-      } else if(chapter.index === 0) {
+      } else if (chapter.index === 0) {
         // if (!chapter?.status) {
-          setChapterData({
-            current: newState[chapter?.index].text,
-            last: '',
-            next: newState[chapter.index + 2].text,
-          });
-          setSelectedIndex(chapter?.index);
-  
-          setName(newState[chapter.index]?.text);
+        setChapterData({
+          current: newState[chapter?.index].text,
+          last: '',
+          next: newState[chapter.index + 2].text,
+        });
+        setSelectedIndex(chapter?.index);
+
+        setName(newState[chapter.index]?.text);
         // }
       } else {
         if (!chapter?.status) {
@@ -366,8 +365,9 @@ export default function Content(props) {
     }
     if (selectedIndexStore) {
       setSelectedIndex(JSON.parse(selectedIndexStore)?.data);
-
-      setName(jsonDirectory[jsonSelect]?.text);
+      if (jsonDirectory) {
+        setName(jsonDirectory[jsonSelect]?.text);
+      }
       setReadData({
         counter: chapterCount,
         read: computeReadCount(jsonDirectory),
@@ -383,17 +383,16 @@ export default function Content(props) {
       <Typography id={'root'}></Typography>
       {/* <Box sx={{background: 'green', display: 'flex' }}> */}
 
-        <Container paddingX={2}>
-          <Box
-            ref={ref}
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              height: '100%',
-            }}
-          >
-  
-            {/* {
+      <Container paddingX={2}>
+        <Box
+          ref={ref}
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            height: '100%',
+          }}
+        >
+          {/* {
               isIntersecting ? (
                 <Box>
                   <Hidden smDown>
@@ -409,63 +408,63 @@ export default function Content(props) {
               )
             } */}
 
-            <Hidden smDown>
-              <Box sx={{
+          <Hidden smDown>
+            <Box
+              sx={{
                 // position: isIntersecting ? 'fixed' : 'static',
                 top: 0,
-              }}>
-                <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
+              }}
+            >
+              <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
+            </Box>
+          </Hidden>
+
+          {isLoading ? (
+            <Skeleton
+              animation="wave"
+              variant="rect"
+              width={mdScreen ? '1200px' : '100vw'}
+              sx={{
+                height: '100vh',
+                marginLeft: mdScreen ? '32px' : 0,
+              }}
+            >
+              <Box className={mdxStyle.root} textDecoration={'none'}>
+                {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
               </Box>
-            </Hidden>
-    
-            {isLoading ? (
-              <Skeleton
-                animation="wave"
-                variant="rect"
-                width={mdScreen ? '1200px' : '100vw'}
+            </Skeleton>
+          ) : (
+            <Box
+              sx={{
+                // marginRight: mdScreen ? '32px' : 0,
+                flexGrow: 1,
+                marginLeft: mdScreen ? '32px' : 0,
+              }}
+            >
+              <Box
                 sx={{
-                  height: '100vh',
-                  marginLeft: mdScreen ? '32px' : 0,
-                  
+                  display: 'flex',
+                  backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
+                  maxWidth: mdScreen ? '1200px' : '100vw',
+                  color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+                }}
+                borderRadius={2}
+                padding={{
+                  xs: 2,
+                  sm: 8,
                 }}
               >
                 <Box className={mdxStyle.root} textDecoration={'none'}>
                   {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
                 </Box>
-              </Skeleton>
-            ) : (
-              <Box
-                sx={{
-                  // marginRight: mdScreen ? '32px' : 0,
-                  flexGrow: 1,
-                  marginLeft: mdScreen ? '32px' : 0,
-                }}
-              >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
-                    maxWidth: mdScreen ? '1200px' : '100vw',
-                    color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-                  }}
-                  borderRadius={2}
-                  padding={{
-                    xs: 2,
-                    sm: 8,
-                  }}
-                >
-                  <Box className={mdxStyle.root} textDecoration={'none'}>
-                    {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
-                  </Box>
-                </Box>
-                {/* <div ref={elementRef}> */}
-                  <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
-                {/* </div> */}
               </Box>
-            )}
-
-          </Box>
-        </Container>
+              {/* <div ref={elementRef}> */}
+              <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
+              {/* </div> */}
+            </Box>
+          )}
+        </Box>
+      </Container>
       {/* </Box> */}
       {inView && (
         <Hidden smUp>
