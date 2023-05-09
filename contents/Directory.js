@@ -1,26 +1,16 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { getAccount } from '@wagmi/core';
 import { useTranslations } from 'next-intl';
-import { useContext, useEffect, useState } from 'react';
-import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
+import { useState } from 'react';
 
-import { Avatar, Box, Button, IconButton, ListItem, ListItemAvatar, ListItemText, SwipeableDrawer, ThemeProvider, Typography, createTheme, useTheme } from '@mui/material';
+import { Avatar, Box, IconButton, SwipeableDrawer, createTheme, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-import abi from '../abi.json';
-import { svg } from '../common/constans';
-import showMessage from '../components/showMessage';
-import down from '../public/content/down.svg';
-import up from '../public/content/up.svg';
 import { formatChapterTitle } from '../utils.js';
 import Progress from './Progress';
-import { ReadContext } from './context.js';
 
 const readStatusImg = ['/content/read.png', '/content/unread.png'];
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
     overflow: 'hidden',
   },
   listRoot: {
@@ -54,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     marginLeft: '-30px',
-
-    // top: 0,
-    // width: '10px',
     '& .MuiTypography-body1': {
       fontSize: (props) => props.fontSize, // 使用props传入字体大小
     },
@@ -96,19 +83,10 @@ theme.typography.progress = {
 };
 
 export function PcDirectory(props) {
-  const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
-
+  const { directory, selectedIndex, onTabChapter } = props;
+  console.log('[directory component props]', props)
   const theme = useTheme();
-  const mainArr = [0, 5, 10, 18];
 
-  console.log('directory', directory);
-  console.log('readStatus', readStatus);
-  console.log('selectedIndex', selectedIndex);
-
-
-  // const onNext = (action, data) => {
-  //   onTabChapter(action, data);
-  // };
   return (
     <Box>
       <Box
@@ -143,7 +121,7 @@ export function PcDirectory(props) {
 }
 
 export function MobileDirectory(props) {
-  const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
+  const { directory, selectedIndex, onTabChapter } = props;
   const [drawerStatus, setDrawerStatus] = useState(false);
 
   const onNext = (action, data) => {
@@ -158,10 +136,7 @@ export function MobileDirectory(props) {
           backgroundColor: '#000',
           width: '28px',
           height: '28px',
-          // borderRadius: '80%',
-          // alignItems: 'center',
           textAlign: 'center',
-          // alignContent: 'center',
         }}
         onClick={() => setDrawerStatus(true)}
       >
@@ -195,11 +170,7 @@ export function MobileDirectory(props) {
 const Item = (props) => {
   const classes = useStyles();
   const t = useTranslations('Directory');
-  const { rowData, key, selected, onNext } = props;
-
-  const handleListItemClick = (item, index) => {
-    !item?.status && onNext(index);
-  };
+  const { rowData, selected, onNext } = props;
 
   return (
     <Box className={classes.listRoot}>
