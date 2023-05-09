@@ -1,13 +1,11 @@
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { Avatar, Box, IconButton, SwipeableDrawer, createTheme, useTheme } from '@mui/material';
+import { Box, Divider, IconButton, SwipeableDrawer, Typography, createTheme, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import { formatChapterTitle } from '../utils.js';
 import Progress from './Progress';
-
-const readStatusImg = ['/content/read.png', '/content/unread.png'];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -84,33 +82,38 @@ theme.typography.progress = {
 
 export function PcDirectory(props) {
   const { directory, selectedIndex, onTabChapter } = props;
-  console.log('[directory component props]', props)
   const theme = useTheme();
 
   return (
     <Box>
       <Box
         sx={{
+          paddingTop: '18px',
           width: '247px',
-          borderRadius: 2,
-          paddingX: '11px',
-          paddingBottom: '45px',
+          borderRadius: '18px',
+          paddingX: '26px',
+          py: '32px',
+          mb: '32px',
         }}
         backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
-        <Box
-          sx={{
-            paddingTop: '18px',
-          }}
-        >
-          <Progress></Progress>
-        </Box>
-        <Box
-          // sx={{
-          //   maxHeight: '987px',
-          //   overflow: 'auto',
-          // }}
-        >
+        <Progress></Progress>
+      </Box>
+      <Box
+        sx={{
+          width: '247px',
+          borderRadius: '18px',
+          pt: '30px',
+          pb: '43px',
+          paddingX: '11px',
+        }}
+        backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
+      >
+        <Typography fontSize="24px" px="10px">
+          目录
+        </Typography>
+        <Divider></Divider>
+        <Box>
           {directory?.map((row, index) => {
             return <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onTabChapter('lastOrNext', { index, ...row })} {...props} />;
           })}
@@ -174,10 +177,13 @@ const Item = (props) => {
 
   return (
     <Box className={classes.listRoot}>
-      <Box button selected={selected} onClick={onNext}
+      <Box
+        button
+        selected={selected}
+        onClick={onNext}
         className={classes.listItem}
         sx={{
-          background: selected ? theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3' : '',
+          background: selected ? (theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3') : '',
           paddingX: 2,
         }}
       >
@@ -188,18 +194,27 @@ const Item = (props) => {
             alignItems: 'center',
           }}
         >
-          <Box className={classes.avatarContain}>
-            <Avatar className={classes.avatar} src={readStatusImg[rowData?.status ? 0 : 1]} />
-          </Box>
+          {!rowData?.main && (
+            <Box
+              sx={{
+                height: '12px',
+                width: '3px',
+                borderRadius: '3px',
+                backgroundColor: rowData?.status ? '#39DC7A' : '#ddd',
+                marginRight: '10px',
+              }}
+            />
+          )}
           <Box
             sx={{
               fontStyle: rowData?.main ? 'Bold' : 'Regular',
               fontWeight: rowData?.main ? 700 : 400,
               fontSize: '14px',
             }}
-          >{t(formatChapterTitle(rowData?.text))}</Box>
+          >
+            {t(formatChapterTitle(rowData?.text))}
           </Box>
-
+        </Box>
       </Box>
     </Box>
   );

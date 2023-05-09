@@ -49,22 +49,21 @@ export default function Progress() {
   const mdScreen = useMediaQuery(th?.breakpoints?.up('md'));
 
   return (
-    <Box className={classes.root}>
-      <Box
-        variant="progress"
-        className={classes.title}
-        sx={{
-          marginBottom: mdScreen ? '18px' : '6px',
-          textAlign: mdScreen ? 'center' : 'left',
-          fontSize: mdScreen ? '12px' : '8px',
-        }}
-      >
-        当前浏览进度
+    <Box>
+      <Box display="flex" justifyContent="space-between" mb="10px">
+        <Box
+          variant="progress"
+          sx={{
+            textAlign: mdScreen ? 'center' : 'left',
+            fontSize: mdScreen ? '12px' : '10px',
+          }}
+        >
+          当前浏览进度
+        </Box>
+        <Box style={{ fontSize: mdScreen ? '12px' : '10px' }}>{x.toFixed(2)}%</Box>
       </Box>
+
       <BorderLinearProgress variant="determinate" value={x} />
-      <Box className={classes.data} style={{ transform: `translateX(${x}%)`, fontSize: '10px' }}>
-        {x.toFixed(2)}%
-      </Box>
     </Box>
   );
 }

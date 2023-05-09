@@ -30,9 +30,9 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
 
   return (
     <Box>
-      <Box id="fixed-header" bgcolor={'header.main'} paddingX="50px" zIndex={100} width={'100vw'} top={0}>
+      <Box id="fixed-header" bgcolor={'header.main'} zIndex={100} width={'100vw'} top={0}>
         {smallScreen ? (
-          <Container display="flex" flexDirection="column" alignItems="center" padding={0}>
+          <Container display="flex" flexDirection="column" alignItems="center" padding={0} width="100%">
             <Stack width="100%" height="45px" paddingLeft="24px" paddingRight="12px" direction="row" justifyContent="space-between">
               <Box display="flex" flexDirection="row" alignItems="center">
                 <MFL2 width="82px" color={theme.palette.primary.contrastText} />
@@ -45,7 +45,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                   }}
                 />
                 <Box component="a" target="_blank" href="https://lxdao.io" display="flex" alignItems="center">
-                  <LXDAOLogo width={79} height={21} color={theme.palette.primary.contrastText} />
+                  <LXDAOLogo width={60} height={16} color={theme.palette.primary.contrastText} />
                 </Box>
               </Box>
 
@@ -55,89 +55,49 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                 <Language color={theme.palette.primary.contrastText} />
               </Box>
             </Stack>
-            <Box width="100%" height={'36px'} justifyContent="space-evenly" alignItems="center" display="flex">
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Typography
-                  sx={{
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                    fontWeight: '700',
-                  }}
-                >
-                  <Link
-                    sx={{
-                      textDecoration: 'none',
-                      color: theme.palette.primary.contrastText,
-                    }}
-                    href="#introduce"
-                    target="_self"
-                  >
-                    Introduce
-                  </Link>
-                </Typography>
+            <Box width="100%" display="flex" justifyContent="space-between" alignItems="center" pr="12px" pl="10px">
+              <Box width="200px" height="36px" justifyContent="space-between" alignItems="center" display="flex" mx="10px">
+                {[
+                  { href: '"#introduce"', title: 'Introduce' },
+                  { href: '"#content"', title: 'Content' },
+                  { href: '"#joinus"', title: 'Join Us' },
+                ].map((v, i) => {
+                  return (
+                    <Box
+                      key={i}
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          cursor: 'pointer',
+                          fontSize: '10px',
+                          fontWeight: '500',
+                        }}
+                      >
+                        <Link
+                          sx={{
+                            textDecoration: 'none',
+                            color: theme.palette.primary.contrastText,
+                          }}
+                          href={v.href}
+                          target="_self"
+                        >
+                          {v.title}
+                        </Link>
+                      </Typography>
+                    </Box>
+                  );
+                })}
               </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Typography
-                  sx={{
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                    fontWeight: '700',
-                  }}
-                >
-                  <Link
-                    sx={{
-                      textDecoration: 'none',
-                      color: theme.palette.primary.contrastText,
-                    }}
-                    href="#content"
-                    target="_self"
-                  >
-                    Content
-                  </Link>
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Typography
-                  sx={{
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                    fontWeight: '700',
-                  }}
-                >
-                  <Link
-                    sx={{
-                      textDecoration: 'none',
-                      color: theme.palette.primary.contrastText,
-                    }}
-                    href="#joinus"
-                    target="_self"
-                  >
-                    Join Us
-                  </Link>
-                </Typography>
-              </Box>
+              <MFL2ConnectButton />
             </Box>
           </Container>
         ) : (
-          <Container maxWidth="100%" paddingX={0} paddingY={1} display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" height="60px">
+          <Container maxWidth="100%" paddingX={'50px'} paddingY={1} display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" height="60px">
             <Box display="flex" flexDirection="row" alignItems="center">
               <MFL2 color={theme.palette.primary.contrastText} />
               <Divider
@@ -149,7 +109,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                 }}
               />
               <Box component="a" target="_blank" href="https://lxdao.io" display="flex" alignItems="center">
-                <LXDAOLogo width={121} height={32} color={theme.palette.primary.contrastText} />
+                <LXDAOLogo width={120} height={32} color={theme.palette.primary.contrastText} />
               </Box>
             </Box>
             <Box gap={4} display="flex" alignItems="center">
