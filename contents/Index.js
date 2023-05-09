@@ -415,6 +415,17 @@ export default function Content(props) {
                 top: 0,
               }}
             >
+              <Box 
+                sx={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '18px',
+                  paddingX: '22px',
+                  paddingY: '28px',
+                  marginBottom: '32px',
+                }}
+              >
+                <Progress />
+              </Box>
               <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
             </Box>
           </Hidden>

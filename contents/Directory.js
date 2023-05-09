@@ -98,13 +98,13 @@ export function PcDirectory(props) {
         }}
         backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
-        <Box
+        {/* <Box
           sx={{
             paddingTop: '18px',
           }}
         >
           <Progress></Progress>
-        </Box>
+        </Box> */}
         <Box
           // sx={{
           //   maxHeight: '987px',

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontStyle: 'SemiBold',
-    fontWeight: 700,
+    fontWeight: 400,
     color: theme.palette?.mode === 'dark' ? '#ffffff' : '#747474',
     // marginBottom: '18px',
     // textAlign: 'center',
@@ -50,21 +50,36 @@ export default function Progress() {
 
   return (
     <Box className={classes.root}>
-      <Box
-        variant="progress"
-        className={classes.title}
-        sx={{
-          marginBottom: mdScreen ? '18px' : '6px',
-          textAlign: mdScreen ? 'center' : 'left',
-          fontSize: mdScreen ? '12px' : '8px',
-        }}
-      >
-        当前浏览进度
-      </Box>
+        <Box
+          variant="progress"
+          className={classes.title}
+          sx={{
+            marginBottom: mdScreen ? '9px' : '6px',
+            fontSize: mdScreen ? '12px' : '8px',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Box>
+            阅读进度
+          </Box>
+          {
+            mdScreen && (
+              <Box>
+                {x}%
+              </Box>
+            )
+          }
+        </Box>
+   
       <BorderLinearProgress variant="determinate" value={x} />
-      <Box className={classes.data} style={{ transform: `translateX(${x}%)`, fontSize: '10px' }}>
-        {x.toFixed(2)}%
-      </Box>
+      {
+        !mdScreen && (
+          <Box className={classes.data} style={{ transform: `translateX(${x}%)`, fontSize: '10px' }}>
+            {x.toFixed(2)}%
+          </Box>
+        )
+      }
     </Box>
   );
 }
