@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 import { Box, Divider, IconButton, SwipeableDrawer, Typography, createTheme, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
