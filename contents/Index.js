@@ -386,9 +386,7 @@ export default function Content(props) {
     if (readed > 2) {
       setStorage('directoryStatus', JSON.stringify({ data: directory }));
     }
-    if (selectedIndex > 1) {
-      setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
-    }
+    setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
   }, [directory, selectedIndex]);
 
   useEffect(() => {
