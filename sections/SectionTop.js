@@ -60,13 +60,12 @@ export default function SectionTop({ content, meta }) {
               lineHeight: { xs: '40px', md: '84px' },
             }}
           >
-            MY FIRST LAYER<HightlightText> 2</HightlightText>.
+            MY FIRST LAYER<HightlightText>2</HightlightText>.
           </Typography>
           <Typography
             sx={{
               display: { xs: 'block', md: 'none' },
               paddingTop: '20px',
-              fontFamily: 'PingFang SC',
               margin: 'auto',
               letterSpacing: '0.5px',
               width: { xs: '323px', md: 'calc(100% - 472px)' },
@@ -84,7 +83,6 @@ export default function SectionTop({ content, meta }) {
             sx={{
               display: { xs: 'none', md: 'block' },
               paddingTop: '32px',
-              fontFamily: 'PingFang SC',
               margin: 'auto',
               letterSpacing: '0.5px',
               width: { xs: '323px', md: 'calc(100% - 472px)' },
