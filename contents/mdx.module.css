@@ -1,5 +1,16 @@
+@font-face {
+  font-family: 'PingFang Regular', sans-serif;
+  src: url('/public/font/PINGFANG-REGULAR.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .root {
   width: 100%;
+  font-family: 'PingFang Regular';
+  /* color: brown; */
+  /* font-family: 'HANSON BOLD'; */
   /* max-width: 100%; */
 }
 
@@ -9,6 +20,7 @@
 }
 
 .root p {
+  color: #5F6D7E;
   line-height: 24px;
   font-size: 15px;
   max-width: 100%;
@@ -27,12 +39,15 @@
   margin: 0;
   /* padding: 24px; */
   padding: 0 24px 12px 24px;
+  color: #5F6D7E;
+
 
 }
 .root ol {
   /* list-style-type: none; */
   margin: 0;
   padding: 0 24px 12px 24px;
+  color: #5F6D7E;
   /* padding: 24px; */
 
 }
@@ -43,6 +58,9 @@
   padding-left: '44px';
   margin-left: '44px';
   left: '44px';
+  color: #5F6D7E;
+
+
   /* list-style-type: 'none'; */
 }
 
@@ -56,6 +74,7 @@
 
 .root a {
   text-decoration: underline;
+  color: #0F0F0F;
 }
 
 .root img {

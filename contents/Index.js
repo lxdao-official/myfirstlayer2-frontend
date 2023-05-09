@@ -1,6 +1,4 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { read } from 'fs';
-import { forEach } from 'lodash';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
@@ -21,7 +19,7 @@ import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 import mdxStyle from './mdx.module.css';
-import { getStorage, removeStorage, setStorage } from './storage.js';
+import { getStorage, setStorage } from './storage.js';
 
 const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
 
@@ -60,18 +58,16 @@ export default function Content(props) {
     fetch(`/api/getFile/${name}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log('data------------', data);
         if (data?.mdxSource) {
           setMdxSource(data.mdxSource);
         }
         setTimeout(() => setLoading(false), 800);
       })
-      .catch((error) => console.error('err--------', error));
+      .catch((error) => console.error('[request mdx err]', error));
   };
 
-  // const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
-
   const computeReadCount = (arr) => {
+    if (!arr) return 0;
     let count = 0;
     for (let index in arr) {
       if ((!arr[index].main && arr[index]?.status) || (arr[index].main && (+index === 0 || +index === arr.length - 1) && arr[index]?.status)) {
@@ -82,7 +78,7 @@ export default function Content(props) {
     return count;
   };
   const handleTabChapter = (action, chapter) => {
-    console.log('chapter index', chapter);
+    console.log('[current chapter data]', chapter);
     const mainArr = [1, 5, 10, 18];
 
     if (!action) {
@@ -130,7 +126,6 @@ export default function Content(props) {
 
         setName(newState[selectedIndex - 2]?.text);
       } else {
-        console.log('shuang --selectedIndex', selectedIndex);
         setChapterData({
           current: directory[selectedIndex - 1]?.text,
           last: selectedIndex - 2 === 0 ? '' : mainArr.includes(selectedIndex - 2) ? directory[selectedIndex - 3]?.text : directory[selectedIndex - 2]?.text,
@@ -148,10 +143,6 @@ export default function Content(props) {
       }
 
       setDirectory(newState);
-
-      // setName(chapterData?.last);
-      // setSelectedIndex(readData?.currentIndex - 1);
-
       setReadData({
         counter: chapterCount,
         read: computeReadCount(newState),
@@ -220,7 +211,6 @@ export default function Content(props) {
     }
     if (action === 'lastOrNext') {
       let newState = directory;
-
       if (mainArr.includes(chapter?.index)) {
         if (!chapter?.status) {
           newState[chapter.index + 1] = {
@@ -329,9 +319,7 @@ export default function Content(props) {
     if (readed > 2) {
       setStorage('directoryStatus', JSON.stringify({ data: directory }));
     }
-    if (selectedIndex > 1) {
-      setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
-    }
+    setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
   }, [directory, selectedIndex]);
 
   useEffect(() => {
@@ -344,8 +332,9 @@ export default function Content(props) {
     }
     if (selectedIndexStore) {
       setSelectedIndex(JSON.parse(selectedIndexStore)?.data);
-
-      setName(jsonDirectory[jsonSelect]?.text);
+      if (jsonDirectory) {
+        setName(jsonDirectory[jsonSelect]?.text);
+      }
       setReadData({
         counter: chapterCount,
         read: computeReadCount(jsonDirectory),

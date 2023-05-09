@@ -9,7 +9,6 @@ import Progress from './Progress';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
     overflow: 'hidden',
   },
   listRoot: {
@@ -43,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     marginLeft: '-30px',
-
-    // top: 0,
-    // width: '10px',
     '& .MuiTypography-body1': {
       fontSize: (props) => props.fontSize, // 使用props传入字体大小
     },
@@ -86,7 +82,6 @@ theme.typography.progress = {
 
 export function PcDirectory(props) {
   const { directory, selectedIndex, onTabChapter } = props;
-
   const theme = useTheme();
 
   return (
@@ -129,7 +124,7 @@ export function PcDirectory(props) {
 }
 
 export function MobileDirectory(props) {
-  const { directory, readStatus, selectedIndex, handleNext, onTabChapter } = props;
+  const { directory, selectedIndex, onTabChapter } = props;
   const [drawerStatus, setDrawerStatus] = useState(false);
 
   const onNext = (action, data) => {
