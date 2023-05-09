@@ -10,6 +10,22 @@
   font-style: normal;
 }
 
+/* @font-face {
+  font-family: 'PingFang Regular';
+  src: url('/public/font/PINGFANG-REGULAR.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} */
+
+/* @font-face {
+  font-family: 'HANSON BOLD';
+  src: url('/public/font/HANSON-BOLD.TTF.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} */
+
 :root {
   --max-width: 1200px;
   --border-radius: 12px;
