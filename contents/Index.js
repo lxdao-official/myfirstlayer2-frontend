@@ -432,7 +432,7 @@ export default function Content(props) {
               bottom: 0,
               top: 'auto',
               width: '100vw',
-              zIndex: '1',
+              zIndex: 100,
               boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 1)',
             }}
             backgroundColor="#FFFFFF"

@@ -56,12 +56,12 @@ export default function Progress() {
           variant="progress"
           sx={{
             textAlign: mdScreen ? 'center' : 'left',
-            fontSize: mdScreen ? '12px' : '8px',
+            fontSize: mdScreen ? '12px' : '10px',
           }}
         >
           当前浏览进度
         </Box>
-        <Box style={{ fontSize: mdScreen ? '12px' : '8px' }}>{x.toFixed(2)}%</Box>
+        <Box style={{ fontSize: mdScreen ? '12px' : '10px' }}>{x.toFixed(2)}%</Box>
       </Box>
 
       <BorderLinearProgress variant="determinate" value={x} />
