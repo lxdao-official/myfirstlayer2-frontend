@@ -1,10 +1,9 @@
 import { useContext } from 'react';
 
-import { Box, CircularProgress, LinearProgress, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, LinearProgress, useMediaQuery, useTheme } from '@mui/material';
 import { makeStyles, withStyles } from '@mui/styles';
 
 import { ReadContext } from './context.js';
-import { getStorage, removeStorage, setStorage } from './storage.js';
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {

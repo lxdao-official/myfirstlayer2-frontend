@@ -1,11 +1,5 @@
 import {
-  Link,
-  Card,
   Box,
-  Typography,
-  Grid,
-  CardContent,
-  CardActions,
   Hidden,
 } from '@mui/material';
 
@@ -18,7 +12,6 @@ export default function BottomNav(props) {
   return (
     <Box
       backgroundColor='#ECECEC'
-      // borderTop="1px solid #000"
       display='flex'
       height={80}
       alignItems='center'

@@ -1,6 +1,4 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { read } from 'fs';
-import { forEach } from 'lodash';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 import { useEffect, useState, useRef } from 'react';
@@ -21,7 +19,7 @@ import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
 import mdxStyle from './mdx.module.css';
-import { getStorage, removeStorage, setStorage } from './storage.js';
+import { getStorage, setStorage } from './storage.js';
 
 const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangle'), { ssr: false });
 
@@ -55,12 +53,6 @@ export default function Content(props) {
 
   useEffect(() => {
     requestMdxSource(name);
-
-    // setChapterData({
-    //   current: chapterData?.current, //md.props.file[readData?.currentIndex]?.text,
-    //   last: chapterData?.last,//readData?.currentIndex !== 1 ? md.props.file[readData?.currentIndex - 1]?.text : '',
-    //   next: chapterData?.next,//readData?.currentIndex !== readData.counter ? md.props.file[readData?.currentIndex + 1]?.text : '',
-    // });
   }, [name]);
 
   // useEffect(() => {
@@ -89,23 +81,20 @@ export default function Content(props) {
   //   };
   // }, []);
 
-  console.log('shuang seee', selectedIndex);
   const requestMdxSource = (name) => {
     setLoading(true);
 
     fetch(`/api/getFile/${name}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log('data------------', data);
         if (data?.mdxSource) {
           setMdxSource(data.mdxSource);
         }
         setTimeout(() => setLoading(false), 800);
       })
-      .catch((error) => console.error('err--------', error));
+      .catch((error) => console.error('[request mdx err]', error));
   };
 
-  // const computeReadCount = (arr) => arr?.reduce((acc, cur) => acc + (cur ? 1 : 0), 0) || 1;
 
   const computeReadCount = (arr) => {
     let count = 0;
@@ -118,7 +107,7 @@ export default function Content(props) {
     return count;
   };
   const handleTabChapter = (action, chapter) => {
-    console.log('chapter index', chapter);
+    console.log('[current chapter data]', chapter);
     const mainArr = [1, 5, 10, 18];
 
     if (!action) {
@@ -166,7 +155,6 @@ export default function Content(props) {
 
         setName(newState[selectedIndex - 2]?.text);
       } else {
-        console.log('shuang --selectedIndex', selectedIndex);
         setChapterData({
           current: directory[selectedIndex - 1]?.text,
           last: selectedIndex - 2 === 0 ? '' : mainArr.includes(selectedIndex - 2) ? directory[selectedIndex - 3]?.text : directory[selectedIndex - 2]?.text,
@@ -184,10 +172,6 @@ export default function Content(props) {
       }
 
       setDirectory(newState);
-
-      // setName(chapterData?.last);
-      // setSelectedIndex(readData?.currentIndex - 1);
-
       setReadData({
         counter: chapterCount,
         read: computeReadCount(newState),
@@ -230,7 +214,6 @@ export default function Content(props) {
 
         setName(newState[selectedIndex + 2]?.text);
       } else {
-        console.log('--selectedIndex', selectedIndex);
         setChapterData({
           current: directory[selectedIndex + 1]?.text,
           last: directory[selectedIndex]?.text,
@@ -249,15 +232,7 @@ export default function Content(props) {
       }
 
       setDirectory(newState);
-      // setName(chapterData?.next);
-      // setSelectedIndex(selectedIndex + 1);
 
-      // setReadData({
-      //   counter: chapterCount,
-      //   read: computeReadCount(newState),
-      //   currentIndex: mainArr.includes(chapter?.index) ? chapter?.index + 1 : chapter?.index,
-      //   actionFrom: 'nextButton',
-      // });
 
       setReadData({
         counter: chapterCount,
@@ -268,14 +243,8 @@ export default function Content(props) {
     }
     if (action === 'lastOrNext') {
       let newState = directory;
-      let params = {};
-
       if (mainArr.includes(chapter?.index)) {
         if (!chapter?.status) {
-          params = {
-            ...directory[chapter?.index + 1],
-          };
-
           newState[chapter.index + 1] = {
             text: newState[chapter.index + 1]?.text,
             main: false,
@@ -333,8 +302,6 @@ export default function Content(props) {
           }
         }
 
-        console.log('------newState', newState);
-        console.log('-chapter?.index-', chapter?.index, chapterCount);
         setChapterData({
           current: newState[chapter?.index].text,
           last: chapter?.index - 1 === 0 ? '' : mainArr.includes(chapter?.index - 1) ? newState[chapter.index - 2].text : newState[chapter.index - 1].text,
