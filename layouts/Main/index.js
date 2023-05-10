@@ -104,12 +104,12 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
                 orientation="vertical"
                 sx={{
                   borderColor: theme.palette.primary.contrastText,
-                  height: '24px',
-                  marginInline: '20px',
+                  height: '16px',
+                  marginInline: '13px',
                 }}
               />
               <Box component="a" target="_blank" href="https://lxdao.io" display="flex" alignItems="center">
-                <LXDAOLogo width={120} height={32} color={theme.palette.primary.contrastText} />
+                <LXDAOLogo width={80} height={20} color={theme.palette.primary.contrastText} />
               </Box>
             </Box>
             <Box gap={4} display="flex" alignItems="center">

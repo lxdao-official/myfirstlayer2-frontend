@@ -1,36 +1,15 @@
-export default function MFL2({ color, width = 125, height = 21 }) {
+export default function MFL2({ color, width = 83, height = 13 }) {
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 125 21"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M57.6709 0.945374H74.917V5.77429H57.6709V0.945374ZM57.6709 8.25769H74.9171V13.0866H57.6709V8.25769ZM74.9171 15.5701H57.6709V20.399H74.9171V15.5701Z"
-        fill={color}
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M55.4637 0.945374L48.5653 13.0866V20.399H43.1845L43.1845 13.0867H43.1843L36.2859 0.945381H41.1148L45.8748 9.32297L50.6348 0.945374L55.4637 0.945374Z"
-        fill={color}
-      />
+    <svg width={width} height={height} viewBox="0 0 125 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M57.6709 0.945374H74.917V5.77429H57.6709V0.945374ZM57.6709 8.25769H74.9171V13.0866H57.6709V8.25769ZM74.9171 15.5701H57.6709V20.399H74.9171V15.5701Z" fill={color} />
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M55.4637 0.945374L48.5653 13.0866V20.399H43.1845L43.1845 13.0867H43.1843L36.2859 0.945381H41.1148L45.8748 9.32297L50.6348 0.945374L55.4637 0.945374Z" fill={color} />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M26.9732 5.19485L22.4892 13.0866H31.457H31.4572L26.9732 5.19485ZM24.5587 0.945396L17.6603 13.0866H17.6602H17.6602V17.9156H17.6602L17.6602 20.399H22.4891V17.9156H31.457V20.399H36.286V17.9156H36.286V13.0866L36.2861 13.0867L29.3877 0.945374L29.3876 0.945374H24.5587L24.5587 0.945374L24.5587 0.945396Z"
         fill={color}
       />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M4.82894 15.5701L4.82894 0.945374L2.6226e-05 0.945374L2.55868e-05 15.5701H0V20.399H2.53757e-05L2.53757e-05 20.399H4.82894V20.399H15.1766V15.5701H4.82894Z"
-        fill={color}
-      />
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M4.82894 15.5701L4.82894 0.945374L2.6226e-05 0.945374L2.55868e-05 15.5701H0V20.399H2.53757e-05L2.53757e-05 20.399H4.82894V20.399H15.1766V15.5701H4.82894Z" fill={color} />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
