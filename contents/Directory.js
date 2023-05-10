@@ -109,10 +109,18 @@ export function PcDirectory(props) {
         }}
         backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
-        <Typography fontSize="24px" px="10px">
+        <Typography 
+          sx={{
+           fontSize: '24px',
+           color: '#000',
+           paddingBottom: '10px',
+          }}
+        >
           目录
         </Typography>
-        <Divider></Divider>
+        <Divider sx={{
+          marginBottom: '20px',
+        }}/>
         <Box>
           {directory?.map((row, index) => {
             return <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onTabChapter('lastOrNext', { index, ...row })} {...props} />;
