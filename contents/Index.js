@@ -25,7 +25,6 @@ const ImpossibleTriangle = dynamic(() => import('../components/ImpossibleTriangl
 
 export default function Content(props) {
   const { md } = props;
-
   const chapterCount = md.props.file.length - 4;
   const [name, setName] = useState(md.props.file[0]?.text);
   const [readData, setReadData] = useState({
@@ -48,38 +47,10 @@ export default function Content(props) {
   const { ref, inView, entry } = useInView({
     threshold: 0.3,
   });
-  // const elementRef = useRef(null);
-  // const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
     requestMdxSource(name);
   }, [name]);
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting) {
-  //           setIsIntersecting(true)
-  //           console.log('Element is visible');
-  //           // Do something when element is visible
-  //         } else {
-  //           setIsIntersecting(false)
-
-  //         }
-  //       });
-  //     },
-  //     { threshold: 0.5 }
-  //   );
-
-  //   if (elementRef.current) {
-  //     observer.observe(elementRef.current);
-  //   }
-
-  //   return () => {
-  //     observer.unobserve(elementRef.current);
-  //   };
-  // }, []);
 
   const requestMdxSource = (name) => {
     setLoading(true);
@@ -134,14 +105,14 @@ export default function Content(props) {
       if (mainArr.includes(selectedIndex - 1)) {
         newState[selectedIndex - 1] = {
           text: newState[selectedIndex - 1]?.text,
-          main: true,
+          main: newState[selectedIndex - 1]?.main,
           index: selectedIndex - 1,
           status: true,
         };
 
         newState[selectedIndex - 2] = {
           text: newState[selectedIndex - 2]?.text,
-          main: false,
+          main: newState[selectedIndex - 2]?.main,
           index: selectedIndex - 2,
           status: true,
         };
@@ -162,7 +133,7 @@ export default function Content(props) {
         });
         newState[selectedIndex - 1] = {
           text: newState[selectedIndex - 1]?.text,
-          main: false,
+          main: newState[selectedIndex - 1]?.main,
           index: selectedIndex - 1,
           status: true,
         };
@@ -189,18 +160,17 @@ export default function Content(props) {
         computeReadCount(readStatusStore);
       }
       let newState = directory;
-      let nextChapter = directory[selectedIndex + 1];
       if (mainArr.includes(selectedIndex + 1)) {
         newState[selectedIndex + 1] = {
           text: newState[selectedIndex + 1]?.text,
-          main: true,
+          main: newState[selectedIndex + 1]?.main,
           index: selectedIndex + 1,
           status: true,
         };
 
         newState[selectedIndex + 2] = {
           text: newState[selectedIndex + 2]?.text,
-          main: false,
+          main: newState[selectedIndex + 2]?.main,
           index: selectedIndex + 2,
           status: true,
         };
@@ -222,7 +192,7 @@ export default function Content(props) {
 
         newState[selectedIndex + 1] = {
           text: newState[selectedIndex + 1]?.text,
-          main: false,
+          main: newState[selectedIndex + 1]?.main,
           index: selectedIndex + 1,
           status: true,
         };
@@ -232,7 +202,6 @@ export default function Content(props) {
       }
 
       setDirectory(newState);
-
       setReadData({
         counter: chapterCount,
         read: computeReadCount(newState),
@@ -246,7 +215,7 @@ export default function Content(props) {
         if (!chapter?.status) {
           newState[chapter.index + 1] = {
             text: newState[chapter.index + 1]?.text,
-            main: false,
+            main: newState[chapter.index + 1]?.main,
             index: chapter.index + 1,
             status: true,
           };
@@ -260,7 +229,6 @@ export default function Content(props) {
 
         setName(newState[chapter.index + 1]?.text);
       } else if (chapter.index === 0) {
-        // if (!chapter?.status) {
         setChapterData({
           current: newState[chapter?.index].text,
           last: '',
@@ -269,7 +237,6 @@ export default function Content(props) {
         setSelectedIndex(chapter?.index);
 
         setName(newState[chapter.index]?.text);
-        // }
       } else {
         if (!chapter?.status) {
           if (chapter?.index > mainArr[1] && chapter?.index < mainArr[2]) {
@@ -392,40 +359,12 @@ export default function Content(props) {
             height: '100%',
           }}
         >
-          {/* {
-              isIntersecting ? (
-                <Box>
-                  <Hidden smDown>
-                      <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
-                    </Hidden>
-                </Box>
-              ) : (
-                <Affix>
-                      <Hidden smDown>
-                        <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
-                      </Hidden>
-                    </Affix >
-              )
-            } */}
-
           <Hidden smDown>
             <Box
               sx={{
-                // position: isIntersecting ? 'fixed' : 'static',
                 top: 0,
               }}
             >
-              <Box 
-                sx={{
-                  backgroundColor: '#FFFFFF',
-                  borderRadius: '18px',
-                  paddingX: '22px',
-                  paddingY: '28px',
-                  marginBottom: '32px',
-                }}
-              >
-                <Progress />
-              </Box>
               <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
             </Box>
           </Hidden>
@@ -447,7 +386,6 @@ export default function Content(props) {
           ) : (
             <Box
               sx={{
-                // marginRight: mdScreen ? '32px' : 0,
                 flexGrow: 1,
                 marginLeft: mdScreen ? '32px' : 0,
               }}
@@ -469,9 +407,7 @@ export default function Content(props) {
                   {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
                 </Box>
               </Box>
-              {/* <div ref={elementRef}> */}
               <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
-              {/* </div> */}
             </Box>
           )}
         </Box>
@@ -485,7 +421,7 @@ export default function Content(props) {
               bottom: 0,
               top: 'auto',
               width: '100vw',
-              zIndex: '1',
+              zIndex: 100,
               boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 1)',
             }}
             backgroundColor="#FFFFFF"
