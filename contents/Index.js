@@ -399,6 +399,7 @@ export default function Content(props) {
                   backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
                   maxWidth: mdScreen ? '1200px' : '100vw',
                   color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+                  mt: { xs: '20px', sm: 0 },
                 }}
                 borderRadius={2}
                 padding={{

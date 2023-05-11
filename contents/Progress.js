@@ -50,36 +50,26 @@ export default function Progress() {
 
   return (
     <Box className={classes.root}>
-        <Box
-          variant="progress"
-          className={classes.title}
-          sx={{
-            marginBottom: mdScreen ? '9px' : '6px',
-            fontSize: mdScreen ? '12px' : '8px',
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Box>
-            阅读进度
-          </Box>
-          {
-            mdScreen && (
-              <Box>
-                {x.toFixed(0)}%
-              </Box>
-            )
-          }
-        </Box>
-   
+      <Box
+        variant="progress"
+        className={classes.title}
+        sx={{
+          marginBottom: mdScreen ? '9px' : '6px',
+          fontSize: mdScreen ? '12px' : '8px',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box>阅读进度</Box>
+        <Box>{x.toFixed()}%</Box>
+      </Box>
+
       <BorderLinearProgress variant="determinate" value={x} />
-      {
-        !mdScreen && (
-          <Box className={classes.data} style={{ transform: `translateX(${x}%)`, fontSize: '10px' }}>
-            {x.toFixed(2)}%
-          </Box>
-        )
-      }
+      {/* {!mdScreen && (
+        <Box className={classes.data} style={{ transform: `translateX(${x}%)`, fontSize: '10px' }}>
+          {x.toFixed(2)}%
+        </Box>
+      )} */}
     </Box>
   );
 }
