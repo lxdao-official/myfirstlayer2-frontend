@@ -13,6 +13,8 @@ import Diploma from '../components/Diploma';
 import MintBadge from '../components/MintBadge';
 import ZksyncSwap from '../components/ZksyncSwap';
 import CompressText from '../components/animation/CompressText';
+import GithubAvatar from '../components/GithubAvatar';
+
 import { MobileDirectory, PcDirectory } from './Directory';
 import Loading from './Loading';
 import Progress from './Progress';
@@ -302,6 +304,7 @@ export default function Content(props) {
     ZksyncSwap,
     ImpossibleTriangle,
     MintBadge,
+    GithubAvatar,
   };
 
   const theme = useTheme();
@@ -413,6 +416,7 @@ export default function Content(props) {
           )}
         </Box>
       </Container>
+      {/* <GithubAvatar></GithubAvatar> */}
       {/* </Box> */}
       {inView && (
         <Hidden smUp>
