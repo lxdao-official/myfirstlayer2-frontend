@@ -15,13 +15,18 @@
     "sectionTeam-content-11": "核心贡献者",
     "sectionTeam-content-12": "贡献者",
     "sectionTeam-title-10": "幕后团队",
-    "sectionTeam-title-11": "介绍当前项目的背后的贡献者"
+    "sectionTeam-title-11": "介绍当前项目的背后的贡献者",
+    "sectionTeam-title-12": "Description of contributor value"
   },
   "SectionSponsors": {
-    "sectionSponsors-title-10": "捐赠者"
+    "sectionSponsors-title-10": "捐赠者",
+    "sectionSponsors-title-11": "Description of sponsors value"
   },
   "SectionMyFirstProject": {
-    "sectionMyFirst-title-10": "My First series"
+    "sectionMyFirst-title-10": "My First series",
+    "view-more": "View More",
+    "sectionMyFirst-title-1": "You may also wanna know...",
+    "sectionMyFirst-title-2": "Description of core contributor value"
   },
   "Directory": {
     "foreword": "前言",
