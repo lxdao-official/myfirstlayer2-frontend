@@ -14,9 +14,9 @@ export default function GithubAvatar(props) {
   console.log('shuang avatarUrls', avatarUrls)
   return (
     <>
-      <Box>
+      <h2>
         本章节贡献人
-      </Box>
+      </h2>
 
       <Box sx={{
         // background: 'pink',
@@ -27,14 +27,14 @@ export default function GithubAvatar(props) {
           <Box
             sx={{
               padding: '5px',
-              marginTop: '10px',
+              marginTop: '-5px',
             }}
           >
               <Avatar
                 sx={{
                   borderRadius: '50%',
-                  width: '36px',
-                  height: '36px',
+                  width: '48px',
+                  height: '48px',
                 }}
                 src={url}
                 alt="Contributor Avatar"
