@@ -66,7 +66,7 @@ export default function Progress() {
           {
             mdScreen && (
               <Box>
-                {x}%
+                {x.toFixed(0)}%
               </Box>
             )
           }
