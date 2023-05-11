@@ -156,7 +156,7 @@ export default function SectionSponsors() {
   const t = useTranslations('SectionSponsors');
 
   return (
-    <SectionSimpleWrapper title={t(`sectionSponsors-title-10`)} desc="Description of core contributor value" id="next">
+    <SectionSimpleWrapper title={t(`sectionSponsors-title-10`)} desc={t('sectionSponsors-title-11')} id="next">
       <Box mt={{ xs: '10px', sm: '30px' }} padding={{ xs: 1, sm: 0 }}>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '30px' }}>
           {orgDonation.map((item, i) => {
