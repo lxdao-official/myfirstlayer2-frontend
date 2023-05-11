@@ -1,14 +1,14 @@
-@font-face {
+/* @font-face {
   font-family: 'PingFang Regular', sans-serif;
   src: url('/public/font/PINGFANG-REGULAR.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 .root {
   width: 100%;
-  font-family: 'PingFang Regular';
+  font-family: 'PingFang SC';
   /* color: brown; */
   /* font-family: 'HANSON BOLD'; */
   /* max-width: 100%; */
