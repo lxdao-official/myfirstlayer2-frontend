@@ -18,13 +18,18 @@
     "sectionTeam-title-11": "Introduce",
     "sectionTeam-partners-13": "Co-founder of GCLX NFT and My First NFT. Web3 Buidler. ETH to the moon!",
     "sectionTeam-partners-14": "At vero eos et accusamus et iusto odio dignissimos ducimus",
-    "sectionTeam-partners-15": "Qui blanditiis praesentium voluptatum deleniti atque corrupti"
+    "sectionTeam-partners-15": "Qui blanditiis praesentium voluptatum deleniti atque corrupti",
+    "sectionTeam-title-12": "Description of contributor value"
   },
   "SectionSponsors": {
-    "sectionSponsors-title-10": "Sponsors"
+    "sectionSponsors-title-10": "Sponsors",
+    "sectionSponsors-title-11": "Description of sponsors value"
   },
   "SectionMyFirstProject": {
-    "sectionMyFirst-title-10": "My First series..."
+    "sectionMyFirst-title-10": "My First series",
+    "view-more": "View More",
+    "sectionMyFirst-title-1": "You may also wanna know...",
+    "sectionMyFirst-title-2": "Description of core contributor value"
   },
   "Directory": {
     "foreword": "Foreword",
@@ -42,7 +47,7 @@
     "rollup-practice": "3.5 Rollup Practice",
     "stark-vs-snark": "3.6 STARK vs SNARK",
     "zk-vm-vs-zk-evm": "3.7 ZK-VM vs ZK-EVM",
-    "validium-and-volition": "4.1 Validium和Volition",
+    "validium-and-volition": "4.1 Validium 和 Volition",
     "deneb-and-layer2": "4.2 Deneb and Layer 2",
     "account-abstraction": "4.3 Account Abstraction",
     "diploma": "Diploma",

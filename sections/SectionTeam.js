@@ -373,7 +373,7 @@ export default function SectionTeam() {
   const theme = useTheme();
   const t = useTranslations('SectionTeam');
   return (
-    <SectionSimpleWrapper title={t(`sectionTeam-content-11`)} desc="Description of contributor value" id="team">
+    <SectionSimpleWrapper title={t(`sectionTeam-content-11`)} desc={t('sectionTeam-title-12')} id="team">
       <Box mt={{ sx: '30px', sm: '60px' }}>
         <Box padding={{ xs: 2, sm: 0 }}>
           <Grid container spacing={2.5}>
