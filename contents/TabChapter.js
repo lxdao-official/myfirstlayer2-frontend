@@ -1,12 +1,9 @@
 import { useTranslations } from 'next-intl';
-import { useContext } from 'react';
 
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Box, Button, Card, CardContent, CircularProgress, Hidden, IconButton, LinearProgress, SvgIcon, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Hidden, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import { formatChapterTitle } from '../utils.js';
-import { ReadContext } from './context.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -110,18 +107,13 @@ export default function TabChapter(props) {
   const { chapterData, onTabChapter } = props;
 
   const classes = useStyles();
-  const theme = useTheme();
   const t = useTranslations('Directory');
-  const mdScreen = useMediaQuery(theme?.breakpoints?.up('md'));
-
-  console.log('shuang chapterData', chapterData);
   const handleTabChapter = (action) => {
     if ((chapterData?.currentIndex === 0 && action === 'last') || (chapterData?.read === chapterData?.counter && action === 'next')) {
       return;
     }
     onTabChapter(action);
   };
-
 
   return (
     <>
@@ -171,8 +163,6 @@ export default function TabChapter(props) {
                 <Typography style={{ fontSize: '8px', fontStyle: 'SemiBold', fontWeight: 200 }}>{chapterData?.last ? t('previous-chapter') : t('current-chapter')}</Typography>
                 <Typography style={{ fontSize: '14px', fontStyle: 'SemiBold', fontWeight: 600 }}>{chapterData?.last ? t(formatChapterTitle(chapterData?.last)) : t(formatChapterTitle(chapterData?.current))}</Typography>
               </Box>
-              {/* {
-                  chapterData?.last && ( */}
               <Box fontSize={'8px'}>
                 <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -181,13 +171,9 @@ export default function TabChapter(props) {
                   />
                 </svg>
               </Box>
-              {/* )
-                } */}
             </Box>
           </Box>
 
-          {/* {
-              chapterData?.next && ( */}
           <Box className={classes.mobileContainer} onClick={() => onTabChapter('next')}>
             <Box className={classes.mobileContent}>
               <Box>
@@ -204,8 +190,6 @@ export default function TabChapter(props) {
               </Box>
             </Box>
           </Box>
-          {/* //   )
-            // } */}
         </Box>
       </Hidden>
     </>

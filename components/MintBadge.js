@@ -1,16 +1,21 @@
 import { ethers } from 'ethers';
 import { useEffect, useRef, useState } from 'react';
+import { useContext } from 'react';
 import { useAccount, useBalance, useContractWrite, useNetwork, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
 
 import { Box, Button, useMediaQuery, useTheme } from '@mui/material';
 import { Stack } from '@mui/system';
 
 import abi from '../abi.json';
+import { ReadContext } from '../contents/context';
 import showMessage from './showMessage';
 
 export default function MintBadge() {
+  const { readData } = useContext(ReadContext);
+  const { read, counter } = readData;
+
   const { chain } = useNetwork();
-  const { chains, error, isLoading: swichLoading, pendingChainId, switchNetwork } = useSwitchNetwork();
+  const { chains, isLoading: swichLoading, switchNetwork } = useSwitchNetwork();
 
   const { address } = useAccount();
   const theme = useTheme();
@@ -34,6 +39,14 @@ export default function MintBadge() {
     hash: data?.hash,
   });
   const handleMint = async () => {
+    if (read != counter) {
+      showMessage({
+        type: 'error',
+        title: 'Wrong Network',
+        body: 'Please Read All.',
+      });
+      return;
+    }
     if (chain?.id != chains[0]?.id) {
       showMessage({
         type: 'error',
@@ -43,11 +56,7 @@ export default function MintBadge() {
       return;
     }
     try {
-      debugger;
-
-      // debugger;
       setMintLoading(true);
-      console.log(modifiedImgSrc);
       const response = await fetch('/api/upload/png', {
         method: 'POST',
         body: modifiedImgSrc,

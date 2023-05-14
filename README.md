@@ -40,12 +40,14 @@ Then open <http://localhost:3000> start developing.
 - `NEXT_PUBLIC_GOOGLE_ANALYTICS` is the application id in the google analytics tool, you can get from https://analytics.google.com.
 - `NEXT_PUBLIC_CONTRACT_ADDRESS` is the smart contract address used to mint. The smart contract project has been [open source](https://github.com/lxdao-official/myfirstlayer2-contract), and you can deploy it owned.
 - `NEXT_PUBLIC_INFURA_PROJECT_ID` is the project id in the `infura` service, you can get from https://infura.io.
+- `NEXT_PUBLIC_NFT_STORAGE_TOKEN` is the API KEY of nft storage, you can get from https://nft.storage/.
 
 ```
 NEXT_PUBLIC_GOOGLE_ANALYTICS=G-VPF0TRZGBT
 NEXT_PUBLIC_CHAIN_ID=450
 NEXT_PUBLIC_CONTRACT_ADDRESS=0x43c4Ebf956F7804596c333B209Ff246a476594DA
 NEXT_PUBLIC_INFURA_PROJECT_ID=10a6......68e3
+NEXT_PUBLIC_NFT_STORAGE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9......
 ```
 
 ## Code of Conduct

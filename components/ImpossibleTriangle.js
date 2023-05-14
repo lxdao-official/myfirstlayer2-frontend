@@ -4,9 +4,8 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 
-// let side = '';
 export default function ImpossibleTriangle({ children, title }) {
-  const t = useTranslations('PageLayout');
+  const t = useTranslations('ImpossibleTriangle');
 
   const [dragNodes, setDragNodes] = useState([]);
   const dragNodesRef = useRef(null);
@@ -23,20 +22,16 @@ export default function ImpossibleTriangle({ children, title }) {
     const x2 = point2.x;
     const y2 = point2.y;
 
-    //三角形三个边长
+    //triangle three side long
     var A = Math.abs(Math.sqrt(Math.pow(x - x1, 2) + Math.pow(y - y1, 2)));
     var B = Math.abs(Math.sqrt(Math.pow(x - x2, 2) + Math.pow(y - y2, 2)));
     var C = Math.abs(Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
-    //利用海伦公式计算三角形面积
-    //周长的一半
+
     var P = (A + B + C) / 2;
     var allArea = Math.abs(Math.sqrt(P * (P - A) * (P - B) * (P - C)));
-    //普通公式计算三角形面积反推点到线的垂直距离
     var dis = (2 * allArea) / C;
     return dis;
   };
-
-  const area = 16560;
 
   const center = { x: 138 + 69, y: 94 + 80 };
   const center0 = { x: 138 + 69, y: 94 + 70 };
@@ -98,8 +93,8 @@ export default function ImpossibleTriangle({ children, title }) {
         ...oldInner[0],
         size: 10,
         style: {
-          fill: 'white',
-          stroke: 'white',
+          fill: 'black',
+          stroke: 'black',
         },
       },
       {
@@ -107,8 +102,8 @@ export default function ImpossibleTriangle({ children, title }) {
         ...oldInner[1],
         size: 10,
         style: {
-          fill: 'white',
-          stroke: 'white',
+          fill: 'black',
+          stroke: 'black',
         },
       },
       {
@@ -116,84 +111,83 @@ export default function ImpossibleTriangle({ children, title }) {
         ...oldInner[2],
         size: 10,
         style: {
-          fill: 'white',
-          stroke: 'white',
+          fill: 'black',
+          stroke: 'black',
         },
       },
       {
         id: '3',
-        label: '去中心化',
+        label: t('impossibleTriangle-content-11'),
         ...outerTriangle[0],
         size: 5,
         style: {
-          fill: 'white',
-          stroke: 'white',
+          fill: 'black',
+          stroke: 'black',
         },
         labelCfg: {
           position: 'top',
           offset: 5,
-          style: { fill: 'white', fontSize: 16, fontFamily: 'sucaijishikangkangti' },
+          style: { fill: 'black', fontSize: 16, fontFamily: 'sucaijishikangkangti' },
         },
       },
       {
         id: '4',
-        label: '可扩展性',
+        label: t('impossibleTriangle-content-12'),
         ...outerTriangle[1],
         size: 5,
         style: {
-          fill: 'white',
-          stroke: 'white',
+          fill: 'black',
+          stroke: 'black',
         },
         labelCfg: {
           position: 'left',
           offset: 10,
-          style: { fill: 'white', fontSize: 16, fontFamily: 'sucaijishikangkangti' },
+          style: { fill: 'black', fontSize: 16, fontFamily: 'sucaijishikangkangti' },
         },
       },
       {
         id: '5',
-        label: '安全性',
+        label: t('impossibleTriangle-content-13'),
         ...outerTriangle[2],
         size: 5,
         style: {
-          fill: 'white',
-          stroke: 'white',
+          fill: 'black',
+          stroke: 'black',
         },
         labelCfg: {
           position: 'right',
           offset: 10,
-          style: { fill: 'white', fontSize: 16, fontFamily: 'sucaijishikangkangti' },
+          style: { fill: 'black', fontSize: 16, fontFamily: 'sucaijishikangkangti' },
         },
       },
     ],
     edges: [
-      { source: '0', target: '1', style: { lineWidth: 5, stroke: 'white' } },
-      { source: '1', target: '2', style: { lineWidth: 5 } },
-      { source: '2', target: '0', style: { lineWidth: 5 } },
-      { source: '3', target: '4', style: { lineWidth: 5 } },
-      { source: '4', target: '5', style: { lineWidth: 5 } },
-      { source: '5', target: '3', style: { lineWidth: 5 } },
+      { source: '0', target: '1', style: { lineWidth: 5, stroke: 'black' } },
+      { source: '1', target: '2', style: { lineWidth: 5, stroke: 'black' } },
+      { source: '2', target: '0', style: { lineWidth: 5, stroke: 'black' } },
+      { source: '3', target: '4', style: { lineWidth: 5, stroke: 'black' } },
+      { source: '4', target: '5', style: { lineWidth: 5, stroke: 'black' } },
+      { source: '5', target: '3', style: { lineWidth: 5, stroke: 'black' } },
     ],
   };
 
   const triggerDis = 30;
 
   const changeColor = (graph, index, color) => {
-    // debugger;
     setSide(index);
-    // side = index;
-    const style = { style: { fill: color, stroke: color } };
-    const white = { style: { fill: 'white', stroke: 'white' } };
+    const style = { style: { fill: color, stroke: color, fontSize: 28 } };
+    const black = { style: { fill: 'black', stroke: 'black', fontSize: 20 } };
+
     graph.cfg.nodes.forEach((item) => {
       graph.updateItem(item, {
         labelCfg: {
-          ...white,
+          ...black,
         },
       });
     });
     graph.cfg.edges.forEach((item) => {
       graph.updateItem(item, {
-        ...white,
+        ...black,
       });
     });
     if (index == 1) {
@@ -274,7 +268,7 @@ export default function ImpossibleTriangle({ children, title }) {
   useEffect(() => {
     const graph = new G6.Graph({
       container: 'mountNode',
-      width: 400,
+      width: 450,
       height: 300,
       animate: true,
 
@@ -315,20 +309,9 @@ export default function ImpossibleTriangle({ children, title }) {
       if (index === 3 || index === 4 || index === 5) {
         return;
       }
-      const outer = graph.cfg.nodes[index + 3];
       const isIn = pointInTriangle(e.canvasX, e.canvasY);
-      const dis = twoPointDistance(
-        {
-          x: e.canvasX,
-          y: e.canvasY,
-        },
-        {
-          x: outer._cfg.model.x,
-          y: outer._cfg.model.y,
-        }
-      );
+
       const nodeItem = e.item;
-      console.log(isIn, dis);
       if (!isIn) {
         // point is out of triangle
         graph.updateItem(nodeItem, {
@@ -345,7 +328,6 @@ export default function ImpossibleTriangle({ children, title }) {
       const node2 = graph.cfg.nodes[2];
       if (nodeItem === node0) {
         const d012 = distanceOfPoint2Line(p0, outerTriangle[1], outerTriangle[2]);
-        console.log('d012', d012);
         if (d012 < 140) {
           graph.updateItem(nodeItem, {
             x: center.x,
@@ -362,7 +344,6 @@ export default function ImpossibleTriangle({ children, title }) {
         }
       } else if (nodeItem === node1) {
         const d102 = distanceOfPoint2Line(p1, outerTriangle[0], outerTriangle[2]);
-        console.log('d102', d102);
         if (d102 < 140) {
           graph.updateItem(nodeItem, {
             x: center.x,
@@ -379,7 +360,6 @@ export default function ImpossibleTriangle({ children, title }) {
         }
       } else {
         const d201 = distanceOfPoint2Line(p2, outerTriangle[0], outerTriangle[1]);
-        console.log('d201', d201);
         if (d201 < 140) {
           graph.updateItem(nodeItem, {
             x: center.x,
@@ -406,10 +386,10 @@ export default function ImpossibleTriangle({ children, title }) {
           changeColor(graph, 1, '#FF6055');
         } else if (nodeItem === node1) {
           graph.updateItem(node0, center0); //0
-          changeColor(graph, 2, '#FFC64E');
+          changeColor(graph, 2, '#FFC22F');
         } else {
           graph.updateItem(node1, center1); //1
-          changeColor(graph, 3, '#5979ED');
+          changeColor(graph, 3, '#5A7FF3');
         }
       } else {
         if (dis0 < triggerDis && dis1 < triggerDis) {
@@ -417,10 +397,10 @@ export default function ImpossibleTriangle({ children, title }) {
           changeColor(graph, 1, '#FF6055');
         } else if (dis1 < triggerDis && dis2 < triggerDis) {
           graph.updateItem(node0, center0); //0
-          changeColor(graph, 2, '#FFC64E');
+          changeColor(graph, 2, '#FFC22F');
         } else if (dis0 < triggerDis && dis2 < triggerDis) {
           graph.updateItem(node1, center1); //1
-          changeColor(graph, 3, '#5979ED');
+          changeColor(graph, 3, '#5A7FF3');
         }
 
         innerPoints[index].y = nodeItem._cfg.model.y;
@@ -473,73 +453,75 @@ export default function ImpossibleTriangle({ children, title }) {
     });
     graph.data(data);
     graph.render();
+    const black = { style: { fill: 'black', stroke: 'black', fontSize: 20, fontFamily: 'sucaijishikangkangti' } };
+    graph.cfg.nodes.forEach((item) => {
+      graph.updateItem(item, {
+        labelCfg: {
+          ...black,
+        },
+      });
+    });
     return () => {
       graph.clear();
       graph.destroy();
     };
   }, []);
-  //57%
 
   return (
-    <Box sx={{ background: '#F6F6F6', paddingBlock: '30px', paddingInline: '65px', marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Box sx={{ background: '#1E1E1E', borderRadius: '18px', color: 'white', '&>canvas': { zoom: { xs: 0.58, md: 1 } } }} id="mountNode"></Box>
+    <Box sx={{ background: '#F6F6F6', paddingTop: '30px', paddingBottom: '16px', paddingInline: { xs: '10px', sm: '100px' }, marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Box sx={{ paddingTop: '30px', display: 'flex', borderRadius: '10px', justifyContent: 'center', background: '#FFFFFF' }}>
+        <Box sx={{ background: '#FFFFFF', color: 'black', '&>canvas': { zoom: { xs: 0.55, md: 1 } } }} id="mountNode"></Box>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-        <Typography fontSize={12} color="#777777" marginBottom="30px">
-          尝试拖拽不可能三角
+        <Typography fontSize={12} color="#777777" marginBottom="18px">
+          {t('impossibleTriangle-content-1')}
         </Typography>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '19px' }}>
         {sideRef.current === 1 ? (
-          <Typography fontSize={30} color="#FF6055" fontWeight={700} marginBottom="20px">
-            高可扩展性 & 高去中心化
+          <Typography sx={{ color: '#FF6055 !important', fontSize: { xs: '16px !important', sm: '32px !important' } }} fontWeight={700}>
+            {t('impossibleTriangle-content-2')}
           </Typography>
         ) : null}
         {sideRef.current === 2 ? (
-          <Typography fontSize={30} color="#FFC64E" fontWeight={700} marginBottom="20px">
-            高安全性 & 高可扩展性
+          <Typography sx={{ color: '#FFC22F !important', fontSize: { xs: '16px !important', sm: '32px !important' } }} fontWeight={700}>
+            {t('impossibleTriangle-content-3')}
           </Typography>
         ) : null}
         {sideRef.current === 3 ? (
-          <Typography fontSize={30} color="#5979ED" fontWeight={700} marginBottom="20px">
-            高去中心化 & 高安全性
+          <Typography sx={{ color: '#5A7FF3 !important', fontSize: { xs: '16px !important', sm: '32px !important' } }} fontWeight={700}>
+            {t('impossibleTriangle-content-4')}
           </Typography>
         ) : null}
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Typography fontSize={14} color="#0D0D0D" fontWeight={400} marginBottom="10px">
-          情况分析
-        </Typography>
-      </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', paddingInline: '17px' }}>
         {sideRef.current === 1 ? (
           <Box>
-            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              追求可扩展性（即性能）和去中心化程度，为保证去中心化采用了较多验证节点，为了追求性能提高了出块速度，或采用了特殊的共识机制。但提高出块速度容易导致大规模区块重组，更复杂的共识机制容易导致全网宕机等安全事故，牺牲了安全性。
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+              {t('impossibleTriangle-content-5')}
             </Typography>
-            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              代表区块链：Polygon、Solana
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+              {t('impossibleTriangle-content-6')}
             </Typography>
           </Box>
         ) : null}
         {sideRef.current === 2 ? (
           <Box>
-            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              追求安全性和可扩展性（即性能），往往采用少数超级节点进行通讯，超级节点拥有更强的性能和更好的网络环境，彼此之间能实现超高速的通讯。但参与门槛过高，牺牲了去中心化程度。
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+              {t('impossibleTriangle-content-7')}{' '}
             </Typography>
-            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              代表区块链：BSC、EOS、TRON
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+              {t('impossibleTriangle-content-8')}
             </Typography>
           </Box>
         ) : null}
         {sideRef.current === 3 ? (
           <Box>
-            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              追求去中心化程度和安全性，采用更多的节点和更公平的出块方式，值得信赖。但为了允许低性能节点参与验证，协调全球网络延迟，导致每秒可处理的交易数较低，牺牲了性能。
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+              {t('impossibleTriangle-content-9')}{' '}
             </Typography>
-            <Typography fontSize={14} color="#2F2F2F" fontWeight={400}>
-              代表区块链：BTC、ETH
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+              {t('impossibleTriangle-content-10')}
             </Typography>
           </Box>
         ) : null}

@@ -2,7 +2,7 @@ export const light = {
   bodyBg: {
     main: '#f8fafe',
   },
-  header: { main: '#fff' },
+  header: { main: '#000' },
   alternate: {
     // main: '#FAFAFA',
     dark: '#edf1f7',
