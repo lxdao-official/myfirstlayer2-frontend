@@ -92,7 +92,7 @@ export default function Content(props) {
     let readStatusStore = readStatus;
 
     if (action === 'last') {
-      if (selectedIndex === 1) {
+      if (selectedIndex === 0) {
         return;
       }
 
