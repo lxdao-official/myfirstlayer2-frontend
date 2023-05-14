@@ -109,7 +109,7 @@ export default function TabChapter(props) {
   const classes = useStyles();
   const t = useTranslations('Directory');
   const handleTabChapter = (action) => {
-    if ((chapterData?.currentIndex === 0 && action === 'last') || (chapterData?.read === chapterData?.counter && action === 'next')) {
+    if ((chapterData?.currentIndex === 0 && action === 'last') || (chapterData?.currentIndex + 3 === chapterData?.counter && action === 'next')) {
       return;
     }
     onTabChapter(action);
