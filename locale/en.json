@@ -31,6 +31,21 @@
     "sectionMyFirst-title-1": "You may also wanna know...",
     "sectionMyFirst-title-2": "Description of core contributor value"
   },
+  "ImpossibleTriangle": {
+    "impossibleTriangle-content-1": "尝试拖拽不可能三角",
+    "impossibleTriangle-content-2": "高可扩展性 & 高去中心化",
+    "impossibleTriangle-content-3": "高安全性 & 高可扩展性",
+    "impossibleTriangle-content-4": "高去中心化 & 高安全性",
+    "impossibleTriangle-content-5": "追求可扩展性（即性能）和去中心化程度，为保证去中心化采用了较多验证节点，为了追求性能提高了出块速度，或采用了特殊的共识机制。但提高出块速度容易导致大规模区块重组，更复杂的共识机制容易导致全网宕机等安全事故，牺牲了安全性。Polygon 最近一次发生 157 个区块的大规模重组；Solana 多次出现全网宕机的事故。",
+    "impossibleTriangle-content-6": "代表区块链：Polygon、Solana",
+    "impossibleTriangle-content-7": "追求安全性和可扩展性（即性能），往往采用少数超级节点进行通讯，超级节点拥有更强的性能和更好的网络环境，彼此之间能实现超高速的通讯。但参与门槛过高，牺牲了去中心化程度。BSC、EOS、TRON 等区块链采用了少数高性能节点维护网络，仅有 21 个超级节点进行记账。",
+    "impossibleTriangle-content-8": "代表区块链：BSC、EOS、TRON",
+    "impossibleTriangle-content-9": "追求去中心化程度和安全性，采用更多的节点和更公平的出块方式，值得信赖。但为了允许低性能节点参与验证，协调全球网络延迟，导致每秒可处理的交易数较低，牺牲了性能。BTC、ETH 追求了极致的安全可靠和去中心化，但处理交易的速度较低，BTC 约为 7 笔/秒，ETH 约为 10 - 20 笔/秒。",
+    "impossibleTriangle-content-10": "代表区块链：BTC、ETH",
+    "impossibleTriangle-content-11": "去中心化",
+    "impossibleTriangle-content-12": "可扩展性",
+    "impossibleTriangle-content-13": "安全性"
+  },
   "Directory": {
     "foreword": "Foreword",
     "attempts-for-improvement": "1.1 Attempts for improvement",
