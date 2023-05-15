@@ -494,7 +494,7 @@ export default function ImpossibleTriangle({ children, title }) {
           </Typography>
         ) : null}
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center', paddingInline: '17px' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', paddingInline: '15px' }}>
         {sideRef.current === 1 ? (
           <Box>
             <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
