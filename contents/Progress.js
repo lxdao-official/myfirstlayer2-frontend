@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { useContext } from 'react';
 
 import { Box, LinearProgress, useMediaQuery, useTheme } from '@mui/material';
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Progress() {
   const classes = useStyles();
+  const t = useTranslations('Process');
 
   const { readData } = useContext(ReadContext);
   const { read, counter } = readData;
@@ -60,7 +62,7 @@ export default function Progress() {
           justifyContent: 'space-between',
         }}
       >
-        <Box>阅读进度</Box>
+        <Box>{t('process')}</Box>
         <Box>{x.toFixed()}%</Box>
       </Box>
 

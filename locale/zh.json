@@ -1,5 +1,6 @@
 {
   "Index": {
+    "button": "开始学习",
     "title": "Welcome to My first layer2.",
     "description": "MyFirstLayer 2 是 LXDAO “ My First ” 系列的第 2 个教育公益类产品。\n网上的区块链 Layer 2 知识分散且难以学习，本产品通过文字 + 图片 + 动画的形式向 Web3 用户普及所有 Layer 2 知识。\n该作品由以太坊基金会赞助， LXDAO 团队制作，非常感谢以太坊基金会对 Web3 生态的支持。",
     "description2": "MyFirstLayer 2 是 LXDAO “ My First ” 系列的第 2 个教育公益类产品。网上的区块链 Layer 2 知识分散且难以学习，本产品通过文字 + 图片 + 动画的形式向 Web3 用户普及所有 Layer 2 知识。该作品由以太坊基金会赞助， LXDAO 团队制作，非常感谢以太坊基金会对 Web3 生态的支持。"
@@ -16,17 +17,17 @@
     "sectionTeam-content-12": "贡献者",
     "sectionTeam-title-10": "幕后团队",
     "sectionTeam-title-11": "介绍当前项目的背后的贡献者",
-    "sectionTeam-title-12": "Description of contributor value"
+    "sectionTeam-title-12": "贡献者价值描述"
   },
   "SectionSponsors": {
     "sectionSponsors-title-10": "捐赠者",
-    "sectionSponsors-title-11": "Description of sponsors value"
+    "sectionSponsors-title-11": "赞助商价值描述"
   },
   "SectionMyFirstProject": {
     "sectionMyFirst-title-10": "My First series",
-    "view-more": "View More",
-    "sectionMyFirst-title-1": "You may also wanna know...",
-    "sectionMyFirst-title-2": "Description of core contributor value"
+    "view-more": "更多",
+    "sectionMyFirst-title-1": "你可能还想知道...",
+    "sectionMyFirst-title-2": "核心贡献者价值描述"
   },
   "ImpossibleTriangle": {
     "impossibleTriangle-content-1": "尝试拖拽不可能三角",
@@ -44,6 +45,7 @@
     "impossibleTriangle-content-13": "安全性"
   },
   "Directory": {
+    "directory": "目录",
     "foreword": "前言",
     "attempts-for-improvement": "1.1 区块链提高性能的尝试",
     "blockchain-s-impossibility-triangle": "1.2 区块链的不可能三角",
@@ -70,5 +72,8 @@
     "next-chapter": "下一章",
     "previous-chapter": "上一章",
     "current-chapter": "当前章节"
+  },
+  "Process": {
+    "process": "阅读进度"
   }
 }

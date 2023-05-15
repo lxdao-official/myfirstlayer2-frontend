@@ -142,7 +142,7 @@ export default function SectionTop({ content, meta }) {
                     href="#content"
                     target="_self"
                   >
-                    Start Learning
+                    {t('button')}
                   </Link>
                 </Typography>
               </Box>
