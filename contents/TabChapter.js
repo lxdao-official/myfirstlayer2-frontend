@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     background: '#000000',
     height: '100px',
-    width: '444px',
+    width: '500px',
     cursor: 'pointer',
     borderRadius: '15px',
-    border: '1px solid #fff',
+    // border: '1px solid #fff',
     // alignItems: 'center',
     // flex: 1,
     display: 'flex',
@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
 
     padding: '0 25px',
+    
+    transition: 'all .3s ease-in-out',
+    '-webkit-transition': 'all .3s ease-in-out',
     '&.MuiCard-root:focus-within': {
       border: 'none',
       backgroundImage: 'linear-gradient(to right, #193275 0%, #1E6A72 100%)',
@@ -46,7 +49,8 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:hover': {
       backgroundImage: 'linear-gradient(to right, #3162E8 0%, #3AD5E3 100%)',
-      border: '1px solid #fff',
+      // border: '1px solid #fff',
+      boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
     },
     // [theme?.breakpoints?.between('xs', 'sm')]: {
     //   borderRadius: '50px',
