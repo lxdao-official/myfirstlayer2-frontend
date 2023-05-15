@@ -152,7 +152,6 @@ function SmallAd(props) {
 }
 
 export default function SectionSponsors() {
-  const theme = useTheme();
   const t = useTranslations('SectionSponsors');
 
   return (
@@ -166,18 +165,6 @@ export default function SectionSponsors() {
               </Link>
             );
           })}
-          {/* <Grid container spacing={3.125}>
-          {orgDonation.map((item, i) => (
-            <Grid rowGap="55px" item xs={12} sm={6} md={12 / 5} key={i}>
-              <BigAd theme={theme} {...item} />
-            </Grid>
-          ))}
-          {personDonation.map((item, i) => (
-            <Grid item xs={6} sm={4} md={2} key={i}>
-              <SmallAd theme={theme} {...item} />
-            </Grid>
-          ))}
-        </Grid> */}
         </Box>
       </Box>
     </SectionSimpleWrapper>
