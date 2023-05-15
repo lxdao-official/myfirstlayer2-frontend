@@ -8,42 +8,6 @@ export const orgDonation = [
     twitter: 'https://twitter.com/ethdotorg',
     donation: 10,
   },
-  {
-    type: 'donation',
-    image: '/donation/ether.svg',
-    description: `The Ethereum Foundation (EF) is a non-profit organization dedicated to supporting Ethereum and related technologies.`,
-    title: 'Ethereum Foundation',
-    website: 'https://ethereum.org/',
-    twitter: 'https://twitter.com/ethdotorg',
-    donation: 10,
-  },
-  {
-    type: 'donation',
-    image: '/donation/ether.svg',
-    description: `The Ethereum Foundation (EF) is a non-profit organization dedicated to supporting Ethereum and related technologies.`,
-    title: 'Ethereum Foundation',
-    website: 'https://ethereum.org/',
-    twitter: 'https://twitter.com/ethdotorg',
-    donation: 10,
-  },
-  {
-    type: 'donation',
-    image: '/donation/ether.svg',
-    description: `The Ethereum Foundation (EF) is a non-profit organization dedicated to supporting Ethereum and related technologies.`,
-    title: 'Ethereum Foundation',
-    website: 'https://ethereum.org/',
-    twitter: 'https://twitter.com/ethdotorg',
-    donation: 10,
-  },
-  {
-    type: 'donation',
-    image: '/donation/ether.svg',
-    description: `The Ethereum Foundation (EF) is a non-profit organization dedicated to supporting Ethereum and related technologies.`,
-    title: 'Ethereum Foundation',
-    website: 'https://ethereum.org/',
-    twitter: 'https://twitter.com/ethdotorg',
-    donation: 10,
-  },
 ];
 export const personDonation = [
   {

@@ -82,6 +82,7 @@ theme.typography.progress = {
 
 export function PcDirectory(props) {
   const { directory, selectedIndex, onTabChapter } = props;
+  const t = useTranslations('Directory');
   const theme = useTheme();
 
   return (
@@ -109,18 +110,20 @@ export function PcDirectory(props) {
         }}
         backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
-        <Typography 
+        <Typography
           sx={{
-           fontSize: '24px',
-           color: '#000',
-           paddingBottom: '10px',
+            fontSize: '24px',
+            color: '#000',
+            paddingBottom: '10px',
           }}
         >
-          目录
+          {t('directory')}
         </Typography>
-        <Divider sx={{
-          marginBottom: '20px',
-        }}/>
+        <Divider
+          sx={{
+            marginBottom: '20px',
+          }}
+        />
         <Box>
           {directory?.map((row, index) => {
             return <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onTabChapter('lastOrNext', { index, ...row })} {...props} />;
