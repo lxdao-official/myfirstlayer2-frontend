@@ -44,7 +44,9 @@ const Language = ({ color }) => {
             <Typography marginLeft={smallScreen ? 0 : '5px'} marginRight={smallScreen ? 0 : '5px'} fontWeight={400} color={color} fontSize={'12px'} width={{ xs: 'auto', md: '50px' }} textAlign="center">
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
-            <Arrow color={color} style={{ rotate: open && '180deg' }} />
+            <Box sx={{ rotate: open && '180deg', display: 'flex', alignItems: 'center' }}>
+              <Arrow color={color} />
+            </Box>
           </Box>
         </Box>
         <Menu
