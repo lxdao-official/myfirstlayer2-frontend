@@ -34,7 +34,6 @@ export default function Content(props) {
     counter: chapterCount,
     read: 1,
     currentIndex: 0,
-    actionFrom: 'nextButton',
   });
   const [mdxSource, setMdxSource] = useState('');
 
@@ -150,7 +149,6 @@ export default function Content(props) {
         counter: chapterCount,
         read: computeReadCount(newState),
         currentIndex: readData?.currentIndex - 1,
-        actionFrom: 'nextButton',
       });
     }
     if (action === 'next') {
@@ -209,7 +207,6 @@ export default function Content(props) {
         counter: chapterCount,
         read: computeReadCount(newState),
         currentIndex: mainArr.includes(selectedIndex + 1) ? selectedIndex + 2 : selectedIndex + 1,
-        actionFrom: 'nextButton',
       });
     }
     if (action === 'lastOrNext') {
@@ -294,7 +291,6 @@ export default function Content(props) {
         counter: chapterCount,
         read: computeReadCount(newState),
         currentIndex: mainArr.includes(chapter?.index) ? chapter?.index + 1 : chapter?.index,
-        actionFrom: 'nextButton',
       });
     }
   };
@@ -325,7 +321,9 @@ export default function Content(props) {
     if (readed > 2) {
       setStorage('directoryStatus', JSON.stringify({ data: directory }));
     }
-    setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+    if (selectedIndex > 0) {
+      setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+    }
   }, [directory, selectedIndex]);
 
   useEffect(() => {
@@ -344,8 +342,7 @@ export default function Content(props) {
       setReadData({
         counter: chapterCount,
         read: computeReadCount(jsonDirectory),
-        currentIndex: jsonSelect?.data,
-        actionFrom: 'nextButton',
+        currentIndex: jsonSelect,
       });
     }
   }, []);
