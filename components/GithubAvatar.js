@@ -19,12 +19,11 @@ export default function GithubAvatar(props) {
 
       <Box
         sx={{
-          // background: 'pink',
           display: 'flex',
         }}
       >
         {avatarUrls.map((url) => (
-          <>
+          <Box key={url}>
             <Box
               sx={{
                 padding: '5px',
@@ -41,7 +40,7 @@ export default function GithubAvatar(props) {
                 alt="Contributor Avatar"
               />
             </Box>
-          </>
+          </Box>
         ))}
       </Box>
     </>
