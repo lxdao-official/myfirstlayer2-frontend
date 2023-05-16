@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
@@ -14,8 +13,7 @@ const Language = ({ color }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const router = useRouter();
-  const { locale, locales, route } = router;
-  const otherLocale = locales?.find((cur) => cur !== locale);
+  const { locale, route } = router;
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const text = {
@@ -33,12 +31,8 @@ const Language = ({ color }) => {
     setAnchorEl(event.target.parentElement);
   };
 
-  const handleClose = (value) => {
+  const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const setLanguage = (value) => {
-    router.push('/' + (value === 'en' ? '' : value));
   };
 
   const LangNode = useCallback(() => {

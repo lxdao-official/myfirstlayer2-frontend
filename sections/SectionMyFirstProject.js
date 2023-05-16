@@ -1,5 +1,4 @@
-import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/router';
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
 import { Pagination } from 'swiper';
 // Import Swiper styles
@@ -117,9 +116,8 @@ function MyFirstCard(props) {
 
 export default function SectionMyFirstProject() {
   const theme = useTheme();
-  const router = useRouter();
   const t = useTranslations('SectionMyFirstProject');
-  const { locale } = router;
+  const locale = useLocale();
   const myfirstProjects = {
     zh: [
       {
