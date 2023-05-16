@@ -1,5 +1,4 @@
-import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/router';
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
 import { Pagination } from 'swiper';
 // Import Swiper styles
@@ -81,7 +80,6 @@ function MyFirstCard(props) {
           title={props.title}
           sx={{
             width: '100%',
-            height: '177px',
             borderRadius: '15px',
             filter: props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
@@ -118,16 +116,15 @@ function MyFirstCard(props) {
 
 export default function SectionMyFirstProject() {
   const theme = useTheme();
-  const router = useRouter();
   const t = useTranslations('SectionMyFirstProject');
-  const { locale } = router;
+  const locale = useLocale();
   const myfirstProjects = {
     zh: [
       {
         projectName: 'My First NFT',
         holder: '',
-        image: '/project/myfirstnft.svg',
-        bigImage: '/project/myfirstnftCard.svg',
+        image: '/project/myfirstnft.png',
+        bigImage: '/project/myfirstnftCard.png',
         description: 'MyFirstNFT 是一个针对 Web3 新手的非营利性教学项目。 在学习 Web3、NFT 的潜在价值和安全原则的同时获得免费的 NFT。',
         url: 'https://myfirstnft.info/',
       },
@@ -144,16 +141,16 @@ export default function SectionMyFirstProject() {
       {
         projectName: 'My First NFT',
         holder: '',
-        image: '/project/myfirstnft.svg',
-        bigImage: '/project/myfirstnftCard.svg',
+        image: '/project/myfirstnft.png',
+        bigImage: '/project/myfirstnftCard.png',
         description: 'MyFirstNFT is a non-profit instructional project for Web3 newbies. Get a FREE NFT while learning about Web3, underlying values of NFT, and security principles.',
         url: 'https://myfirstnft.info/',
       },
       {
         projectName: 'EIPs Fun',
         holder: '',
-        image: '/project/myfirstnft.svg',
-        bigImage: '/project/myfirstnftCard.svg',
+        image: '/project/eipsfun.png',
+        bigImage: '/project/eipsfunCard.png',
         description: 'EIPs Fun is a project for making EIPs fun and easy to be adopted by buidlers and advancing EIP ecosystem development.',
         url: 'https://eips.fun/',
       },

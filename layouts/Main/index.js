@@ -1,6 +1,5 @@
-import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
+import { useLocale } from 'next-intl';
+import { useEffect } from 'react';
 
 import { Box, Divider, Link, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
@@ -13,9 +12,8 @@ import Question from '../../components/svg/Question';
 import SectionTop from '../../sections/SectionTop';
 
 const Main = ({ children = false }) => {
-  const router = useRouter();
-
-  const { locale } = router;
+  const locale = useLocale();
+  console.log(locale);
   const theme = useTheme();
   const titles = {
     en: [

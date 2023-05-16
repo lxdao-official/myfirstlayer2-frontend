@@ -10,15 +10,14 @@ import { useTheme } from '@mui/material/styles';
 
 import Container from '../components/Container';
 import Diploma from '../components/Diploma';
+import EditChapter from '../components/EditChapter';
+import GithubAvatar from '../components/GithubAvatar';
 import MintBadge from '../components/MintBadge';
 import ZksyncSwap from '../components/ZksyncSwap';
 import CompressText from '../components/animation/CompressText';
-import GithubAvatar from '../components/GithubAvatar';
-import EditChapter from '../components/EditChapter';
-
-
 import { MobileDirectory, PcDirectory } from './Directory';
 import Loading from './Loading';
+import MdxImg from './MdxImg';
 import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
@@ -308,6 +307,7 @@ export default function Content(props) {
     MintBadge,
     GithubAvatar,
     EditChapter,
+    MdxImg,
   };
 
   const theme = useTheme();
