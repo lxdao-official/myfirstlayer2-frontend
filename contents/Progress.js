@@ -1,10 +1,9 @@
 import { useContext } from 'react';
 
-import { Box, CircularProgress, LinearProgress, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, LinearProgress, useMediaQuery, useTheme } from '@mui/material';
 import { makeStyles, withStyles } from '@mui/styles';
 
 import { ReadContext } from './context.js';
-import { getStorage, removeStorage, setStorage } from './storage.js';
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -28,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontStyle: 'SemiBold',
-    fontWeight: 700,
+    fontWeight: 400,
     color: theme.palette?.mode === 'dark' ? '#ffffff' : '#747474',
     // marginBottom: '18px',
     // textAlign: 'center',
@@ -55,17 +54,22 @@ export default function Progress() {
         variant="progress"
         className={classes.title}
         sx={{
-          marginBottom: mdScreen ? '18px' : '6px',
-          textAlign: mdScreen ? 'center' : 'left',
+          marginBottom: mdScreen ? '9px' : '6px',
           fontSize: mdScreen ? '12px' : '8px',
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
-        当前浏览进度
+        <Box>阅读进度</Box>
+        <Box>{x.toFixed()}%</Box>
       </Box>
+
       <BorderLinearProgress variant="determinate" value={x} />
-      <Box className={classes.data} style={{ transform: `translateX(${x}%)`, fontSize: '10px' }}>
-        {x.toFixed(2)}%
-      </Box>
+      {/* {!mdScreen && (
+        <Box className={classes.data} style={{ transform: `translateX(${x}%)`, fontSize: '10px' }}>
+          {x.toFixed(2)}%
+        </Box>
+      )} */}
     </Box>
   );
 }

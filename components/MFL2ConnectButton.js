@@ -2,18 +2,26 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { switchNetwork } from '@wagmi/core';
 import { useState } from 'react';
 
-import { Box, Button, Menu, MenuItem, alpha, styled } from '@mui/material';
+import { Box, Button, styled } from '@mui/material';
 
 import Arrow from './svg/Arrow';
 
-const NormalButton = styled(Button)({
+const NormalButton = styled(Button)(({ theme }) => ({
   borderRadius: '18px',
-  width: '247px',
-  height: '54px',
-  fontSize: '20px',
+  [theme.breakpoints.down('md')]: {
+    width: '121px',
+    height: '24px',
+    fontSize: '8px',
+  },
+  [theme.breakpoints.up('md')]: {
+    width: '145px',
+    height: '29px',
+    fontSize: '12px',
+  },
   textTransform: 'capitalize',
-  fontWeight: '800',
+  fontWeight: '500',
   backgroundColor: '#000',
+  border: '1px solid #fff',
   color: '#fff',
   '&:hover': {
     backgroundColor: '#414141',
@@ -28,14 +36,22 @@ const NormalButton = styled(Button)({
   '&:focus': {
     boxShadow: '0 0 0 0.2rem rgba(0, 0, 0, 0.5)',
   },
-});
+}));
 
-const IconButton = styled(Button)({
+const IconButton = styled(Button)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  width: '227px',
-  height: '40px',
-  fontSize: '16px',
+  [theme.breakpoints.down('md')]: {
+    width: '121px',
+    height: '24px',
+    fontSize: '8px',
+  },
+  [theme.breakpoints.up('md')]: {
+    width: '145px',
+    height: '29px',
+    fontSize: '12px',
+  },
+
   color: 'white',
   textTransform: 'capitalize',
   borderRadius: '8px',
@@ -52,10 +68,9 @@ const IconButton = styled(Button)({
     boxShadow: '0 0 0 0.2rem rgba(0, 0, 0, 0.5)',
   },
   '&:disabled': { color: 'white' },
-});
+}));
 
 export const MFL2ConnectButton = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const chains = [
     {
@@ -88,7 +103,7 @@ export const MFL2ConnectButton = () => {
             {...(!ready && {
               'aria-hidden': true,
               sx: {
-                width: '247px',
+                width: { xs: '121px', md: '145px' },
                 opacity: 0,
                 pointerEvents: 'none',
                 userSelect: 'none',
@@ -100,12 +115,7 @@ export const MFL2ConnectButton = () => {
                 return <NormalButton onClick={openConnectModal}>Connect Wallet</NormalButton>;
               }
               if (chain.unsupported) {
-                return (
-                  //   <Button variant="contained" sx={{ borderRadius: '18px', width: '247px', height: '54px', fontSize: '20px', textTransform: 'capitalize', fontWeight: '800' }} onClick={openChainModal}>
-                  //     Wrong network
-                  //   </Button>
-                  <NormalButton onClick={openChainModal}>Wrong network</NormalButton>
-                );
+                return <NormalButton onClick={openChainModal}>Wrong network</NormalButton>;
               }
               return (
                 <Box sx={{ position: 'flex', flexDirection: 'col' }}>
@@ -116,11 +126,6 @@ export const MFL2ConnectButton = () => {
                         borderEndStartRadius: '0',
                       }),
                     }}
-                    // onClick={(e) => {
-                    //   //   openAccountModal();
-
-                    // //   openAccountModal();
-                    // }}
                   >
                     <span onClick={openAccountModal}>{account.displayName}</span>
                     <Box
@@ -143,13 +148,20 @@ export const MFL2ConnectButton = () => {
                             }
                           })[0].icon
                         }
-                        style={{ width: 27, height: 27, marginLeft: '10px', marginRight: '6px' }}
+                        sx={{
+                          width: { xs: 16, md: 20 },
+                          height: { xs: 16, md: 20 },
+                          marginLeft: '10px',
+                          marginRight: '6px',
+                        }}
                       />
                       <Arrow
                         color="white"
                         width="12"
                         height="7"
-                        style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                        style={{
+                          transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+                        }}
                         onClick={() => {
                           setOpen(!open);
                         }}
@@ -157,10 +169,24 @@ export const MFL2ConnectButton = () => {
                     </Box>
                   </NormalButton>
                   {open && (
-                    <Box sx={{ padding: '10px', position: 'absolute', zIndex: '100', background: '#000', color: '#fff', borderEndEndRadius: '18px', borderEndStartRadius: '18px' }}>
+                    <Box
+                      sx={{
+                        // padding: '10px',
+                        width: { xs: '121px', md: '145px' },
+                        position: 'absolute',
+                        zIndex: '100',
+                        background: '#000',
+                        color: '#fff',
+                        borderEndEndRadius: '18px',
+                        borderEndStartRadius: '18px',
+                        borderRight: '1px solid #fff',
+                        borderBottom: '1px solid #fff',
+                        borderLeft: '1px solid #fff',
+                      }}
+                    >
                       {chains.map((v, i) => (
                         <IconButton
-                          sx={{ position: 'flex', justifyContent: 'start' }}
+                          sx={{ position: 'flex', justifyContent: 'start', fontSize: '10px' }}
                           key={i}
                           disabled={i >= 1}
                           onClick={async () => {
@@ -168,7 +194,19 @@ export const MFL2ConnectButton = () => {
                             setOpen(!open);
                           }}
                         >
-                          {v.icon && <Box component={'img'} alt={v.chainName ?? 'Chain icon'} src={v.icon} style={{ width: 27, height: 27, marginRight: '10px', marginLeft: '24px' }} />}
+                          {v.icon && (
+                            <Box
+                              component={'img'}
+                              alt={v.chainName ?? 'Chain icon'}
+                              src={v.icon}
+                              sx={{
+                                width: { xs: 16, md: 20 },
+                                height: { xs: 16, md: 20 },
+                                marginRight: '10px',
+                                // marginLeft: '24px',
+                              }}
+                            />
+                          )}
                           {v.chainName}
                         </IconButton>
                       ))}
@@ -176,26 +214,6 @@ export const MFL2ConnectButton = () => {
                   )}
                 </Box>
               );
-
-              {
-                /* <Button onClick={openChainModal} sx={{ display: 'flex', alignItems: 'center' }} type="button">
-                    {chain.hasIcon && (
-                      <Box
-                        sx={{
-                          background: chain.iconBackground,
-                          width: 12,
-                          height: 12,
-                          borderRadius: 999,
-                          overflow: 'hidden',
-                          marginRight: 4,
-                        }}
-                      >
-                        {chain.iconUrl && <Box component={'img'} alt={chain.name ?? 'Chain icon'} src={chain.iconUrl} style={{ width: 12, height: 12 }} />}
-                      </Box>
-                    )}
-                    {chain.name}
-                  </Button> */
-              }
             })()}
           </Box>
         );

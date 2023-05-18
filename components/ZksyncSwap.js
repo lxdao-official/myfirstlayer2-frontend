@@ -1,13 +1,9 @@
-import { useTranslations } from 'next-intl';
+import { Box } from '@mui/material';
 
-import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
-
-export default function ZksyncSwap({ children, title }) {
-  const t = useTranslations('PageLayout');
-
+export default function ZksyncSwap() {
   return (
     <Box display="flex" justifyContent="center" marginTop={2} sx={{ width: '320px', margin: 'auto' }}>
-      <iframe style={{ border: 'none' }} width="390" height="750" src="https://zk.amphi.space/bridge" />
+      <iframe style={{ border: 'none' }} width="390" height="750" src="https://mfl2-zk-proxy.myfirst.io" />
     </Box>
   );
 }

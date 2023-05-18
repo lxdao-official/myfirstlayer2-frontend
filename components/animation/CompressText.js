@@ -159,168 +159,168 @@ export default function CompressText() {
 
   const [s8, a8] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s9, a9] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s10, a10] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s11, a11] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s12, a12] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s13, a13] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s14, a14] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s15, a15] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s16, a16] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s17, a17] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s18, a18] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s19, a19] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s20, a20] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s21, a21] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s22, a22] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s23, a23] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s24, a24] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s25, a25] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s26, a26] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s27, a27] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s28, a28] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s29, a29] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s30, a30] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s31, a31] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
@@ -607,168 +607,168 @@ export default function CompressText() {
 
   const [s72, a72] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s73, a73] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s74, a74] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s75, a75] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s76, a76] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s77, a77] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s78, a78] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s79, a79] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s80, a80] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s81, a81] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s82, a82] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s83, a83] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s84, a84] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s85, a85] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s86, a86] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s87, a87] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s88, a88] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s89, a89] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s90, a90] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s91, a91] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s92, a92] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s93, a93] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s94, a94] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s95, a95] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
@@ -1139,168 +1139,168 @@ export default function CompressText() {
 
   const [s148, a148] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s149, a149] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s150, a150] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s151, a151] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s152, a152] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s153, a153] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s154, a154] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s155, a155] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s156, a156] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s157, a157] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s158, a158] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s159, a159] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s160, a160] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s161, a161] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s162, a162] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s163, a163] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s164, a164] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s165, a165] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s166, a166] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s167, a167] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s168, a168] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s169, a169] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s170, a170] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
 
   const [s171, a171] = useSpring(
     () => ({
-      from: defaultStyle,
+      from: { ...defaultStyle, color: '#B0B0B0' },
     }),
     []
   );
@@ -2013,141 +2013,142 @@ export default function CompressText() {
     a210,
     a211,
   ];
-
-  if (status === 1) {
-    [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-
-    [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
-    });
-
-    [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-
-    [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
-    });
-    [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-    [148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
-    });
-
-    [172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-    [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-  } else if (status === 2) {
-    [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-
-    direction &&
-      [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31].forEach((v) => {
-        todelete(as[v]);
-      });
-
-    [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
-    });
-
-    direction &&
-      [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95].forEach((v) => {
-        todelete(as[v]);
-      });
-    [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-    direction &&
-      [
-        148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205,
-      ].forEach((v) => {
-        todelete(as[v]);
-      });
-
-    [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
-    });
-  } else if (status === 3) {
-    direction &&
+  useEffect(() => {
+    if (status === 1) {
       [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
-        todelete(as[v]);
-      });
-    [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-    !direction &&
-      [96, 97, 98, 99, 100, 101].forEach((v) => {
-        toRemove(as[v]);
+        todefault(as[v], '#fff');
       });
 
-    [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
-    });
-    [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-  } else if (status === 4) {
-    direction &&
-      [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
-        todelete(as[v], () => {
-          direction &&
-            [96, 97, 98, 99, 100, 101].forEach((u) => {
-              toadd(as[u], '#fff');
-            });
-        });
-      });
-    [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
-    });
-
-    !direction &&
-      [142, 143, 144, 145, 146, 147].forEach((v) => {
-        toRemove(as[v]);
-      });
-    [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-  } else if (status === 5) {
-    [96, 97, 98, 99, 100, 101].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-
-    direction &&
-      [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
-        todelete(as[v], () => {
-          direction &&
-            [142, 143, 144, 145, 146, 147].forEach((u) => {
-              toadd(as[u], '#B0B0B0');
-            });
-        });
-      });
-
-    !direction &&
-      [142, 143, 144, 145, 146, 147].forEach((v) => {
+      [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31].forEach((v) => {
         todefault(as[v], '#B0B0B0');
       });
-    [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v], '#fff');
-    });
-  } else if (status === 6) {
-    direction &&
-      [96, 97, 98, 99, 100, 101].forEach((v) => {
-        todelete(as[v]);
+
+      [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
+        todefault(as[v], '#fff');
       });
-    [142, 143, 144, 145, 146, 147].forEach((v) => {
-      todefault(as[v]);
-    });
-    [206, 207, 208, 209, 210, 211].forEach((v) => {
-      todefault(as[v], '#B0B0B0');
-    });
-  }
+
+      [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95].forEach((v) => {
+        todefault(as[v], '#B0B0B0');
+      });
+      [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+      [148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171].forEach((v) => {
+        todefault(as[v], '#B0B0B0');
+      });
+
+      [172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+      [206, 207, 208, 209, 210, 211].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+    } else if (status === 2) {
+      [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+
+      direction &&
+        [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31].forEach((v) => {
+          todelete(as[v]);
+        });
+
+      [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
+        todefault(as[v], '#B0B0B0');
+      });
+
+      direction &&
+        [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95].forEach((v) => {
+          todelete(as[v]);
+        });
+      [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+      direction &&
+        [
+          148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205,
+        ].forEach((v) => {
+          todelete(as[v]);
+        });
+
+      [206, 207, 208, 209, 210, 211].forEach((v) => {
+        todefault(as[v], '#B0B0B0');
+      });
+    } else if (status === 3) {
+      direction &&
+        [0, 1, 2, 3, 4, 5, 6, 7].forEach((v) => {
+          todelete(as[v]);
+        });
+      [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+      !direction &&
+        [96, 97, 98, 99, 100, 101].forEach((v) => {
+          toRemove(as[v]);
+        });
+
+      [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
+        todefault(as[v], '#B0B0B0');
+      });
+      [206, 207, 208, 209, 210, 211].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+    } else if (status === 4) {
+      direction &&
+        [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71].forEach((v) => {
+          todelete(as[v], () => {
+            direction &&
+              [96, 97, 98, 99, 100, 101].forEach((u) => {
+                toadd(as[u], '#fff');
+              });
+          });
+        });
+      [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
+        todefault(as[v], '#B0B0B0');
+      });
+
+      !direction &&
+        [142, 143, 144, 145, 146, 147].forEach((v) => {
+          toRemove(as[v]);
+        });
+      [206, 207, 208, 209, 210, 211].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+    } else if (status === 5) {
+      [96, 97, 98, 99, 100, 101].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+
+      direction &&
+        [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141].forEach((v) => {
+          todelete(as[v], () => {
+            direction &&
+              [142, 143, 144, 145, 146, 147].forEach((u) => {
+                toadd(as[u], '#B0B0B0');
+              });
+          });
+        });
+
+      !direction &&
+        [142, 143, 144, 145, 146, 147].forEach((v) => {
+          todefault(as[v], '#B0B0B0');
+        });
+      [206, 207, 208, 209, 210, 211].forEach((v) => {
+        todefault(as[v], '#fff');
+      });
+    } else if (status === 6) {
+      direction &&
+        [96, 97, 98, 99, 100, 101].forEach((v) => {
+          todelete(as[v]);
+        });
+      [142, 143, 144, 145, 146, 147].forEach((v) => {
+        todefault(as[v]);
+      });
+      [206, 207, 208, 209, 210, 211].forEach((v) => {
+        todefault(as[v], '#B0B0B0');
+      });
+    }
+  }, [status]);
 
   //animation
 
@@ -2166,7 +2167,7 @@ export default function CompressText() {
     <Box justifyContent="center" display="flex" marginTop={'50px'}>
       <Stack
         sx={{
-          padding: '30px 65px',
+          padding: '20px 65px',
           background: '#F6F6F6',
           borderRadius: '18px',
           textAlign: 'center',
@@ -2174,6 +2175,9 @@ export default function CompressText() {
           alignItems: 'center',
         }}
       >
+        <Typography variant="h4" fontWeight={700} mb="10px">
+          数据压缩动画
+        </Typography>
         <Stack
           sx={{
             width: mdScreen ? '400px' : '280px',
@@ -2238,7 +2242,7 @@ export default function CompressText() {
             </Button>
           </Stack>
         </Stack>
-        <Typography variant="h4" fontWeight={700} mt="40px">
+        <Typography variant="h5" fontWeight={700} mt="40px">
           {status == 1 ? '原始状态' : '压缩状态' + (status - 1)}
         </Typography>
         <Typography variant="body2" mt="20px">

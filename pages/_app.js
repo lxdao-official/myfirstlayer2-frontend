@@ -1,23 +1,31 @@
-import { RainbowKitProvider, getDefaultWallets, lightTheme, midnightTheme } from '@rainbow-me/rainbowkit';
+import {
+  RainbowKitProvider,
+  getDefaultWallets,
+  lightTheme,
+  midnightTheme,
+} from "@rainbow-me/rainbowkit";
 
 /* RainbowKit imports */
-import '@rainbow-me/rainbowkit/styles.css';
-import { getAccount } from '@wagmi/core';
-import { NextIntlProvider } from 'next-intl';
-import { createContext } from 'react';
-import { useMemo, useState } from 'react';
-import { WagmiConfig, chain, configureChains, createClient } from 'wagmi';
-import { publicProvider } from 'wagmi/providers/public';
+import "@rainbow-me/rainbowkit/styles.css";
+import { getAccount } from "@wagmi/core";
+import { NextIntlProvider } from "next-intl";
+import { createContext } from "react";
+import { useMemo, useState } from "react";
+import { WagmiConfig, chain, configureChains, createClient } from "wagmi";
+import { publicProvider } from "wagmi/providers/public";
 
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
 
-import '../common/global.css';
-import getTheme from '../common/theme';
+import "../common/global.css";
+import getTheme from "../common/theme";
 
 /* RainbowKit variables */
-const { chains, provider } = configureChains([chain.optimismGoerli], [publicProvider()]);
+const { chains, provider } = configureChains(
+  [chain.optimismGoerli],
+  [publicProvider()]
+);
 const { connectors } = getDefaultWallets({
-  appName: 'My First Layer2',
+  appName: "My First Layer2",
   chains,
 });
 const wagmiClient = createClient({
@@ -30,11 +38,11 @@ const wagmiClient = createClient({
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 export default function App({ Component, pageProps }) {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState("light");
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
       },
     }),
     []
@@ -45,25 +53,15 @@ export default function App({ Component, pageProps }) {
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider
         chains={chains}
-        theme={
-          mode === 'light'
-            ? midnightTheme({
-                accentColor: '#000',
-                accentColorForeground: 'white',
-                borderRadius: 'large',
-                fontStack: 'system',
-                overlayBlur: 'small',
-                selectionColor: '#000',
-              })
-            : lightTheme({
-                accentColor: '#000',
-                accentColorForeground: 'white',
-                borderRadius: 'large',
-                fontStack: 'system',
-                overlayBlur: 'small',
-                selectionColor: '#000',
-              })
-        }
+        theme={lightTheme({
+          accentColor: "#000",
+          accentColorForeground: "white",
+          borderRadius: "large",
+          fontStack: "system",
+          overlayBlur: "small",
+          selectionColor: "#000",
+          modalBorder: "1px solid #fff",
+        })}
       >
         <NextIntlProvider messages={pageProps.messages}>
           <ColorModeContext.Provider value={colorMode}>

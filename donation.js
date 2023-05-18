@@ -1,7 +1,7 @@
 export const orgDonation = [
   {
     type: 'donation',
-    image: '/donation/ethFoundation.png',
+    image: '/donation/ether.svg',
     description: `The Ethereum Foundation (EF) is a non-profit organization dedicated to supporting Ethereum and related technologies.`,
     title: 'Ethereum Foundation',
     website: 'https://ethereum.org/',
@@ -10,7 +10,7 @@ export const orgDonation = [
   },
   {
     type: 'donation',
-    image: '/donation/ethFoundation.png',
+    image: '/donation/ether.svg',
     description: `The Ethereum Foundation (EF) is a non-profit organization dedicated to supporting Ethereum and related technologies.`,
     title: 'Ethereum Foundation',
     website: 'https://ethereum.org/',
@@ -19,7 +19,7 @@ export const orgDonation = [
   },
   {
     type: 'donation',
-    image: '/donation/ethFoundation.png',
+    image: '/donation/ether.svg',
     description: `The Ethereum Foundation (EF) is a non-profit organization dedicated to supporting Ethereum and related technologies.`,
     title: 'Ethereum Foundation',
     website: 'https://ethereum.org/',
@@ -28,7 +28,7 @@ export const orgDonation = [
   },
   {
     type: 'donation',
-    image: '/donation/ethFoundation.png',
+    image: '/donation/ether.svg',
     description: `The Ethereum Foundation (EF) is a non-profit organization dedicated to supporting Ethereum and related technologies.`,
     title: 'Ethereum Foundation',
     website: 'https://ethereum.org/',
@@ -37,7 +37,7 @@ export const orgDonation = [
   },
   {
     type: 'donation',
-    image: '/donation/ethFoundation.png',
+    image: '/donation/ether.svg',
     description: `The Ethereum Foundation (EF) is a non-profit organization dedicated to supporting Ethereum and related technologies.`,
     title: 'Ethereum Foundation',
     website: 'https://ethereum.org/',

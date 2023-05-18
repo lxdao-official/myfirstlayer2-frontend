@@ -6,8 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import AddIcon from '@mui/icons-material/Add';
-import { Box, Button, Card, Grid, Link, Typography, useTheme } from '@mui/material';
+import { Box, Card, Grid, Link, Typography, useTheme } from '@mui/material';
 
 import MyFirstArrow from '../components/svg/MyFirstArrow';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
@@ -41,7 +40,7 @@ export const myfirstProjects = [
 
 function MyFirstCard(props) {
   const theme = useTheme();
-
+  const t = useTranslations('SectionMyFirstProject');
   return (
     <Box
       width={1}
@@ -58,7 +57,7 @@ function MyFirstCard(props) {
         display={'flex'}
         flexDirection={'column'}
         sx={{
-          backgroundColor: 'background.level3',
+          backgroundColor: '#FAFAFA',
           borderRadius: { xs: '8px', md: '18px' },
           height: { xs: '290px', md: '410px' },
           padding: { xs: '10px', md: '20px' },
@@ -129,7 +128,7 @@ function MyFirstCard(props) {
             }}
           >
             <Typography color="text.primary" fontSize={'12px'} fontWeight={600} fontFamily="Open Sans">
-              View More
+              {t('view-more')}
             </Typography>
             <Box color="text.primary" marginLeft={'10px'} width="19px">
               <MyFirstArrow color="text.primary" />
@@ -146,8 +145,8 @@ export default function SectionMyFirstProject() {
   const t = useTranslations('SectionMyFirstProject');
 
   return (
-    <SectionSimpleWrapper childOverflow="visible" id="next">
-      <Box padding={{ xs: 2, sm: 0 }}>
+    <SectionSimpleWrapper marginTop={{ xs: 6.875, sm: '120px' }} paddingTop="51px" background="#fff" title={t('sectionMyFirst-title-1')} desc={t('sectionMyFirst-title-2')} childOverflow="visible" id="project">
+      <Box padding={{ xs: 2, sm: 0 }} marginTop={{ xs: 0, sm: '50px' }} paddingBottom={{ xs: 0, sm: '48px' }}>
         <Grid sx={{ display: { sm: 'flex', xs: 'none' } }} container spacing={{ xs: 3.125, sm: 2 }}>
           {myfirstProjects.map((item, i) => (
             <Grid rowGap="25px" item xs={12} sm={6} md={4} key={i}>
