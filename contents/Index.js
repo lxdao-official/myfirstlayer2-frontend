@@ -344,6 +344,11 @@ export default function Content(props) {
         read: computeReadCount(jsonDirectory),
         currentIndex: jsonSelect,
       });
+      setChapterData({
+        current: jsonDirectory[jsonSelect]?.text,
+        last: jsonSelect === 0 ? '' : jsonDirectory[jsonSelect - 1]?.text,
+        next: jsonSelect === chapterCount + 4 ? '' : jsonDirectory[jsonSelect + 1]?.text,
+      })
     }
   }, []);
 
