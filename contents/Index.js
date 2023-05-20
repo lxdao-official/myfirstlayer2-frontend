@@ -73,7 +73,6 @@ export default function Content(props) {
     let count = 0;
     for (let index in arr) {
       if ((!arr[index].main && arr[index]?.status) || (arr[index].main && (+index === 0 || +index === arr.length - 1) && arr[index]?.status)) {
-        console.log('arr', arr[index]);
         count++;
       }
     }
@@ -344,6 +343,11 @@ export default function Content(props) {
         read: computeReadCount(jsonDirectory),
         currentIndex: jsonSelect,
       });
+      setChapterData({
+        current: jsonDirectory[jsonSelect]?.text,
+        last: jsonSelect === 0 ? '' : jsonDirectory[jsonSelect - 1]?.text,
+        next: jsonSelect === chapterCount + 4 ? '' : jsonDirectory[jsonSelect + 1]?.text,
+      })
     }
   }, []);
 
