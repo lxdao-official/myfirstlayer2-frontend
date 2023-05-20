@@ -73,7 +73,6 @@ export default function Content(props) {
     let count = 0;
     for (let index in arr) {
       if ((!arr[index].main && arr[index]?.status) || (arr[index].main && (+index === 0 || +index === arr.length - 1) && arr[index]?.status)) {
-        console.log('arr', arr[index]);
         count++;
       }
     }
