@@ -17,14 +17,14 @@ const Main = ({ children = false }) => {
   const theme = useTheme();
   const titles = {
     en: [
-      { href: '"#introduce"', title: 'Introduce' },
-      { href: '"#content"', title: 'Content' },
-      { href: '"#joinus"', title: 'Join Us' },
+      { href: '#introduce', title: 'Introduce' },
+      { href: '#content', title: 'Content' },
+      { href: '#joinus', title: 'Join Us' },
     ],
     zh: [
-      { href: '"#introduce"', title: '介绍' },
-      { href: '"#content"', title: '内容' },
-      { href: '"#joinus"', title: '加入我们' },
+      { href: '#introduce', title: '介绍' },
+      { href: '#content', title: '内容' },
+      { href: '#joinus', title: '加入我们' },
     ],
   };
 
