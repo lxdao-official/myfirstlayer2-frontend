@@ -50,11 +50,12 @@ export default function GithubAvatar(props) {
 async function fetchContributorAvatars(owner = 'lxdao-official', repo = 'myfirstlayer2-frontend', path = '') {
   try {
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`);
-    const commits = await response.json();
+    const commits = await response.json() || [];
+    
 
-    const contributors = commits.map((commit) => commit.author);
+    const contributors = commits?.map((commit) => commit?.author);
 
-    const avatarUrls = contributors.map((contributor) => contributor.avatar_url);
+    const avatarUrls = contributors?.map((contributor) => contributor?.avatar_url);
 
     return Array.from(new Set(avatarUrls));
   } catch (error) {
