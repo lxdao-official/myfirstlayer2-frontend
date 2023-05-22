@@ -78,5 +78,11 @@
   },
   "Process": {
     "process": "Process"
+  },
+  "GithubAvatar": {
+    "Contribute-to-this-chapter": "Contributors"
+  },
+  "EditChapter": {
+    "Edit-a-document": "[Edit the document]"
   }
 }
