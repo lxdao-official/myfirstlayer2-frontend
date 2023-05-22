@@ -39,8 +39,8 @@ export default function ImpossibleTriangle() {
 
   const center = { x: 138 + 69 + leftOffset, y: 94 + 80 };
   const center0 = { x: 138 + 69 + leftOffset, y: 94 + 70 };
-  const center1 = { x: 185 + leftOffset, y: 94 + 100 }; //{ x: 138 + 68 - 23, y: 94 + 60 + 20 };
-  const center2 = { x: 138 + 82 + leftOffset, y: 94 + 80 }; //{ x: 138 + 69 + 23, y: 94 + 60 - 20 };
+  const center1 = { x: 185 + leftOffset, y: 94 + 100 };
+  const center2 = { x: 138 + 82 + leftOffset, y: 94 + 80 };
 
   const [innerPoints, setInnerPoints] = useState([
     {
@@ -477,7 +477,7 @@ export default function ImpossibleTriangle() {
         <Box sx={{ background: '#FFF', color: 'black', '&>canvas': { zoom: { xs: 0.55, md: 1 } } }} id="mountNode"></Box>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-        <Typography fontSize={12} color="#777777" marginBottom="18px">
+        <Typography fontSize={12} color="#777" marginBottom="18px">
           {t('impossibleTriangle-content-1')}
         </Typography>
       </Box>
@@ -501,30 +501,30 @@ export default function ImpossibleTriangle() {
       <Box sx={{ display: 'flex', justifyContent: 'center', paddingInline: '15px' }}>
         {sideRef.current === 1 ? (
           <Box>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-5')}
             </Typography>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-6')}
             </Typography>
           </Box>
         ) : null}
         {sideRef.current === 2 ? (
           <Box>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-7')}
             </Typography>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-8')}
             </Typography>
           </Box>
         ) : null}
         {sideRef.current === 3 ? (
           <Box>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-9')}{' '}
             </Typography>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-10')}
             </Typography>
           </Box>
