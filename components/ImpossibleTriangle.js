@@ -1,12 +1,14 @@
 import G6 from '@antv/g6';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
-export default function ImpossibleTriangle({ children, title }) {
+export default function ImpossibleTriangle() {
   const t = useTranslations('ImpossibleTriangle');
-
+  const router = useRouter();
+  const { locale } = router;
   const [dragNodes, setDragNodes] = useState([]);
   const dragNodesRef = useRef(null);
   dragNodesRef.current = dragNodes;
@@ -33,55 +35,57 @@ export default function ImpossibleTriangle({ children, title }) {
     return dis;
   };
 
-  const center = { x: 138 + 69, y: 94 + 80 };
-  const center0 = { x: 138 + 69, y: 94 + 70 };
-  const center1 = { x: 185, y: 94 + 100 }; //{ x: 138 + 68 - 23, y: 94 + 60 + 20 };
-  const center2 = { x: 138 + 82, y: 94 + 80 }; //{ x: 138 + 69 + 23, y: 94 + 60 - 20 };
+  const leftOffset = 100;
+
+  const center = { x: 138 + 69 + leftOffset, y: 94 + 80 };
+  const center0 = { x: 138 + 69 + leftOffset, y: 94 + 70 };
+  const center1 = { x: 185 + leftOffset, y: 94 + 100 }; //{ x: 138 + 68 - 23, y: 94 + 60 + 20 };
+  const center2 = { x: 138 + 82 + leftOffset, y: 94 + 80 }; //{ x: 138 + 69 + 23, y: 94 + 60 - 20 };
 
   const [innerPoints, setInnerPoints] = useState([
     {
-      x: 138 + 69,
+      x: 138 + 69 + leftOffset,
       y: 94,
     },
-    { x: 138, y: 94 + 120 },
+    { x: 138 + leftOffset, y: 94 + 120 },
     {
-      x: 138 + 138,
+      x: 138 + 138 + leftOffset,
       y: 94 + 120,
     },
   ]);
 
   const oldInner = [
     {
-      x: 138 + 69,
+      x: 138 + 69 + leftOffset,
       y: 94,
     },
-    { x: 138, y: 94 + 120 },
+    { x: 138 + leftOffset, y: 94 + 120 },
     {
-      x: 138 + 138,
+      x: 138 + 138 + leftOffset,
       y: 94 + 120,
     },
   ];
 
   const outerTriangle = [
     {
-      x: 138 + 69,
+      x: 138 + 69 + leftOffset,
       y: 50,
     },
-    { x: 100, y: 50 + 188 },
+    { x: 100 + leftOffset, y: 50 + 188 },
     {
-      x: 100 + 216,
+      x: 100 + 216 + leftOffset,
       y: 50 + 188,
     },
   ];
 
   const innerNearOuterTriangle = [
     {
-      x: 138 + 69,
+      x: 138 + 69 + leftOffset,
       y: 50 + 10,
     },
-    { x: 100 + 10, y: 50 + 188 - 5 },
+    { x: 100 + 10 + leftOffset, y: 50 + 188 - 5 },
     {
-      x: 100 + 216 - 10,
+      x: 100 + 216 - 10 + leftOffset,
       y: 50 + 188 - 5,
     },
   ];
@@ -268,7 +272,7 @@ export default function ImpossibleTriangle({ children, title }) {
   useEffect(() => {
     const graph = new G6.Graph({
       container: 'mountNode',
-      width: 450,
+      width: 600,
       height: 300,
       animate: true,
 
@@ -465,12 +469,12 @@ export default function ImpossibleTriangle({ children, title }) {
       graph.clear();
       graph.destroy();
     };
-  }, []);
+  }, [locale]);
 
   return (
     <Box sx={{ background: '#F6F6F6', paddingTop: '30px', paddingBottom: '16px', paddingInline: { xs: '10px', sm: '100px' }, marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box sx={{ paddingTop: '30px', display: 'flex', borderRadius: '10px', justifyContent: 'center', background: '#FFFFFF' }}>
-        <Box sx={{ background: '#FFFFFF', color: 'black', '&>canvas': { zoom: { xs: 0.55, md: 1 } } }} id="mountNode"></Box>
+        <Box sx={{ background: '#FFF', color: 'black', '&>canvas': { zoom: { xs: 0.55, md: 1 } } }} id="mountNode"></Box>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
         <Typography fontSize={12} color="#777777" marginBottom="18px">
@@ -497,30 +501,30 @@ export default function ImpossibleTriangle({ children, title }) {
       <Box sx={{ display: 'flex', justifyContent: 'center', paddingInline: '15px' }}>
         {sideRef.current === 1 ? (
           <Box>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
               {t('impossibleTriangle-content-5')}
             </Typography>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
               {t('impossibleTriangle-content-6')}
             </Typography>
           </Box>
         ) : null}
         {sideRef.current === 2 ? (
           <Box>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
-              {t('impossibleTriangle-content-7')}{' '}
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
+              {t('impossibleTriangle-content-7')}
             </Typography>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
               {t('impossibleTriangle-content-8')}
             </Typography>
           </Box>
         ) : null}
         {sideRef.current === 3 ? (
           <Box>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
               {t('impossibleTriangle-content-9')}{' '}
             </Typography>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word' }} fontWeight={400}>
               {t('impossibleTriangle-content-10')}
             </Typography>
           </Box>
