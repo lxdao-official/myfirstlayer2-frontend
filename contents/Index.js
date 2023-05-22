@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 // import { Affix } from 'antd';
 import { Box, Hidden, Link, Skeleton, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useLocale } from 'next-intl';
 
 import Container from '../components/Container';
 import Diploma from '../components/Diploma';
@@ -50,9 +51,11 @@ export default function Content(props) {
     threshold: 0.3,
   });
 
+  const locale = useLocale();
+
   useEffect(() => {
     requestMdxSource(name);
-  }, [name]);
+  }, [name, locale]);
 
   const requestMdxSource = (name) => {
     setLoading(true);
