@@ -10,7 +10,7 @@ Foreword
 1.2 Impossibility Triangle
 1.3 Layer 2
 2.1 State Channel
-2.2 Side Chain
+2.2 SideChain
 2.3 Plasma
 2.4 Rollup
 3.1 How to Compress
@@ -22,7 +22,7 @@ Foreword
 3.7 ZK-VM vs ZK-EVM
 4.1 Validium and Volition
 4.2 Deneb and Layer 2
-4.3 Account Abstraction & Mass Adoption
+4.3 Account Abstraction
 
 &nbsp; 
 
