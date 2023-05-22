@@ -1,3 +1,31 @@
+
+Foreword
+
+1. Bottlenecks of Public Chains
+2. History of Layer 2
+3. Details of Rollup
+4. Future Prospects
+
+1.1 Attempts for Improvement
+1.2 Impossibility Triangle
+1.3 Layer 2
+2.1 State Channel
+2.2 Side Chain
+2.3 Plasma
+2.4 Rollup
+3.1 How to Compress
+3.2 Further Compression
+3.3 Optimistic Rollup
+3.4 Zero-Knowledge Rollup
+3.5 Rollup Implementation
+3.6 STARK vs SNARK
+3.7 ZK-VM vs ZK-EVM
+4.1 Validium and Volition
+4.2 Deneb and Layer 2
+4.3 Account Abstraction & Mass Adoption
+
+&nbsp; 
+
 前言
 
 1. Before Layer 2
@@ -22,3 +50,6 @@
 4.1 其它解决方案：Validium 和 Volition
 4.2 Deneb 更新与 Layer 2
 4.3 账户抽象与大规模应用
+
+
+
