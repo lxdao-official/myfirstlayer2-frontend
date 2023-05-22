@@ -358,7 +358,6 @@ function SimpleContributor(props) {
           <Box
             component="img"
             src={props.image}
-            title={props.name}
             sx={{
               width: '100%',
             }}

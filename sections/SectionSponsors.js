@@ -1,14 +1,12 @@
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
-import AddIcon from '@mui/icons-material/Add';
-import { Box, Button, Card, CardActions, CardContent, Grid, Link, Typography } from '@mui/material';
+import { Box, Card, CardActions, CardContent, Link, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-import StyledToolTip from '../components/StyledToolTip';
 import Twitter from '../components/svg/Twitter';
 import Website from '../components/svg/Website';
-import { orgDonation, personDonation } from '../donation';
+import { orgDonation } from '../donation';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
 function BigAd(props) {

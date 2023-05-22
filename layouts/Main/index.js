@@ -1,6 +1,5 @@
-import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
+import { useLocale } from 'next-intl';
+import { useEffect } from 'react';
 
 import { Box, Divider, Link, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
@@ -12,13 +11,22 @@ import MFL2 from '../../components/svg/MFL2';
 import Question from '../../components/svg/Question';
 import SectionTop from '../../sections/SectionTop';
 
-const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
-  const router = useRouter();
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const t = useTranslations('Main');
+const Main = ({ children = false }) => {
+  const locale = useLocale();
+  console.log(locale);
   const theme = useTheme();
+  const titles = {
+    en: [
+      { href: '#introduce', title: 'Introduce' },
+      { href: '#content', title: 'Content' },
+      { href: '#joinus', title: 'Join Us' },
+    ],
+    zh: [
+      { href: '#introduce', title: '介绍' },
+      { href: '#content', title: '内容' },
+      { href: '#joinus', title: '加入我们' },
+    ],
+  };
 
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -57,11 +65,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
             </Stack>
             <Box width="100%" display="flex" justifyContent="space-between" alignItems="center" pr="12px" pl="10px">
               <Box width="200px" height="36px" justifyContent="space-between" alignItems="center" display="flex" mx="10px">
-                {[
-                  { href: '"#introduce"', title: 'Introduce' },
-                  { href: '"#content"', title: 'Content' },
-                  { href: '"#joinus"', title: 'Join Us' },
-                ].map((v, i) => {
+                {titles[locale].map((v, i) => {
                   return (
                     <Box
                       key={i}
@@ -113,85 +117,35 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               </Box>
             </Box>
             <Box gap={4} display="flex" alignItems="center">
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Typography
+              {titles[locale].map((v, i) => (
+                <Box
+                  key={i}
                   sx={{
-                    fontSize: '15px',
-                    fontWeight: '400',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
                   }}
                 >
-                  <Link
+                  <Typography
                     sx={{
-                      textDecoration: 'none',
-                      color: theme.palette.primary.contrastText,
-                      cursor: 'pointer',
+                      fontSize: '15px',
+                      fontWeight: '400',
                     }}
-                    href="#introduce"
-                    target="_self"
                   >
-                    Introduce
-                  </Link>
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Typography
-                  sx={{
-                    cursor: 'pointer',
-                    fontSize: '15px',
-                    fontWeight: '400',
-                  }}
-                >
-                  <Link
-                    sx={{
-                      textDecoration: 'none',
-                      cursor: 'pointer',
-                      color: theme.palette.primary.contrastText,
-                    }}
-                    href="#content"
-                    target="_self"
-                  >
-                    Content
-                  </Link>
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: '15px',
-                    fontWeight: '400',
-                  }}
-                >
-                  <Link
-                    sx={{
-                      textDecoration: 'none',
-                      cursor: 'pointer',
-                      color: theme.palette.primary.contrastText,
-                    }}
-                    href="#joinus"
-                    target="_self"
-                  >
-                    Join Us
-                  </Link>
-                </Typography>
-              </Box>
+                    <Link
+                      sx={{
+                        textDecoration: 'none',
+                        color: theme.palette.primary.contrastText,
+                        cursor: 'pointer',
+                      }}
+                      href={v.href}
+                      target="_self"
+                    >
+                      {v.title}
+                    </Link>
+                  </Typography>
+                </Box>
+              ))}
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
               {/* <Theme color={theme.palette.primary.contrastText} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
