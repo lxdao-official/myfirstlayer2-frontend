@@ -33,7 +33,9 @@ export default function Index({ content, directory }) {
   );
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps(params) {
+  const { locale = 'en' } = params;
+
   const { content, meta } = getDocBySlug(DIRECTORY_NAME[0]?.text, locale);
   const mdxSource = await serialize(content);
   return {

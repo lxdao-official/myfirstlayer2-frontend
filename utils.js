@@ -6,7 +6,7 @@ import path from 'path';
 // const fs = require('fs');
 export function getDocBySlug(slug, locale = 'en') {
   // console.log('slug---------------', slug);
-  const docsDirectory = path.join(process.cwd(), '/mdx/zh');
+  const docsDirectory = path.join(process.cwd(), `/mdx/${locale}`);
   // console.log('docsDirectory', docsDirectory)
   const realSlug = slug.replace(/\.mdx$/, '');
   // console.log('realSlug', realSlug);
