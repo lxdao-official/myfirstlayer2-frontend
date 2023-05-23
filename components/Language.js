@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
@@ -14,8 +13,7 @@ const Language = ({ color }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const router = useRouter();
-  const { locale, locales, route } = router;
-  const otherLocale = locales?.find((cur) => cur !== locale);
+  const { locale, route } = router;
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const text = {
@@ -33,12 +31,8 @@ const Language = ({ color }) => {
     setAnchorEl(event.target.parentElement);
   };
 
-  const handleClose = (value) => {
+  const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const setLanguage = (value) => {
-    router.push('/' + (value === 'en' ? '' : value));
   };
 
   const LangNode = useCallback(() => {
@@ -50,7 +44,9 @@ const Language = ({ color }) => {
             <Typography marginLeft={smallScreen ? 0 : '5px'} marginRight={smallScreen ? 0 : '5px'} fontWeight={400} color={color} fontSize={'12px'} width={{ xs: 'auto', md: '50px' }} textAlign="center">
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
-            <Arrow color={color} style={{ rotate: open && '180deg' }} />
+            <Box sx={{ rotate: open && '180deg', display: 'flex', alignItems: 'center' }}>
+              <Arrow color={color} />
+            </Box>
           </Box>
         </Box>
         <Menu

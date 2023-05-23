@@ -5,7 +5,7 @@ import path from 'path';
 
 // const fs = require('fs');
 export function getDocBySlug(slug, locale = 'en') {
-  console.log('slug---------------', slug);
+  // console.log('slug---------------', slug);
   const docsDirectory = path.join(process.cwd(), '/mdx/zh');
   // console.log('docsDirectory', docsDirectory)
   const realSlug = slug.replace(/\.mdx$/, '');
@@ -25,17 +25,17 @@ export function formatDirectory(fileNames) {
 
   formatArr.map((item, index) => directory.push({ text: item.substr(0, item.length - 3), status: false, main: false }));
   directory = directory.filter((item) => item.text !== 'TOC' && item.text !== 'README' && item.text !== 'SUMMARY');
-  
+
   directory.unshift({
     text: '1.0-foreword',
     status: true,
     main: true,
-  })
+  });
   directory[1] = {
     text: '1.0-Before Layer2',
     status: false,
     main: true,
-  }
+  };
   directory.splice(5, 0, {
     text: '2.0-Layer2 Evolution course',
     status: false,
@@ -50,14 +50,13 @@ export function formatDirectory(fileNames) {
     text: '4.0-Layer2 Future And Prospect',
     status: false,
     main: true,
-  })
+  });
   directory[directory.length - 1] = {
     ...directory[directory.length - 1],
     main: true,
-  }
+  };
 
-  console.log('directory', directory)
-
+  console.log('directory', directory);
 
   return directory;
 }

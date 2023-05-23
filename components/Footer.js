@@ -70,12 +70,8 @@ const Footer = () => {
           <Grid container spacing={{ lg: 6, md: 12, xs: 12 }} flex={2}>
             <Grid item lg={4} md={4} xs={6}>
               <NavList
-                title="Developer"
+                title="My First Series"
                 items={[
-                  {
-                    name: 'My First Series Theme',
-                    link: '',
-                  },
                   {
                     name: 'My First NFT',
                     link: 'https://github.com/lxdao-official/LXDAO-Developer-Guide',

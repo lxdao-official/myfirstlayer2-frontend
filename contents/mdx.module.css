@@ -77,8 +77,11 @@
   color: #0F0F0F;
 }
 
-.root img {
-  /* padding: 12px 0; */
+/* .root img {
   width: 100%;
-  /* height: 100%; */
+} */
+
+.imgC{
+  display: flex;
+  justify-content: center;
 }

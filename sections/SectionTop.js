@@ -14,6 +14,8 @@ const HightlightText = styled.span`
 
 export default function SectionTop({ content, meta }) {
   const t = useTranslations('Index');
+  const locale = useLocale();
+  console.log('locale', locale);
 
   return (
     <Container maxWidth="100%" paddingX={0} id="top-section">
@@ -72,7 +74,7 @@ export default function SectionTop({ content, meta }) {
               color: '#D5D5D5',
               fontWeight: '400',
               fontSize: { xs: '10px', md: '16px' },
-              lineHeight: '24px',
+              lineHeight: locale == 'en' ? '16px' : '24px',
               whiteSpace: 'pre-line',
             }}
           >
@@ -142,7 +144,7 @@ export default function SectionTop({ content, meta }) {
                     href="#content"
                     target="_self"
                   >
-                    Start Learning
+                    {t('button')}
                   </Link>
                 </Typography>
               </Box>

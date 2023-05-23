@@ -10,13 +10,14 @@ import { useTheme } from '@mui/material/styles';
 
 import Container from '../components/Container';
 import Diploma from '../components/Diploma';
+import EditChapter from '../components/EditChapter';
+import GithubAvatar from '../components/GithubAvatar';
 import MintBadge from '../components/MintBadge';
 import ZksyncSwap from '../components/ZksyncSwap';
 import CompressText from '../components/animation/CompressText';
-import GithubAvatar from '../components/GithubAvatar';
-
 import { MobileDirectory, PcDirectory } from './Directory';
 import Loading from './Loading';
+import MdxImg from './MdxImg';
 import Progress from './Progress';
 import TabChapter from './TabChapter';
 import { ReadContext } from './context.js';
@@ -33,7 +34,6 @@ export default function Content(props) {
     counter: chapterCount,
     read: 1,
     currentIndex: 0,
-    actionFrom: 'nextButton',
   });
   const [mdxSource, setMdxSource] = useState('');
 
@@ -73,7 +73,6 @@ export default function Content(props) {
     let count = 0;
     for (let index in arr) {
       if ((!arr[index].main && arr[index]?.status) || (arr[index].main && (+index === 0 || +index === arr.length - 1) && arr[index]?.status)) {
-        console.log('arr', arr[index]);
         count++;
       }
     }
@@ -92,7 +91,7 @@ export default function Content(props) {
     let readStatusStore = readStatus;
 
     if (action === 'last') {
-      if (selectedIndex === 1) {
+      if (selectedIndex === 0) {
         return;
       }
 
@@ -149,7 +148,6 @@ export default function Content(props) {
         counter: chapterCount,
         read: computeReadCount(newState),
         currentIndex: readData?.currentIndex - 1,
-        actionFrom: 'nextButton',
       });
     }
     if (action === 'next') {
@@ -208,7 +206,6 @@ export default function Content(props) {
         counter: chapterCount,
         read: computeReadCount(newState),
         currentIndex: mainArr.includes(selectedIndex + 1) ? selectedIndex + 2 : selectedIndex + 1,
-        actionFrom: 'nextButton',
       });
     }
     if (action === 'lastOrNext') {
@@ -293,7 +290,6 @@ export default function Content(props) {
         counter: chapterCount,
         read: computeReadCount(newState),
         currentIndex: mainArr.includes(chapter?.index) ? chapter?.index + 1 : chapter?.index,
-        actionFrom: 'nextButton',
       });
     }
   };
@@ -305,6 +301,8 @@ export default function Content(props) {
     ImpossibleTriangle,
     MintBadge,
     GithubAvatar,
+    EditChapter,
+    MdxImg,
   };
 
   const theme = useTheme();
@@ -322,7 +320,9 @@ export default function Content(props) {
     if (readed > 2) {
       setStorage('directoryStatus', JSON.stringify({ data: directory }));
     }
-    setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+    if (selectedIndex > 0) {
+      setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
+    }
   }, [directory, selectedIndex]);
 
   useEffect(() => {
@@ -341,9 +341,13 @@ export default function Content(props) {
       setReadData({
         counter: chapterCount,
         read: computeReadCount(jsonDirectory),
-        currentIndex: jsonSelect?.data,
-        actionFrom: 'nextButton',
+        currentIndex: jsonSelect,
       });
+      setChapterData({
+        current: jsonDirectory[jsonSelect]?.text,
+        last: jsonSelect === 0 ? '' : jsonDirectory[jsonSelect - 1]?.text,
+        next: jsonSelect === chapterCount + 4 ? '' : jsonDirectory[jsonSelect + 1]?.text,
+      })
     }
   }, []);
 
