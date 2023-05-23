@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import { Avatar, Box } from '@mui/material';
+import { useTranslations } from 'next-intl';
 
 export default function GithubAvatar(props) {
   const { owner = 'lxdao-official', repo = 'myfirstlayer2-frontend', path = '' } = props;
   const [avatarUrls, setAvatarUrls] = useState([]);
+  const t = useTranslations('GithubAvatar');
 
   useEffect(() => {
     // 在组件加载时获取贡献者头像
@@ -15,7 +17,7 @@ export default function GithubAvatar(props) {
 
   return (
     <>
-      <h2>本章节贡献人</h2>
+      <h2>{t('Contribute-to-this-chapter')}</h2>
 
       <Box
         sx={{

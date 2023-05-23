@@ -75,5 +75,11 @@
   },
   "Process": {
     "process": "阅读进度"
+  },
+  "GithubAvatar": {
+    "Contribute-to-this-chapter": "本章节贡献人"
+  },
+  "EditChapter": {
+    "Edit-a-document": "【编辑文档】"
   }
 }
