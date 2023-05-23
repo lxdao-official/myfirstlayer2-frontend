@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import { Avatar, Box } from '@mui/material';
 import { useTranslations } from 'next-intl';
 
+const INIT_URL_DATA = ['https://avatars.githubusercontent.com/u/4056746?v=4', 'https://avatars.githubusercontent.com/u/36688525?v=4', 'https://avatars.githubusercontent.com/u/47655472?v=4', 'https://avatars.githubusercontent.com/u/125287205?v=4'];
+
 export default function GithubAvatar(props) {
   const { owner = 'lxdao-official', repo = 'myfirstlayer2-frontend', path = '' } = props;
-  const [avatarUrls, setAvatarUrls] = useState([]);
+  const [avatarUrls, setAvatarUrls] = useState(INIT_URL_DATA);
   const t = useTranslations('GithubAvatar');
 
   useEffect(() => {
@@ -52,9 +54,7 @@ export default function GithubAvatar(props) {
 async function fetchContributorAvatars(owner = 'lxdao-official', repo = 'myfirstlayer2-frontend', path = '') {
   try {
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`);
-    const commits = await response.json() || [];
-    
-
+    const commits = await response.json() || INIT_URL_DATA;
     const contributors = commits?.map((commit) => commit?.author);
 
     const avatarUrls = contributors?.map((contributor) => contributor?.avatar_url);
