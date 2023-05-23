@@ -9,6 +9,7 @@
 .root {
   width: 100%;
   font-family: 'PingFang SC';
+  word-break: break-word;
   /* color: brown; */
   /* font-family: 'HANSON BOLD'; */
   /* max-width: 100%; */
@@ -25,7 +26,6 @@
   font-size: 15px;
   max-width: 100%;
   /* word-wrap: pre-line; */
-  word-break: break-all;
   padding-bottom: 12px;
   /* text-indent: 2em; */
 }
