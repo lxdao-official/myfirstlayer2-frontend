@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-
-import { Box, Button, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import MintBadge from './MintBadge';
+import { useTranslations } from 'next-intl';
 
 export default function Diploma() {
+  const t = useTranslations('Diploma');
   const theme = useTheme();
   const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
   return (
@@ -14,33 +14,16 @@ export default function Diploma() {
       sx={{
         background: theme?.palette?.mode === 'dark' ? '#010101' : '#fff',
         borderRadius: '18px',
-        // marginTop: '30px',
       }}
     >
       <Box
         sx={{
           background: theme?.palette?.mode === 'dark' ? '#010101' : '#fff',
           borderRadius: '18px',
-          // width: mdScreen ? '750px' : '250px',
-          // paddingY: '50px',
-          // paddingX: '65px',
           paddingBottom: '20px',
         }}
       >
         <Box sx={{ borderRadius: '18px' }}>
-          {/* <Typography
-            sx={{
-              fontSize: { md: '36px', sm: '36px' },
-              fontStyle: 'ExtraBold',
-              fontFamily: 'Open Sans',
-              color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-              fontWeight: 700,
-              textAlign: 'center',
-              marginBottom: '30px',
-            }}
-          >
-            结业认证
-          </Typography> */}
           <h1
             style={{
               fontSize: { md: '36px', sm: '36px' },
@@ -49,10 +32,9 @@ export default function Diploma() {
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 700,
               textAlign: 'center',
-              // marginBottom: '30px',
             }}
           >
-            结业认证
+            {t('title')}
           </h1>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
@@ -63,10 +45,9 @@ export default function Diploma() {
               fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
-              // marginTop: '30px',
             }}
           >
-            恭喜您完成了 MyFirstLayer 2 全部章节内容的学习！
+            {t('content-1')}
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
@@ -80,7 +61,7 @@ export default function Diploma() {
               marginBottom: '30px',
             }}
           >
-            为了表彰您的努力与成就，我们特别为您准备了一个结业徽章这个徽章是对您学习成果的认可，也是一份珍贵的荣誉。
+            {t('content-2')}
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
@@ -94,7 +75,7 @@ export default function Diploma() {
               marginBottom: '30px',
             }}
           >
-            领取徽章很简单，请您按照以下步骤进行操作：
+            {t('content-3')}
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
@@ -107,7 +88,7 @@ export default function Diploma() {
               fontWeight: 400,
             }}
           >
-            1. 点击网站主页右上角的 “ Connect Wallet ” 按钮，连接钱包；（请切换至 Optimism 网络）
+            {t('content-4')}
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
@@ -121,7 +102,7 @@ export default function Diploma() {
               marginBottom: '30px',
             }}
           >
-            2*.于 OP testnet 水龙头地址领取测试代币；（暂时留测试网的链接，未来只留下 OP 主网的 Claim 交互组件）
+            {t('content-5')}
           </Typography>
         </Box>
         <Box
@@ -185,7 +166,7 @@ export default function Diploma() {
               marginBottom: '10px',
             }}
           >
-            3.点击 “ Claim ” 按钮即可成功获得结业徽章！
+            {t('content-6')}
           </Typography>
         </Box>
         <MintBadge />
@@ -198,12 +179,10 @@ export default function Diploma() {
               fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
-
               marginTop: '30px',
-              // marginBottom: '10px',
             }}
           >
-            到这里，您已经成功地领取了结业徽章！希望这枚徽章能够成为您不断前行的鼓励与动力，也期待您继续保持追求学习的态度，在 Web3 的世界扬帆起航！
+            {t('content-7')}
           </Typography>
         </Box>
       </Box>

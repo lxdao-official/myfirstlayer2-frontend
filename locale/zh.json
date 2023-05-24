@@ -2,8 +2,8 @@
   "Index": {
     "button": "开始学习",
     "title": "Welcome to My first layer2.",
-    "description": "MyFirstLayer 2 是 LXDAO “ My First ” 系列的第 2 个教育公益类产品。\n网上的区块链 Layer 2 知识分散且难以学习，本产品通过文字 + 图片 + 动画的形式向 Web3 用户普及所有 Layer 2 知识。\n该作品由以太坊基金会赞助， LXDAO 团队制作，非常感谢以太坊基金会对 Web3 生态的支持。",
-    "description2": "MyFirstLayer 2 是 LXDAO “ My First ” 系列的第 2 个教育公益类产品。网上的区块链 Layer 2 知识分散且难以学习，本产品通过文字 + 图片 + 动画的形式向 Web3 用户普及所有 Layer 2 知识。该作品由以太坊基金会赞助， LXDAO 团队制作，非常感谢以太坊基金会对 Web3 生态的支持。"
+    "description": "MyFirstLayer2 是 LXDAO “ My First ” 系列的第 2 个教育公益类产品。\n网上的区块链 Layer 2 知识分散且难以学习，本产品通过文字 + 图片 + 动画的形式向 Web3 用户普及所有 Layer 2 知识。\n该作品由以太坊基金会赞助， LXDAO 团队制作，非常感谢以太坊基金会对 Web3 生态的支持。",
+    "description2": "MyFirstLayer2 是 LXDAO “ My First ” 系列的第 2 个教育公益类产品。网上的区块链 Layer 2 知识分散且难以学习，本产品通过文字 + 图片 + 动画的形式向 Web3 用户普及所有 Layer 2 知识。该作品由以太坊基金会赞助， LXDAO 团队制作，非常感谢以太坊基金会对 Web3 生态的支持。"
   },
 
   "PageLayout": {
@@ -17,17 +17,17 @@
     "sectionTeam-content-12": "贡献者",
     "sectionTeam-title-10": "幕后团队",
     "sectionTeam-title-11": "介绍当前项目的背后的贡献者",
-    "sectionTeam-title-12": "贡献者价值描述"
+    "sectionTeam-title-12": "感谢以下贡献者对本项目的无私贡献"
   },
   "SectionSponsors": {
     "sectionSponsors-title-10": "捐赠者",
-    "sectionSponsors-title-11": "赞助商价值描述"
+    "sectionSponsors-title-11": "感谢以太坊基金会、Gitcoin 等捐助方对本项目的大力支持"
   },
   "SectionMyFirstProject": {
     "sectionMyFirst-title-10": "My First series",
     "view-more": "更多",
     "sectionMyFirst-title-1": "你可能还想知道...",
-    "sectionMyFirst-title-2": "核心贡献者价值描述"
+    "sectionMyFirst-title-2": "LXDAO 的其它开源项目"
   },
   "ImpossibleTriangle": {
     "impossibleTriangle-content-1": "尝试拖拽不可能三角",
@@ -81,5 +81,15 @@
   },
   "EditChapter": {
     "Edit-a-document": "【编辑文档】"
+  },
+  "Diploma": {
+    "title": "结业认证",
+    "content-1":"恭喜您完成了 MyFirstLayer2 全部章节内容的学习！",
+    "content-2":"为了表彰您的努力与成就，我们特别为您准备了一个结业徽章这个徽章是对您学习成果的认可，也是一份珍贵的荣誉。",
+    "content-3":"领取徽章很简单，请您按照以下步骤进行操作：",
+    "content-4":"1. 点击网站主页右上角的 “ Connect Wallet ” 按钮，连接钱包；（请切换至 Optimism 网络）",
+    "content-5":"2*.于 OP testnet 水龙头地址领取测试代币；（暂时留测试网的链接，未来只留下 OP 主网的 Claim 交互组件）",
+    "content-6":"3.点击 “ Claim ” 按钮即可成功获得结业徽章！",
+    "content-7":"到这里，您已经成功地领取了结业徽章！希望这枚徽章能够成为您不断前行的鼓励与动力，也期待您继续保持追求学习的态度，在 Web3 的世界扬帆起航！"
   }
 }

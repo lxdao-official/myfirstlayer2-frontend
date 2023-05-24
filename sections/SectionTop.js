@@ -62,7 +62,7 @@ export default function SectionTop({ content, meta }) {
               lineHeight: { xs: '40px', md: '84px' },
             }}
           >
-            MY FIRST LAYER<HightlightText> 2</HightlightText>.
+            MY FIRST LAYER<HightlightText>2</HightlightText>.
           </Typography>
           <Typography
             sx={{

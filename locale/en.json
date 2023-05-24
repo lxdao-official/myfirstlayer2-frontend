@@ -2,8 +2,8 @@
   "Index": {
     "button": "Start Learning",
     "title": "Welcome to My first layer2.",
-    "description": "MyFirstLayer 2 is the second educational nonprofit product of LXDAO's \"My First\" series. \nThe blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn. \nThis product popularizes all Layer 2 knowledge to Web3 users in the form of text + pictures + animation. \nThis work is sponsored by the Ethereum Foundation and produced by the LXDAO team.\n",
-    "description2": "MyFirstLayer 2 is the second educational nonprofit product of LXDAO's \"My First\" series. Blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn. This product popularizes all Layer 2 knowledge to Web3 users in the form of text + pictures + animation. This work is sponsored by the Ethereum Foundation and produced by the LXDAO team. We are very grateful to the Ethereum Foundation for its support of the Web3 ecology."
+    "description": "MyFirstLayer2 is the second educational nonprofit product of LXDAO's \"My First\" series. \nThe blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn. \nThis product popularizes all Layer 2 knowledge to Web3 users in the form of text + pictures + animation. \nThis work is sponsored by the Ethereum Foundation and produced by the LXDAO team.\n",
+    "description2": "MyFirstLayer2 is the second educational nonprofit product of LXDAO's \"My First\" series. Blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn. This product popularizes all Layer 2 knowledge to Web3 users in the form of text + pictures + animation. This work is sponsored by the Ethereum Foundation and produced by the LXDAO team. We are very grateful to the Ethereum Foundation for its support of the Web3 ecology."
   },
 
   "PageLayout": {
@@ -20,17 +20,17 @@
     "sectionTeam-partners-13": "Co-founder of GCLX NFT and My First NFT. Web3 Buidler. ETH to the moon!",
     "sectionTeam-partners-14": "At vero eos et accusamus et iusto odio dignissimos ducimus",
     "sectionTeam-partners-15": "Qui blanditiis praesentium voluptatum deleniti atque corrupti",
-    "sectionTeam-title-12": "Description of contributor value"
+    "sectionTeam-title-12": "We are grateful to the following contributors for their selfless contributions to this project."
   },
   "SectionSponsors": {
     "sectionSponsors-title-10": "Sponsors",
-    "sectionSponsors-title-11": "Description of sponsors value"
+    "sectionSponsors-title-11": "We appreciate the generous support of the Ethereum Foundation, Gitcoin, and other donors for this project."
   },
   "SectionMyFirstProject": {
     "sectionMyFirst-title-10": "My First series",
     "view-more": "View More",
     "sectionMyFirst-title-1": "You may also wanna know...",
-    "sectionMyFirst-title-2": "Description of core contributor value"
+    "sectionMyFirst-title-2": "Other Public Goods Projects by LXDAO"
   },
   "ImpossibleTriangle": {
     "impossibleTriangle-content-1": "Try to drag the impossible triangle",
@@ -84,5 +84,15 @@
   },
   "EditChapter": {
     "Edit-a-document": "[Edit the document]"
+  },
+  "Diploma": {
+    "title": "Diploma",
+    "content-1":"Congratulations on completing all the chapters of MyFirstLayer2!",
+    "content-2":"In recognition of your efforts and achievements, we've prepared a special graduation badge for you. This badge stands as an acknowledgement of your learning accomplishments and is a cherished honor.",
+    "content-3":"Claiming the badge is an easy process. Here's what you need to do:",
+    "content-4":"1. Click the \"Connect Wallet\" button situated in the top right corner of our website to link your wallet. (Make sure you switch to the Optimism network.)",
+    "content-5":"2*.Navigate to the OP testnet faucet address to collect test tokens. (At present, we'll provide the link to the test network, and in due course, we'll offer the link to the OP mainnet's Claim interaction component.)",
+    "content-6":"3.Hit the \"Claim\" button and voila! You've successfully received your graduation badge!",
+    "content-7":"Congratulations! You've successfully claimed your graduation badge! We hope this badge acts as a source of inspiration and motivation for your ongoing journey. We eagerly anticipate your sustained dedication to learning and your adventurous journey into the world of Web3!"
   }
 }
