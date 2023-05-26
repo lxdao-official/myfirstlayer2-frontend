@@ -64,13 +64,15 @@ function MyFirstCard(props) {
               }}
             />
           </Box>
-          <Box marginLeft={'15px'} boxShadow="none" display={'flex'} flexDirection={'column'}>
-            <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} fontWeight={800}>
-              {props.projectName}
-            </Typography>
-            <Typography color="text.primary" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
-              {props.holder}
-            </Typography>
+          <Box paddingRight={'80px'} display={'flex'} justifyContent="center" flex="1">
+            <Box boxShadow="none" display={'flex'} flexDirection={'column'}>
+              <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} fontWeight={800}>
+                {props.projectName}
+              </Typography>
+              <Typography color="#676767" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
+                {props.holder}
+              </Typography>
+            </Box>
           </Box>
         </Box>
         <Box
@@ -122,7 +124,7 @@ export default function SectionMyFirstProject() {
     zh: [
       {
         projectName: 'My First NFT',
-        holder: '',
+        holder: '666 holder',
         image: '/project/myfirstnft.png',
         bigImage: '/project/myfirstnftCard.png',
         description: 'MyFirstNFT 是一个针对 Web3 新手的非营利性教学项目。 在学习 Web3、NFT 的潜在价值和安全原则的同时获得免费的 NFT。',
@@ -140,7 +142,7 @@ export default function SectionMyFirstProject() {
     en: [
       {
         projectName: 'My First NFT',
-        holder: '',
+        holder: '666 holder',
         image: '/project/myfirstnft.png',
         bigImage: '/project/myfirstnftCard.png',
         description: 'MyFirstNFT is a non-profit instructional project for Web3 newbies. Get a FREE NFT while learning about Web3, underlying values of NFT, and security principles.',
