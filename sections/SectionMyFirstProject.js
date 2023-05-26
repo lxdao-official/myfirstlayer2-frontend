@@ -64,13 +64,15 @@ function MyFirstCard(props) {
               }}
             />
           </Box>
-          <Box marginLeft={'15px'} boxShadow="none" display={'flex'} flexDirection={'column'}>
-            <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} fontWeight={800}>
-              {props.projectName}
-            </Typography>
-            <Typography color="#676767" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
-              {props.holder}
-            </Typography>
+          <Box paddingRight={'80px'} display={'flex'} justifyContent="center" flex="1">
+            <Box boxShadow="none" display={'flex'} flexDirection={'column'}>
+              <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} fontWeight={800}>
+                {props.projectName}
+              </Typography>
+              <Typography color="#676767" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
+                {props.holder}
+              </Typography>
+            </Box>
           </Box>
         </Box>
         <Box

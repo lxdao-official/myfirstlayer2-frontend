@@ -109,10 +109,6 @@ const Footer = () => {
                     link: 'https://lxdao.notion.site/',
                   },
                   { name: 'Forum', link: 'https://forum.lxdao.io/' },
-                  {
-                    name: 'Media Kit',
-                    link: 'https://www.figma.com/file/kBSNRnzvDNyLX5SrM7P2Mh/LXDAO-Media-kit?node-id=2%3A15&t=Sbk019qSH9SwRL7y-0',
-                  },
                 ]}
               />
             </Grid>
