@@ -1069,10 +1069,10 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
-"@lxdao/lxdao-ui@^0.1.20":
-  version "0.1.20"
-  resolved "https://registry.npmmirror.com/@lxdao/lxdao-ui/-/lxdao-ui-0.1.20.tgz#1a834ad4519269f782624ab0d2ea2aef5154ece0"
-  integrity sha512-bvrp4o89qZNtt4ZBeDdE4gJHw30ZqlJwYU9qkGJNlPFx7Vja24hgF+bmHxA7g0AfKKxZAnuoa0fEAQOPSKdOKA==
+"@lxdao/lxdao-ui@^0.1.23":
+  version "0.1.23"
+  resolved "https://registry.yarnpkg.com/@lxdao/lxdao-ui/-/lxdao-ui-0.1.23.tgz#e6a1a73472f480b828ee66a0037a81724630a3b4"
+  integrity sha512-63spUxLvGdZyj9MT/RXa4dQrEk8YOy1iO/c0gCvjhj+y57SZo6DPzc9vcPuU6B/1qyKa2l41/1pu72151fW0wQ==
 
 "@mdx-js/loader@^2.3.0":
   version "2.3.0"
