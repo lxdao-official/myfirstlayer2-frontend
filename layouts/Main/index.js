@@ -116,36 +116,44 @@ const Main = ({ children = false }) => {
                 <LXDAOLogo width={80} height={20} color={theme.palette.primary.contrastText} />
               </Box>
             </Box>
-            <Box gap={4} display="flex" alignItems="center">
-              {titles[locale].map((v, i) => (
-                <Box
-                  key={i}
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Typography
+            <Box sx={{
+              left: 0,
+              width: '300px',
+              right: 0,
+              margin: '0 auto',
+              position: 'absolute',
+            }}>
+              <Box gap={4} display="flex" alignItems="center">
+                {titles[locale].map((v, i) => (
+                  <Box
+                    key={i}
                     sx={{
-                      fontSize: '15px',
-                      fontWeight: '400',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
                     }}
                   >
-                    <Link
+                    <Typography
                       sx={{
-                        textDecoration: 'none',
-                        color: theme.palette.primary.contrastText,
-                        cursor: 'pointer',
+                        fontSize: '15px',
+                        fontWeight: '400',
                       }}
-                      href={v.href}
-                      target="_self"
                     >
-                      {v.title}
-                    </Link>
-                  </Typography>
-                </Box>
-              ))}
+                      <Link
+                        sx={{
+                          textDecoration: 'none',
+                          color: theme.palette.primary.contrastText,
+                          cursor: 'pointer',
+                        }}
+                        href={v.href}
+                        target="_self"
+                      >
+                        {v.title}
+                      </Link>
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
               {/* <Theme color={theme.palette.primary.contrastText} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
