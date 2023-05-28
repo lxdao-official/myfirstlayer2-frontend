@@ -211,7 +211,7 @@ const Item = (props) => {
                 height: '12px',
                 width: '3px',
                 borderRadius: '3px',
-                backgroundColor: rowData?.status ? '#39DC7A' : '#ddd',
+                backgroundColor: rowData?.status ? '#000' : '#ddd',
                 marginRight: '10px',
               }}
             />

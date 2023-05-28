@@ -124,6 +124,9 @@ export default function SectionTop({ content, meta }) {
                   background: '#000000',
                   borderRadius: { xs: '8px', md: '18px' },
                   display: 'flex',
+                  '&:hover': {
+                    background: 'rgba(0, 0, 0, 0.12)',
+                  },
                 }}
               >
                 <Typography

@@ -1,5 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { switchNetwork } from '@wagmi/core';
+import { switchNetwork, disconnect } from '@wagmi/core';
 import { useState } from 'react';
 
 import { Box, Button, styled } from '@mui/material';
@@ -84,9 +84,9 @@ export const MFL2ConnectButton = () => {
       icon: '/icons/ab.png',
     },
     {
-      chainId: 280,
-      chainName: 'zkSync Era Testnet',
-      icon: '/icons/zk.png',
+      chainId: 0,
+      chainName: 'Disconnect',
+      icon: '/icons/disconnect.png',
     },
   ];
   //   const open = Boolean(anchorEl);
@@ -153,24 +153,26 @@ export const MFL2ConnectButton = () => {
                           height: { xs: 16, md: 20 },
                           marginLeft: '10px',
                           marginRight: '6px',
+                        }}
+                      />
+                        <Box sx={{
                           transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-                        }}
-                      />
-                      <Arrow
-                        color="white"
-                        width="12"
-                        height="7"
-                        onClick={() => {
-                          setOpen(!open);
-                        }}
-                      />
+                        }}>
+                          <Arrow
+                            color="white"
+                            width="12"
+                            height="7"
+                            onClick={() => {
+                              setOpen(!open);
+                            }}
+                          />
+                        </Box>
                     </Box>
                   </NormalButton>
                   {open && (
                     <Box
                       sx={{
-                        // padding: '10px',
-                        width: { xs: '121px', md: '145px' },
+                        width: { xs: '121px', md: '146px' },
                         position: 'absolute',
                         zIndex: '100',
                         background: '#000',
@@ -184,12 +186,16 @@ export const MFL2ConnectButton = () => {
                     >
                       {chains.map((v, i) => (
                         <IconButton
-                          sx={{ position: 'flex', justifyContent: 'start', fontSize: '10px' }}
+                          sx={{ position: 'flex', justifyContent: 'start', fontSize: '10px', borderEndEndRadius: v.chainId === 0 && '20px', borderEndStartRadius: v.chainId === 0 && '20px'}}
                           key={i}
-                          disabled={i >= 1}
+                          disabled={i >= 1 && v.chainId !==0}
                           onClick={async () => {
-                            await switchNetwork({ chainId: v.chainId });
-                            setOpen(!open);
+                            if (v.chainId === 0) {
+                              await disconnect();
+                            } else {
+                              await switchNetwork({ chainId: v.chainId });
+                              setOpen(!open);
+                            }
                           }}
                         >
                           {v.icon && (
