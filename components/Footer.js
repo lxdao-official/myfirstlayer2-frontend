@@ -40,7 +40,7 @@ const SignupFormWrapper = styled.div`
     }
   }
   & .msg-alert > p {
-    color: #00fb8c !important;
+    color: #305fe8 !important;
   }
 `;
 
