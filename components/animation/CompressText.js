@@ -1,13 +1,13 @@
 import { animated, useSpring, useTransition } from '@react-spring/web';
 import { delay, remove } from 'lodash';
+import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import { Box, Button, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { useLocale } from 'next-intl';
 
 export default function CompressText() {
-  const locale=useLocale()
+  const locale = useLocale();
   const [status, setStatus] = useState(1);
   const [direction, setDirection] = useState(0); //0 pre 1 after
   const handlePre = () => {
@@ -22,21 +22,36 @@ export default function CompressText() {
     return { title, content, explain };
   };
 
-  const explain = {zh:[
-    createExplain('Method ID', '原始交易数据未经压缩', 'Method ID / 填充的0 / 代币合约地址  / 填充的0 / 收款的账户地址  / 填充的0 /  提币数量'),
-    createExplain('代币合约地址', '用科学计数法把转账数量压缩成64位数据，并删除不必要的0。（数量的精度会略微下降，但实践中影响不大）', 'Method ID  / 代币合约地址  /  收款的账户地址  / 提币数量'),
-    createExplain('收款的账户地址', '调用的方法如果很常见，可以删除所调用的Method ID，因为如“转账一笔ERC20代币”的交易，可以通过交易内容的特征推测', '代币合约地址  /  收款的账户地址  / 提币数量'),
-    createExplain('填充的0', '常用行为设置绿色通道（Helper ID）：大部分发送代币的行为都是如USDC、WETH等常用代币，可以用更短的Helper ID表示如“发送USDC”的信息', 'Helper ID  /  收款的账户地址  / 提币数量'),
-    createExplain('收款的账户地址', '登记一个“电话簿”，记录收款人地址，将40位的地址压缩为第XXX页的第X个地址。', 'Helper ID  /  收款账户“电话簿”编号  / 提币数量'),
-    createExplain('提币数量', '如果发送的是ETH，连Helper ID都可以省掉。', '收款账户“电话簿”编号  / 提币数量'),
-  ],en:[
-    createExplain('Method ID', 'Raw transaction data', 'Method ID / Zero padding  / Token contract address  / Zero padding  / Recipient account address  / Zero padding  /  Token transfer amount'),
-    createExplain('Token contract address', 'Express the transfer amount in scientific notation as 64-bit data, removing unnecessary zeros. Although this might slightly decrease the precision of the amount, the impact is usually negligible in practice.', 'Method ID  / Token contract address  /  Recipient account address  / Token transfer amount'),
-    createExplain('Recipient account address', 'If a commonly used method is being invoked, the Method ID can be left out. For instance, transactions such as "transferring ERC20  token" can be inferred based on the characteristics of the transaction content.', 'Token contract address  /  Recipient account address  / Token transfer amount'),
-    createExplain('Zero padding', 'Create a shorthand (Helper ID) for frequent actions: Most token transfer actions are conducted with well-known tokens like USDC or WETH. A shorter Helper ID can be used to represent the action as "transfer" and the token as "USDC."', 'Helper ID  /  Recipient account address  / Token transfer amount'),
-    createExplain('Recipient account address', 'Maintain a directory of recipient addresses, transforming the 40-character addresses into the Xth address on the XXXth page.', 'Helper ID  /  Directory reference for the recipient account  / Token transfer amount'),
-    createExplain('Token transfer amount', 'If ETH is being transferred, even the Helper ID can be omitted.', 'Directory reference for the recipient account  / Token transfer amount'),
-  ]};
+  const explain = {
+    zh: [
+      createExplain('Method ID', '原始交易数据未经压缩', 'Method ID / 填充的0 / 代币合约地址  / 填充的0 / 收款的账户地址  / 填充的0 /  提币数量'),
+      createExplain('代币合约地址', '用科学计数法把转账数量压缩成64位数据，并删除不必要的0。（数量的精度会略微下降，但实践中影响不大）', 'Method ID  / 代币合约地址  /  收款的账户地址  / 提币数量'),
+      createExplain('收款的账户地址', '调用的方法如果很常见，可以删除所调用的Method ID，因为如“转账一笔ERC20代币”的交易，可以通过交易内容的特征推测', '代币合约地址  /  收款的账户地址  / 提币数量'),
+      createExplain('填充的0', '常用行为设置绿色通道（Helper ID）：大部分发送代币的行为都是如USDC、WETH等常用代币，可以用更短的Helper ID表示如“发送USDC”的信息', 'Helper ID  /  收款的账户地址  / 提币数量'),
+      createExplain('收款的账户地址', '登记一个“电话簿”，记录收款人地址，将40位的地址压缩为第XXX页的第X个地址。', 'Helper ID  /  收款账户“电话簿”编号  / 提币数量'),
+      createExplain('提币数量', '如果发送的是ETH，连Helper ID都可以省掉。', '收款账户“电话簿”编号  / 提币数量'),
+    ],
+    en: [
+      createExplain('Method ID', 'Raw transaction data', 'Method ID / Zero padding  / Token contract address  / Zero padding  / Recipient account address  / Zero padding  /  Token transfer amount'),
+      createExplain(
+        'Token contract address',
+        'Express the transfer amount in scientific notation as 64-bit data, removing unnecessary zeros. Although this might slightly decrease the precision of the amount, the impact is usually negligible in practice.',
+        'Method ID  / Token contract address  /  Recipient account address  / Token transfer amount'
+      ),
+      createExplain(
+        'Recipient account address',
+        'If a commonly used method is being invoked, the Method ID can be left out. For instance, transactions such as "transferring ERC20  token" can be inferred based on the characteristics of the transaction content.',
+        'Token contract address  /  Recipient account address  / Token transfer amount'
+      ),
+      createExplain(
+        'Zero padding',
+        'Create a shorthand (Helper ID) for frequent actions: Most token transfer actions are conducted with well-known tokens like USDC or WETH. A shorter Helper ID can be used to represent the action as "transfer" and the token as "USDC."',
+        'Helper ID  /  Recipient account address  / Token transfer amount'
+      ),
+      createExplain('Recipient account address', 'Maintain a directory of recipient addresses, transforming the 40-character addresses into the Xth address on the XXXth page.', 'Helper ID  /  Directory reference for the recipient account  / Token transfer amount'),
+      createExplain('Token transfer amount', 'If ETH is being transferred, even the Helper ID can be omitted.', 'Directory reference for the recipient account  / Token transfer amount'),
+    ],
+  };
 
   const defaultStyle = {
     opacity: 1,
@@ -2176,16 +2191,16 @@ export default function CompressText() {
     <Box justifyContent="center" display="flex" marginTop={'50px'}>
       <Stack
         sx={{
-          padding: '20px 65px',
+          padding: { xs: '20px 15px', md: '20px 65px' },
           background: '#F6F6F6',
           borderRadius: '18px',
           textAlign: 'center',
-          width: mdScreen ? '530px' : '300px',
+          width: mdScreen ? '530px' : '350px',
           alignItems: 'center',
         }}
       >
         <Typography variant="h4" fontWeight={700} mb="10px">
-          {locale==='zh'?'数据压缩动画':'Data compression'}
+          {locale === 'zh' ? '数据压缩动画' : 'Data compression'}
         </Typography>
         <Stack
           sx={{
@@ -2252,7 +2267,7 @@ export default function CompressText() {
           </Stack>
         </Stack>
         <Typography variant="h5" fontWeight={700} mt="40px">
-          {status == 1 ? (locale==='zh'?'原始状态':'Original state') : (locale==='zh'?'压缩状态':'Compressed state') + (status - 1)}
+          {status == 1 ? (locale === 'zh' ? '原始状态' : 'Original state') : (locale === 'zh' ? '压缩状态' : 'Compressed state') + (status - 1)}
         </Typography>
         <Typography variant="body2" mt="20px">
           {explain[locale][status - 1].explain}
