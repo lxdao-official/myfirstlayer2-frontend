@@ -103,7 +103,7 @@ const Footer = () => {
               <NavList
                 title="Resources"
                 items={[
-                  { name: 'Docs', link: 'https://forum.lxdao.io/' },
+                  { name: 'LX DAO', link: 'https://lxdao.io/' },
                   {
                     name: 'Blog',
                     link: 'https://lxdao.notion.site/',
