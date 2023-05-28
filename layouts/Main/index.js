@@ -59,7 +59,7 @@ const Main = ({ children = false }) => {
 
               <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
                 {/* <Theme width={18} height={18} color={theme.palette.primary.contrastText} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
-                <Question width={19} height={19} style={{ margin: '11px' }} color={theme.palette.primary.contrastText} />
+                {/* <Question width={19} height={19} style={{ margin: '11px' }} color={theme.palette.primary.contrastText} /> */}
                 <Language color={theme.palette.primary.contrastText} />
               </Box>
             </Stack>
@@ -147,12 +147,12 @@ const Main = ({ children = false }) => {
                 </Box>
               ))}
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }} zIndex={10}>
               {/* <Theme color={theme.palette.primary.contrastText} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
 
               <MFL2ConnectButton />
 
-              <Question color={theme.palette.primary.contrastText} style={{ margin: '12.5px', marginLeft: '21px' }} />
+              {/* <Question color={theme.palette.primary.contrastText} style={{ margin: '12.5px', marginLeft: '21px' }} /> */}
               <Language color={theme.palette.primary.contrastText} />
             </Box>
           </Container>
