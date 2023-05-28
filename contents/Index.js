@@ -1,4 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useLocale } from 'next-intl';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
@@ -7,7 +8,6 @@ import { useInView } from 'react-intersection-observer';
 // import { Affix } from 'antd';
 import { Box, Hidden, Link, Skeleton, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { useLocale } from 'next-intl';
 
 import Container from '../components/Container';
 import Diploma from '../components/Diploma';
@@ -350,7 +350,7 @@ export default function Content(props) {
         current: jsonDirectory[jsonSelect]?.text,
         last: jsonSelect === 0 ? '' : jsonDirectory[jsonSelect - 1]?.text,
         next: jsonSelect === chapterCount + 4 ? '' : jsonDirectory[jsonSelect + 1]?.text,
-      })
+      });
     }
   }, []);
 
@@ -360,7 +360,7 @@ export default function Content(props) {
       <Typography id={'root'}></Typography>
       {/* <Box sx={{background: 'green', display: 'flex' }}> */}
 
-      <Container paddingX={2}>
+      <Container paddingX={{ xs: 0, sm: 2 }}>
         <Box
           ref={ref}
           sx={{
