@@ -83,11 +83,11 @@ export const MFL2ConnectButton = () => {
       chainName: 'Arbitrum Goerli',
       icon: '/icons/ab.png',
     },
-    {
-      chainId: 280,
-      chainName: 'zkSync Era Testnet',
-      icon: '/icons/zk.png',
-    },
+    // {
+    //   chainId: 280,
+    //   chainName: 'zkSync Era Testnet',
+    //   icon: '/icons/zk.png',
+    // },
   ];
   //   const open = Boolean(anchorEl);
 
