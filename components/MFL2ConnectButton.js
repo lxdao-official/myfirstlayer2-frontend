@@ -153,17 +153,20 @@ export const MFL2ConnectButton = () => {
                           height: { xs: 16, md: 20 },
                           marginLeft: '10px',
                           marginRight: '6px',
+                        }}
+                      />
+                        <Box sx={{
                           transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-                        }}
-                      />
-                      <Arrow
-                        color="white"
-                        width="12"
-                        height="7"
-                        onClick={() => {
-                          setOpen(!open);
-                        }}
-                      />
+                        }}>
+                          <Arrow
+                            color="white"
+                            width="12"
+                            height="7"
+                            onClick={() => {
+                              setOpen(!open);
+                            }}
+                          />
+                        </Box>
                     </Box>
                   </NormalButton>
                   {open && (
