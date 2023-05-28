@@ -64,9 +64,9 @@ function MyFirstCard(props) {
               }}
             />
           </Box>
-          <Box paddingRight={'80px'} display={'flex'} justifyContent="center" flex="1">
+          <Box display={'flex'} ml="10px" justifyContent="start" flex="1">
             <Box boxShadow="none" display={'flex'} flexDirection={'column'}>
-              <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} fontWeight={800}>
+              <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} whiteSpace="nowrap" fontWeight={800}>
                 {props.projectName}
               </Typography>
               <Typography color="#676767" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>

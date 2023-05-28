@@ -11,6 +11,8 @@ import { ReadContext } from '../contents/context';
 import showMessage from './showMessage';
 
 export default function MintBadge() {
+  // ATTENTION: Please add the address of the corresponding network.
+  const CONTRACT_MAP = { 420: '0x43c4Ebf956F7804596c333B209Ff246a476594DA' };
   const { readData } = useContext(ReadContext);
   const { read, counter } = readData;
 
@@ -29,11 +31,11 @@ export default function MintBadge() {
   const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const { data, writeAsync } = useContractWrite({
-    address: '0x43c4Ebf956F7804596c333B209Ff246a476594DA',
+    address: CONTRACT_MAP[chain.id],
     abi: abi,
     functionName: 'mint',
     mode: 'recklesslyUnprepared',
-    chainId: 420,
+    chainId: chain.id,
   });
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
@@ -44,6 +46,24 @@ export default function MintBadge() {
         type: 'error',
         title: 'Not Complete',
         body: 'Please Read All.',
+      });
+      return;
+    }
+
+    // 检查chainid是否在CONTRACT_MAP中
+    if (!CONTRACT_MAP[chain.id]) {
+      showMessage({
+        type: 'error',
+        title: 'Not Support Chain',
+        body: 'Please Switch to Optimism Mainnet or Arbitrum.',
+      });
+      return;
+    }
+    if (!address) {
+      showMessage({
+        type: 'error',
+        title: 'Please Connect Wallet',
+        body: 'Connect Wallet to mint.',
       });
       return;
     }
@@ -121,7 +141,7 @@ export default function MintBadge() {
 
     // 在组件加载时，加载图片
     const img = new Image();
-    img.src ='/icons/badge.svg';
+    img.src = '/icons/badge.svg';
     img.onload = () => {
       // 将图片绘制到 canvas 上
       ctx.drawImage(img, 0, 0);
@@ -138,16 +158,16 @@ export default function MintBadge() {
       // 在 canvas 上执行绘制操作
       ctx.fillStyle = '#E9E9E9';
       ctx.font = '96px Open Sans';
-      ctx.fillText(`timestamp ${new Date().getTime()}`,  402,  1902);
+      ctx.fillText(`timestamp ${new Date().getTime()}`, 402, 1902);
       ctx.fillStyle = '#6C6C6C';
       ctx.font = '40px Open Sans';
-      ctx.fillText(address,  530,2033 );
+      ctx.fillText(address, 530, 2033);
 
       // 将修改后的图片转换为 base64 格式
       const modifiedImgSrc = canvas.toDataURL('image/png');
       setModifiedImgSrc(modifiedImgSrc);
     }
-  }, [imgLoaded]);
+  }, [imgLoaded, address]);
 
   return (
     <Stack
@@ -163,10 +183,10 @@ export default function MintBadge() {
       <Box sx={{ borderRadius: '18px' }}>
         <canvas
           ref={canvasRef}
-          width={2048 }
-          height={2427 }
+          width={2048}
+          height={2427}
           style={{
-            zoom: mdScreen ?0.18:0.18,
+            zoom: mdScreen ? 0.18 : 0.18,
             border: '1px solid #FFFFFF',
             borderRadius: '98px',
           }}

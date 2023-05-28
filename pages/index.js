@@ -8,6 +8,7 @@ import React from 'react';
 import { Box, Link } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
+import { DIRECTORY_NAME } from '../common/constans';
 import Footer from '../components/Footer';
 import Content from '../contents/Index';
 import Main from '../layouts/Main';
@@ -15,7 +16,6 @@ import SectionMyFirstProject from '../sections/SectionMyFirstProject';
 import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
 import { formatDirectory, getDocBySlug } from '/utils';
-import { DIRECTORY_NAME } from '../common/constans';
 
 export default function Index({ content, directory }) {
   const theme = useTheme();
