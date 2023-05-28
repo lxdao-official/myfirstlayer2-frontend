@@ -2,8 +2,7 @@
 
 MyFirstLayer2 is an education project for newbies to learn and interact with Layer2. As you can see from the name, our users are beginners curious about the knowledge and projects on Layer2. We will use funny and easy-to-understand diagrams and animation to explain Layer2 to newbies. Buidl in [LXDAO](https://lxdao.io/).
 
-- MyFirstLayer2 Website:
-- MyFirstLayer2 Twitter:
+- MyFirstLayer2 Website: <https://layer2.myfirst.io/>
 - LXDAO Website: <https://lxdao.io/>
 - LXDAO Forum: <https://forum.lxdao.io/c/projects/010-myfirstlayer2/28>
 - LXDAO Discord: <https://discord.lxdao.io>
