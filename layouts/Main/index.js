@@ -63,8 +63,8 @@ const Main = ({ children = false }) => {
                 <Language color={theme.palette.primary.contrastText} />
               </Box>
             </Stack>
-            <Box width="100%" display="flex" justifyContent="space-between" alignItems="center" pr="12px" pl="10px">
-              <Box width="200px" height="36px" justifyContent="space-between" alignItems="center" display="flex" mx="10px">
+            <Box width="100%" display="flex" paddingLeft="24px" paddingRight="12px" justifyContent="space-between" alignItems="center">
+              <Box width="200px" height="36px" justifyContent="start" gap={3} alignItems="center" display="flex" mr="30px">
                 {titles[locale].map((v, i) => {
                   return (
                     <Box
@@ -116,13 +116,15 @@ const Main = ({ children = false }) => {
                 <LXDAOLogo width={80} height={20} color={theme.palette.primary.contrastText} />
               </Box>
             </Box>
-            <Box sx={{
-              left: 0,
-              width: '300px',
-              right: 0,
-              margin: '0 auto',
-              position: 'absolute',
-            }}>
+            <Box
+              sx={{
+                left: 0,
+                width: '300px',
+                right: 0,
+                margin: '0 auto',
+                position: 'absolute',
+              }}
+            >
               <Box gap={4} display="flex" alignItems="center">
                 {titles[locale].map((v, i) => (
                   <Box
