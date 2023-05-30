@@ -16,7 +16,7 @@ export default function MintBadge() {
   const { readData } = useContext(ReadContext);
   const { read, counter } = readData;
 
-  const { chain } = useNetwork();
+  const { chain = {} } = useNetwork();
   const { chains, isLoading: swichLoading, switchNetwork } = useSwitchNetwork();
 
   const { address } = useAccount();

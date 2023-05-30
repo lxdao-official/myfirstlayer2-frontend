@@ -116,7 +116,7 @@ export default function SectionTop({ content, meta }) {
                 padding: '1px',
               }}
             >
-              <Box
+              <Link
                 sx={{
                   boxSizing: 'border-box',
                   width: { xs: '108px', md: '241px' },
@@ -124,10 +124,15 @@ export default function SectionTop({ content, meta }) {
                   background: '#000000',
                   borderRadius: { xs: '8px', md: '18px' },
                   display: 'flex',
+                  textDecoration: 'none',
+                  cursor: 'pointer',
+                  color: '#fff',
                   '&:hover': {
                     background: 'rgba(0, 0, 0, 0.12)',
                   },
                 }}
+                href="#content"
+                target="_self"
               >
                 <Typography
                   sx={{
@@ -138,19 +143,9 @@ export default function SectionTop({ content, meta }) {
                     fontFamily: 'Open Sans',
                   }}
                 >
-                  <Link
-                    sx={{
-                      textDecoration: 'none',
-                      cursor: 'pointer',
-                      color: '#fff',
-                    }}
-                    href="#content"
-                    target="_self"
-                  >
-                    {t('button')}
-                  </Link>
+                  {t('button')}
                 </Typography>
-              </Box>
+              </Link>
             </Box>
           </Box>
         </Box>
