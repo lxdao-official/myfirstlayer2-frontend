@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     background: '#000000',
     height: '100px',
-    width: '500px',
+    width: '48%',
     cursor: 'pointer',
     borderRadius: '15px',
     // border: '1px solid #fff',
