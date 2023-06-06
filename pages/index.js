@@ -15,6 +15,7 @@ import Main from '../layouts/Main';
 import SectionMyFirstProject from '../sections/SectionMyFirstProject';
 import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
+import SectionLXDAOIntro from '../sections/SectionLXDAOIntro';
 import { formatDirectory, getDocBySlug } from '/utils';
 
 export default function Index({ content, directory }) {
@@ -25,9 +26,10 @@ export default function Index({ content, directory }) {
       <SectionMyFirstProject />
       <SectionSponsors />
       <SectionTeam />
-      <Box id="joinus" paddingTop={{ xs: '50px', md: 15 }} marginBottom={{ xs: '50px', md: 15 }} paddingX={5}>
+      <SectionLXDAOIntro/>
+      {/* <Box id="joinus" paddingTop={{ xs: '50px', md: 15 }} marginBottom={{  md: 15 }} paddingX={0}>
         <LXDAOIntroduction imgBackground={`${theme?.palette.bodyBg.main}`} titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
-      </Box>
+      </Box> */}
       <Footer />
     </Main>
   );
