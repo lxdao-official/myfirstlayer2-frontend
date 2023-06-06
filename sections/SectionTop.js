@@ -44,7 +44,7 @@ export default function SectionTop({ content, meta }) {
             px:'16px',
             flex:1,
             flexDirection:'column',
-            justifyContent:'center'
+            // justifyContent:'center'
             }}> 
           <Typography
             sx={{

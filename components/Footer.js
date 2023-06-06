@@ -122,7 +122,7 @@ const Footer = () => {
             </Typography>
             <CommunityLinkGroup marginBottom={0} />
             <SignupFormWrapper theme={theme}>
-              <Mailchimp
+              {/* <Mailchimp
                 action="https://lxdao.us12.list-manage.com/subscribe/post?u=4e96be73f764bc67c7f964f51&amp;id=eaa29be54b"
                 fields={[
                   {
@@ -132,7 +132,7 @@ const Footer = () => {
                     required: true,
                   },
                 ]}
-              />
+              /> */}
             </SignupFormWrapper>
           </Box>
         </Box>
