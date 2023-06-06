@@ -14,7 +14,7 @@ export default function SectionLXDAOIntro() {
        <Box  px={2} sx={{maxWidth:{xs:'auto',md:'1339px'},display:'flex',width:'100%',flexDirection:{xs:'column',md:'row-reverse'},justifyContent:'center',color:'#000'}}>
       <Box sx={{display:'flex',flexDirection:'column',alignItems:{xs:'end',md:'start'},ml:{xs:0,md:"57px"}}} >
       <Typography maxWidth={{md:"650px"}} fontSize={{xs:"24px",sm:'52px'}} lineHeight={{xs:"36px",sm:'72px'}}  fontWeight={800}>LXDAO IS AN R&D- FOCUSED DAO IN WEB3</Typography>
-        <Typography  fontSize={{xs:'10px',sm:'20px'}} lineHeight={{xs:"15px",sm:"30px"}}  color="#676767">Our mission is bringing together buidlers to buidl and maintain &quot;LX&quot; (Valuable) projects for Web3, in a sustainable manner.</Typography>
+        <Typography  fontSize={{xs:'15px',sm:'20px'}} lineHeight={{xs:"18px",sm:"30px"}}  color="#5f6d7e">Our mission is bringing together buidlers to buidl and maintain &quot;LX&quot; (Valuable) projects for Web3, in a sustainable manner.</Typography>
         <Link
               target="_blank"
               href={`https://lxdao.io/joinus`}

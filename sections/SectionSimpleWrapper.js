@@ -15,7 +15,7 @@ export default function SectionSimpleWrapper({ id, title, desc, children, childO
             sx={{
               fontWeight: 700,
               lineHeight: { xs: '20px', sm: '40px' },
-              fontSize: { xs: '20px', sm: '40px' },
+              fontSize: { xs: '24px', sm: '40px' },
             }}
           >
             {title}
@@ -24,10 +24,10 @@ export default function SectionSimpleWrapper({ id, title, desc, children, childO
             textAlign="center"
             color="text.primary"
             sx={{
-              color: '#676767',
-              lineHeight: { xs: '12px', sm: '20px' },
-              fontWeight: '300',
-              fontSize: { xs: '10px', sm: '20px' },
+              color: '#5f6d7e',
+              lineHeight: { xs: '18px', sm: '20px' },
+              fontWeight: '400',
+              fontSize: { xs: '15px', sm: '20px' },
               mb:{xs:'30px',md:'28px'},
               mt:{xs:'10px',md:'20px'}
             }}

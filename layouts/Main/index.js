@@ -13,7 +13,6 @@ import SectionTop from '../../sections/SectionTop';
 
 const Main = ({ children = false }) => {
   const locale = useLocale();
-  console.log(locale);
   const theme = useTheme();
   const titles = {
     en: [
@@ -43,28 +42,26 @@ const Main = ({ children = false }) => {
           <Container display="flex" flexDirection="column" alignItems="center" padding={0} width="100%">
             <Stack width="100%" height="45px" paddingLeft="24px" paddingRight="12px" direction="row" justifyContent="space-between">
               <Box display="flex" flexDirection="row" alignItems="center">
-                <MFL2 width="82px" color={theme.palette.primary.contrastText} />
+                <MFL2 width="123" height="19.5" color={theme.palette.primary.contrastText} />
                 <Divider
                   orientation="vertical"
                   sx={{
                     borderColor: theme.palette.primary.contrastText,
-                    height: '16px',
+                    height: '20px',
                     marginInline: '15px',
                   }}
                 />
                 <Box component="a" target="_blank" href="https://lxdao.io" display="flex" alignItems="center">
-                  <LXDAOLogo width={60} height={16} color={theme.palette.primary.contrastText} />
+                  <LXDAOLogo width={100} height={26} color={theme.palette.primary.contrastText} />
                 </Box>
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
-                {/* <Theme width={18} height={18} color={theme.palette.primary.contrastText} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
-                {/* <Question width={19} height={19} style={{ margin: '11px' }} color={theme.palette.primary.contrastText} /> */}
                 <Language color={theme.palette.primary.contrastText} />
               </Box>
             </Stack>
             <Box width="100%" display="flex" paddingLeft="24px" paddingRight="12px" justifyContent="space-between" alignItems="center">
-              <Box width="200px" height="36px" justifyContent="start" gap={3} alignItems="center" display="flex" mr="30px">
+              <Box width="240px" height="36px" justifyContent="start" gap={3} alignItems="center" display="flex" mr="30px">
                 {titles[locale].map((v, i) => {
                   return (
                     <Box
@@ -78,7 +75,7 @@ const Main = ({ children = false }) => {
                       <Typography
                         sx={{
                           cursor: 'pointer',
-                          fontSize: '10px',
+                          fontSize: '15px',
                           fontWeight: '500',
                         }}
                       >
@@ -103,7 +100,8 @@ const Main = ({ children = false }) => {
         ) : (
           <Container maxWidth="100%" paddingX={'50px'} paddingY={1} display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" height="60px">
             <Box display="flex" flexDirection="row" alignItems="center">
-              <MFL2 color={theme.palette.primary.contrastText} />
+                <MFL2 width="123" height="19.5" color={theme.palette.primary.contrastText} />
+              {/* <MFL2 color={theme.palette.primary.contrastText} /> */}
               <Divider
                 orientation="vertical"
                 sx={{
@@ -113,7 +111,7 @@ const Main = ({ children = false }) => {
                 }}
               />
               <Box component="a" target="_blank" href="https://lxdao.io" display="flex" alignItems="center">
-                <LXDAOLogo width={80} height={20} color={theme.palette.primary.contrastText} />
+                <LXDAOLogo width={100} height={26} color={theme.palette.primary.contrastText} />
               </Box>
             </Box>
             <Box

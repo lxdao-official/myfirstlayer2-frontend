@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
-    fontFamily: 'Open Sans',
+    // fontFamily: 'Open Sans',
     fontStyle: 'SemiBold',
     fontSize: '18px',
     gap: '20px',
@@ -166,8 +166,8 @@ export default function TabChapter(props) {
           <Box className={classes.mobileContainer} onClick={() => onTabChapter('last')}>
             <Box className={classes.mobileContent}>
               <Box>
-                <Typography style={{ fontSize: '8px', fontStyle: 'SemiBold', fontWeight: 200 }}>{chapterData?.last ? t('previous-chapter') : t('current-chapter')}</Typography>
-                <Typography style={{ fontSize: '14px', fontStyle: 'SemiBold', fontWeight: 600 }}>{chapterData?.last ? t(formatChapterTitle(chapterData?.last)) : t(formatChapterTitle(chapterData?.current))}</Typography>
+                <Typography style={{ fontSize: '15px', fontStyle: 'SemiBold', fontWeight: 200 }}>{chapterData?.last ? t('previous-chapter') : t('current-chapter')}</Typography>
+                <Typography style={{ fontSize: '15px', fontStyle: 'SemiBold', fontWeight: 600 }}>{chapterData?.last ? t(formatChapterTitle(chapterData?.last)) : t(formatChapterTitle(chapterData?.current))}</Typography>
               </Box>
               <Box fontSize={'8px'}>
                 <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -183,8 +183,8 @@ export default function TabChapter(props) {
           <Box className={classes.mobileContainer} onClick={() => onTabChapter('next')}>
             <Box className={classes.mobileContent}>
               <Box>
-                <Typography style={{ fontSize: '8px', fontStyle: 'SemiBold', fontWeight: 200 }}>{chapterData?.next ? t('next-chapter') : t('current-chapter')}</Typography>
-                <Typography style={{ fontSize: '14px', fontStyle: 'SemiBold', fontWeight: 600 }}>{t(formatChapterTitle(chapterData?.next ? chapterData?.next : chapterData?.current))}</Typography>
+                <Typography style={{ fontSize: '15px', fontStyle: 'SemiBold', fontWeight: 200 }}>{chapterData?.next ? t('next-chapter') : t('current-chapter')}</Typography>
+                <Typography style={{ fontSize: '15px', fontStyle: 'SemiBold', fontWeight: 600 }}>{t(formatChapterTitle(chapterData?.next ? chapterData?.next : chapterData?.current))}</Typography>
               </Box>
               <Box fontSize={'8px'}>
                 <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">

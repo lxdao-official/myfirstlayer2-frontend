@@ -83,8 +83,8 @@ export default function SectionTop({ content, meta }) {
               // width: { xs: '323px', md: 'calc(100% - 472px)' },
               color: '#D5D5D5',
               fontWeight: '400',
-              fontSize: { xs: '10px', md: '16px' },
-              lineHeight: locale == 'en' ? '16px' : '24px',
+              fontSize: { xs: '15px', md: '16px' },
+              lineHeight: locale == 'en' ? {xs:'22.5px',md:'16px'} : '24px',
               whiteSpace: 'pre-line',
             }}
           >
@@ -116,8 +116,8 @@ export default function SectionTop({ content, meta }) {
             <Box
               sx={{
                 boxSizing: 'border-box',
-                width: { xs: '108px', md: '243px' },
-                height: { xs: '24px', md: '60px' },
+                width:'243px' ,
+                height:'60px',
                 background: 'linear-gradient(to right,#3263E9,#3AD3E4)',
                 borderRadius: { xs: '8px', md: '18px' },
                 display: 'flex',
@@ -127,8 +127,8 @@ export default function SectionTop({ content, meta }) {
               <Link
                 sx={{
                   boxSizing: 'border-box',
-                  width: { xs: '108px', md: '241px' },
-                  height: { xs: '22px', md: '58px' },
+                  width:'241px',
+                  height:'58px',
                   background: '#000000',
                   borderRadius: { xs: '8px', md: '18px' },
                   display: 'flex',
@@ -144,11 +144,11 @@ export default function SectionTop({ content, meta }) {
               >
                 <Typography
                   sx={{
-                    fontSize: { xs: '8px', md: '20px' },
+                    fontSize: '20px' ,
                     fontWeight: '700',
                     lineHeight: '20px',
                     margin: 'auto',
-                    fontFamily: 'Open Sans',
+                    // fontFamily: 'Open Sans',
                   }}
                 >
                   {t('button')}

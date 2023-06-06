@@ -501,30 +501,30 @@ export default function ImpossibleTriangle() {
       <Box sx={{ display: 'flex', justifyContent: 'center', paddingInline: '15px' }}>
         {sideRef.current === 1 ? (
           <Box>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#5f6d7e !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-5')}
             </Typography>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#5f6d7e !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-6')}
             </Typography>
           </Box>
         ) : null}
         {sideRef.current === 2 ? (
           <Box>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#5f6d7e !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-7')}
             </Typography>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#5f6d7e !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-8')}
             </Typography>
           </Box>
         ) : null}
         {sideRef.current === 3 ? (
           <Box>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#5f6d7e !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-9')}{' '}
             </Typography>
-            <Typography sx={{ color: '#676767 !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
+            <Typography sx={{ color: '#5f6d7e !important', fontSize: '14px !important', wordBreak: 'break-word !important' }} fontWeight={400}>
               {t('impossibleTriangle-content-10')}
             </Typography>
           </Box>

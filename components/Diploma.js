@@ -28,7 +28,7 @@ export default function Diploma() {
             style={{
               fontSize: { md: '36px', sm: '36px' },
               fontStyle: 'ExtraBold',
-              fontFamily: 'Open Sans',
+              // fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 700,
               textAlign: 'center',
@@ -42,7 +42,7 @@ export default function Diploma() {
             sx={{
               fontSize: { md: '20px', sm: '20px' },
               fontStyle: 'ExtraBold',
-              fontFamily: 'Open Sans',
+              // fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
             }}
@@ -55,7 +55,7 @@ export default function Diploma() {
             sx={{
               fontSize: { md: '20px', sm: '20px' },
               fontStyle: 'ExtraBold',
-              fontFamily: 'Open Sans',
+              // fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
               marginBottom: '30px',
@@ -69,7 +69,7 @@ export default function Diploma() {
             sx={{
               fontSize: { md: '20px', sm: '20px' },
               fontStyle: 'ExtraBold',
-              fontFamily: 'Open Sans',
+              // fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
               marginBottom: '30px',
@@ -83,7 +83,7 @@ export default function Diploma() {
             sx={{
               fontSize: { md: '20px', sm: '20px' },
               fontStyle: 'ExtraBold',
-              fontFamily: 'Open Sans',
+              // fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
             }}
@@ -96,7 +96,7 @@ export default function Diploma() {
             sx={{
               fontSize: { md: '20px', sm: '20px' },
               fontStyle: 'ExtraBold',
-              fontFamily: 'Open Sans',
+              // fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
               marginBottom: '30px',
@@ -122,7 +122,7 @@ export default function Diploma() {
               sx={{
                 fontSize: { md: '48px', sm: '48px' },
                 fontStyle: 'ExtraBold',
-                fontFamily: 'Open Sans',
+                // fontFamily: 'Open Sans',
                 color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
                 fontWeight: 800,
               }}
@@ -131,7 +131,7 @@ export default function Diploma() {
                 <h2
                   style={{
                     fontSize: '48px',
-                    fontFamily: 'Open Sans',
+                    // fontFamily: 'Open Sans',
                     fontWeight: 800,
                   }}
                 >
@@ -145,7 +145,7 @@ export default function Diploma() {
               sx={{
                 fontSize: { md: '10px', sm: '10px' },
                 fontStyle: 'ExtraBold',
-                fontFamily: 'Open Sans',
+                // fontFamily: 'Open Sans',
                 color: theme.palette?.mode === 'dark' ? '#fff' : '#777777',
                 fontWeight: 400,
               }}
@@ -159,7 +159,7 @@ export default function Diploma() {
             sx={{
               fontSize: { md: '20px', sm: '20px' },
               fontStyle: 'ExtraBold',
-              fontFamily: 'Open Sans',
+              // fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
               marginTop: '30px',
@@ -176,7 +176,7 @@ export default function Diploma() {
             sx={{
               fontSize: { md: '20px', sm: '20px' },
               fontStyle: 'ExtraBold',
-              fontFamily: 'Open Sans',
+              // fontFamily: 'Open Sans',
               color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
               fontWeight: 400,
               marginTop: '30px',

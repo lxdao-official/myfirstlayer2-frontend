@@ -67,7 +67,7 @@ function MyFirstCard(props) {
               <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} whiteSpace="nowrap" fontWeight={800}>
                 {props.projectName}
               </Typography>
-              {/* <Typography color="#676767" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
+              {/* <Typography color="#5f6d7e" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
                 {props.holder}
               </Typography> */}
             </Box>
@@ -85,7 +85,7 @@ function MyFirstCard(props) {
           }}
         />
         <Box marginTop={{ xs: '10px', md: '20px' }} marginBottom={{ xs: '10px', md: '15px' }}>
-          <Typography color="#676767" height="80px" fontSize={'12px'} fontWeight={400} fontFamily="Open Sans">
+          <Typography color="#5f6d7e" height="80px" fontSize={'15px'} fontWeight={400} >
             {props.description}
           </Typography>
         </Box>
@@ -101,11 +101,11 @@ function MyFirstCard(props) {
               textDecoration: 'none',
             }}
           >
-            <Typography color="#676767" fontSize={'12px'} fontWeight={600} fontFamily="Open Sans">
+            <Typography color="#5f6d7e" fontSize={'15px'} fontWeight={600} >
               {t('view-more')}
             </Typography>
             <Box color="text.primary" marginLeft={'10px'} width="19px">
-              <MyFirstArrow color="#676767" />
+              <MyFirstArrow color="#5f6d7e" />
             </Box>
           </Link>
         </Box>

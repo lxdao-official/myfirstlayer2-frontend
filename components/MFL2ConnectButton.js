@@ -9,14 +9,14 @@ import Arrow from './svg/Arrow';
 const NormalButton = styled(Button)(({ theme }) => ({
   borderRadius: '18px',
   [theme.breakpoints.down('md')]: {
-    width: '121px',
-    height: '24px',
-    fontSize: '8px',
+    width: '145px',
+    height: '29px',
+    fontSize: '15px',
   },
   [theme.breakpoints.up('md')]: {
     width: '145px',
     height: '29px',
-    fontSize: '12px',
+    fontSize: '15px',
   },
   textTransform: 'capitalize',
   fontWeight: '500',

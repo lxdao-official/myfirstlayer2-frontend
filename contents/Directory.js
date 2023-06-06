@@ -76,7 +76,7 @@ const theme = createTheme({
 theme.typography.progress = {
   fontSize: 8,
   fontWeight: 600,
-  fontFamily: 'Open Sans',
+  // fontFamily: 'Open Sans',
   color: '#747474',
 };
 
