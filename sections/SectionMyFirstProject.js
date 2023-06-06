@@ -17,7 +17,7 @@ function MyFirstCard(props) {
   return (
     <Box
       width={1}
-      height={1}
+      // height={1}
       sx={{
         textDecoration: 'none',
         paddingBottom: { xs: 0, md: '50px' },
@@ -25,14 +25,12 @@ function MyFirstCard(props) {
       }}
     >
       <Box
-        width={1}
-        height={1}
         display={'flex'}
         flexDirection={'column'}
         sx={{
           backgroundColor: '#FAFAFA',
           borderRadius: { xs: '8px', md: '18px' },
-          height: { xs: '290px', md: '410px' },
+          height: { xs: '290px', md: '440px' },
           padding: { xs: '10px', md: '20px' },
           '&:hover': {
             boxShadow: { xs: 'none', md: theme.palette.shadow.level1 },
