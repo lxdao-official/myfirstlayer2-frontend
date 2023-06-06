@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     background: '#000000',
     height: '100px',
+
     cursor: 'pointer',
     borderRadius: '18px',
     // border: '1px solid #fff',
