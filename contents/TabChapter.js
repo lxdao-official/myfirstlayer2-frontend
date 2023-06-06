@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Open Sans',
     fontStyle: 'SemiBold',
     fontSize: '18px',
+    gap: '20px',
     // [theme?.breakpoints?.down('sm')]: {
     //   // display: 'flex',
     //   flexDirection: 'column',
@@ -20,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
   container: {
     background: '#000000',
     height: '100px',
-    width: '500px',
     cursor: 'pointer',
     borderRadius: '15px',
     // border: '1px solid #fff',
     // alignItems: 'center',
-    // flex: 1,
+    maxWidth:'479px',
+    flex: 1,
     display: 'flex',
     // justifyContent: 'center',
     alignItems: 'center',

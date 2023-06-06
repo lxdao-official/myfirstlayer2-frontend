@@ -30,14 +30,26 @@ export default function SectionTop({ content, meta }) {
         <Box
           sx={{
             height: { xs: '350px', md: 'calc(100vh - 60px)' },
+            alignItems: 'center',
+            justifyContent:'start',
+            flexDirection: 'column',
+            display:'flex',
             background: 'linear-gradient(118.2deg, #000000 20.86%, rgba(0, 0, 0, 0.68) 57.97%, rgba(0, 0, 0, 0) 95.07%)',
           }}
         >
+          <Box sx={{
+            display:'flex',
+            maxWidth:'1307px',
+            width:'100%',
+            px:'16px',
+            flex:1,
+            flexDirection:'column',
+            justifyContent:'center'
+            }}> 
           <Typography
             sx={{
               paddingTop: { xs: '20px', md: '147px' },
-              margin: 'auto',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
+              // width: { xs: '323px', md: 'calc(100% - 472px)' },
               textTransform: 'uppercase',
               fontSize: { xs: '30px', md: '72px' },
               fontWeight: '700',
@@ -51,8 +63,7 @@ export default function SectionTop({ content, meta }) {
           </Typography>
           <Typography
             sx={{
-              margin: 'auto',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
+              // width: { xs: '323px', md: 'calc(100% - 472px)' },
               textTransform: 'uppercase',
               fontSize: { xs: '30px', md: '72px' },
               fontWeight: '700',
@@ -68,9 +79,8 @@ export default function SectionTop({ content, meta }) {
             sx={{
               display: { xs: 'block', md: 'none' },
               paddingTop: '20px',
-              margin: 'auto',
               letterSpacing: '0.5px',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
+              // width: { xs: '323px', md: 'calc(100% - 472px)' },
               color: '#D5D5D5',
               fontWeight: '400',
               fontSize: { xs: '10px', md: '16px' },
@@ -85,9 +95,8 @@ export default function SectionTop({ content, meta }) {
             sx={{
               display: { xs: 'none', md: 'block' },
               paddingTop: '32px',
-              margin: 'auto',
               letterSpacing: '0.5px',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
+              // width: { xs: '323px', md: 'calc(100% - 472px)' },
               color: '#D5D5D5',
               fontWeight: '400',
               fontSize: { xs: '10px', md: '16px' },
@@ -101,8 +110,7 @@ export default function SectionTop({ content, meta }) {
           <Box
             sx={{
               paddingTop: { xs: '20px', md: '110px' },
-              margin: 'auto',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
+              // width: { xs: '323px', md: 'calc(100% - 472px)' },
             }}
           >
             <Box
@@ -148,6 +156,8 @@ export default function SectionTop({ content, meta }) {
               </Link>
             </Box>
           </Box>
+          </Box>
+          
         </Box>
       </Box>
     </Container>

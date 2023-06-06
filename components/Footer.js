@@ -11,6 +11,7 @@ import Container from './Container';
 const SignupFormWrapper = styled.div`
   & input,
   & button {
+    background: white;
     font-size: 16px;
     line-height: 24px;
   }
@@ -46,7 +47,7 @@ const SignupFormWrapper = styled.div`
 
 const NavList = ({ title, items }) => (
   <Box display="flex" flexDirection="column">
-    <Typography variant="h6" lineHeight="58px" fontWeight={700}>
+    <Typography variant="h6" lineHeight="58px" color="black" fontWeight={700}>
       {title}
     </Typography>
     {items.map((item, index) => {
