@@ -360,7 +360,7 @@ export default function Content(props) {
       <Typography id={'root'}></Typography>
       {/* <Box sx={{background: 'green', display: 'flex' }}> */}
 
-      <Container paddingX={{ xs: 0, sm: 2 }}>
+      <Container paddingX={{ xs: 2, sm: 2 }}>
         <Box
           ref={ref}
           sx={{
@@ -369,7 +369,7 @@ export default function Content(props) {
             height: '100%',
           }}
         >
-          <Hidden smDown>
+          <Hidden mdDown>
             <Box
               sx={{
                 top: 0,
@@ -406,7 +406,7 @@ export default function Content(props) {
                   backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
                   maxWidth: mdScreen ? '1200px' : '100vw',
                   color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-                  mt: { xs: '20px', sm: 0 },
+                  mt: { xs: '20px', md: '0' },
                 }}
                 borderRadius={2}
                 padding={{
@@ -418,7 +418,7 @@ export default function Content(props) {
                   {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
                 </Box>
               </Box>
-              <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
+              <TabChapter marginTop={{ xs: '15px', sm: '32px' }}  chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
             </Box>
           )}
         </Box>
