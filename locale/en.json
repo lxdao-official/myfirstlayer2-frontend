@@ -94,5 +94,10 @@
     "content-5":"2*.Navigate to the OP testnet faucet address to collect test tokens. (At present, we'll provide the link to the test network, and in due course, we'll offer the link to the OP mainnet's Claim interaction component.)",
     "content-6":"3.Hit the \"Claim\" button and voila! You've successfully received your graduation badge!",
     "content-7":"Congratulations! You've successfully claimed your graduation badge! We hope this badge acts as a source of inspiration and motivation for your ongoing journey. We eagerly anticipate your sustained dedication to learning and your adventurous journey into the world of Web3!"
+  },
+  "SectionLXDAOIntro":{
+    "title":"LXDAO IS AN R&D- FOCUSED DAO IN WEB3",
+    "content":"Focus on supporting valuable Web3 Public Goods and Open Source sustainably.",
+    "button":"JOIN US"
   }
 }

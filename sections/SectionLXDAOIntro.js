@@ -5,16 +5,17 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { Box, Card, Grid, Link, Typography, useTheme } from '@mui/material';
-import SectionSimpleWrapper from './SectionSimpleWrapper';
+import { useTranslations } from 'next-intl';
 
 
 export default function SectionLXDAOIntro() {
+  const t=useTranslations('SectionLXDAOIntro')
   return (
     <Box justifyContent="center" display={"flex"} my={'60px'}>
        <Box  px={2} sx={{maxWidth:{xs:'auto',md:'1339px'},display:'flex',width:'100%',flexDirection:{xs:'column',md:'row-reverse'},justifyContent:'center',color:'#000'}}>
       <Box sx={{display:'flex',flexDirection:'column',alignItems:{xs:'end',md:'start'},ml:{xs:0,md:"57px"}}} >
-      <Typography maxWidth={{md:"650px"}} fontSize={{xs:"24px",sm:'52px'}} lineHeight={{xs:"36px",sm:'72px'}}  fontWeight={800}>LXDAO IS AN R&D- FOCUSED DAO IN WEB3</Typography>
-        <Typography  fontSize={{xs:'15px',sm:'20px'}} lineHeight={{xs:"18px",sm:"30px"}}  color="#5f6d7e">Our mission is bringing together buidlers to buidl and maintain &quot;LX&quot; (Valuable) projects for Web3, in a sustainable manner.</Typography>
+      <Typography maxWidth={{md:"650px"}} fontSize={{xs:"24px",sm:'52px'}} lineHeight={{xs:"36px",sm:'72px'}}  fontWeight={800}>{t("title")}</Typography>
+        <Typography  fontSize={{xs:'15px',sm:'20px'}} lineHeight={{xs:"18px",sm:"30px"}}  color="#5f6d7e">{t("content")}</Typography>
         <Link
               target="_blank"
               href={`https://lxdao.io/joinus`}
@@ -48,7 +49,7 @@ export default function SectionLXDAOIntro() {
                     "linear-gradient(90deg, #305FE8 0%, #3AD9E3 100%)",
                 }}
               >
-                <Typography>JOIN US</Typography>
+                <Typography>{t("button")}</Typography>
               </Box>
         </Link>
       </Box>
