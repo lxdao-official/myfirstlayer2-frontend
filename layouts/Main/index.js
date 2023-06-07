@@ -61,7 +61,7 @@ const Main = ({ children = false }) => {
               </Box>
             </Stack>
             <Box width="100%" display="flex" paddingLeft="24px" paddingRight="12px" justifyContent="space-between" alignItems="center">
-              <Box width="240px" height="36px" justifyContent="start" gap={3} alignItems="center" display="flex" mr="30px">
+              <Box minWidth="240px" height="36px" justifyContent="start" gap={3} alignItems="center" display="flex" mr="30px">
                 {titles[locale].map((v, i) => {
                   return (
                     <Box

@@ -22,14 +22,14 @@ export default function SectionTop({ content, meta }) {
       <Link id="introduce" sx={{ position: 'relative' }}></Link>
       <Box
         sx={{
-          height: { xs: '350px', md: 'calc(100vh - 60px)' },
+          height: { xs: '100%', md: 'calc(100vh - 60px)' },
           background: 'url(/images/top-background.png)',
           backgroundSize: 'cover',
         }}
       >
         <Box
           sx={{
-            height: { xs: '350px', md: 'calc(100vh - 60px)' },
+            height: { xs: '100%', md: 'calc(100vh - 60px)' },
             alignItems: 'center',
             justifyContent:'start',
             flexDirection: 'column',
@@ -119,9 +119,10 @@ export default function SectionTop({ content, meta }) {
                 width:'243px' ,
                 height:'60px',
                 background: 'linear-gradient(to right,#3263E9,#3AD3E4)',
-                borderRadius: { xs: '8px', md: '18px' },
+                borderRadius: { xs: '18px', md: '18px' },
                 display: 'flex',
                 padding: '1px',
+                mb: '20px',
               }}
             >
               <Link
@@ -130,7 +131,7 @@ export default function SectionTop({ content, meta }) {
                   width:'241px',
                   height:'58px',
                   background: '#000000',
-                  borderRadius: { xs: '8px', md: '18px' },
+                  borderRadius: { xs: '18px', md: '18px' },
                   display: 'flex',
                   textDecoration: 'none',
                   cursor: 'pointer',

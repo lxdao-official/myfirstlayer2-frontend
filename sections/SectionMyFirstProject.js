@@ -30,7 +30,7 @@ function MyFirstCard(props) {
         sx={{
           backgroundColor: '#FAFAFA',
           borderRadius: { xs: '8px', md: '18px' },
-          height: { xs: '290px', md: '440px' },
+          height: { xs: '3400px', md: '440px' },
           padding: { xs: '10px', md: '20px' },
           '&:hover': {
             boxShadow: { xs: 'none', md: theme.palette.shadow.level1 },
@@ -84,8 +84,8 @@ function MyFirstCard(props) {
             filter: props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
           }}
         />
-        <Box marginTop={{ xs: '10px', md: '20px' }} marginBottom={{ xs: '10px', md: '15px' }}>
-          <Typography color="#5f6d7e" height="80px" fontSize={'15px'} fontWeight={400} >
+        <Box marginTop={{ xs: '10px', md: '20px' }} marginBottom={{ xs: '10px', md: '15px' }} height="100%">
+          <Typography color="#5f6d7e"  fontSize={'15px'} fontWeight={400} >
             {props.description}
           </Typography>
         </Box>
@@ -157,7 +157,7 @@ export default function SectionMyFirstProject() {
     ],
   };
   return (
-    <SectionSimpleWrapper marginTop={{ xs: 6.875, sm: '120px' }} paddingTop="51px" background="#fff" title={t('sectionMyFirst-title-1')} desc={t('sectionMyFirst-title-2')} childOverflow="visible" id="project">
+    <SectionSimpleWrapper marginTop={{ xs: 6.875, sm: '120px' }} paddingTop="51px" paddingBottom={{xs:"40px",md:'0px'}} background="#fff" title={t('sectionMyFirst-title-1')} desc={t('sectionMyFirst-title-2')} childOverflow="visible" id="project">
       <Box padding={{ xs: 2, sm: 0 }} marginTop={{ xs: 0, sm: '50px' }} paddingBottom={{ xs: 0, sm: '48px' }}>
         <Grid sx={{ display: { sm: 'flex', xs: 'none' } }} justifyContent="center" container spacing={{ xs: 3.125, sm: 2 }}>
           {myfirstProjects[locale].map((item, i) => (
