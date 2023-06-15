@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl';
 export default function SectionLXDAOIntro() {
   const t=useTranslations('SectionLXDAOIntro')
   return (
-    <Box justifyContent="center" display={"flex"} my={'60px'}>
+    <Box id="joinus" justifyContent="center" display={"flex"} my={'60px'}>
        <Box  px={2} sx={{maxWidth:{xs:'auto',md:'1339px'},display:'flex',width:'100%',flexDirection:{xs:'column',md:'row-reverse'},justifyContent:'center',color:'#000'}}>
       <Box sx={{display:'flex',flexDirection:'column',alignItems:{xs:'end',md:'start'},ml:{xs:0,md:"57px"}}} >
       <Typography maxWidth={{md:"650px"}} fontSize={{xs:"24px",sm:'52px'}} lineHeight={{xs:"36px",sm:'72px'}}  fontWeight={800}>{t("title")}</Typography>
