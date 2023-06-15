@@ -11,12 +11,12 @@ const NormalButton = styled(Button)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     width: '145px',
     height: '29px',
-    fontSize: '15px',
+    fontSize: '12px',
   },
   [theme.breakpoints.up('md')]: {
     width: '145px',
     height: '29px',
-    fontSize: '15px',
+    fontSize: '12px',
   },
   textTransform: 'capitalize',
   fontWeight: '500',
