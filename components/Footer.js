@@ -1,5 +1,4 @@
 import React from 'react';
-import Mailchimp from 'react-mailchimp-form';
 import styled from 'styled-components';
 
 import { Box, Grid, Link, Typography } from '@mui/material';

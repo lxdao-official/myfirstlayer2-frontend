@@ -4,7 +4,7 @@ import React from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import { Box, Card, Grid, Link, Typography, useTheme } from '@mui/material';
+import { Box,Link, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 
 

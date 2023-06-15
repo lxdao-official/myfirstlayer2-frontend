@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 @font-face {
   font-family: 'sucaijishikangkangti';
   src: url('/font/sucaijishikangkangti-2-webfont.eot');
@@ -8,6 +9,7 @@
     url('/font/sucaijishikangkangti-2-webfont.svg#sucaijishikangkangtiregular') format('svg');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -15,6 +17,7 @@
   src: url('/font/Hanson-Bold.ttf');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 :root {

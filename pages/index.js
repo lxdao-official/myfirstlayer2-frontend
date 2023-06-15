@@ -1,11 +1,10 @@
-import { LXDAOIntroduction } from '@lxdao/lxdao-ui';
-import fs from 'fs';
+
+
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
-import path from 'path';
+
 import React from 'react';
 
-import { Box, Link } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import { DIRECTORY_NAME } from '../common/constans';
@@ -16,7 +15,7 @@ import SectionMyFirstProject from '../sections/SectionMyFirstProject';
 import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
 import SectionLXDAOIntro from '../sections/SectionLXDAOIntro';
-import { formatDirectory, getDocBySlug } from '/utils';
+import { getDocBySlug } from '/utils';
 
 export default function Index({ content, directory }) {
   const theme = useTheme();

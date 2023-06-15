@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
@@ -357,10 +356,12 @@ function SimpleContributor(props) {
         <Tooltip title={props.name}>
           <Box
             component="img"
+            alt='avatar'
             src={props.image}
             sx={{
               width: '100%',
             }}
+            loading='lazy'
           />
         </Tooltip>
       </Box>
