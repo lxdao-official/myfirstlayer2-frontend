@@ -22,14 +22,14 @@ export default function SectionTop({ content, meta }) {
       <Link id="introduce" sx={{ position: 'relative' }}></Link>
       <Box
         sx={{
-          height: { xs: '100%', md: 'calc(100vh - 60px)' },
+          height: { xs: '100%', md: '100vh' },
           background: 'url(/images/top-background.png)',
           backgroundSize: 'cover',
         }}
       >
         <Box
           sx={{
-            height: { xs: '100%', md: 'calc(100vh - 60px)' },
+            height: { xs: '100%', md: '100vh' },
             alignItems: 'center',
             justifyContent:'start',
             flexDirection: 'column',
