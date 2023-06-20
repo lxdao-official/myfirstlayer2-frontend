@@ -49,42 +49,28 @@ export default function App({ Component, pageProps }) {
 	const theme = getTheme(mode)
 
 	return (
-		<>
-			<Script
-				async
-				src="https://www.googletagmanager.com/gtag/js?id=G-YBM7P1VZH9"
-			/>
-			<Script id="google-analytics">
-				{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-YBM7P1VZH9');
-        `}
-			</Script>
-			<WagmiConfig client={wagmiClient}>
-				<RainbowKitProvider
-					chains={chains}
-					theme={lightTheme({
-						accentColor: '#000',
-						accentColorForeground: 'white',
-						borderRadius: 'large',
-						fontStack: 'system',
-						overlayBlur: 'small',
-						selectionColor: '#000',
-						modalBorder: '1px solid #fff',
-					})}
-				>
-					<NextIntlProvider messages={pageProps.messages}>
-						<ColorModeContext.Provider value={colorMode}>
-							<ThemeProvider theme={theme}>
-								<Component {...pageProps} />
-							</ThemeProvider>
-						</ColorModeContext.Provider>
-					</NextIntlProvider>
-				</RainbowKitProvider>
-			</WagmiConfig>
-		</>
+		<WagmiConfig client={wagmiClient}>
+			<RainbowKitProvider
+				chains={chains}
+				theme={lightTheme({
+					accentColor: '#000',
+					accentColorForeground: 'white',
+					borderRadius: 'large',
+					fontStack: 'system',
+					overlayBlur: 'small',
+					selectionColor: '#000',
+					modalBorder: '1px solid #fff',
+				})}
+			>
+				<NextIntlProvider messages={pageProps.messages}>
+					<ColorModeContext.Provider value={colorMode}>
+						<ThemeProvider theme={theme}>
+							<Component {...pageProps} />
+							<Script src="https://cdn.jsdelivr.net/npm/donate3-sdk@0.3.48/dist/webpack/bundle.js" />
+						</ThemeProvider>
+					</ColorModeContext.Provider>
+				</NextIntlProvider>
+			</RainbowKitProvider>
+		</WagmiConfig>
 	)
 }
