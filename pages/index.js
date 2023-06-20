@@ -22,10 +22,12 @@ export default function Index({ content, directory }) {
 			<SectionMyFirstProject />
 			<SectionSponsors />
 			<SectionTeam />
-			{/* <SectionLXDAOIntro /> */}
-			{/* <Box id="joinus" paddingTop={{ xs: '50px', md: 15 }} marginBottom={{  md: 15 }} paddingX={0}>
-        <LXDAOIntroduction imgBackground={`${theme?.palette.bodyBg.main}`} titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
-      </Box> */}
+			<div
+				data-donate3-type="embed"
+				data-donate3-color="#000"
+				data-donate3-title="MyFirstLayer2(TEST)"
+				data-donate3-to-address="0x72bc49A5F2CE1200bD42f2428485fB9c140CF6bF"
+			></div>
 			<Footer />
 		</Main>
 	)

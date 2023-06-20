@@ -77,7 +77,7 @@ const NavList = ({ title, items }) => (
 const Footer = () => {
 	const theme = useTheme()
 	return (
-		<Box sx={{ background: '#ffffff' }} width="100%">
+		<Box sx={{ background: '#ffffff' }} width="100%" mt={'110px'}>
 			<Container paddingY={{ md: '50px', xs: '44px' }} margin="0 auto">
 				<Box
 					display="flex"
@@ -90,7 +90,7 @@ const Footer = () => {
 								items={[
 									{
 										name: 'My First NFT',
-										link: 'https://myfirstnft.info/',
+										link: 'https://github.com/lxdao-official/LXDAO-Developer-Guide',
 									},
 									{
 										name: 'My First Layer2',
@@ -123,7 +123,7 @@ const Footer = () => {
 								title="Resources"
 								items={[
 									{
-										name: 'LXDAO',
+										name: 'LX DAO',
 										link: 'https://lxdao.io/',
 									},
 									{
