@@ -44,7 +44,7 @@ export default function SectionTop({ }) {
             lineHeight: { xs: '40px', md: '84px' },
           }}
         >
-          Welcome To
+          WELCOME TO
         </Typography>
         <Typography
           sx={{
@@ -57,7 +57,12 @@ export default function SectionTop({ }) {
             lineHeight: { xs: '40px', md: '84px' },
           }}
         >
-          My First Layer<HightlightText>2</HightlightText>
+          MY FIRST LAYER
+          <Box component={"span"} sx={{
+            backgroundImage: 'linear-gradient(#3266e8, #3bd5e4)',
+            backgroundClip: "text",
+            color: "transparent",
+          }}>2</Box>
         </Typography>
         <Typography
           sx={{
@@ -91,7 +96,7 @@ export default function SectionTop({ }) {
         </Box>
       </Box>
 
-    </Box>
+    </Box >
 
   );
 }

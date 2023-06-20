@@ -37,7 +37,7 @@ const Main = ({ children = false }) => {
 
   return (
     <>
-      <Box id="fixed-header" bgcolor={'header.main'} zIndex={100} width={'100vw'} top={0} borderBottom="1px solid #1B1B1B">
+      <Box id="fixed-header" bgcolor={'header.main'} zIndex={100} width={'100vw'} top={0} borderBottom="1px solid #272727">
         {smallScreen ? (
           <Container display="flex" flexDirection="column" gap={1} alignItems="center" paddingY={2} width="100%">
             <Stack width="100%" height="45px" direction="row" justifyContent="space-between">
