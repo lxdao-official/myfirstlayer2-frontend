@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
+import NewButton from './NewButton';
 
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Menu from '@mui/material/Menu';
@@ -103,7 +104,15 @@ const Language = ({ color }) => {
     );
   }, [locale, anchorEl, color]);
 
-  return LangNode();
+  // return LangNode();
+  return <NewButton type='gray'>
+    <Earth width={20} height={20} color="#fff" />
+    <Typography fontSize={'12px'} lineHeight={"22px"} ml={'6px'}>
+      <Link href={route} locale="en">
+        EN
+      </Link>
+    </Typography>
+  </NewButton>
 };
 
 export default Language;

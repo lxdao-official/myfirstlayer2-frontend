@@ -36,13 +36,13 @@ const Main = ({ children = false }) => {
   }, []);
 
   return (
-    <Box>
-      <Box id="fixed-header" bgcolor={'header.main'} zIndex={100} width={'100vw'} top={0}>
+    <>
+      <Box id="fixed-header" bgcolor={'header.main'} zIndex={100} width={'100vw'} top={0} borderBottom="1px solid #1B1B1B">
         {smallScreen ? (
-          <Container display="flex" flexDirection="column" alignItems="center" padding={0} width="100%">
-            <Stack width="100%" height="45px" paddingLeft="24px" paddingRight="12px" direction="row" justifyContent="space-between">
-              <Box display="flex" flexDirection="row" alignItems="center">
-                <MFL2 width="123" height="19.5" color={theme.palette.primary.contrastText} />
+          <Container display="flex" flexDirection="column" gap={1} alignItems="center" paddingY={2} width="100%">
+            <Stack width="100%" height="45px" direction="row" justifyContent="space-between">
+              <Box display="flex" flexDirection="row" alignItems="center" mr='20px'>
+                <Box component={'img'} src='/mfl2-logo-new.svg' />
                 <Divider
                   orientation="vertical"
                   sx={{
@@ -51,16 +51,15 @@ const Main = ({ children = false }) => {
                     marginInline: '15px',
                   }}
                 />
-                <Box component="a" target="_blank" href="https://lxdao.io" display="flex" alignItems="center">
-                  <LXDAOLogo width={100} height={26} color={theme.palette.primary.contrastText} />
-                </Box>
+                <Box component='img' src='/lxdao-logo-white.svg' />
+
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center' }} zIndex={10}>
                 <Language color={theme.palette.primary.contrastText} />
               </Box>
             </Stack>
-            <Box width="100%" display="flex" paddingLeft="24px" paddingRight="12px" justifyContent="space-between" alignItems="center">
+            <Box width="100%" display="flex" justifyContent="space-between" alignItems="center">
               <Box minWidth="240px" height="36px" justifyContent="start" gap={3} alignItems="center" display="flex" mr="30px">
                 {titles[locale].map((v, i) => {
                   return (
@@ -98,9 +97,10 @@ const Main = ({ children = false }) => {
             </Box>
           </Container>
         ) : (
-          <Container maxWidth="100%" paddingX={'50px'} paddingY={1} display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" height="60px">
+          <Container maxWidth="1307px" paddingY="20px" display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" >
             <Box display="flex" flexDirection="row" alignItems="center">
-                <MFL2 width="123" height="19.5" color={theme.palette.primary.contrastText} />
+              <Box component={'img'} src='/mfl2-logo-new.svg' />
+
               {/* <MFL2 color={theme.palette.primary.contrastText} /> */}
               <Divider
                 orientation="vertical"
@@ -110,67 +110,66 @@ const Main = ({ children = false }) => {
                   marginInline: '13px',
                 }}
               />
-              <Box component="a" target="_blank" href="https://lxdao.io" display="flex" alignItems="center">
-                <LXDAOLogo width={100} height={26} color={theme.palette.primary.contrastText} />
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                left: 0,
-                width: '300px',
-                right: 0,
-                margin: '0 auto',
-                position: 'absolute',
-              }}
-            >
-              <Box gap={4} display="flex" alignItems="center">
-                {titles[locale].map((v, i) => (
-                  <Box
-                    key={i}
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Typography
+              <Box component='img' src='/lxdao-logo-white.svg' />
+              <Box
+                sx={{
+                  left: 0,
+                  width: '300px',
+                  right: 0,
+                  margin: '0 auto',
+                  ml: '60px',
+                }}
+              >
+                <Box gap={4} display="flex" alignItems="center">
+                  {titles[locale].map((v, i) => (
+                    <Box
+                      key={i}
                       sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
                       }}
                     >
-                      <Link
+                      <Typography
                         sx={{
-                          textDecoration: 'none',
-                          color: theme.palette.primary.contrastText,
-                          cursor: 'pointer',
+                          fontSize: '15px',
+                          lineHeight: '1.5',
+                          fontWeight: '600',
                         }}
-                        href={v.href}
-                        target="_self"
                       >
-                        {v.title}
-                      </Link>
-                    </Typography>
-                  </Box>
-                ))}
+                        <Link
+                          sx={{
+                            textDecoration: 'none',
+                            color: theme.palette.primary.contrastText,
+                            cursor: 'pointer',
+                          }}
+                          href={v.href}
+                          target="_self"
+                        >
+                          {v.title}
+                        </Link>
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
               </Box>
             </Box>
+
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }} zIndex={10}>
               {/* <Theme color={theme.palette.primary.contrastText} style={{ cursor: 'pointer' }} onClick={colorMode.toggleColorMode} /> */}
+              <Language color={theme.palette.primary.contrastText} />
 
               <MFL2ConnectButton />
 
               {/* <Question color={theme.palette.primary.contrastText} style={{ margin: '12.5px', marginLeft: '21px' }} /> */}
-              <Language color={theme.palette.primary.contrastText} />
             </Box>
           </Container>
         )}
       </Box>
-      <SectionTop width={'100vw'} />
-      <Box bgcolor="bodyBg.main" component="main" id="main" paddingTop={{ sx: '80px', md: '120px' }}>
+      <Box bgcolor="bodyBg.main" component="main" id="main" >
         {children}
       </Box>
-    </Box>
+    </>
   );
 };
 

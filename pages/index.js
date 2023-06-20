@@ -15,17 +15,19 @@ import SectionMyFirstProject from '../sections/SectionMyFirstProject';
 import SectionSponsors from '../sections/SectionSponsors';
 import SectionTeam from '../sections/SectionTeam';
 import SectionLXDAOIntro from '../sections/SectionLXDAOIntro';
+import SectionTop from '../sections/SectionTop';
 import { getDocBySlug } from '/utils';
 
 export default function Index({ content, directory }) {
   const theme = useTheme();
   return (
     <Main>
+      <SectionTop />
       <Content md={<MDXRemote {...content} file={directory} />} />
       <SectionMyFirstProject />
       <SectionSponsors />
       <SectionTeam />
-      <SectionLXDAOIntro/>
+      <SectionLXDAOIntro />
       {/* <Box id="joinus" paddingTop={{ xs: '50px', md: 15 }} marginBottom={{  md: 15 }} paddingX={0}>
         <LXDAOIntroduction imgBackground={`${theme?.palette.bodyBg.main}`} titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
       </Box> */}
