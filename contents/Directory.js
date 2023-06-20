@@ -104,26 +104,12 @@ export function PcDirectory(props) {
         sx={{
           width: '247px',
           borderRadius: '18px',
-          pt: '30px',
+          pt: '10px',
           pb: '43px',
           paddingX: '11px',
         }}
         backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
-        <Typography
-          sx={{
-            fontSize: '24px',
-            color: '#000',
-            paddingBottom: '10px',
-          }}
-        >
-          {t('directory')}
-        </Typography>
-        <Divider
-          sx={{
-            marginBottom: '20px',
-          }}
-        />
         <Box>
           {directory?.map((row, index) => {
             return <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onTabChapter('lastOrNext', { index, ...row })} {...props} />;
@@ -205,22 +191,24 @@ const Item = (props) => {
             alignItems: 'center',
           }}
         >
-          {!rowData?.main && (
+          {rowData?.status ?
             <Box
-              sx={{
-                height: '12px',
-                width: '3px',
-                borderRadius: '3px',
-                backgroundColor: rowData?.status ? '#000' : '#ddd',
-                marginRight: '10px',
-              }}
+              component="img"
+              src="/finish.svg"
+              mr={1}
             />
-          )}
+            :
+            <Box
+              component="img"
+              src="/not-finish.svg"
+              mr={1}
+            />
+          }
           <Box
             sx={{
               fontStyle: rowData?.main ? 'Bold' : 'Regular',
               fontWeight: rowData?.main ? 700 : 400,
-              fontSize: '14px',
+              fontSize: rowData?.main ? '16px' : '14px',
             }}
           >
             {t(formatChapterTitle(rowData?.text))}

@@ -36,7 +36,7 @@ export default function SectionTop({ }) {
         <Typography
           sx={{
             paddingTop: { xs: '20px', md: '147px' },
-            fontSize: { xs: '30px', md: '68px' },
+            fontSize: { xs: '36px', md: '68px' },
             fontWeight: '700',
             whiteSpace: 'pre-wrap',
             color: '#fff',
@@ -49,7 +49,7 @@ export default function SectionTop({ }) {
         <Typography
           sx={{
             // width: { xs: '323px', md: 'calc(100% - 472px)' },
-            fontSize: { xs: '30px', md: '68px' },
+            fontSize: { xs: '36px', md: '68px' },
             fontWeight: '700',
             whiteSpace: 'pre-wrap',
             color: '#fff',
@@ -68,7 +68,7 @@ export default function SectionTop({ }) {
             maxWidth: { xs: '470px', md: '770px' },
             color: '#5F6D7E',
             fontWeight: '400',
-            fontSize: { xs: '10px', md: '18px' },
+            fontSize: { xs: '16px', md: '18px' },
             lineHeight: '1.5',
             whiteSpace: 'pre-line',
           }}
@@ -76,7 +76,7 @@ export default function SectionTop({ }) {
           {t('description')}
         </Typography>
         <Box sx={{ display: "flex", mt: '32px' }}>
-          <NewButton>Start Learning</NewButton>
+          <NewButton>{t("button")}</NewButton>
         </Box>
         <Box display="flex" gap={2} mt={8}>
           <Link href="https://twitter.com/LXDAO_Official" target="_blank">

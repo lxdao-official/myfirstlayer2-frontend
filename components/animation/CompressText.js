@@ -71,7 +71,7 @@ export default function CompressText() {
     width: '0px',
   };
   const deleteStyle = deleteStyle2;
-  const todelete = (api, onRest = () => {}) => {
+  const todelete = (api, onRest = () => { }) => {
     api.start({
       ...deleteStyle1,
       onRest: () => {
@@ -2246,7 +2246,7 @@ export default function CompressText() {
                 // hid: status === 1 ? 'none' : 'block',
                 visibility: status === 1 ? 'hidden' : 'visible',
               }}
-              startIcon={<Box component={'img'} src="/arrow.svg" width={'30px'} />}
+              startIcon={<Box component={'img'} src="/arrow.svg" sx={{ rotate: '180deg' }} width={'30px'} />}
             >
               pre
             </Button>
@@ -2260,7 +2260,7 @@ export default function CompressText() {
                 textTransform: 'capitalize',
                 visibility: status === 6 ? 'hidden' : 'visible',
               }}
-              endIcon={<Box component={'img'} src="/arrow.svg" width={'30px'} sx={{ transform: 'rotate(180deg)' }} />}
+              endIcon={<Box component={'img'} src="/arrow.svg" width={'30px'} />}
             >
               after
             </Button>

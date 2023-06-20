@@ -2,7 +2,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { switchNetwork, disconnect } from '@wagmi/core';
 import { useState } from 'react';
 
-import { Box, Button, styled } from '@mui/material';
+import { Box, Button, styled, Typography } from '@mui/material';
 import NewButton from './NewButton';
 
 import Arrow from './svg/Arrow';
@@ -114,14 +114,22 @@ export const MFL2ConnectButton = () => {
             {(() => {
               if (!connected) {
 
-                return <NewButton onClick={openConnectModal}>Connect Wallet</NewButton>;
+                return <NewButton onClick={openConnectModal}>
+                  Connect Wallet
+                </NewButton>;
                 // return <NormalButton onClick={openConnectModal}>Connect Wallet</NormalButton>;
               }
               if (chain.unsupported) {
-                return <NewButton onClick={openChainModal}>Wrong network</NewButton>;
+                return <NewButton onClick={openChainModal}>
+                  Wrong network
+                </NewButton>;
               }
               return (
-                <NewButton onClick={openAccountModal}>{account.displayName}</NewButton>
+                <NewButton onClick={openAccountModal}>
+
+                  {account.displayName}
+
+                </NewButton>
                 // <Box sx={{ position: 'flex', flexDirection: 'col' }}>
                 //   <NormalButton
                 //     sx={{

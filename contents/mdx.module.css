@@ -23,11 +23,15 @@
 .root p {
   color: #5F6D7E;
   line-height: 24px;
-  font-size: 15px;
+  font-size: 16px;
   max-width: 100%;
   /* word-wrap: pre-line; */
   padding-bottom: 12px;
   /* text-indent: 2em; */
+}
+
+.root h1 {
+  font-size: 36px;
 }
 
 .root em {
@@ -43,6 +47,7 @@
 
 
 }
+
 .root ol {
   /* list-style-type: none; */
   margin: 0;
@@ -53,8 +58,8 @@
 }
 
 .root li {
-    line-height: 24px;
-  font-size: 15px;
+  line-height: 24px;
+  font-size: 16px;
   padding-left: '44px';
   margin-left: '44px';
   left: '44px';
@@ -81,7 +86,7 @@
   width: 100%;
 } */
 
-.imgC{
+.imgC {
   display: flex;
   justify-content: center;
 }

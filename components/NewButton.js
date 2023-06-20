@@ -8,6 +8,7 @@ export default function NewButton({ type = "blue", children, onClick }) {
         padding: '12px 18px',
         bgcolor: type === "blue" ? '#0086f2' : '#1a1a1a',
         color: '#fff',
+        fontSize: '16px',
         whiteSpace: 'nowrap',
         borderRadius: '6px',
         cursor: 'pointer',
