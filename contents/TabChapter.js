@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '15px',
 
     // paddingLeft: '25px',
-    padding: '10px 25px',
+    padding: '12px 25px',
     '&.MuiCard-root:focus-within': {
       border: 'none',
       backgroundImage: 'linear-gradient(to right, #193275 0%, #1E6A72 100%)',

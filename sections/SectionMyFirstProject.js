@@ -12,106 +12,111 @@ import MyFirstArrow from '../components/svg/MyFirstArrow';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
 function MyFirstCard(props) {
-  const theme = useTheme();
-  const t = useTranslations('SectionMyFirstProject');
-  return (
-    <Box
-      width={1}
-      // height={1}
-      sx={{
-        textDecoration: 'none',
-        paddingBottom: { xs: 0, md: '50px' },
-        borderRadius: { xs: '8px', md: '18px' },
-      }}
-    >
-      <Box
-        display={'flex'}
-        flexDirection={'column'}
-        sx={{
-          backgroundColor: '#FAFAFA',
-          borderRadius: { xs: '8px', md: '18px' },
-          height: { xs: '3400px', md: '440px' },
-          padding: { xs: '10px', md: '20px' },
-          '&:hover': {
-            boxShadow: { xs: 'none', md: theme.palette.shadow.level1 },
-          },
-        }}
-      >
-        <Box display="flex" flexDirection={'row'}>
-          <Box
-            component={Card}
-            width={{ xs: '40px', md: '80px' }}
-            height={{ xs: '40px', md: '80px' }}
-            borderRadius="50%"
-            boxShadow="none"
-            display={'flex'}
-            flexDirection={'column'}
-            sx={{
-              backgroundImage: 'none',
-              background: '#fff',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Box
-              component="img"
-              src={props.image}
-              title={props.projectName}
-              sx={{
-                width: { xs: '28px', md: '56px' },
-              }}
-            />
-          </Box>
-          <Box display={'flex'} ml="10px" justifyContent="start" flex="1">
-            <Box boxShadow="none" display={'flex'} justifyContent='center' flexDirection={'column'}>
-              <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} whiteSpace="nowrap" fontWeight={800}>
-                {props.projectName}
-              </Typography>
-              {/* <Typography color="#5f6d7e" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
-                {props.holder}
-              </Typography> */}
-            </Box>
-          </Box>
-        </Box>
-        <Box
-          marginTop={{ xs: '10px', md: '20px' }}
-          component="img"
-          src={props.bigImage}
-          title={props.title}
-          sx={{
-            width: '100%',
-            borderRadius: '15px',
-            filter: props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
-          }}
-        />
-        <Box marginTop={{ xs: '10px', md: '20px' }} marginBottom={{ xs: '10px', md: '15px' }} height="100%">
-          <Typography color="#5f6d7e"  fontSize={'15px'} fontWeight={400} >
-            {props.description}
-          </Typography>
-        </Box>
 
-        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-          <Link
-            color="text.primary"
-            target="_blank"
-            href={props.url}
-            display="flex"
-            justifyContent="flex-end"
-            sx={{
-              textDecoration: 'none',
-            }}
-          >
-            <Typography color="#5f6d7e" fontSize={'15px'} fontWeight={600} >
-              {t('view-more')}
-            </Typography>
-            <Box color="text.primary" marginLeft={'10px'} width="19px">
-              <MyFirstArrow color="#5f6d7e" />
-            </Box>
-          </Link>
-        </Box>
-      </Box>
-    </Box>
-  );
+  const t = useTranslations('SectionMyFirstProject');
+  return <Box sx={{ width: '100%' }}>
+    <Box component={'img'} src={props.image} sx={{ width: '100%', borderRadius: '10px', border: '0.5px solid #D3D3D3' }} />
+    <Typography fontSize="22px" fontWeight={600} mt={3} mb={2}>{props.projectName}</Typography>
+    <Typography color="#626d7c">{props.description}</Typography>
+  </Box>
+  // return (
+  //   <Box
+  //     width={1}
+  //     // height={1}
+  //     sx={{
+  //       textDecoration: 'none',
+  //       paddingBottom: { xs: 0, md: '50px' },
+  //       borderRadius: { xs: '8px', md: '18px' },
+  //     }}
+  //   >
+  //     <Box
+  //       display={'flex'}
+  //       flexDirection={'column'}
+  //       sx={{
+  //         backgroundColor: '#FAFAFA',
+  //         borderRadius: { xs: '8px', md: '18px' },
+  //         height: { xs: '3400px', md: '440px' },
+  //         padding: { xs: '10px', md: '20px' },
+  //         '&:hover': {
+  //           boxShadow: { xs: 'none', md: theme.palette.shadow.level1 },
+  //         },
+  //       }}
+  //     >
+  //       <Box display="flex" flexDirection={'row'}>
+  //         <Box
+  //           component={Card}
+  //           width={{ xs: '40px', md: '80px' }}
+  //           height={{ xs: '40px', md: '80px' }}
+  //           borderRadius="50%"
+  //           boxShadow="none"
+  //           display={'flex'}
+  //           flexDirection={'column'}
+  //           sx={{
+  //             backgroundImage: 'none',
+  //             background: '#fff',
+  //             justifyContent: 'center',
+  //             alignItems: 'center',
+  //           }}
+  //         >
+  //           <Box
+  //             component="img"
+  //             src={props.image}
+  //             title={props.projectName}
+  //             sx={{
+  //               width: { xs: '28px', md: '56px' },
+  //             }}
+  //           />
+  //         </Box>
+  //         <Box display={'flex'} ml="10px" justifyContent="start" flex="1">
+  //           <Box boxShadow="none" display={'flex'} justifyContent='center' flexDirection={'column'}>
+  //             <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} whiteSpace="nowrap" fontWeight={800}>
+  //               {props.projectName}
+  //             </Typography>
+  //             {/* <Typography color="#5f6d7e" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
+  //               {props.holder}
+  //             </Typography> */}
+  //           </Box>
+  //         </Box>
+  //       </Box>
+  //       <Box
+  //         marginTop={{ xs: '10px', md: '20px' }}
+  //         component="img"
+  //         src={props.bigImage}
+  //         title={props.title}
+  //         sx={{
+  //           width: '100%',
+  //           borderRadius: '15px',
+  //           filter: props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
+  //         }}
+  //       />
+  //       <Box marginTop={{ xs: '10px', md: '20px' }} marginBottom={{ xs: '10px', md: '15px' }} height="100%">
+  //         <Typography color="#5f6d7e"  fontSize={'15px'} fontWeight={400} >
+  //           {props.description}
+  //         </Typography>
+  //       </Box>
+
+  //       <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+  //         <Link
+  //           color="text.primary"
+  //           target="_blank"
+  //           href={props.url}
+  //           display="flex"
+  //           justifyContent="flex-end"
+  //           sx={{
+  //             textDecoration: 'none',
+  //           }}
+  //         >
+  //           <Typography color="#5f6d7e" fontSize={'15px'} fontWeight={600} >
+  //             {t('view-more')}
+  //           </Typography>
+  //           <Box color="text.primary" marginLeft={'10px'} width="19px">
+  //             <MyFirstArrow color="#5f6d7e" />
+  //           </Box>
+  //         </Link>
+  //       </Box>
+  //     </Box>
+  //   </Box>
+  // );
 }
 
 export default function SectionMyFirstProject() {
@@ -123,16 +128,16 @@ export default function SectionMyFirstProject() {
       {
         projectName: 'My First NFT',
         holder: '666 holder',
-        image: '/project/myfirstnft.png',
-        bigImage: '/project/myfirstnftCard.png',
+        image: '/MyFirstNFT.png',
+        bigImage: '/MyFirstNFT.png',
         description: 'MyFirstNFT 是一个针对 Web3 新手的非营利性教学项目。 在学习 Web3、NFT 的潜在价值和安全原则的同时获得免费的 NFT。',
         url: 'https://myfirstnft.info/',
       },
       {
-        projectName: 'EIPs Fun',
+        projectName: 'EIPs.Fun',
         holder: '',
-        image: '/project/eipsfun.png',
-        bigImage: '/project/eipsfunCard.png',
+        image: '/EIPsFUN.png',
+        bigImage: '/EIPsFUN.png',
         description: 'EIPs Fun 是一个让 EIP 变得有趣且易于被开发者采用并促进 EIP 生态系统发展的项目。',
         url: 'https://eips.fun/',
       },
@@ -141,36 +146,36 @@ export default function SectionMyFirstProject() {
       {
         projectName: 'My First NFT',
         holder: '666 holder',
-        image: '/project/myfirstnft.png',
-        bigImage: '/project/myfirstnftCard.png',
+        image: '/MyFirstNFT.png',
+        bigImage: '/MyFirstNFT.png',
         description: 'MyFirstNFT is a non-profit instructional project for Web3 newbies. Get a FREE NFT while learning about Web3, underlying values of NFT, and security principles.',
         url: 'https://myfirstnft.info/',
       },
       {
-        projectName: 'EIPs Fun',
+        projectName: 'EIPs.Fun',
         holder: '',
-        image: '/project/eipsfun.png',
-        bigImage: '/project/eipsfunCard.png',
+        image: '/EIPsFUN.png',
+        bigImage: '/EIPsFUN.png',
         description: 'EIPs Fun is a project for making EIPs fun and easy to be adopted by buidlers and advancing EIP ecosystem development.',
         url: 'https://eips.fun/',
       },
     ],
   };
   return (
-    <SectionSimpleWrapper marginTop={{ xs: 6.875, sm: '120px' }} paddingTop="51px" paddingBottom={{xs:"40px",md:'0px'}} background="#fff" title={t('sectionMyFirst-title-1')} desc={t('sectionMyFirst-title-2')} childOverflow="visible" id="project">
+    <SectionSimpleWrapper marginTop={{ xs: 6.875, sm: '120px' }} paddingTop="51px" paddingBottom={{ xs: "40px", md: '0px' }} background="#fff" title={t('sectionMyFirst-title-1')} desc={t('sectionMyFirst-title-2')} childOverflow="visible" id="project">
       <Box padding={{ xs: 2, sm: 0 }} marginTop={{ xs: 0, sm: '50px' }} paddingBottom={{ xs: 0, sm: '48px' }}>
-        <Grid sx={{ display: { sm: 'flex', xs: 'none' } }} justifyContent="center" container spacing={{ xs: 3.125, sm: 2 }}>
+        <Grid sx={{ display: { sm: 'flex', xs: 'none' } }} justifyContent="center" container spacing={{ xs: 3.125, sm: 4 }}>
           {myfirstProjects[locale].map((item, i) => (
-            <Grid rowGap="25px" item xs={12} sm={6} md={4} key={i}>
+            <Grid rowGap="32px" item xs={12} sm={6} md={4} key={i}>
               <MyFirstCard theme={theme} {...item} />
             </Grid>
           ))}
         </Grid>
         <Grid sx={{ display: { sm: 'none', xs: 'flex' } }} container spacing={{ xs: '15px' }}>
           <Swiper
-            style={{ marginLeft: '15px', height: '320px' }}
+            style={{ marginLeft: '15px', height: '420px' }}
             slidesPerView={1.53}
-            centeredSlides={false}
+            centeredSlides={true}
             spaceBetween={15}
             pagination={{
               clickable: true,
@@ -179,7 +184,7 @@ export default function SectionMyFirstProject() {
           >
             {myfirstProjects[locale].map((item, i) => (
               <SwiperSlide key={i}>
-                <MyFirstCard theme={theme} {...item} />
+                <MyFirstCard key={i} {...item} />
               </SwiperSlide>
             ))}
           </Swiper>
