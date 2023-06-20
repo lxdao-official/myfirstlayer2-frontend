@@ -370,33 +370,31 @@ function SimpleContributor(props) {
 }
 
 export default function SectionTeam() {
-  const theme = useTheme();
   const t = useTranslations('SectionTeam');
   return (
     <SectionSimpleWrapper title={t(`sectionTeam-content-11`)} desc={t('sectionTeam-title-12')} id="team">
-      <Box>
-        <Box padding={{ xs: 2, sm: 0 }}>
-          <Grid container spacing={2.5}>
-            {coreContributors.map((item, i) => (
-              <Grid
-                sx={{ cursor: 'pointer' }}
-                onClick={() => {
-                  if (item.twitter) {
-                    window.open(item.twitter, '_blank');
-                  }
-                }}
-                item
-                xs={12 / 7}
-                sm={12 / 7}
-                md={12 / 12}
-                key={i}
-              >
-                <SimpleContributor {...item} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+      <Box padding={{ xs: 2, sm: '110px' }}>
+        <Grid container spacing={2.5}>
+          {coreContributors.map((item, i) => (
+            <Grid
+              sx={{ cursor: 'pointer' }}
+              onClick={() => {
+                if (item.twitter) {
+                  window.open(item.twitter, '_blank');
+                }
+              }}
+              item
+              xs={12 / 7}
+              sm={12 / 7}
+              md={12 / 12}
+              key={i}
+            >
+              <SimpleContributor {...item} />
+            </Grid>
+          ))}
+        </Grid>
       </Box>
+
     </SectionSimpleWrapper>
   );
 }
