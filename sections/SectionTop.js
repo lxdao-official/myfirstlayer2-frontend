@@ -81,7 +81,7 @@ export default function SectionTop({ }) {
             {t('description')}
           </Typography>
           <Box sx={{ display: "flex", mt: '32px' }}>
-            <NewButton>{t("button")}</NewButton>
+            <Link href='#content' underline='none' target='_self'><NewButton>{t("button")}</NewButton></Link>
           </Box>
           <Box display="flex" gap={2} mt={8}>
             <Link href="https://twitter.com/LXDAO_Official" target="_blank">

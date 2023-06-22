@@ -157,10 +157,11 @@ export function MobileDirectory(props) {
         )}
       </IconButton>
       <SwipeableDrawer anchor="bottom" open={drawerStatus} onClose={() => setDrawerStatus(false)} onOpen={() => setDrawerStatus(true)}>
-        <Box paddingX={3} py={2} height="400px">
+        <Box paddingX={3} paddingY={2} height="400px" >
           {directory?.map((row, index) => (
             <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onNext('lastOrNext', { index, ...row })} {...props} />
           ))}
+          <Box sx={{ height: "16px", width: 2 }} />
         </Box>
       </SwipeableDrawer>
     </Box>
@@ -173,7 +174,7 @@ const Item = (props) => {
   const { rowData, selected, onNext } = props;
 
   return (
-    <Box className={classes.listRoot}>
+    <Box className={classes.listRoot} >
       <Box
         button
         selected={selected}

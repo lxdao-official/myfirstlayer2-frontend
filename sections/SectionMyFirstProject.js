@@ -13,11 +13,13 @@ import SectionSimpleWrapper from './SectionSimpleWrapper';
 function MyFirstCard(props) {
 
   const t = useTranslations('SectionMyFirstProject');
-  return <Box sx={{ width: '100%' }}>
-    <Box component={'img'} src={props.image} sx={{ width: '100%', borderRadius: '10px', border: '0.5px solid #D3D3D3' }} />
-    <Typography fontSize="22px" fontWeight={600} color={"#000"} mt={3} mb={2}>{props.projectName}</Typography>
-    <Typography color="#626d7c">{props.description}</Typography>
-  </Box>
+  return <Link href={props.url} target='_blank' underline='none'>
+    <Box sx={{ width: '100%' }}>
+      <Box component={'img'} src={props.image} sx={{ width: '100%', borderRadius: '10px', border: '0.5px solid #D3D3D3' }} />
+      <Typography fontSize="22px" fontWeight={600} color={"#000"} mt={3} mb={2}>{props.projectName}</Typography>
+      <Typography color="#626d7c">{props.description}</Typography>
+    </Box>
+  </Link>
 }
 
 export default function SectionMyFirstProject() {

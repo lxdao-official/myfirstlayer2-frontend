@@ -423,7 +423,7 @@ export default function Content(props) {
           </Box>
         </Container>
         {inView && (
-          <Hidden smUp>
+          <Hidden mdUp>
             <Box
               sx={{
                 position: 'fixed',
@@ -447,7 +447,7 @@ export default function Content(props) {
               <Box flexGrow={2} marginX="20px">
                 <Progress />
               </Box>
-              <Hidden smUp>
+              <Hidden mdUp>
                 <MobileDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></MobileDirectory>
               </Hidden>
             </Box>

@@ -147,7 +147,7 @@ export default function MintBadge() {
       ctx.drawImage(img, 0, 0);
       setImgLoaded(true);
     };
-  }, []);
+  }, [address]);
 
   useEffect(() => {
     if (imgLoaded) {
@@ -157,10 +157,10 @@ export default function MintBadge() {
 
       // 在 canvas 上执行绘制操作
       ctx.fillStyle = '#E9E9E9';
-      ctx.font = '96px';
+      ctx.font = '96px Open Sans';
       ctx.fillText(`timestamp ${new Date().getTime()}`, 402, 1902);
       ctx.fillStyle = '#6C6C6C';
-      ctx.font = '40px';
+      ctx.font = '40px Open Sans';
       ctx.fillText(address, 530, 2033);
 
       // 将修改后的图片转换为 base64 格式
