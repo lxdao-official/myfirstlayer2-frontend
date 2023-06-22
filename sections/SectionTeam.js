@@ -97,7 +97,7 @@ const coreContributors = [
     name: 'JayK',
   },
   {
-    image: '/teams/0x1998.jpg',
+    image: '/teams/aoao.png',
     description: 'Fullstack developer / Web3 builder / I have a dream.',
     name: '0x1998',
     twitter: 'https://twitter.com/0x1998',
