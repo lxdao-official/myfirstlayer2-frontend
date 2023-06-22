@@ -74,7 +74,7 @@ const Footer = () => {
                 items={[
                   {
                     name: 'My First NFT',
-                    link: 'https://github.com/lxdao-official/LXDAO-Developer-Guide',
+                    link: 'https://myfirstnft.info/',
                   },
                   {
                     name: 'My First Layer2',
