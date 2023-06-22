@@ -56,7 +56,7 @@ export function formatDirectory(fileNames) {
     main: true,
   };
 
-  console.log('directory', directory);
+  // console.log('directory', directory);
 
   return directory;
 }

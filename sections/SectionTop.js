@@ -16,7 +16,7 @@ const HightlightText = styled.span`
 export default function SectionTop({ }) {
   const t = useTranslations('Index');
   const locale = useLocale();
-  console.log('locale', locale);
+  // console.log('locale', locale);
 
   return (
     <>

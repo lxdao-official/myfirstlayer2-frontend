@@ -15,7 +15,7 @@ export default async (req, res) => {
     const cid = await uploadPNG(b64data);
     res.status(200).json({ cid });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(400).json(e);
   }
 };

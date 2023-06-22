@@ -82,7 +82,7 @@ export default function Content(props) {
     return count;
   };
   const handleTabChapter = (action, chapter) => {
-    console.log('[current chapter data]', chapter);
+    // console.log('[current chapter data]', chapter);
     const mainArr = [1, 5, 10, 18];
 
     if (!action) {
@@ -319,7 +319,7 @@ export default function Content(props) {
       acc += cur.status;
       return acc;
     }, 0);
-    console.log(readed);
+    // console.log(readed);
     if (readed > 2) {
       setStorage('directoryStatus', JSON.stringify({ data: directory }));
     }

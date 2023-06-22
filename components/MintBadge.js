@@ -9,12 +9,14 @@ import { Stack } from '@mui/system';
 import abi from '../abi.json';
 import { ReadContext } from '../contents/context';
 import showMessage from './showMessage';
+import { useRouter } from 'next/router';
 
 export default function MintBadge() {
   // ATTENTION: Please add the address of the corresponding network.
   const CONTRACT_MAP = { 420: '0x43c4Ebf956F7804596c333B209Ff246a476594DA' };
   const { readData } = useContext(ReadContext);
   const { read, counter } = readData;
+  const router = useRouter();
 
   const { chain = {} } = useNetwork();
   const { chains, isLoading: swichLoading, switchNetwork } = useSwitchNetwork();
@@ -49,7 +51,14 @@ export default function MintBadge() {
       });
       return;
     }
-
+    if (typeof chain.id == "undefined") {
+      showMessage({
+        type: 'error',
+        title: 'Please Connect Wallet',
+        body: 'Please Connect the Wallet.',
+      });
+      return;
+    }
     // 检查chainid是否在CONTRACT_MAP中
     if (!CONTRACT_MAP[chain.id]) {
       showMessage({
@@ -96,9 +105,9 @@ export default function MintBadge() {
       const gasUnits = await new ethers.Contract(address, abi, providerGoerli).estimateGas.mint('data:application/json;base64,' + data);
 
       const transactionFee = gasPrice.mul(gasUnits).mul(3);
-      console.log('transactionFee in wei: ' + transactionFee.toString());
-      console.log('transactionFee in ether: ' + ethers.utils.formatUnits(transactionFee, 'ether'));
-      console.log('balance: ', balance);
+      // console.log('transactionFee in wei: ' + transactionFee.toString());
+      // console.log('transactionFee in ether: ' + ethers.utils.formatUnits(transactionFee, 'ether'));
+      // console.log('balance: ', balance);
       if (transactionFee > balance.data.value) {
         showMessage({
           type: 'error',
@@ -111,10 +120,10 @@ export default function MintBadge() {
       const res = await writeAsync?.({
         recklesslySetUnpreparedArgs: ['data:application/json;base64,' + data],
       });
-      console.log(res);
+      // console.log(res);
       setMintLoading(false);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       showMessage({
         type: 'error',
         title: 'Estimate Fail',
@@ -147,7 +156,7 @@ export default function MintBadge() {
       ctx.drawImage(img, 0, 0);
       setImgLoaded(true);
     };
-  }, [address]);
+  }, []);
 
   useEffect(() => {
     if (imgLoaded) {
@@ -167,7 +176,12 @@ export default function MintBadge() {
       const modifiedImgSrc = canvas.toDataURL('image/png');
       setModifiedImgSrc(modifiedImgSrc);
     }
-  }, [imgLoaded, address]);
+  }, [imgLoaded]);
+  useEffect(() => {
+    if (imgLoaded) {
+      router.reload();
+    }
+  }, [address])
 
   return (
     <Stack
