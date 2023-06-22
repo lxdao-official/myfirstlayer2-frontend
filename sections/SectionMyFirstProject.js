@@ -8,7 +8,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Box, Card, Grid, Link, Typography, useTheme } from '@mui/material';
 
-import MyFirstArrow from '../components/svg/MyFirstArrow';
 import SectionSimpleWrapper from './SectionSimpleWrapper';
 
 function MyFirstCard(props) {
@@ -16,107 +15,9 @@ function MyFirstCard(props) {
   const t = useTranslations('SectionMyFirstProject');
   return <Box sx={{ width: '100%' }}>
     <Box component={'img'} src={props.image} sx={{ width: '100%', borderRadius: '10px', border: '0.5px solid #D3D3D3' }} />
-    <Typography fontSize="22px" fontWeight={600} mt={3} mb={2}>{props.projectName}</Typography>
+    <Typography fontSize="22px" fontWeight={600} color={"#000"} mt={3} mb={2}>{props.projectName}</Typography>
     <Typography color="#626d7c">{props.description}</Typography>
   </Box>
-  // return (
-  //   <Box
-  //     width={1}
-  //     // height={1}
-  //     sx={{
-  //       textDecoration: 'none',
-  //       paddingBottom: { xs: 0, md: '50px' },
-  //       borderRadius: { xs: '8px', md: '18px' },
-  //     }}
-  //   >
-  //     <Box
-  //       display={'flex'}
-  //       flexDirection={'column'}
-  //       sx={{
-  //         backgroundColor: '#FAFAFA',
-  //         borderRadius: { xs: '8px', md: '18px' },
-  //         height: { xs: '3400px', md: '440px' },
-  //         padding: { xs: '10px', md: '20px' },
-  //         '&:hover': {
-  //           boxShadow: { xs: 'none', md: theme.palette.shadow.level1 },
-  //         },
-  //       }}
-  //     >
-  //       <Box display="flex" flexDirection={'row'}>
-  //         <Box
-  //           component={Card}
-  //           width={{ xs: '40px', md: '80px' }}
-  //           height={{ xs: '40px', md: '80px' }}
-  //           borderRadius="50%"
-  //           boxShadow="none"
-  //           display={'flex'}
-  //           flexDirection={'column'}
-  //           sx={{
-  //             backgroundImage: 'none',
-  //             background: '#fff',
-  //             justifyContent: 'center',
-  //             alignItems: 'center',
-  //           }}
-  //         >
-  //           <Box
-  //             component="img"
-  //             src={props.image}
-  //             title={props.projectName}
-  //             sx={{
-  //               width: { xs: '28px', md: '56px' },
-  //             }}
-  //           />
-  //         </Box>
-  //         <Box display={'flex'} ml="10px" justifyContent="start" flex="1">
-  //           <Box boxShadow="none" display={'flex'} justifyContent='center' flexDirection={'column'}>
-  //             <Typography color="text.primary" fontSize={{ xs: '15px', md: '24px' }} whiteSpace="nowrap" fontWeight={800}>
-  //               {props.projectName}
-  //             </Typography>
-  //             {/* <Typography color="#5f6d7e" fontSize={{ xs: '8px', md: '12px' }} fontWeight={400}>
-  //               {props.holder}
-  //             </Typography> */}
-  //           </Box>
-  //         </Box>
-  //       </Box>
-  //       <Box
-  //         marginTop={{ xs: '10px', md: '20px' }}
-  //         component="img"
-  //         src={props.bigImage}
-  //         title={props.title}
-  //         sx={{
-  //           width: '100%',
-  //           borderRadius: '15px',
-  //           filter: props.theme.palette?.mode === 'dark' ? 'brightness(0.7)' : 'none',
-  //         }}
-  //       />
-  //       <Box marginTop={{ xs: '10px', md: '20px' }} marginBottom={{ xs: '10px', md: '15px' }} height="100%">
-  //         <Typography color="#5f6d7e"  fontSize={'15px'} fontWeight={400} >
-  //           {props.description}
-  //         </Typography>
-  //       </Box>
-
-  //       <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-  //         <Link
-  //           color="text.primary"
-  //           target="_blank"
-  //           href={props.url}
-  //           display="flex"
-  //           justifyContent="flex-end"
-  //           sx={{
-  //             textDecoration: 'none',
-  //           }}
-  //         >
-  //           <Typography color="#5f6d7e" fontSize={'15px'} fontWeight={600} >
-  //             {t('view-more')}
-  //           </Typography>
-  //           <Box color="text.primary" marginLeft={'10px'} width="19px">
-  //             <MyFirstArrow color="#5f6d7e" />
-  //           </Box>
-  //         </Link>
-  //       </Box>
-  //     </Box>
-  //   </Box>
-  // );
 }
 
 export default function SectionMyFirstProject() {
@@ -136,8 +37,8 @@ export default function SectionMyFirstProject() {
       {
         projectName: 'EIPs.Fun',
         holder: '',
-        image: '/EIPsFUN.png',
-        bigImage: '/EIPsFUN.png',
+        image: '/EIPsFun.png',
+        bigImage: '/EIPsFun.png',
         description: 'EIPs Fun 是一个让 EIP 变得有趣且易于被开发者采用并促进 EIP 生态系统发展的项目。',
         url: 'https://eips.fun/',
       },
@@ -154,8 +55,8 @@ export default function SectionMyFirstProject() {
       {
         projectName: 'EIPs.Fun',
         holder: '',
-        image: '/EIPsFUN.png',
-        bigImage: '/EIPsFUN.png',
+        image: '/EIPsFun.png',
+        bigImage: '/EIPsFun.png',
         description: 'EIPs Fun is a project for making EIPs fun and easy to be adopted by buidlers and advancing EIP ecosystem development.',
         url: 'https://eips.fun/',
       },

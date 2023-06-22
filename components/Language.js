@@ -105,14 +105,15 @@ const Language = ({ color }) => {
   }, [locale, anchorEl, color]);
 
   // return LangNode();
-  return <NewButton type='gray'>
-    <Earth width={20} height={20} color="#fff" />
-    <Typography fontSize={'12px'} lineHeight={"22px"} ml={'6px'}>
-      <Link href={route} locale="en">
-        EN
-      </Link>
-    </Typography>
-  </NewButton>
+  return <Link href={route} locale={locale == "en" ? 'zh' : 'en'} >
+    <NewButton type='gray'>
+      <Earth width={20} height={20} color="#fff" />
+      <Typography fontSize={'12px'} lineHeight={"22px"} ml={'6px'}>
+        {locale == 'en' ? '简' : 'EN'}
+      </Typography>
+    </NewButton>
+  </Link >
+
 };
 
 export default Language;

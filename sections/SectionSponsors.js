@@ -23,7 +23,7 @@ export default function SectionSponsors() {
               </Link>
             );
           })}
-          <Link target="_blank" href="" underline="none">
+          <Link target="_blank" href="https://twitter.com/brucexu_eth" underline="none">
             <Box width="186px" height="84px" display="flex" justifyContent="center" alignItems="center" border="1px solid #D9D9D9" borderRadius="6px" gap="10px">
               <Typography fontWeight={600} color="#517def">Support us</Typography>
               <Box fontSize="12px" width="14px" height="12px">

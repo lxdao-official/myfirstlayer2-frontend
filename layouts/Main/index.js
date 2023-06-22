@@ -4,26 +4,22 @@ import { useEffect } from 'react';
 import { Box, Divider, Link, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import Container from '../../components/Container';
-import LXDAOLogo from '../../components/LXDAOLogo';
 import Language from '../../components/Language';
 import { MFL2ConnectButton } from '../../components/MFL2ConnectButton';
-import MFL2 from '../../components/svg/MFL2';
-import Question from '../../components/svg/Question';
-import SectionTop from '../../sections/SectionTop';
 
 const Main = ({ children = false }) => {
   const locale = useLocale();
   const theme = useTheme();
   const titles = {
     en: [
-      { href: '#introduce', title: 'Introduce' },
-      { href: '#content', title: 'Content' },
-      { href: '#joinus', title: 'Join Us' },
+      { href: '#introduce', title: 'Introduce', target: '_self' },
+      { href: '#content', title: 'Content', target: '_self' },
+      { href: 'https://lxdao.io/joinus', title: 'Join Us', target: '_blank' },
     ],
     zh: [
-      { href: '#introduce', title: '介绍' },
-      { href: '#content', title: '内容' },
-      { href: '#joinus', title: '加入我们' },
+      { href: '#introduce', title: '介绍', target: '_self' },
+      { href: '#content', title: '内容', target: '_self' },
+      { href: 'https://lxdao.io/joinus', title: '加入我们', target: '_blank' },
     ],
   };
 
@@ -84,7 +80,7 @@ const Main = ({ children = false }) => {
                             color: theme.palette.primary.contrastText,
                           }}
                           href={v.href}
-                          target="_self"
+                          target={v.target}
                         >
                           {v.title}
                         </Link>
@@ -144,7 +140,7 @@ const Main = ({ children = false }) => {
                             cursor: 'pointer',
                           }}
                           href={v.href}
-                          target="_self"
+                          target={v.target}
                         >
                           {v.title}
                         </Link>

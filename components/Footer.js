@@ -103,7 +103,7 @@ const Footer = () => {
               <NavList
                 title="Resources"
                 items={[
-                  { name: 'LX DAO', link: 'https://lxdao.io/' },
+                  { name: 'LXDAO', link: 'https://lxdao.io/' },
                   {
                     name: 'Blog',
                     link: 'https://lxdao.notion.site/',
@@ -113,7 +113,7 @@ const Footer = () => {
               />
             </Grid>
           </Grid>
-          <Box display="flex" gap="24px" flexDirection="column" marginTop={{ lg: 0,  xs: 4 }} flex={1}>
+          <Box display="flex" gap="24px" flexDirection="column" marginTop={{ lg: 0, xs: 4 }} flex={1}>
             <Box width="147px" height="58px" component={'img'} src={'/icons/lxdao-logo.svg'} />
             <Typography variant="body1" lineHeight="24px" fontWeight={400} color="#666F85" textTransform="uppercase">
               LXDAO is an <span style={{ color: '#3C7AFF' }}>R&D</span>
