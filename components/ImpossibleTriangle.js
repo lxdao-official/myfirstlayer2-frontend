@@ -35,7 +35,7 @@ export default function ImpossibleTriangle() {
     return dis;
   };
 
-  const leftOffset = 100;
+  const leftOffset = 50;
 
   const center = { x: 138 + 69 + leftOffset, y: 94 + 80 };
   const center0 = { x: 138 + 69 + leftOffset, y: 94 + 70 };
@@ -272,7 +272,7 @@ export default function ImpossibleTriangle() {
   useEffect(() => {
     const graph = new G6.Graph({
       container: 'mountNode',
-      width: 600,
+      width: 500,
       height: 300,
       animate: true,
 
@@ -472,9 +472,9 @@ export default function ImpossibleTriangle() {
   }, [locale]);
 
   return (
-    <Box sx={{ background: '#F6F6F6', paddingTop: '30px', paddingBottom: '16px', paddingInline: { xs: '10px', sm: '100px' }, marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <Box sx={{ background: '#F6F6F6', paddingTop: '30px', paddingBottom: '16px', paddingInline: { xs: '5px', sm: '100px' }, marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box sx={{ paddingTop: '30px', display: 'flex', borderRadius: '10px', justifyContent: 'center', background: '#FFFFFF' }}>
-        <Box sx={{ background: '#FFF', color: 'black', '&>canvas': { zoom: { xs: 0.55, md: 1 } } }} id="mountNode"></Box>
+        <Box sx={{ background: '#FFF', color: 'black', '&>canvas': { zoom: { xs: 0.5, md: 1 } } }} id="mountNode"></Box>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
         <Typography fontSize={12} color="#777" marginBottom="18px">

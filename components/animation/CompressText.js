@@ -2191,11 +2191,11 @@ export default function CompressText() {
     <Box justifyContent="center" display="flex" marginTop={'50px'}>
       <Stack
         sx={{
-          padding: { xs: '20px 15px', md: '20px 65px' },
+          padding: { xs: '20px 10px', md: '20px 65px' },
           background: '#F6F6F6',
           borderRadius: '18px',
           textAlign: 'center',
-          width: mdScreen ? '530px' : '350px',
+          width: { xs: '260px', sm: '400px', md: '530px' },
           alignItems: 'center',
         }}
       >
@@ -2204,12 +2204,13 @@ export default function CompressText() {
         </Typography>
         <Stack
           sx={{
-            width: mdScreen ? '400px' : '280px',
+            // width: mdScreen ? '400px' : '270px',
+            width: { xs: '270px', sm: '330px', md: '400px' },
             // width: '400px',
             height: mdScreen ? '300px' : '350px',
             left: '0px',
             top: '0px',
-            px: mdScreen ? '48px' : '28px',
+            px: mdScreen ? '48px' : '12px',
             pt: mdScreen ? '30px' : '15px',
             pb: mdScreen ? '20px' : '0px',
             background: '#010101',

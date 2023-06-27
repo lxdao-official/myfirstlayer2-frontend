@@ -108,51 +108,39 @@ export default function Diploma() {
         <Box
           sx={{
             height: '218px',
-            left: '65px',
             background: '#F6F6F6',
             borderRadius: '18px',
+            width: '100%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
           }}
         >
-          <Box>
-            <Typography
+
+          <Link target="_blank" href="https://faucet.paradigm.xyz/">
+            <Box
+              component={'h2'}
               sx={{
-                fontSize: { md: '48px', sm: '48px' },
-                fontStyle: 'ExtraBold',
+                fontSize: { xs: "32px", sm: '48px' },
                 // fontFamily: 'Open Sans',
-                color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
                 fontWeight: 800,
               }}
             >
-              <Link target="_blank" href="https://faucet.paradigm.xyz/">
-                <h2
-                  style={{
-                    fontSize: '48px',
-                    // fontFamily: 'Open Sans',
-                    fontWeight: 800,
-                  }}
-                >
-                  OP testnet
-                </h2>
-              </Link>
-            </Typography>
-          </Box>
-          <Box>
-            <Typography
-              sx={{
-                fontSize: { md: '10px', sm: '10px' },
-                fontStyle: 'ExtraBold',
-                // fontFamily: 'Open Sans',
-                color: theme.palette?.mode === 'dark' ? '#fff' : '#777777',
-                fontWeight: 400,
-              }}
-            >
-              click here
-            </Typography>
-          </Box>
+              OP testnet
+            </Box>
+          </Link>
+          <Typography
+            sx={{
+              fontSize: "12px",
+              fontStyle: 'ExtraBold',
+              color: theme.palette?.mode === 'dark' ? '#fff' : '#777777',
+              fontWeight: 400,
+            }}
+          >
+            click here
+          </Typography>
+
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'start' }}>
           <Typography

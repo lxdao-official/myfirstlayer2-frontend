@@ -44,7 +44,7 @@ const Main = ({ children = false }) => {
                   sx={{
                     borderColor: theme.palette.primary.contrastText,
                     height: '20px',
-                    marginInline: '15px',
+                    marginInline: '5px',
                   }}
                 />
                 <Box component='img' src='/lxdao-logo-white.svg' />
@@ -56,7 +56,7 @@ const Main = ({ children = false }) => {
               </Box>
             </Stack>
             <Box width="100%" display="flex" justifyContent="space-between" alignItems="center">
-              <Box minWidth="210px" height="36px" justifyContent="start" gap={1.5} alignItems="center" display="flex">
+              <Box minWidth="175px" height="36px" justifyContent="start" gap={1.5} alignItems="center" display="flex">
                 {titles[locale].map((v, i) => {
                   return (
                     <Box
@@ -70,7 +70,7 @@ const Main = ({ children = false }) => {
                       <Typography
                         sx={{
                           cursor: 'pointer',
-                          fontSize: '15px',
+                          fontSize: '12px',
                           fontWeight: '500',
                         }}
                       >

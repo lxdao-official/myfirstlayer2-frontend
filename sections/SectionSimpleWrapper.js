@@ -14,7 +14,7 @@ export default function SectionSimpleWrapper({ id, title, desc, children, childO
           color="text.primary"
           sx={{
             fontWeight: 700,
-            lineHeight: { xs: '20px', sm: '36px' },
+            lineHeight: { xs: '30px', sm: '36px' },
             fontSize: { xs: '24px', sm: '36px' },
           }}
         >

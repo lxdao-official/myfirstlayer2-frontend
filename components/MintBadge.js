@@ -200,7 +200,7 @@ export default function MintBadge() {
           width={2048}
           height={2427}
           style={{
-            zoom: mdScreen ? 0.18 : 0.18,
+            zoom: mdScreen ? 0.18 : 0.12,
             border: '1px solid #FFFFFF',
             borderRadius: '98px',
           }}
@@ -212,7 +212,7 @@ export default function MintBadge() {
           disabled={swichLoading}
           onClick={() => switchNetwork?.(chains[0].id)}
           sx={{
-            width: '265px',
+            width: '255px',
             height: '64px',
             fontSize: '20px',
             fontWeight: '800',
@@ -233,7 +233,7 @@ export default function MintBadge() {
           disabled={isLoading | mintLoading}
           onClick={handleMint}
           sx={{
-            width: '265px',
+            width: '255px',
             height: '64px',
             fontSize: '20px',
             fontWeight: '800',

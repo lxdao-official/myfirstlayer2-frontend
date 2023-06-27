@@ -384,7 +384,7 @@ export default function SectionTeam() {
                 }
               }}
               item
-              xs={12 / 7}
+              xs={12 / 5}
               sm={12 / 7}
               md={12 / 12}
               key={i}
