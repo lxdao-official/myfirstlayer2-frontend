@@ -5,7 +5,7 @@ export default function NewButton({ type = "blue", children, onClick }) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '12px 18px',
+        padding: { xs: '12px 10px', md: '12px 18px' },
         bgcolor: type === "blue" ? '#0086f2' : '#1a1a1a',
         color: '#fff',
         fontSize: '16px',

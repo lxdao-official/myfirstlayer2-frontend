@@ -38,7 +38,7 @@ const Main = ({ children = false }) => {
           <Container display="flex" flexDirection="column" gap={1} alignItems="center" paddingY={2} width="100%">
             <Stack width="100%" height="45px" direction="row" justifyContent="space-between">
               <Box display="flex" flexDirection="row" alignItems="center" mr='20px'>
-                <Box component={'img'} src='/mfl2-logo-new.svg' />
+                <Box component={'img'} src='/mfl2-logo-new.svg' sx={{ width: "180px" }} />
                 <Divider
                   orientation="vertical"
                   sx={{
@@ -56,7 +56,7 @@ const Main = ({ children = false }) => {
               </Box>
             </Stack>
             <Box width="100%" display="flex" justifyContent="space-between" alignItems="center">
-              <Box minWidth="240px" height="36px" justifyContent="start" gap={3} alignItems="center" display="flex" mr="30px">
+              <Box minWidth="210px" height="36px" justifyContent="start" gap={1.5} alignItems="center" display="flex">
                 {titles[locale].map((v, i) => {
                   return (
                     <Box
