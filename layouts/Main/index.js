@@ -38,13 +38,13 @@ const Main = ({ children = false }) => {
           <Container display="flex" flexDirection="column" gap={1} alignItems="center" paddingY={2} width="100%">
             <Stack width="100%" height="45px" direction="row" justifyContent="space-between">
               <Box display="flex" flexDirection="row" alignItems="center" mr='20px'>
-                <Box component={'img'} src='/mfl2-logo-new.svg' sx={{ width: "180px" }} />
+                <Box component={'img'} src='/mfl2-logo-new.svg' sx={{ width: { xs: "180px", sm: "220px" } }} />
                 <Divider
                   orientation="vertical"
                   sx={{
                     borderColor: theme.palette.primary.contrastText,
                     height: '20px',
-                    marginInline: '5px',
+                    marginInline: { xs: '5px', sm: "15px" },
                   }}
                 />
                 <Box component='img' src='/lxdao-logo-white.svg' />
@@ -70,7 +70,7 @@ const Main = ({ children = false }) => {
                       <Typography
                         sx={{
                           cursor: 'pointer',
-                          fontSize: '12px',
+                          fontSize: { xs: '12px', sm: '16px' },
                           fontWeight: '500',
                         }}
                       >
