@@ -35,7 +35,15 @@
 }
 
 .root em {
-  max-width: 100%;
+  display: block;
+  font-size: 14px;
+  color: #8c9db4;
+  text-align: center;
+  width: 80%;
+}
+.root p:has(em) {
+  display: flex;
+  justify-content: center;
 }
 
 .root ul {
