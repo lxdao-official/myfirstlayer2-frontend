@@ -1,3 +1,6 @@
+import { useTranslations } from 'next-intl';
+import { formatChapterTitle } from '../utils.js';
+import Head from 'next/head'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useLocale } from 'next-intl';
 import { MDXRemote } from 'next-mdx-remote';
@@ -37,7 +40,7 @@ export default function Content(props) {
     currentIndex: 0,
   });
   const [mdxSource, setMdxSource] = useState('');
-
+  const [ready, setReady] = useState(false);
   const [directory, setDirectory] = useState(md.props.file);
   const [readStatus, setReadStatus] = useState([true]);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -48,7 +51,7 @@ export default function Content(props) {
   });
   const [isLoading, setLoading] = useState(false);
   const { ref, inView, entry } = useInView({
-    threshold: 0.3,
+    threshold: 0,
   });
 
   const locale = useLocale();
@@ -329,6 +332,7 @@ export default function Content(props) {
   }, [directory, selectedIndex]);
 
   useEffect(() => {
+    setReady(false)
     const directoryStatus = getStorage('directoryStatus');
     const selectedIndexStore = getStorage('selectedIndex');
     const jsonDirectory = JSON.parse(directoryStatus)?.data;
@@ -352,14 +356,18 @@ export default function Content(props) {
         next: jsonSelect === chapterCount + 4 ? '' : jsonDirectory[jsonSelect + 1]?.text,
       });
     }
+    setReady(true)
   }, []);
-
+  const t = useTranslations('Directory');
   return (
     <>
+      <Head>
+        <title>{ready && (t(formatChapterTitle(name)) + ' - ')}My First Layer2</title>
+      </Head>
       <Link id="content" sx={{ position: 'relative' }}></Link>
       <Typography id={'root'}></Typography>
       <ReadContext.Provider value={{ readData, setReadData }}>
-        <Container paddingX={{ xs: 2, sm: 2 }}>
+        <Container paddingX={2}>
           <Box
             ref={ref}
             sx={{
@@ -384,7 +392,7 @@ export default function Content(props) {
                 variant="rect"
                 width={mdScreen ? '1200px' : '100vw'}
                 sx={{
-                  height: '100vh',
+                  height: '400vh',
                   marginLeft: mdScreen ? '32px' : 0,
                 }}
               >

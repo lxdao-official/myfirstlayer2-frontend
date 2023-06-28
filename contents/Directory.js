@@ -126,7 +126,7 @@ export function MobileDirectory(props) {
 
   const onNext = (action, data) => {
     onTabChapter(action, data);
-    setDrawerStatus(false);
+    // setDrawerStatus(false);
   };
 
   return (
@@ -159,7 +159,9 @@ export function MobileDirectory(props) {
       <SwipeableDrawer anchor="bottom" open={drawerStatus} onClose={() => setDrawerStatus(false)} onOpen={() => setDrawerStatus(true)}>
         <Box paddingX={3} paddingY={2} height="400px" >
           {directory?.map((row, index) => (
-            <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onNext('lastOrNext', { index, ...row })} {...props} />
+            <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => {
+              onNext('lastOrNext', { index, ...row })
+            }} {...props} />
           ))}
           <Box sx={{ height: "16px", width: 2 }} />
         </Box>
