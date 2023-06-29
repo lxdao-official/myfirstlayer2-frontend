@@ -7,7 +7,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-
+import { useRouter } from 'next/router'
 // import { Affix } from 'antd';
 import { Box, Hidden, Link, Skeleton, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -130,6 +130,8 @@ export default function Content(props) {
           next: directory[selectedIndex]?.text,
         });
         setSelectedIndex(selectedIndex - 2);
+        router.push(`#${directory[selectedIndex - 2].text}`)
+
 
         setName(newState[selectedIndex - 2]?.text);
       } else {
@@ -145,6 +147,7 @@ export default function Content(props) {
           status: true,
         };
         setSelectedIndex(selectedIndex - 1);
+        router.push(`#${directory[selectedIndex - 1].text}`)
 
         setName(newState[selectedIndex - 1]?.text);
       }
@@ -187,6 +190,7 @@ export default function Content(props) {
           next: selectedIndex !== chapterCount ? directory[selectedIndex + 3]?.text : '',
         });
         setSelectedIndex(selectedIndex + 2);
+        router.push(`#${directory[selectedIndex + 2].text}`)
 
         setName(newState[selectedIndex + 2]?.text);
       } else {
@@ -203,6 +207,7 @@ export default function Content(props) {
           status: true,
         };
         setSelectedIndex(selectedIndex + 1);
+        router.push(`#${directory[selectedIndex + 1].text}`)
 
         setName(newState[selectedIndex + 1]?.text);
       }
@@ -231,6 +236,7 @@ export default function Content(props) {
           next: newState[chapter.index + 2].text,
         });
         setSelectedIndex(chapter?.index + 1);
+        router.push(`#${directory[chapter?.index + 1].text}`)
 
         setName(newState[chapter.index + 1]?.text);
       } else if (chapter.index === 0) {
@@ -240,6 +246,7 @@ export default function Content(props) {
           next: newState[chapter.index + 2].text,
         });
         setSelectedIndex(chapter?.index);
+        router.push(`#${directory[chapter?.index].text}`)
 
         setName(newState[chapter.index]?.text);
       } else {
@@ -279,6 +286,8 @@ export default function Content(props) {
           next: chapter?.index !== chapterCount + 3 && newState[chapter.index + 1].text,
         });
         setSelectedIndex(chapter?.index);
+        // console.log(directory)
+        router.push(`#${directory[chapter?.index].text}`)
 
         setName(newState[chapter.index]?.text);
       }
@@ -330,21 +339,33 @@ export default function Content(props) {
       setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
     }
   }, [directory, selectedIndex]);
+  const router = useRouter()
 
   useEffect(() => {
     setReady(false)
     const directoryStatus = getStorage('directoryStatus');
     const selectedIndexStore = getStorage('selectedIndex');
     const jsonDirectory = JSON.parse(directoryStatus)?.data;
-    const jsonSelect = JSON.parse(selectedIndexStore)?.data;
+    let jsonSelect = JSON.parse(selectedIndexStore)?.data;
+    const aspath = router.asPath.split('#')[1];
+
+
+
     if (directoryStatus) {
       setDirectory(JSON.parse(directoryStatus).data);
     }
     if (selectedIndexStore) {
-      setSelectedIndex(JSON.parse(selectedIndexStore)?.data);
       if (jsonDirectory) {
+        for (let i = 0; i < jsonDirectory.length; i++) {
+          if (directory[i].text == aspath) {
+            jsonSelect = i
+            break;
+          }
+        }
         setName(jsonDirectory[jsonSelect]?.text);
+        // setName(jsonDirectory[jsonSelect]?.text);
       }
+      setSelectedIndex(jsonSelect);
       setReadData({
         counter: chapterCount,
         read: computeReadCount(jsonDirectory),
