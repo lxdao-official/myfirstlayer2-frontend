@@ -29,6 +29,17 @@
   padding-bottom: 12px;
   /* text-indent: 2em; */
 }
+.root th {
+  border-bottom: 2px solid #ccc;
+}
+.root td {
+  border-bottom: 1px solid #ccc;
+}
+.root table {
+  margin:0 auto;
+  border-collapse: collapse;
+  /* border: 1px solid #ccc; */
+}
 
 .root h1 {
   font-size: 36px;
