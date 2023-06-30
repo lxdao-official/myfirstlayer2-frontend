@@ -2,8 +2,8 @@
   "Index": {
     "button": "Start Learning",
     "title": "Welcome to My first layer2.",
-    "description": "MyFirstLayer2 is the second educational nonprofit product of LXDAO's \"My First\" series. The blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn.",
-    "description2": "MyFirstLayer2 is the second educational nonprofit product of LXDAO's \"My First\" series. Blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn. This product popularizes all Layer 2 knowledge to Web3 users in the form of text + pictures + animation. This work is sponsored by the Ethereum Foundation and produced by the LXDAO team. We are very grateful to the Ethereum Foundation for its support of the Web3 ecology."
+    "description": "MyFirstLayer2 is the educational nonprofit product of LXDAO's \"My First\" series.\nWe aim to simplify Layer 2 knowledge for Web3 users, promoting its safe usage through interactive texts, images, and animations.\nThis project is sponsored by the Ethereum Foundation.",
+    "description2": "MyFirstLayer2 is the educational nonprofit product of LXDAO's \"My First\" series.\nWe aim to simplify Layer 2 knowledge for Web3 users, promoting its safe usage through interactive texts, images, and animations.\nThis project is sponsored by the Ethereum Foundation."
   },
 
   "PageLayout": {
@@ -87,17 +87,17 @@
   },
   "Diploma": {
     "title": "Diploma",
-    "content-1":"Congratulations on completing all the chapters of MyFirstLayer2!",
-    "content-2":"In recognition of your efforts and achievements, we've prepared a special graduation badge for you. This badge stands as an acknowledgement of your learning accomplishments and is a cherished honor.",
-    "content-3":"Claiming the badge is an easy process. Here's what you need to do:",
-    "content-4":"1. Click the \"Connect Wallet\" button situated in the top right corner of our website to link your wallet. (Make sure you switch to the Optimism network.)",
-    "content-5":"2*.Navigate to the OP testnet faucet address to collect test tokens. (At present, we'll provide the link to the test network, and in due course, we'll offer the link to the OP mainnet's Claim interaction component.)",
-    "content-6":"3.Hit the \"Claim\" button and voila! You've successfully received your graduation badge!",
-    "content-7":"Congratulations! You've successfully claimed your graduation badge! We hope this badge acts as a source of inspiration and motivation for your ongoing journey. We eagerly anticipate your sustained dedication to learning and your adventurous journey into the world of Web3!"
+    "content-1": "Congratulations on completing all the chapters of MyFirstLayer2!",
+    "content-2": "In recognition of your efforts and achievements, we've prepared a special graduation badge for you. This badge stands as an acknowledgement of your learning accomplishments and is a cherished honor.",
+    "content-3": "Claiming the badge is an easy process. Here's what you need to do:",
+    "content-4": "1. Click the \"Connect Wallet\" button situated in the top right corner of our website to link your wallet. (Make sure you switch to the Optimism network.)",
+    "content-5": "2*.Navigate to the OP testnet faucet address to collect test tokens. (At present, we'll provide the link to the test network, and in due course, we'll offer the link to the OP mainnet's Claim interaction component.)",
+    "content-6": "3.Hit the \"Claim\" button and voila! You've successfully received your graduation badge!",
+    "content-7": "Congratulations! You've successfully claimed your graduation badge! We hope this badge acts as a source of inspiration and motivation for your ongoing journey. We eagerly anticipate your sustained dedication to learning and your adventurous journey into the world of Web3!"
   },
-  "SectionLXDAOIntro":{
-    "title":"LXDAO IS AN R&D- FOCUSED DAO IN WEB3",
-    "content":"Focus on supporting valuable Web3 Public Goods and Open Source sustainably.",
-    "button":"JOIN US"
+  "SectionLXDAOIntro": {
+    "title": "LXDAO IS AN R&D- FOCUSED DAO IN WEB3",
+    "content": "Focus on supporting valuable Web3 Public Goods and Open Source sustainably.",
+    "button": "JOIN US"
   }
 }
