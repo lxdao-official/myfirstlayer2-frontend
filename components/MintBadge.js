@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { useContext } from 'react';
 import { useAccount, useBalance, useContractWrite, useNetwork, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
@@ -9,7 +10,6 @@ import { Stack } from '@mui/system';
 import abi from '../abi.json';
 import { ReadContext } from '../contents/context';
 import showMessage from './showMessage';
-import { useRouter } from 'next/router';
 
 export default function MintBadge() {
   // ATTENTION: Please add the address of the corresponding network.
@@ -46,12 +46,12 @@ export default function MintBadge() {
     if (read != counter) {
       showMessage({
         type: 'error',
-        title: 'Not Complete',
-        body: 'Please Read All.',
+        title: 'Not eligible for minting',
+        body: 'Kindly review the entire content before proceeding with minting.',
       });
       return;
     }
-    if (typeof chain.id == "undefined") {
+    if (typeof chain.id == 'undefined') {
       showMessage({
         type: 'error',
         title: 'Please Connect Wallet',
@@ -181,7 +181,7 @@ export default function MintBadge() {
     if (imgLoaded) {
       router.reload();
     }
-  }, [address])
+  }, [address]);
 
   return (
     <Stack
