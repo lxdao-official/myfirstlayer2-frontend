@@ -84,9 +84,9 @@ export default function SectionTop({ }) {
             <Link href='#content' underline='none' target='_self'><NewButton>{t("button")}</NewButton></Link>
           </Box>
           <Box display="flex" gap={2} mt={8}>
-            <Link href="https://twitter.com/LXDAO_Official" target="_blank">
+            {/* <Link href="https://twitter.com/LXDAO_Official" target="_blank">
               <Box component={'img'} src={'/icons/telegram-circle.svg'} />
-            </Link>
+            </Link> */}
             <Link href="https://twitter.com/LXDAO_Official" target="_blank">
               <Box component={'img'} src={'/icons/twitter-circle.svg'} />
             </Link>
