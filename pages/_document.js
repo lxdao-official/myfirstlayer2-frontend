@@ -1,5 +1,4 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-import Script from 'next/script';
 
 export default function Document() {
   return (
@@ -24,17 +23,6 @@ export default function Document() {
           }
         />
         <meta property="og:url" content="https://lxdao.io/" />
-
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-YBM7P1VZH9" />
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-YBM7P1VZH9');
-          `}
-        </Script>
       </Head>
       <base target="_blank"></base>
       <body>
