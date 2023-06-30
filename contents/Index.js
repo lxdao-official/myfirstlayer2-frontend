@@ -383,7 +383,7 @@ export default function Content(props) {
   return (
     <>
       <Head>
-        <title>{ready && (t(formatChapterTitle(name)) + ' - ')}My First Layer2</title>
+        <title>{ready && (t(formatChapterTitle(name)) + ' - ')}My First Layer2  - An education project for newbies to learn and interact with Layer2</title>
       </Head>
       <Link id="content" sx={{ position: 'relative' }}></Link>
       <Typography id={'root'}></Typography>
