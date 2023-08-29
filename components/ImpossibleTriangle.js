@@ -340,21 +340,6 @@ export default function ImpossibleTriangle() {
           y: innerNearOuterTriangle[index].y,
         });
       }
-      // const d012 = distanceOfPoint2Line(p0, outerTriangle[1], outerTriangle[2]);
-      // if (d012 < 140) {
-      //   graph.updateItem(nodeItem, {
-      //     x: center.x,
-      //     y: center.y,
-      //   });
-      //   graph.updateItem(node1, {
-      //     x: innerNearOuterTriangle[1].x,
-      //     y: innerNearOuterTriangle[1].y,
-      //   });
-      //   graph.updateItem(node2, {
-      //     x: innerNearOuterTriangle[2].x,
-      //     y: innerNearOuterTriangle[2].y,
-      //   });
-      // }
     } else if (nodeItem === node1) {
       //drag left point
       const dis1 = twoPointDistance(p1, outerTriangle[1]);
@@ -364,22 +349,6 @@ export default function ImpossibleTriangle() {
           y: innerNearOuterTriangle[index].y,
         });
       }
-
-      // const d102 = distanceOfPoint2Line(p1, outerTriangle[0], outerTriangle[2]);
-      // if (d102 < 140) {
-      //   graph.updateItem(nodeItem, {
-      //     x: center.x,
-      //     y: center.y,
-      //   });
-      //   graph.updateItem(node0, {
-      //     x: innerNearOuterTriangle[0].x,
-      //     y: innerNearOuterTriangle[0].y,
-      //   });
-      //   graph.updateItem(node2, {
-      //     x: innerNearOuterTriangle[2].x,
-      //     y: innerNearOuterTriangle[2].y,
-      //   });
-      // }
     } else {
       //drag right point
       const dis2 = twoPointDistance(p2, outerTriangle[2]);
@@ -389,22 +358,6 @@ export default function ImpossibleTriangle() {
           y: innerNearOuterTriangle[index].y,
         });
       }
-
-      // const d201 = distanceOfPoint2Line(p2, outerTriangle[0], outerTriangle[1]);
-      // if (d201 < 140) {
-      //   graph.updateItem(nodeItem, {
-      //     x: center.x,
-      //     y: center.y,
-      //   });
-      //   graph.updateItem(node0, {
-      //     x: innerNearOuterTriangle[0].x,
-      //     y: innerNearOuterTriangle[0].y,
-      //   });
-      //   graph.updateItem(node1, {
-      //     x: innerNearOuterTriangle[1].x,
-      //     y: innerNearOuterTriangle[1].y,
-      //   });
-      // }
     }
 
     const dis0 = twoPointDistance(p0, outerTriangle[0]);
@@ -583,7 +536,7 @@ export default function ImpossibleTriangle() {
       <Box sx={{ paddingTop: '30px', display: 'flex', borderRadius: '10px', justifyContent: 'center', background: '#FFFFFF' }}>
         <Box sx={{ background: '#FFF', color: 'black', '&>canvas': { zoom: { xs: 0.5, md: 1 } } }} id="mountNode"></Box>
       </Box>
-      <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'center' }}>
+      <Box sx={{ marginTop: '17px', display: { xs: 'flex', md: 'none' }, justifyContent: 'center' }}>
         <Box sx={{ display: 'flex', height: '30px', width: '70px', textAlign: 'center', gap: '10px', justifyContent: 'center' }}>
           <Box sx={{ color: '#fff', width: '30px', background: '#000000', borderRadius: '6px', display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'center' }}>
             <Box onClick={handleNext} component="img" sx={{ rotate: '0deg' }} src="/arrow.svg" />
@@ -593,7 +546,7 @@ export default function ImpossibleTriangle() {
 
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
         <Typography fontSize={12} color="#777" marginBottom="18px">
-          {t('impossibleTriangle-content-1')}
+          {mdScreen ? t('impossibleTriangle-content-1') : t('impossibleTriangle-content-14')}
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '19px' }}>
