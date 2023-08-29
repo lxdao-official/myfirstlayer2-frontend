@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 export default function ImpossibleTriangle() {
   const t = useTranslations('ImpossibleTriangle');
@@ -15,7 +15,8 @@ export default function ImpossibleTriangle() {
   const [side, setSide] = useState('');
   const sideRef = useRef(null);
   sideRef.current = side;
-
+  const theme = useTheme();
+  const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
   const distanceOfPoint2Line = (point0, point1, point2) => {
     const x = point0.x;
     const y = point0.y;
@@ -269,7 +270,219 @@ export default function ImpossibleTriangle() {
     return a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1;
   };
 
+  // change status by code
+  const autoChangeStatus = (type) => {
+    const graph = window.graph;
+    const node0 = graph.cfg.nodes[0];
+    const node1 = graph.cfg.nodes[1];
+    const node2 = graph.cfg.nodes[2];
+
+    if (type === 1) {
+      // left side
+      node0._cfg.model.y = innerNearOuterTriangle[0].y;
+      node0._cfg.model.x = innerNearOuterTriangle[0].x;
+      changeStatus(0, true, node0, false);
+      node1._cfg.model.y = innerNearOuterTriangle[1].y;
+      node1._cfg.model.x = innerNearOuterTriangle[1].x;
+      changeStatus(1, true, node1, false);
+    } else if (type === 2) {
+      //bottom side
+      node1._cfg.model.y = innerNearOuterTriangle[1].y;
+      node1._cfg.model.x = innerNearOuterTriangle[1].x;
+      changeStatus(1, true, node1, false);
+      node2._cfg.model.y = innerNearOuterTriangle[2].y;
+      node2._cfg.model.x = innerNearOuterTriangle[2].x;
+      changeStatus(2, true, node2, false);
+    } else {
+      // right side
+      node2._cfg.model.y = innerNearOuterTriangle[2].y;
+      node2._cfg.model.x = innerNearOuterTriangle[2].x;
+      changeStatus(2, true, node2, false);
+      node0._cfg.model.y = innerNearOuterTriangle[0].y;
+      node0._cfg.model.x = innerNearOuterTriangle[0].x;
+      changeStatus(0, true, node0, false);
+    }
+  };
+
+  /**
+   * change status
+   * @param {*} index inner node index
+   * @param {*} isIn is in inner triangle
+   * @param {*} nodeItem : current dragging node
+   * @param {*} isHandDrag : whether dragging by hand
+   */
+  const changeStatus = (index, isIn, nodeItem, isHandDrag) => {
+    const graph = window.graph;
+    if (isHandDrag && graph.cfg.edges[6]) {
+      graph.removeItem(graph.cfg.edges[6]);
+    }
+
+    if (!isIn) {
+      // point is out of triangle
+      graph.updateItem(nodeItem, {
+        x: innerNearOuterTriangle[index].x,
+        y: innerNearOuterTriangle[index].y,
+      });
+    }
+
+    const p0 = graph.cfg.nodes[0]._cfg.model;
+    const p1 = graph.cfg.nodes[1]._cfg.model;
+    const p2 = graph.cfg.nodes[2]._cfg.model;
+    const node0 = graph.cfg.nodes[0];
+    const node1 = graph.cfg.nodes[1];
+    const node2 = graph.cfg.nodes[2];
+    if (nodeItem === node0) {
+      //drag top point
+      const dis0 = twoPointDistance(p0, outerTriangle[0]);
+      if (dis0 < 124) {
+        graph.updateItem(nodeItem, {
+          x: innerNearOuterTriangle[index].x,
+          y: innerNearOuterTriangle[index].y,
+        });
+      }
+      // const d012 = distanceOfPoint2Line(p0, outerTriangle[1], outerTriangle[2]);
+      // if (d012 < 140) {
+      //   graph.updateItem(nodeItem, {
+      //     x: center.x,
+      //     y: center.y,
+      //   });
+      //   graph.updateItem(node1, {
+      //     x: innerNearOuterTriangle[1].x,
+      //     y: innerNearOuterTriangle[1].y,
+      //   });
+      //   graph.updateItem(node2, {
+      //     x: innerNearOuterTriangle[2].x,
+      //     y: innerNearOuterTriangle[2].y,
+      //   });
+      // }
+    } else if (nodeItem === node1) {
+      //drag left point
+      const dis1 = twoPointDistance(p1, outerTriangle[1]);
+      if (dis1 < 124) {
+        graph.updateItem(nodeItem, {
+          x: innerNearOuterTriangle[index].x,
+          y: innerNearOuterTriangle[index].y,
+        });
+      }
+
+      // const d102 = distanceOfPoint2Line(p1, outerTriangle[0], outerTriangle[2]);
+      // if (d102 < 140) {
+      //   graph.updateItem(nodeItem, {
+      //     x: center.x,
+      //     y: center.y,
+      //   });
+      //   graph.updateItem(node0, {
+      //     x: innerNearOuterTriangle[0].x,
+      //     y: innerNearOuterTriangle[0].y,
+      //   });
+      //   graph.updateItem(node2, {
+      //     x: innerNearOuterTriangle[2].x,
+      //     y: innerNearOuterTriangle[2].y,
+      //   });
+      // }
+    } else {
+      //drag right point
+      const dis2 = twoPointDistance(p2, outerTriangle[2]);
+      if (dis2 < 124) {
+        graph.updateItem(nodeItem, {
+          x: innerNearOuterTriangle[index].x,
+          y: innerNearOuterTriangle[index].y,
+        });
+      }
+
+      // const d201 = distanceOfPoint2Line(p2, outerTriangle[0], outerTriangle[1]);
+      // if (d201 < 140) {
+      //   graph.updateItem(nodeItem, {
+      //     x: center.x,
+      //     y: center.y,
+      //   });
+      //   graph.updateItem(node0, {
+      //     x: innerNearOuterTriangle[0].x,
+      //     y: innerNearOuterTriangle[0].y,
+      //   });
+      //   graph.updateItem(node1, {
+      //     x: innerNearOuterTriangle[1].x,
+      //     y: innerNearOuterTriangle[1].y,
+      //   });
+      // }
+    }
+
+    const dis0 = twoPointDistance(p0, outerTriangle[0]);
+    const dis1 = twoPointDistance(p1, outerTriangle[1]);
+    const dis2 = twoPointDistance(p2, outerTriangle[2]);
+
+    if (dis0 < triggerDis && dis1 < triggerDis && dis2 < triggerDis) {
+      if (nodeItem === node0) {
+        graph.updateItem(node2, center2); //2
+        changeColor(graph, 1, '#FF6055');
+      } else if (nodeItem === node1) {
+        graph.updateItem(node0, center0); //0
+        changeColor(graph, 2, '#FFC22F');
+      } else {
+        graph.updateItem(node1, center1); //1
+        changeColor(graph, 3, '#5A7FF3');
+      }
+    } else {
+      if (dis0 < triggerDis && dis1 < triggerDis) {
+        graph.updateItem(node2, center2); //2
+        changeColor(graph, 1, '#FF6055');
+      } else if (dis1 < triggerDis && dis2 < triggerDis) {
+        graph.updateItem(node0, center0); //0
+        changeColor(graph, 2, '#FFC22F');
+      } else if (dis0 < triggerDis && dis2 < triggerDis) {
+        graph.updateItem(node1, center1); //1
+        changeColor(graph, 3, '#5A7FF3');
+      }
+
+      innerPoints[index].y = nodeItem._cfg.model.y;
+      innerPoints[index].x = nodeItem._cfg.model.x;
+      setInnerPoints([...innerPoints]);
+    }
+    dragNodesRef.current.push(index);
+    setDragNodes([...dragNodesRef.current]);
+    if (dragNodesRef.current.length === 1) {
+      setTimeout(() => {
+        if (dragNodesRef.current.length === 1) {
+          graph.updateItem(graph.cfg.nodes[0], {
+            x: oldInner[0].x,
+            y: oldInner[0].y,
+          });
+          graph.updateItem(graph.cfg.nodes[1], {
+            x: oldInner[1].x,
+            y: oldInner[1].y,
+          });
+          graph.updateItem(graph.cfg.nodes[2], {
+            x: oldInner[2].x,
+            y: oldInner[2].y,
+          });
+        }
+      }, 5000);
+    }
+  };
+
   useEffect(() => {
+    if (mdScreen) {
+      data.edges.push({
+        source: '0',
+        target: '3',
+        // label: '拖拽',
+        style: {
+          lineWidth: 3,
+
+          endArrow: {
+            path: 'M 4,0 L -4,-4 L -4,4 Z',
+            d: 40,
+          },
+        },
+        labelCfg: {
+          autoRotate: true,
+          refY: 10,
+          refX: -20,
+          style: { fill: 'black', fontFamily: 'sucaijishikangkangti' },
+        },
+      });
+    }
+
     const graph = new G6.Graph({
       container: 'mountNode',
       width: 500,
@@ -282,8 +495,6 @@ export default function ImpossibleTriangle() {
             type: 'drag-node',
             enableDelegate: false,
             shouldBegin: (e) => {
-              // 不允许拖拽 id 为 'node1' 的节点
-
               if (e.item && (e.item.getModel().id === '3' || e.item.getModel().id === '4' || e.item.getModel().id === '5')) {
                 return false;
               }
@@ -293,13 +504,10 @@ export default function ImpossibleTriangle() {
               return true;
             },
           },
-        ], // 允许拖拽画布、放缩画布、拖拽节点
+        ], // not allow drag and drop
       },
       nodeStateStyles: {
         fill: 'transparent',
-        // 鼠标 hover 上节点，即 hover 状态为 true 时的样式
-
-        // 鼠标点击节点，即 click 状态为 true 时的样式
         click: {
           stroke: '#000',
           lineWidth: 3,
@@ -308,129 +516,17 @@ export default function ImpossibleTriangle() {
     });
 
     window.graph = graph;
+
     graph.on('node:dragend', (e) => {
       const index = graph.cfg.nodes.indexOf(e.target.cfg.parent.cfg.item);
       if (index === 3 || index === 4 || index === 5) {
+        // drag outer pointer
         return;
       }
       const isIn = pointInTriangle(e.canvasX, e.canvasY);
 
       const nodeItem = e.item;
-      if (!isIn) {
-        // point is out of triangle
-        graph.updateItem(nodeItem, {
-          x: innerNearOuterTriangle[index].x,
-          y: innerNearOuterTriangle[index].y,
-        });
-      }
-
-      const p0 = graph.cfg.nodes[0]._cfg.model;
-      const p1 = graph.cfg.nodes[1]._cfg.model;
-      const p2 = graph.cfg.nodes[2]._cfg.model;
-      const node0 = graph.cfg.nodes[0];
-      const node1 = graph.cfg.nodes[1];
-      const node2 = graph.cfg.nodes[2];
-      if (nodeItem === node0) {
-        const d012 = distanceOfPoint2Line(p0, outerTriangle[1], outerTriangle[2]);
-        if (d012 < 140) {
-          graph.updateItem(nodeItem, {
-            x: center.x,
-            y: center.y,
-          });
-          graph.updateItem(node1, {
-            x: innerNearOuterTriangle[1].x,
-            y: innerNearOuterTriangle[1].y,
-          });
-          graph.updateItem(node2, {
-            x: innerNearOuterTriangle[2].x,
-            y: innerNearOuterTriangle[2].y,
-          });
-        }
-      } else if (nodeItem === node1) {
-        const d102 = distanceOfPoint2Line(p1, outerTriangle[0], outerTriangle[2]);
-        if (d102 < 140) {
-          graph.updateItem(nodeItem, {
-            x: center.x,
-            y: center.y,
-          });
-          graph.updateItem(node0, {
-            x: innerNearOuterTriangle[0].x,
-            y: innerNearOuterTriangle[0].y,
-          });
-          graph.updateItem(node2, {
-            x: innerNearOuterTriangle[2].x,
-            y: innerNearOuterTriangle[2].y,
-          });
-        }
-      } else {
-        const d201 = distanceOfPoint2Line(p2, outerTriangle[0], outerTriangle[1]);
-        if (d201 < 140) {
-          graph.updateItem(nodeItem, {
-            x: center.x,
-            y: center.y,
-          });
-          graph.updateItem(node0, {
-            x: innerNearOuterTriangle[0].x,
-            y: innerNearOuterTriangle[0].y,
-          });
-          graph.updateItem(node1, {
-            x: innerNearOuterTriangle[1].x,
-            y: innerNearOuterTriangle[1].y,
-          });
-        }
-      }
-
-      const dis0 = twoPointDistance(p0, outerTriangle[0]);
-      const dis1 = twoPointDistance(p1, outerTriangle[1]);
-      const dis2 = twoPointDistance(p2, outerTriangle[2]);
-
-      if (dis0 < triggerDis && dis1 < triggerDis && dis2 < triggerDis) {
-        if (nodeItem === node0) {
-          graph.updateItem(node2, center2); //2
-          changeColor(graph, 1, '#FF6055');
-        } else if (nodeItem === node1) {
-          graph.updateItem(node0, center0); //0
-          changeColor(graph, 2, '#FFC22F');
-        } else {
-          graph.updateItem(node1, center1); //1
-          changeColor(graph, 3, '#5A7FF3');
-        }
-      } else {
-        if (dis0 < triggerDis && dis1 < triggerDis) {
-          graph.updateItem(node2, center2); //2
-          changeColor(graph, 1, '#FF6055');
-        } else if (dis1 < triggerDis && dis2 < triggerDis) {
-          graph.updateItem(node0, center0); //0
-          changeColor(graph, 2, '#FFC22F');
-        } else if (dis0 < triggerDis && dis2 < triggerDis) {
-          graph.updateItem(node1, center1); //1
-          changeColor(graph, 3, '#5A7FF3');
-        }
-
-        innerPoints[index].y = nodeItem._cfg.model.y;
-        innerPoints[index].x = nodeItem._cfg.model.x;
-        setInnerPoints([...innerPoints]);
-      }
-      dragNodesRef.current.push(index);
-      setDragNodes([...dragNodesRef.current]);
-      if (dragNodesRef.current.length === 1) {
-        setTimeout(() => {
-          if (dragNodesRef.current.length === 1) {
-            graph.updateItem(graph.cfg.nodes[0], {
-              x: oldInner[0].x,
-              y: oldInner[0].y,
-            });
-            graph.updateItem(graph.cfg.nodes[1], {
-              x: oldInner[1].x,
-              y: oldInner[1].y,
-            });
-            graph.updateItem(graph.cfg.nodes[2], {
-              x: oldInner[2].x,
-              y: oldInner[2].y,
-            });
-          }
-        }, 5000);
-      }
+      changeStatus(index, isIn, nodeItem, true);
     });
 
     // mouse enter
@@ -465,17 +561,36 @@ export default function ImpossibleTriangle() {
         },
       });
     });
+    autoChangeStatus(2);
     return () => {
       graph.clear();
       graph.destroy();
     };
   }, [locale]);
 
+  const handleNext = () => {
+    if (sideRef.current === 1) {
+      autoChangeStatus(2);
+    } else if (sideRef.current === 2) {
+      autoChangeStatus(3);
+    } else {
+      autoChangeStatus(1);
+    }
+  };
+
   return (
     <Box sx={{ background: '#F6F6F6', paddingTop: '30px', paddingBottom: '16px', paddingInline: { xs: '5px', sm: '100px' }, marginBlock: '30px', borderRadius: '18px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box sx={{ paddingTop: '30px', display: 'flex', borderRadius: '10px', justifyContent: 'center', background: '#FFFFFF' }}>
         <Box sx={{ background: '#FFF', color: 'black', '&>canvas': { zoom: { xs: 0.5, md: 1 } } }} id="mountNode"></Box>
       </Box>
+      <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', height: '30px', width: '70px', textAlign: 'center', gap: '10px', justifyContent: 'center' }}>
+          <Box sx={{ color: '#fff', width: '30px', background: '#000000', borderRadius: '6px', display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+            <Box onClick={handleNext} component="img" sx={{ rotate: '0deg' }} src="/arrow.svg" />
+          </Box>
+        </Box>
+      </Box>
+
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
         <Typography fontSize={12} color="#777" marginBottom="18px">
           {t('impossibleTriangle-content-1')}
