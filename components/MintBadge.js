@@ -11,9 +11,11 @@ import abi from '../abi.json';
 import { ReadContext } from '../contents/context';
 import showMessage from './showMessage';
 
+import { CONTRACT_MAP } from '../config/config';
+import { to } from '@react-spring/core';
+
 export default function MintBadge() {
   // ATTENTION: Please add the address of the corresponding network.
-  const CONTRACT_MAP = { 420: '0x43c4Ebf956F7804596c333B209Ff246a476594DA' };
   const { readData } = useContext(ReadContext);
   const { read, counter } = readData;
   const router = useRouter();
@@ -33,7 +35,7 @@ export default function MintBadge() {
   const mdScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const { data, writeAsync } = useContractWrite({
-    address: CONTRACT_MAP[chain.id],
+    address: CONTRACT_MAP[chain.id]?.address,
     abi: abi,
     functionName: 'mint',
     mode: 'recklesslyUnprepared',
@@ -42,15 +44,18 @@ export default function MintBadge() {
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
+  const toFacute = () => {
+    window.open(CONTRACT_MAP[chain.id]?.facute, '_blank');
+  }
   const handleMint = async () => {
-    if (read != counter) {
-      showMessage({
-        type: 'error',
-        title: 'Not eligible for minting',
-        body: 'Kindly review the entire content before proceeding with minting.',
-      });
-      return;
-    }
+    // if (read != counter) {
+    //   showMessage({
+    //     type: 'error',
+    //     title: 'Not eligible for minting',
+    //     body: 'Kindly review the entire content before proceeding with minting.',
+    //   });
+    //   return;
+    // }
     if (typeof chain.id == 'undefined') {
       showMessage({
         type: 'error',
@@ -60,7 +65,7 @@ export default function MintBadge() {
       return;
     }
     // 检查chainid是否在CONTRACT_MAP中
-    if (!CONTRACT_MAP[chain.id]) {
+    if (!CONTRACT_MAP[chain.id]?.address) {
       showMessage({
         type: 'error',
         title: 'Not Support Chain',
@@ -73,14 +78,6 @@ export default function MintBadge() {
         type: 'error',
         title: 'Please Connect Wallet',
         body: 'Connect Wallet to mint.',
-      });
-      return;
-    }
-    if (chain?.id != chains[0]?.id) {
-      showMessage({
-        type: 'error',
-        title: 'Wrong Network',
-        body: 'Please Switch to Optimism Mainnet.',
       });
       return;
     }
@@ -99,16 +96,18 @@ export default function MintBadge() {
           image: `ipfs://${cid}`,
         })
       );
-      const providerGoerli = new ethers.providers.JsonRpcProvider(`https://opt-goerli.g.alchemy.com/v2/0nH0WXQaohzjhfuOIsjzYWj6MnJpl_4E`);
-      const gasPrice = await providerGoerli.getGasPrice();
+      const rpc = CONTRACT_MAP[chain.id]?.rpc;
 
-      const gasUnits = await new ethers.Contract(address, abi, providerGoerli).estimateGas.mint('data:application/json;base64,' + data);
+      const provider = new ethers.providers.JsonRpcProvider(rpc);
+      const gasPrice = await provider.getGasPrice();
+
+      const gasUnits = await new ethers.Contract(address, abi, provider).estimateGas.mint('data:application/json;base64,' + data);
 
       const transactionFee = gasPrice.mul(gasUnits).mul(3);
-      // console.log('transactionFee in wei: ' + transactionFee.toString());
-      // console.log('transactionFee in ether: ' + ethers.utils.formatUnits(transactionFee, 'ether'));
-      // console.log('balance: ', balance);
-      if (transactionFee > balance.data.value) {
+      console.log('transactionFee in wei: ' + transactionFee.toString());
+      console.log('transactionFee in ether: ' + ethers.utils.formatUnits(transactionFee, 'ether'));
+      console.log('balance: ', balance.data.value.toString(), transactionFee.toString() > balance.data.value.toString());
+      if (Number(transactionFee) > Number(balance.data.value)) {
         showMessage({
           type: 'error',
           title: 'Estimate Fail',
@@ -189,7 +188,6 @@ export default function MintBadge() {
       marginTop={2}
       alignItems="center"
       sx={{
-        background: theme?.palette?.mode === 'dark' ? '#010101' : '#f6f6f6',
         borderRadius: '18px',
         paddingY: '28px',
       }}
@@ -206,7 +204,7 @@ export default function MintBadge() {
           }}
         ></canvas>
       </Box>
-      {chain?.id != chains[0]?.id ? (
+      {!CONTRACT_MAP[chain.id]?.address ? (
         <Button
           variant="contained"
           disabled={swichLoading}
@@ -249,6 +247,30 @@ export default function MintBadge() {
           {isLoading | mintLoading ? 'Claiming...' : 'Claim'}
         </Button>
       )}
+      {
+        CONTRACT_MAP[chain.id]?.facute ? (
+          <Button
+            variant="contained"
+            onClick={toFacute}
+            sx={{
+              width: '255px',
+              height: '64px',
+              fontSize: '20px',
+              fontWeight: '800',
+              textTransform: 'capitalize',
+              borderRadius: '18px',
+              background: '#fff',
+              color: '#000',
+              border: '1px solid #333',
+              '&:hover': {
+                backgroundColor: '#eee',
+              },
+            }}
+          >
+            Facute
+          </Button>
+        ) : ''
+      }
     </Stack>
   );
 }
