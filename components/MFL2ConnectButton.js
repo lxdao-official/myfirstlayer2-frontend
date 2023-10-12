@@ -1,6 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { switchNetwork, disconnect } from '@wagmi/core';
 import { useState } from 'react';
+import { CONTRACT_MAP } from '../config/config';
 
 import { Box, Button, styled, Typography } from '@mui/material';
 import NewButton from './NewButton';
@@ -119,7 +120,7 @@ export const MFL2ConnectButton = () => {
                 </NewButton>;
                 // return <NormalButton onClick={openConnectModal}>Connect Wallet</NormalButton>;
               }
-              if (chain.unsupported) {
+              if (!CONTRACT_MAP[chain.id]) {
                 return <NewButton onClick={openChainModal}>
                   Wrong network
                 </NewButton>;
