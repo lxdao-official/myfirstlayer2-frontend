@@ -267,7 +267,7 @@ export default function MintBadge() {
               },
             }}
           >
-            Facute
+            Faucet
           </Button>
         ) : ''
       }
