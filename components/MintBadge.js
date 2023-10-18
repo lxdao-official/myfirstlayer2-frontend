@@ -44,7 +44,7 @@ export default function MintBadge() {
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
-  const toFacute = () => {
+  const toFaucet = () => {
     window.open(CONTRACT_MAP[chain.id]?.facute, '_blank');
   }
   const handleMint = async () => {
@@ -251,7 +251,7 @@ export default function MintBadge() {
         CONTRACT_MAP[chain.id]?.facute ? (
           <Button
             variant="contained"
-            onClick={toFacute}
+            onClick={toFaucet}
             sx={{
               width: '255px',
               height: '64px',
