@@ -109,8 +109,9 @@ const coreContributors = [
   },
   {
     image: '/teams/Ellen.png',
-    description: 'Fullstack developer.',
+    description: 'Fullstack developer / Idealist / Web3 buidler.',
     name: 'Ellen',
+    twitter: 'https://twitter.com/wgb5445',
   },
 ];
 
