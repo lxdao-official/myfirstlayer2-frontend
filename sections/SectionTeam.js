@@ -14,7 +14,6 @@ const coreContributors = [
     name: 'brucexu.eth',
     twitter: 'https://twitter.com/brucexu_eth',
   },
-
   {
     image: '/teams/kasoqian.jpg',
     description: 'Web3 BUIDLER and BELIEVER! Creator of GuoChanLiangXin and MyFirstNFT. Member @theNextDAO. Core contributor @GCLX community.',
@@ -101,6 +100,17 @@ const coreContributors = [
     description: 'Fullstack developer / Web3 builder / I have a dream.',
     name: '0x1998',
     twitter: 'https://twitter.com/0x1998',
+  },
+  {
+    image: '/teams/Logic.png',
+    description: 'Front-end developer / PM at MyFirstLayer2 / Web3 buidler.',
+    name: 'Logic',
+    twitter: 'https://twitter.com/LogicalLogicLaw',
+  },
+  {
+    image: '/teams/Ellen.png',
+    description: 'Fullstack developer.',
+    name: 'Ellen',
   },
 ];
 
@@ -356,12 +366,12 @@ function SimpleContributor(props) {
         <Tooltip title={props.name}>
           <Box
             component="img"
-            alt='avatar'
+            alt="avatar"
             src={props.image}
             sx={{
               width: '100%',
             }}
-            loading='lazy'
+            loading="lazy"
           />
         </Tooltip>
       </Box>
@@ -394,7 +404,6 @@ export default function SectionTeam() {
           ))}
         </Grid>
       </Box>
-
     </SectionSimpleWrapper>
   );
 }
