@@ -16,7 +16,7 @@ import '../common/global.css';
 import getTheme from '../common/theme';
 
 /* RainbowKit variables */
-const { chains, provider } = configureChains([chain.optimismGoerli], [publicProvider()]);
+const { chains, provider } = configureChains([chain.optimismGoerli, chain.arbitrumGoerli], [publicProvider()]);
 const { connectors } = getDefaultWallets({
   appName: 'My First Layer2',
   chains,
