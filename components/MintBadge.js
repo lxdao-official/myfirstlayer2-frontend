@@ -46,7 +46,7 @@ export default function MintBadge() {
   });
   const toFaucet = () => {
     window.open(CONTRACT_MAP[chain.id]?.facute, '_blank');
-  }
+  };
   const handleMint = async () => {
     // if (read != counter) {
     //   showMessage({
@@ -247,30 +247,30 @@ export default function MintBadge() {
           {isLoading | mintLoading ? 'Claiming...' : 'Claim'}
         </Button>
       )}
-      {
-        CONTRACT_MAP[chain.id]?.facute ? (
-          <Button
-            variant="contained"
-            onClick={toFaucet}
-            sx={{
-              width: '255px',
-              height: '64px',
-              fontSize: '20px',
-              fontWeight: '800',
-              textTransform: 'capitalize',
-              borderRadius: '18px',
-              background: '#fff',
-              color: '#000',
-              border: '1px solid #333',
-              '&:hover': {
-                backgroundColor: '#eee',
-              },
-            }}
-          >
-            Faucet
-          </Button>
-        ) : ''
-      }
+      {CONTRACT_MAP[chain.id]?.facute ? (
+        <Button
+          variant="contained"
+          onClick={toFaucet}
+          sx={{
+            width: '255px',
+            height: '64px',
+            fontSize: '16px',
+            fontWeight: '800',
+            textTransform: 'capitalize',
+            borderRadius: '18px',
+            background: '#fff',
+            color: '#000',
+            border: '1px solid #333',
+            '&:hover': {
+              backgroundColor: '#eee',
+            },
+          }}
+        >
+          Optimism Goerli Faucet
+        </Button>
+      ) : (
+        ''
+      )}
     </Stack>
   );
 }

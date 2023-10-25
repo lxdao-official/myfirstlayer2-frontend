@@ -71,17 +71,11 @@ function showMessage(options) {
   const container = document.createDocumentFragment();
 
   function render({ visible }) {
-    ReactDOM.render(
+    const root = ReactDOM.createRoot(container);
+    root.render(
       <ThemeProvider theme={getTheme('light')}>
-        <SimpleModal
-          title={title}
-          visible={visible}
-          body={body}
-          type={type}
-          onClose={close}
-        />
-      </ThemeProvider>,
-      container
+        <SimpleModal title={title} visible={visible} body={body} type={type} onClose={close} />
+      </ThemeProvider>
     );
   }
 
