@@ -1,4 +1,3 @@
-
 Foreword
 
 1. Bottlenecks of Public Chains
@@ -24,7 +23,7 @@ Foreword
 4.2 Deneb and Layer 2
 4.3 Account Abstraction
 
-&nbsp; 
+&nbsp;
 
 前言
 
@@ -44,12 +43,9 @@ Foreword
 3.2 进一步压缩
 3.3 Optimistic Rollup
 3.4 Zero-Knowledge Rollup
-3.5 Rollup实操
+3.5 Rollup 实操
 3.6 ZK 技术原理 STARK vs SNARK
 3.7 ZK 发展路线 ZK-VM vs ZK-EVM
 4.1 其它解决方案：Validium 和 Volition
 4.2 Deneb 更新与 Layer 2
 4.3 账户抽象与大规模应用
-
-
-
