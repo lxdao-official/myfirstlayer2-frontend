@@ -3,17 +3,19 @@ import Progress from './Progress'
 import { Box, Hidden } from '@mui/material'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
-export default function BottomNav(props) {
+interface BottomNavProps {
+	directoryText: string
+}
+export default function BottomNav(props: BottomNavProps) {
 	const { directoryText } = props
 	return (
-		<Box
-			backgroundColor="#ECECEC"
+		<><Box
 			display="flex"
 			height={80}
 			alignItems="center"
 			justifyContent="space-around"
-			marginTop={4}
 			paddingX={4}
+			marginTop={4}
 		>
 			<Box>
 				<ConnectButton />
@@ -26,6 +28,7 @@ export default function BottomNav(props) {
 					directoryText={directoryText}
 				></MobileDirectory>
 			</Hidden>
-		</Box>
+		</Box></>
+
 	)
 }

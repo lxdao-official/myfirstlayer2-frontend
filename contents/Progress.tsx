@@ -1,10 +1,11 @@
-import { ReadContext } from './context.ts'
+import { ReadContext } from './context'
 import { Box, LinearProgress, useMediaQuery, useTheme } from '@mui/material'
 import { makeStyles, withStyles } from '@mui/styles'
+import { Theme } from '@mui/material';
 import { useTranslations } from 'next-intl'
 import { useContext } from 'react'
 
-const BorderLinearProgress = withStyles((theme) => ({
+const BorderLinearProgress = withStyles((theme:Theme) => ({
 	root: {
 		height: 4,
 		borderRadius: 5,
@@ -21,7 +22,7 @@ const BorderLinearProgress = withStyles((theme) => ({
 	},
 }))(LinearProgress)
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme:Theme) => ({
 	root: {
 		flexGrow: 1,
 	},
@@ -44,7 +45,7 @@ export default function Progress() {
 	const { readData } = useContext(ReadContext)
 	const { read, counter } = readData
 	let x = (read / counter) * 100
-
+	
 	const th = useTheme()
 
 	const mdScreen = useMediaQuery(th?.breakpoints?.up('md'))
@@ -52,7 +53,7 @@ export default function Progress() {
 	return (
 		<Box className={classes.root}>
 			<Box
-				variant="progress"
+				// variant="progress"
 				className={classes.title}
 				sx={{
 					marginBottom: mdScreen ? '9px' : '6px',
