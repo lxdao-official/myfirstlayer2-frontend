@@ -1,6 +1,9 @@
 import { Box } from '@mui/material'
-
-export default function MdxImg({ src, alt }) {
+interface MdxImgProps {
+	src: string;
+	alt: string;
+}
+export default function MdxImg({ src, alt }: MdxImgProps) {
 	return (
 		<Box
 			sx={{

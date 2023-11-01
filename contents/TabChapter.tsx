@@ -108,13 +108,22 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'space-between',
 	},
 }))
-
-export default function TabChapter(props) {
+interface chaperDataType {
+	currentIndex: number,
+	last: string,
+	current: string,
+	next: string
+}
+interface TabChapterProps {
+	chapterData?: chaperDataType,
+	onTabChapter: (action: string) => void
+}
+export default function TabChapter(props: TabChapterProps) {
 	const { chapterData, onTabChapter } = props
 
 	const classes = useStyles()
 	const t = useTranslations('Directory')
-	const handleTabChapter = (action) => {
+	const handleTabChapter = (action: string) => {
 		if (
 			(chapterData?.currentIndex === 0 && action === 'last') ||
 			(chapterData?.currentIndex === 22 && action === 'next')
@@ -149,15 +158,15 @@ export default function TabChapter(props) {
 								>
 									{chapterData?.last
 										? t(
-												formatChapterTitle(
-													chapterData?.last
-												)
-										  )
+											formatChapterTitle(
+												chapterData?.last
+											)
+										)
 										: t(
-												formatChapterTitle(
-													chapterData?.current
-												)
-										  )}
+											formatChapterTitle(
+												chapterData?.current
+											)
+										)}
 								</Typography>
 							</Box>
 						</Box>
@@ -209,15 +218,15 @@ export default function TabChapter(props) {
 								>
 									{chapterData?.last
 										? t(
-												formatChapterTitle(
-													chapterData?.last
-												)
-										  )
+											formatChapterTitle(
+												chapterData?.last
+											)
+										)
 										: t(
-												formatChapterTitle(
-													chapterData?.current
-												)
-										  )}
+											formatChapterTitle(
+												chapterData?.current
+											)
+										)}
 								</Typography>
 							</Box>
 							<Box

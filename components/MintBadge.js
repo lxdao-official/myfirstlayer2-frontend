@@ -1,6 +1,6 @@
 import abi from '../abi.json'
 import { CONTRACT_MAP } from '../config/config'
-import { ReadContext } from '../contents/context'
+import { ReadContext } from '../contents/context.ts'
 import showMessage from './showMessage'
 import { Box, Button, useMediaQuery, useTheme } from '@mui/material'
 import { Stack } from '@mui/system'

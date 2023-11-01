@@ -1,4 +1,4 @@
-import { ReadContext } from './context.js'
+import { ReadContext } from './context.ts'
 import { Box, LinearProgress, useMediaQuery, useTheme } from '@mui/material'
 import { makeStyles, withStyles } from '@mui/styles'
 import { useTranslations } from 'next-intl'

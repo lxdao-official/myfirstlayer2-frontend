@@ -8,12 +8,12 @@ import CompressText from '../components/animation/CompressText'
 import { formatChapterTitle } from '../utils.js'
 import { MobileDirectory, PcDirectory } from './Directory'
 import Loading from './Loading'
-import MdxImg from './MdxImg'
+import MdxImg from './MdxImg.tsx'
 import Progress from './Progress'
-import TabChapter from './TabChapter'
-import { ReadContext } from './context.js'
+import TabChapter from './TabChapter.tsx'
+import { ReadContext } from './context.ts'
 import mdxStyle from './mdx.module.css'
-import { getStorage, setStorage } from './storage.js'
+import { getStorage, setStorage } from './storage.ts'
 // import { Affix } from 'antd';
 import {
 	Box,
