@@ -1,5 +1,7 @@
 import { formatChapterTitle } from '../utils.js'
-import Progress from './Progress'
+import Progress from './Progress.jsx'
+import React from 'react';
+import { Theme } from '@mui/material';
 import {
 	Box,
 	Divider,
@@ -13,7 +15,7 @@ import { makeStyles } from '@mui/styles'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		overflow: 'hidden',
 	},
@@ -75,7 +77,7 @@ const theme = createTheme({
 			fontSize: '1rem',
 			fontWeight: 400,
 			fontFamily: 'Alibaba PuHuiTi',
-		},
+		}
 	},
 })
 
@@ -102,9 +104,9 @@ export function PcDirectory(props) {
 					py: '32px',
 					mb: '32px',
 				}}
-				backgroundColor={
-					theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'
-				}
+			// backgroundColor={
+			// 	theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'
+			// }
 			>
 				<Progress></Progress>
 			</Box>
@@ -116,9 +118,9 @@ export function PcDirectory(props) {
 					pb: '43px',
 					paddingX: '11px',
 				}}
-				backgroundColor={
-					theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'
-				}
+			// backgroundColor={
+			// 	theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'
+			// }
 			>
 				<Box>
 					{directory?.map((row, index) => {
@@ -216,7 +218,7 @@ export function MobileDirectory(props) {
 	)
 }
 
-const Item = (props) => {
+const Item: React.FC<any> = (props) => {
 	const classes = useStyles()
 	const t = useTranslations('Directory')
 	const { rowData, selected, onNext } = props
@@ -224,8 +226,8 @@ const Item = (props) => {
 	return (
 		<Box className={classes.listRoot}>
 			<Box
-				button
-				selected={selected}
+				// button
+				// selected={selected}
 				onClick={onNext}
 				className={classes.listItem}
 				sx={{

@@ -1,9 +1,10 @@
+import React from 'react';
 import { Box } from '@mui/material'
 interface MdxImgProps {
 	src: string;
 	alt: string;
 }
-export default function MdxImg({ src, alt }: MdxImgProps) {
+const MdxImg: React.FC<MdxImgProps> = ({ src, alt }) => {
 	return (
 		<Box
 			sx={{
@@ -23,3 +24,4 @@ export default function MdxImg({ src, alt }: MdxImgProps) {
 		</Box>
 	)
 }
+export default MdxImg;
