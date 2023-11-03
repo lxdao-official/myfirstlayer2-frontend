@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	text: {
 		marginLeft: '-30px',
 		'& .MuiTypography-body1': {
-			fontSize: (props) => props.fontSize, // 使用props传入字体大小
+			fontSize: (props:{fontSize:string}) => props.fontSize, // 使用props传入字体大小
 		},
 	},
 	mainTitle: {
@@ -81,12 +81,12 @@ const theme = createTheme({
 	},
 })
 
-theme.typography.progress = {
-	fontSize: 8,
-	fontWeight: 600,
-	// fontFamily: 'Open Sans',
-	color: '#747474',
-}
+// theme.typography.progress = {
+// 	fontSize: 8,
+// 	fontWeight: 600,
+// 	// fontFamily: 'Open Sans',
+// 	color: '#747474',
+// }
 
 export function PcDirectory(props) {
 	const { directory, selectedIndex, onTabChapter } = props
