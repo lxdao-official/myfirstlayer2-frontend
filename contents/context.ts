@@ -1,10 +1,10 @@
 import { createContext } from 'react'
-import { useState } from 'react'
-const [readData, setReadData] = useState<ReadDateType>({
-	counter: 0,
-	read: 1,
-	currentIndex: 0
-})
+// import { useState } from 'react'
+// const [readData, setReadData] = useState<ReadDateType>({
+// 	counter: 0,
+// 	read: 1,
+// 	currentIndex: 0
+// })
 // 定义上下文对象的类型
 interface ReadDateType {
 	counter: number;
@@ -19,4 +19,4 @@ interface ReadContextType {
 }
 
 // 创建上下文对象
-export const ReadContext = createContext<ReadContextType>({ readData, setReadData });
+export const ReadContext = createContext<ReadContextType|null>(null);

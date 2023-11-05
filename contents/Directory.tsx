@@ -1,5 +1,5 @@
 import { formatChapterTitle } from '../utils.js'
-import Progress from './Progress.jsx'
+import Progress from './Progress'
 import React from 'react';
 import { Theme } from '@mui/material';
 import {
@@ -11,61 +11,62 @@ import {
 	createTheme,
 	useTheme,
 } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, createStyles } from '@mui/styles'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
-const useStyles = makeStyles((theme: Theme) => ({
-	root: {
-		overflow: 'hidden',
-	},
-	listRoot: {
-		overflow: 'hidden',
-		marginTop: '2px',
-		color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-	},
-	listItem: {
-		borderRadius: '10px',
-		padding: '10px 0',
-		'&:hover': {
-			background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
-			cursor: 'pointer',
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+		root: {
+			overflow: 'hidden',
 		},
-		'&:focus': {
-			background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+		listRoot: {
+			overflow: 'hidden',
+			marginTop: '2px',
+			color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
 		},
-		'&:active': {
-			background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+		listItem: {
+			borderRadius: '10px',
+			padding: '10px 0',
+			'&:hover': {
+				background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+				cursor: 'pointer',
+			},
+			'&:focus': {
+				background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+			},
+			'&:active': {
+				background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+			},
+			'&.Mui-selected:hover': {
+				background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+			},
 		},
-		'&.Mui-selected:hover': {
-			background: theme.palette?.mode === 'dark' ? '#3C3C3C' : '#F3F3F3',
+		avatarContain: {
+			paddingRight: '10px',
 		},
-	},
-	avatarContain: {
-		paddingRight: '10px',
-	},
-	avatar: {
-		width: '15px', // 图像的大小
-		height: '15px',
-	},
-	text: {
-		marginLeft: '-30px',
-		'& .MuiTypography-body1': {
-			fontSize: (props:{fontSize:string}) => props.fontSize, // 使用props传入字体大小
+		avatar: {
+			width: '15px', // 图像的大小
+			height: '15px',
 		},
-	},
-	mainTitle: {
-		fontSize: '1rem',
-		fontWeight: 700,
-		fontFamily: 'Alibaba PuHuiTi',
-	},
-	subtitle: {
-		fontSize: '1rem',
-		fontWeight: 400,
-		fontFamily: 'Alibaba PuHuiTi',
-	},
-}))
-
+		text: {
+			marginLeft: '-30px',
+			'& .MuiTypography-body1': {
+				fontSize: (props: { fontSize: string }) => props.fontSize, // 使用props传入字体大小
+			},
+		},
+		mainTitle: {
+			fontSize: '1rem',
+			fontWeight: 700,
+			fontFamily: 'Alibaba PuHuiTi',
+		},
+		subtitle: {
+			fontSize: '1rem',
+			fontWeight: 400,
+			fontFamily: 'Alibaba PuHuiTi',
+		},
+	})
+)
 const theme = createTheme({
 	typography: {
 		h6: {
@@ -88,7 +89,20 @@ const theme = createTheme({
 // 	color: '#747474',
 // }
 
-export function PcDirectory(props) {
+export interface chapterType {
+	index: number
+	text: string
+	main: boolean
+	status: boolean
+	rowIndex?: number
+}
+interface directoryProps {
+	directory: Array<chapterType>
+	selectedIndex: number
+	onTabChapter: Function
+	readStatus: Array<boolean>
+}
+export function PcDirectory(props: directoryProps) {
 	const { directory, selectedIndex, onTabChapter } = props
 	const t = useTranslations('Directory')
 	const theme = useTheme()
@@ -123,16 +137,16 @@ export function PcDirectory(props) {
 			// }
 			>
 				<Box>
-					{directory?.map((row, index) => {
+					{directory?.map((row: chapterType, rowIndex: number) => {
 						return (
 							<Item
 								rowData={{ ...row }}
-								key={index}
-								selected={selectedIndex === index}
+								key={rowIndex}
+								selected={selectedIndex === rowIndex}
 								onNext={() =>
 									onTabChapter('lastOrNext', {
-										index,
 										...row,
+										index: rowIndex,
 									})
 								}
 								{...props}
@@ -145,11 +159,11 @@ export function PcDirectory(props) {
 	)
 }
 
-export function MobileDirectory(props) {
+export function MobileDirectory(props: directoryProps) {
 	const { directory, selectedIndex, onTabChapter } = props
 	const [drawerStatus, setDrawerStatus] = useState(false)
 
-	const onNext = (action, data) => {
+	const onNext = (action: string, data: chapterType) => {
 		onTabChapter(action, data)
 		// setDrawerStatus(false);
 	}
@@ -200,13 +214,13 @@ export function MobileDirectory(props) {
 				onOpen={() => setDrawerStatus(true)}
 			>
 				<Box paddingX={3} paddingY={2} height="400px">
-					{directory?.map((row, index) => (
+					{directory?.map((row: chapterType, rowIndex: number) => (
 						<Item
 							rowData={{ ...row }}
-							key={index}
-							selected={selectedIndex === index}
+							key={rowIndex}
+							selected={selectedIndex === rowIndex}
 							onNext={() => {
-								onNext('lastOrNext', { index, ...row })
+								onNext('lastOrNext', { ...row, index: rowIndex })
 							}}
 							{...props}
 						/>
@@ -217,12 +231,19 @@ export function MobileDirectory(props) {
 		</Box>
 	)
 }
-
-const Item: React.FC<any> = (props) => {
-	const classes = useStyles()
+interface ItemProps {
+	directory: Array<chapterType>
+	onNext: () => void
+	onTabChapter: Function
+	readStatus: Array<boolean>
+	rowData: chapterType
+	selected: boolean
+	selectedIndex: number
+}
+const Item: React.FC<ItemProps> = (props) => {
+	const classes = useStyles({ fontSize: '1rem' });
 	const t = useTranslations('Directory')
 	const { rowData, selected, onNext } = props
-
 	return (
 		<Box className={classes.listRoot}>
 			<Box

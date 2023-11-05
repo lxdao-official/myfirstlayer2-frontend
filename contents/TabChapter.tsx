@@ -112,11 +112,13 @@ interface chaperDataType {
 	currentIndex: number,
 	last: string,
 	current: string,
-	next: string
+	next: string,
+	read:number,
+	counter:number
 }
 interface TabChapterProps {
 	chapterData?: chaperDataType,
-	onTabChapter: (action: string) => void
+	onTabChapter: (action: string,chapter?:any) => void
 }
 export default function TabChapter(props: TabChapterProps) {
 	const { chapterData, onTabChapter } = props

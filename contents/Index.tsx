@@ -6,14 +6,14 @@ import MintBadge from '../components/MintBadge'
 import ZksyncSwap from '../components/ZksyncSwap'
 import CompressText from '../components/animation/CompressText'
 import { formatChapterTitle } from '../utils.js'
-import { MobileDirectory, PcDirectory } from './Directory'
+import { chapterType, MobileDirectory, PcDirectory } from './Directory'
 import Loading from './Loading'
-import MdxImg from './MdxImg.tsx'
+import MdxImg from './MdxImg'
 import Progress from './Progress'
-import TabChapter from './TabChapter.tsx'
-import { ReadContext } from './context.ts'
+import TabChapter from './TabChapter'
+import { ReadContext } from './context'
 import mdxStyle from './mdx.module.css'
-import { getStorage, setStorage } from './storage.ts'
+import { getStorage, setStorage } from './storage'
 // import { Affix } from 'antd';
 import {
 	Box,
@@ -27,7 +27,7 @@ import { useTheme } from '@mui/material/styles'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useTranslations } from 'next-intl'
 import { useLocale } from 'next-intl'
-import { MDXRemote } from 'next-mdx-remote'
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -39,7 +39,7 @@ const ImpossibleTriangle = dynamic(
 	{ ssr: false }
 )
 
-export default function Content(props) {
+export default function Content(props: { md: any }) {
 	const { md } = props
 	const chapterCount = md.props.file.length - 4
 	const [name, setName] = useState(md.props.file[0]?.text)
@@ -69,7 +69,7 @@ export default function Content(props) {
 		requestMdxSource(name)
 	}, [name, locale])
 
-	const requestMdxSource = (name) => {
+	const requestMdxSource = (name: string) => {
 		setLoading(true)
 
 		fetch(`/api/getFile/${name}`)
@@ -83,29 +83,36 @@ export default function Content(props) {
 			.catch((error) => console.error('[request mdx err]', error))
 	}
 
-	const computeReadCount = (arr) => {
+	const computeReadCount = (arr: Array<chapterType | boolean>) => {
 		if (!arr) return 0
+		console.log(arr)
 		let count = 0
-		for (let index in arr) {
-			if (
-				(!arr[index].main && arr[index]?.status) ||
-				(arr[index].main &&
-					(+index === 0 || +index === arr.length - 1) &&
-					arr[index]?.status)
-			) {
-				count++
+		const isChapterTypeArray = arr.every((item): item is chapterType => {
+			return typeof item !== "boolean";
+		});
+		if (isChapterTypeArray) {
+			for (let index in arr) {
+				if (
+					(!arr[index].main && arr[index]?.status) ||
+					(arr[index].main &&
+						(+index === 0 || +index === arr.length - 1) &&
+						arr[index]?.status)
+				) {
+					count++
+				}
 			}
 		}
+
 		return count
 	}
-	const handleTabChapter = (action, chapter) => {
+	const handleTabChapter = (action: string, chapter: chapterType) => {
 		// console.log('[current chapter data]', chapter);
 		const mainArr = [1, 5, 10, 18]
 
 		if (!action) {
 			return
 		}
-		const targetElement = document.getElementById('root')
+		const targetElement = document.getElementById('root') as HTMLElement
 		targetElement.scrollIntoView({ behavior: 'smooth' })
 
 		let readStatusStore = readStatus
@@ -156,8 +163,8 @@ export default function Content(props) {
 						selectedIndex - 2 === 0
 							? ''
 							: mainArr.includes(selectedIndex - 2)
-							? directory[selectedIndex - 3]?.text
-							: directory[selectedIndex - 2]?.text,
+								? directory[selectedIndex - 3]?.text
+								: directory[selectedIndex - 2]?.text,
 					next: directory[selectedIndex]?.text,
 				})
 				newState[selectedIndex - 1] = {
@@ -325,8 +332,8 @@ export default function Content(props) {
 						chapter?.index - 1 === 0
 							? ''
 							: mainArr.includes(chapter?.index - 1)
-							? newState[chapter.index - 2].text
-							: newState[chapter.index - 1].text,
+								? newState[chapter.index - 2].text
+								: newState[chapter.index - 1].text,
 					next:
 						chapter?.index !== chapterCount + 3 &&
 						newState[chapter.index + 1].text,
@@ -375,8 +382,11 @@ export default function Content(props) {
 	// console.log('mdScreen', mdScreen);
 
 	useEffect(() => {
-		const readed = directory.reduce((acc, cur) => {
-			acc += cur.status
+		const readed = directory.reduce((acc: number, cur: chapterType) => {
+			// acc += cur.status
+			if (cur.status) {
+				acc += 1
+			}
 			return acc
 		}, 0)
 		// console.log(readed);
@@ -393,8 +403,8 @@ export default function Content(props) {
 		setReady(false)
 		const directoryStatus = getStorage('directoryStatus')
 		const selectedIndexStore = getStorage('selectedIndex')
-		const jsonDirectory = JSON.parse(directoryStatus)?.data
-		let jsonSelect = JSON.parse(selectedIndexStore)?.data
+		const jsonDirectory = JSON.parse(directoryStatus as string)?.data
+		let jsonSelect = JSON.parse(selectedIndexStore as string)?.data
 		const aspath = router.asPath.split('#')[1]
 
 		if (directoryStatus) {
@@ -469,7 +479,7 @@ export default function Content(props) {
 						{isLoading ? (
 							<Skeleton
 								animation="wave"
-								variant="rect"
+								// variant="rect"
 								width={mdScreen ? '1200px' : '100vw'}
 								sx={{
 									height: '400vh',
@@ -478,11 +488,13 @@ export default function Content(props) {
 							>
 								<Box
 									className={mdxStyle.root}
-									textDecoration={'none'}
+								// textDecoration={'none'}
 								>
 									{mdxSource && (
 										<MDXRemote
+											// @ts-ignore
 											components={components}
+											// @ts-ignore
 											{...mdxSource}
 										></MDXRemote>
 									)}
@@ -517,18 +529,20 @@ export default function Content(props) {
 								>
 									<Box
 										className={mdxStyle.root}
-										textDecoration={'none'}
+									// textDecoration={'none'}
 									>
 										{mdxSource && (
 											<MDXRemote
+												// @ts-ignore
 												components={components}
+												// @ts-ignore
 												{...mdxSource}
 											></MDXRemote>
 										)}
 									</Box>
 								</Box>
 								<TabChapter
-									marginTop={{ xs: '15px', sm: '32px' }}
+									// marginTop={{ xs: '15px', sm: '32px' }}
 									chapterData={{
 										...chapterData,
 										currentIndex: readData?.currentIndex,
@@ -552,7 +566,7 @@ export default function Content(props) {
 								zIndex: 100,
 								boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 1)',
 							}}
-							backgroundColor="#FFFFFF"
+							// backgroundColor="#FFFFFF"
 							display="flex"
 							height={80}
 							alignItems="center"
