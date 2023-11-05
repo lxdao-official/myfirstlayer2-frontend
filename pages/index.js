@@ -21,15 +21,8 @@ export default function Index({ content, directory }) {
 			<Content md={<MDXRemote {...content} file={directory} />} />
 			<SectionMyFirstProject />
 			<SectionSponsors />
-
 			<SectionTeam />
-			<div
-				data-donate3-type="embed"
-				data-donate3-color="#000"
-				data-donate3-title="MyFirstLayer2"
-				data-donate3-to-address="0xAcb4313910574b69e8116617105b97993ED8319dF"
-				data-donate3-cid="bafkreibcxsyw3jn43gigv3xwemaxfzacay2jvsn2ok4k3obmrun3jsxryy"
-			></div>
+			<div data-donate3-cid="bafkreihmg2lnhwcu2qtksrk3bjknwj5zeupemzo274rjbsef7saehdpfry"></div>
 			<Footer />
 		</Main>
 	)
