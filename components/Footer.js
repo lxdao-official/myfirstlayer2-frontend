@@ -90,11 +90,11 @@ const Footer = () => {
 								items={[
 									{
 										name: 'My First NFT',
-										link: 'https://github.com/lxdao-official/LXDAO-Developer-Guide',
+										link: 'https://myfirstnft.info/',
 									},
 									{
 										name: 'My First Layer2',
-										link: '',
+										link: 'https://layer2.myfirst.io/',
 									},
 								]}
 							/>
@@ -123,7 +123,7 @@ const Footer = () => {
 								title="Resources"
 								items={[
 									{
-										name: 'LX DAO',
+										name: 'LXDAO',
 										link: 'https://lxdao.io/',
 									},
 									{

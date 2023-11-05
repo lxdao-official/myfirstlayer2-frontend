@@ -66,7 +66,7 @@ export default function App({ Component, pageProps }) {
 					<ColorModeContext.Provider value={colorMode}>
 						<ThemeProvider theme={theme}>
 							<Component {...pageProps} />
-							<Script src="https://cdn.jsdelivr.net/npm/donate3-sdk@0.3.48/dist/webpack/bundle.js" />
+							<Script src="https://cdn.jsdelivr.net/npm/donate3-sdk@1.0.43/dist/webpack/bundle.js" />
 						</ThemeProvider>
 					</ColorModeContext.Provider>
 				</NextIntlProvider>
