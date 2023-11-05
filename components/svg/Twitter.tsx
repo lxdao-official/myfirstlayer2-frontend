@@ -1,7 +1,7 @@
 import { useTheme } from '@mui/material'
-
-export default function Twitter({ color, ...rest }) {
-	const theme = useTheme()
+import { Theme } from '@mui/system'
+export default function Twitter({  ...rest }) {
+	const theme:Theme = useTheme()
 
 	return (
 		<svg

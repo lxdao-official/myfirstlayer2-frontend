@@ -6,17 +6,17 @@ import { createContext } from 'react'
 // 	currentIndex: 0
 // })
 // 定义上下文对象的类型
-interface ReadDateType {
+export interface ReadDateType {
 	counter: number;
 	read: number;
 	currentIndex: number;
 	actionFrom?: string;
 }
 
-interface ReadContextType {
+export interface ReadContextType {
 	readData: ReadDateType;
 	setReadData: React.Dispatch<React.SetStateAction<ReadDateType>>;
 }
 
 // 创建上下文对象
-export const ReadContext = createContext<ReadContextType|null>(null);
+export const ReadContext = createContext<ReadContextType|undefined>(undefined);

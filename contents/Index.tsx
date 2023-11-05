@@ -75,6 +75,7 @@ export default function Content(props: { md: any }) {
 		fetch(`/api/getFile/${name}`)
 			.then((response) => response.json())
 			.then((data) => {
+				console.log(data,'+++++++++++++++++++')
 				if (data?.mdxSource) {
 					setMdxSource(data.mdxSource)
 				}
@@ -492,10 +493,8 @@ export default function Content(props: { md: any }) {
 								>
 									{mdxSource && (
 										<MDXRemote
-											// @ts-ignore
-											components={components}
-											// @ts-ignore
-											{...mdxSource}
+											components={components}			
+											{...mdxSource as any}
 										></MDXRemote>
 									)}
 								</Box>
@@ -533,10 +532,8 @@ export default function Content(props: { md: any }) {
 									>
 										{mdxSource && (
 											<MDXRemote
-												// @ts-ignore
-												components={components}
-												// @ts-ignore
-												{...mdxSource}
+												components={components}										
+												{...mdxSource as any}
 											></MDXRemote>
 										)}
 									</Box>

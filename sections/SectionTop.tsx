@@ -99,7 +99,7 @@ export default function SectionTop({}) {
 					</Typography>
 					<Box sx={{ display: 'flex', mt: '32px' }}>
 						<Link href="#content" underline="none" target="_self">
-							<NewButton>{t('button')}</NewButton>
+							<NewButton onClick={()=>{}}>{t('button')}</NewButton>
 						</Link>
 					</Box>
 					<Box display="flex" gap={2} mt={8}>

@@ -12,7 +12,12 @@ import {
 import { useTheme } from '@mui/material/styles'
 import { useTranslations } from 'next-intl'
 import React from 'react'
-
+interface coreContributorsItemType {
+	image?: string
+	description?: string
+	name?: string
+	twitter?: string
+}
 const coreContributors = [
 	{
 		image: '/teams/brucexu.eth.png',
@@ -308,7 +313,7 @@ const activeContributors = [
 	},
 ]
 
-function Contributor(props) {
+function Contributor(props:coreContributorsItemType) {
 	const theme = useTheme()
 	const t = useTranslations('SectionTeam')
 	return (
@@ -398,7 +403,7 @@ function Contributor(props) {
 	)
 }
 
-function SimpleContributor(props) {
+function SimpleContributor(props:coreContributorsItemType) {
 	return (
 		<Box
 			width={1}

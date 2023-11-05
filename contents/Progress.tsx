@@ -1,4 +1,4 @@
-import { ReadContext } from './context'
+import { ReadContext,ReadContextType } from './context'
 import { Box, LinearProgress, useMediaQuery, useTheme } from '@mui/material'
 import { makeStyles, withStyles } from '@mui/styles'
 import { Theme } from '@mui/material';
@@ -40,9 +40,8 @@ const useStyles = makeStyles((theme:Theme) => ({
 
 export default function Progress() {
 	const classes = useStyles()
-	const t = useTranslations('Process')
-
-	const { readData } = useContext(ReadContext)
+	const t = useTranslations('Process') 
+	const { readData } = useContext(ReadContext) as ReadContextType
 	const { read, counter } = readData
 	let x = (read / counter) * 100
 	

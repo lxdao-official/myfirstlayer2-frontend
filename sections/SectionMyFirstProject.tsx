@@ -1,15 +1,30 @@
 import SectionSimpleWrapper from './SectionSimpleWrapper'
 import { Box, Card, Grid, Link, Typography, useTheme } from '@mui/material'
 import { useLocale, useTranslations } from 'next-intl'
+import { Theme } from '@mui/material';
 import React from 'react'
 import { Pagination } from 'swiper'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
-function MyFirstCard(props) {
+interface projectType {
+	projectName: string
+	holder: string
+	image: string
+	bigImage: string
+	description: string
+	url: string
+}
+interface myfirstProjectsType {
+	[key:string]: Array<projectType>
+}
+interface MyFirstCardType extends projectType {
+	theme?:Theme
+}
+function MyFirstCard(props:MyFirstCardType) {
 	const t = useTranslations('SectionMyFirstProject')
+	console.log(props,'-*-*-+++++++++++++++')
 	return (
 		<Link href={props.url} target="_blank" underline="none">
 			<Box sx={{ width: '100%' }}>
@@ -41,7 +56,7 @@ export default function SectionMyFirstProject() {
 	const theme = useTheme()
 	const t = useTranslations('SectionMyFirstProject')
 	const locale = useLocale()
-	const myfirstProjects = {
+	const myfirstProjects: myfirstProjectsType = {
 		zh: [
 			{
 				projectName: 'My First NFT',
@@ -105,7 +120,7 @@ export default function SectionMyFirstProject() {
 					container
 					spacing={{ xs: 3.125, sm: 4 }}
 				>
-					{myfirstProjects[locale].map((item, i) => (
+					{myfirstProjects[locale].map((item:projectType, i: number) => (
 						<Grid rowGap="32px" item xs={12} sm={6} md={4} key={i}>
 							<MyFirstCard theme={theme} {...item} />
 						</Grid>
@@ -126,7 +141,7 @@ export default function SectionMyFirstProject() {
 						}}
 						modules={[Pagination]}
 					>
-						{myfirstProjects[locale].map((item, i) => (
+						{myfirstProjects[locale].map((item:projectType, i: number) => (
 							<SwiperSlide key={i}>
 								<MyFirstCard key={i} {...item} />
 							</SwiperSlide>

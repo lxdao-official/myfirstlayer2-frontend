@@ -1,6 +1,17 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
-
+import { ReactNode } from 'react';
+interface SectionSimpleWrapperType {
+	id: string
+	title:string
+	desc:string
+	children:ReactNode
+	childOverflow?:string
+	marginTop?:{xs?:number|string,sm?:number|string,md?:number|string}
+	paddingBottom?:{xs?:number|string,sm?:number|string,md?:number|string}
+	paddingTop?:string
+	background?:string
+}
 export default function SectionSimpleWrapper({
 	id,
 	title,
@@ -8,7 +19,7 @@ export default function SectionSimpleWrapper({
 	children,
 	childOverflow = 'hidden',
 	...rest
-}) {
+}:SectionSimpleWrapperType) {
 	const ref = React.useRef()
 
 	return (
