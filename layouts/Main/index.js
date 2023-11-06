@@ -9,9 +9,12 @@ import {
 	Typography,
 	useMediaQuery,
 	useTheme,
+	Tooltip,
+	Avatar,
 } from '@mui/material'
 import { useLocale } from 'next-intl'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { ChevronRight } from '@mui/icons-material'
 
 const Main = ({ children = false }) => {
 	const locale = useLocale()
@@ -36,6 +39,51 @@ const Main = ({ children = false }) => {
 			},
 		],
 	}
+	const partners = [
+		{ id: '0', name: 'Arbitrum', logo: '', url: 'https://arbitrum.io/' },
+		{
+			id: '1',
+			name: 'Base',
+			logo: '',
+			url: 'https://base.org/',
+		},
+		{
+			id: '2',
+			name: 'Optimism',
+			logo: '',
+			url: 'https://www.optimism.io/',
+		},
+		{
+			id: '3',
+			name: 'Base',
+			logo: '',
+			url: 'https://base.org/',
+		},
+		{
+			id: '4',
+			name: 'Scroll',
+			logo: '',
+			url: 'https://scroll.io/',
+		},
+		{
+			id: '5',
+			name: 'Mantle',
+			logo: '',
+			url: 'https://www.mantle.xyz/',
+		},
+		{
+			id: '6',
+			name: 'Linea',
+			logo: '',
+			url: 'https://linea.build/',
+		},
+		{
+			id: '7',
+			name: 'Polygon',
+			logo: '',
+			url: 'https://polygon.technology/',
+		},
+	]
 
 	const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
 
@@ -122,6 +170,21 @@ const Main = ({ children = false }) => {
 								alignItems="center"
 								display="flex"
 							>
+								{/* <Typography
+									sx={{
+										cursor: 'pointer',
+										fontSize: {
+											xs: '12px',
+											sm: '16px',
+										},
+										fontWeight: '500',
+										textDecoration: 'none',
+										color: theme.palette.primary
+											.contrastText,
+									}}
+								>
+									Chains
+								</Typography> */}
 								{titles[locale].map((v, i) => {
 									return (
 										<Box
@@ -192,13 +255,92 @@ const Main = ({ children = false }) => {
 							<Box
 								sx={{
 									left: 0,
-									width: '300px',
+									width: 'auto',
 									right: 0,
 									margin: '0 auto',
 									ml: '60px',
 								}}
 							>
 								<Box gap={4} display="flex" alignItems="center">
+									<Tooltip
+										title={
+											<Box
+												sx={{
+													display: 'flex',
+													flexDirection: 'column',
+													alignItems: 'start',
+													justifyContent: 'center',
+													gap: 0.5,
+													padding: 1.5,
+												}}
+											>
+												{partners.map((partner) => (
+													<Box
+														key={partners.id}
+														sx={{
+															display: 'flex',
+															alignItems:
+																'center',
+															justifyContent:
+																'center',
+															my: 1,
+															textDecoration:
+																'none',
+															cursor: 'pointer',
+															width: 150,
+														}}
+													>
+														<Avatar
+															alt={partner.name}
+															src="./polygon.png"
+															sx={{
+																mr: 1,
+																width: 28,
+																height: 28,
+																objectFit:
+																	'contain',
+																objectPosition:
+																	'center',
+															}}
+														/>
+														<Link
+															sx={{
+																fontSize:
+																	'15px',
+																textDecoration:
+																	'none',
+																color: theme
+																	.palette
+																	.primary
+																	.contrastText,
+																cursor: 'pointer',
+															}}
+															href={partner.url}
+														>
+															{partner.name}
+														</Link>
+														<ChevronRight
+															sx={{ ml: 'auto' }}
+														/>
+													</Box>
+												))}
+											</Box>
+										}
+										placement="bottom"
+										arrow
+									>
+										<Typography
+											sx={{
+												textDecoration: 'none',
+												cursor: 'pointer',
+												fontSize: '15px',
+												lineHeight: '1.5',
+												fontWeight: '600',
+											}}
+										>
+											Chains
+										</Typography>
+									</Tooltip>
 									{titles[locale].map((v, i) => (
 										<Box
 											key={i}
