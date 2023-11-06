@@ -1,4 +1,5 @@
 import { uploadPNG } from '../../../common/ipfs'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 export const config = {
 	api: {
@@ -9,7 +10,7 @@ export const config = {
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
 	try {
 		const b64data = req.body
 		const cid = await uploadPNG(b64data)

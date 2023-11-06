@@ -72,8 +72,8 @@ export default function App({ Component, pageProps }) {
 						borderRadius: 'large',
 						fontStack: 'system',
 						overlayBlur: 'small',
-						selectionColor: '#000',
-						modalBorder: '1px solid #fff',
+						// selectionColor: '#000',
+						// modalBorder: '1px solid #fff',
 					})}
 				>
 					<NextIntlProvider messages={pageProps.messages}>
