@@ -9,14 +9,18 @@ export default function ImpossibleTriangle() {
 	const router = useRouter()
 	const { locale } = router
 	const [dragNodes, setDragNodes] = useState([])
-	const dragNodesRef = useRef(null)
-	dragNodesRef.current = dragNodes
-	const [side, setSide] = useState('')
-	const sideRef = useRef(null)
-	sideRef.current = side
+	const dragNodesRef = useRef<Array<any>>([])
+	// dragNodesRef.current = dragNodes
+	const [side, setSide] = useState<number|undefined>(undefined)
+	const sideRef = useRef<number>(null)
+	// sideRef.current = side
 	const theme = useTheme()
 	const mdScreen = useMediaQuery(theme.breakpoints.up('md'))
-	const distanceOfPoint2Line = (point0, point1, point2) => {
+	interface pointType {
+		x:number
+		y:number
+	}
+	const distanceOfPoint2Line = (point0:pointType, point1:pointType, point2:pointType) => {
 		const x = point0.x
 		const y = point0.y
 		const x1 = point1.x
@@ -213,7 +217,7 @@ export default function ImpossibleTriangle() {
 
 	const triggerDis = 30
 
-	const changeColor = (graph, index, color) => {
+	const changeColor = (graph:any, index:number, color:string) => {
 		setSide(index)
 		const style = { style: { fill: color, stroke: color, fontSize: 28 } }
 		const black = {
@@ -287,12 +291,12 @@ export default function ImpossibleTriangle() {
 		})
 	}
 
-	const twoPointDistance = (p1, p2) => {
+	const twoPointDistance = (p1:pointType, p2:pointType) => {
 		let dep = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2))
 		return dep
 	}
 
-	const pointInTriangle = (x0, y0) => {
+	const pointInTriangle = (x0:number, y0:number) => {
 		const x1 = outerTriangle[0].x
 		const y1 = outerTriangle[0].y
 		const x2 = outerTriangle[1].x
@@ -308,7 +312,7 @@ export default function ImpossibleTriangle() {
 	}
 
 	// change status by code
-	const autoChangeStatus = (type) => {
+	const autoChangeStatus = (type:number) => {
 		const graph = window.graph
 		const node0 = graph.cfg.nodes[0]
 		const node1 = graph.cfg.nodes[1]

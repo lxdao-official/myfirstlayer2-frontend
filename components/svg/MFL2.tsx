@@ -1,4 +1,10 @@
-export default function MFL2({ color, width = 83, height = 13 }) {
+import React, { SVGProps } from 'react';
+interface MFL2Props extends SVGProps<SVGSVGElement> {
+	color: string;
+	width?: string;
+	height?: string;
+}
+const MFL2: React.FC<MFL2Props> = ({ color, width = 83, height = 13 }) => {
 	return (
 		<svg
 			width={width}
@@ -46,3 +52,4 @@ export default function MFL2({ color, width = 83, height = 13 }) {
 		</svg>
 	)
 }
+export default MFL2;

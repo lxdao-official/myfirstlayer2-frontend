@@ -1,4 +1,10 @@
-export default function Earth({ width = 19, height = 19, color }) {
+import React, { SVGProps } from 'react';
+interface EarthProps extends SVGProps<SVGSVGElement> {
+	color: string;
+	width?: number;
+	height?: number;
+}
+const Earth: React.FC<EarthProps> = ({ width = 19, height = 19, color }) => {
 	return (
 		<svg
 			width={width}
@@ -37,3 +43,4 @@ export default function Earth({ width = 19, height = 19, color }) {
 		</svg>
 	)
 }
+export default Earth

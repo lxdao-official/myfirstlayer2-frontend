@@ -1,4 +1,21 @@
-export const CONTRACT_MAP = {
+interface CONTRACT_MAP_TYPE {
+	[key: number]: {
+		address: string
+		rpc: string
+		facute: string
+	}
+}
+interface networkTestType {
+	chainId: number
+	name: string
+	desc: string
+}
+interface networkListType {
+	[key: string]: {
+		[key:string]:Array<networkTestType> 
+	}
+}
+export const CONTRACT_MAP: CONTRACT_MAP_TYPE = {
 	420: {
 		address: '0x1188bd52703cc560a0349d5a80dad3d8c799e103',
 		rpc: 'https://opt-goerli.g.alchemy.com/v2/0nH0WXQaohzjhfuOIsjzYWj6MnJpl_4E',
@@ -11,7 +28,7 @@ export const CONTRACT_MAP = {
 	},
 }
 
-export const networkList = {
+export const networkList: networkListType = {
 	zh: {
 		main: [],
 		test: [

@@ -1,4 +1,10 @@
-export default function Arrow({ color, width = '8', height = '5', ...rest }) {
+import React, { SVGProps } from 'react';
+interface ArrowProps extends SVGProps<SVGSVGElement> {
+	color: string;
+	width?: string;
+	height?: string;
+}
+const Arrow: React.FC<ArrowProps> = ({ color, width = '8', height = '5', ...rest }) => {
 	return (
 		<svg
 			width={width}
@@ -15,3 +21,4 @@ export default function Arrow({ color, width = '8', height = '5', ...rest }) {
 		</svg>
 	)
 }
+export default Arrow;

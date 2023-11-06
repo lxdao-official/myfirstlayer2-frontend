@@ -1,6 +1,6 @@
 import abi from '../abi.json'
 import { CONTRACT_MAP } from '../config/config'
-import { ReadContext } from '../contents/context.ts'
+import { ReadContext, ReadContextType } from '../contents/context'
 import showMessage from './showMessage'
 import { Box, Button, useMediaQuery, useTheme } from '@mui/material'
 import { Stack } from '@mui/system'
@@ -15,25 +15,25 @@ import {
 	useContractWrite,
 	useNetwork,
 	useSwitchNetwork,
-	useWaitForTransaction,
+	useWaitForTransaction
 } from 'wagmi'
 
 export default function MintBadge() {
 	// ATTENTION: Please add the address of the corresponding network.
-	const { readData } = useContext(ReadContext)
+	const { readData } = useContext(ReadContext) as ReadContextType
 	const { read, counter } = readData
 	const router = useRouter()
 
-	const { chain = {} } = useNetwork()
+	const { chain = { id: -1 } } = useNetwork();
 	const {
 		chains,
 		isLoading: swichLoading,
 		switchNetwork,
 	} = useSwitchNetwork()
 
-	const { address } = useAccount()
+	const { address = `0x` } = useAccount()
 	const theme = useTheme()
-	const canvasRef = useRef(null)
+	const canvasRef = useRef<HTMLCanvasElement | null>(null)
 	const [imgLoaded, setImgLoaded] = useState(false)
 	const [mintLoading, setMintLoading] = useState(false)
 	const [modifiedImgSrc, setModifiedImgSrc] = useState('')
@@ -50,7 +50,7 @@ export default function MintBadge() {
 		chainId: chain.id,
 	})
 	const { isLoading, isSuccess } = useWaitForTransaction({
-		hash: data?.hash,
+		hash: data?.hash || '0x',
 	})
 	const toFaucet = () => {
 		window.open(CONTRACT_MAP[chain.id]?.facute, '_blank')
@@ -119,14 +119,14 @@ export default function MintBadge() {
 			console.log('transactionFee in wei: ' + transactionFee.toString())
 			console.log(
 				'transactionFee in ether: ' +
-					ethers.utils.formatUnits(transactionFee, 'ether')
+				ethers.utils.formatUnits(transactionFee, 'ether')
 			)
 			console.log(
 				'balance: ',
-				balance.data.value.toString(),
-				transactionFee.toString() > balance.data.value.toString()
+				balance?.data?.value.toString(),
+				transactionFee.toString() > (balance?.data?.value ?? "0").toString()
 			)
-			if (Number(transactionFee) > Number(balance.data.value)) {
+			if (Number(transactionFee) > Number(balance?.data?.value)) {
 				showMessage({
 					type: 'error',
 					title: 'Estimate Fail',
@@ -163,34 +163,48 @@ export default function MintBadge() {
 
 	useEffect(() => {
 		// 获取 canvas 元素和上下文对象
-		const canvas = canvasRef.current
+		const canvas = canvasRef.current as HTMLCanvasElement
 		const ctx = canvas.getContext('2d')
-		ctx.fillStyle = '#1E1E1E'
-		ctx.fillRect(0, 0, canvas.width, canvas.height)
+		if (ctx) {
+			ctx.fillStyle = '#1E1E1E'
+			ctx.fillRect(0, 0, canvas.width, canvas.height)
+		} else {
+			console.error("Canvas 2D context is not supported.");
+		}
+
 
 		// 在组件加载时，加载图片
 		const img = new Image()
 		img.src = '/icons/badge.svg'
 		img.onload = () => {
 			// 将图片绘制到 canvas 上
-			ctx.drawImage(img, 0, 0)
-			setImgLoaded(true)
+			if (ctx) {
+				ctx.drawImage(img, 0, 0)
+				setImgLoaded(true)
+			} else {
+				console.error("Canvas 2D context is not supported.");
+			}
+
 		}
 	}, [])
 
 	useEffect(() => {
 		if (imgLoaded) {
 			// 获取 canvas 元素和上下文对象
-			const canvas = canvasRef.current
+			const canvas = canvasRef.current as HTMLCanvasElement
 			const ctx = canvas.getContext('2d')
+			if (ctx) {
+				// 在 canvas 上执行绘制操作
+				ctx.fillStyle = '#E9E9E9'
+				ctx.font = '96px Open Sans'
+				ctx.fillText(`timestamp ${new Date().getTime()}`, 402, 1902)
+				ctx.fillStyle = '#6C6C6C'
+				ctx.font = '40px Open Sans'
+				ctx.fillText(address.toString(), 530, 2033)
+			} else {
+				console.error("Canvas 2D context is not supported.");
+			}
 
-			// 在 canvas 上执行绘制操作
-			ctx.fillStyle = '#E9E9E9'
-			ctx.font = '96px Open Sans'
-			ctx.fillText(`timestamp ${new Date().getTime()}`, 402, 1902)
-			ctx.fillStyle = '#6C6C6C'
-			ctx.font = '40px Open Sans'
-			ctx.fillText(address, 530, 2033)
 
 			// 将修改后的图片转换为 base64 格式
 			const modifiedImgSrc = canvas.toDataURL('image/png')
@@ -249,7 +263,7 @@ export default function MintBadge() {
 			) : (
 				<Button
 					variant="contained"
-					disabled={isLoading | mintLoading}
+					disabled={isLoading || mintLoading}
 					onClick={handleMint}
 					sx={{
 						width: '255px',
@@ -265,7 +279,7 @@ export default function MintBadge() {
 						},
 					}}
 				>
-					{isLoading | mintLoading ? 'Claiming...' : 'Claim'}
+					{isLoading || mintLoading ? 'Claiming...' : 'Claim'}
 				</Button>
 			)}
 			{CONTRACT_MAP[chain.id]?.facute ? (

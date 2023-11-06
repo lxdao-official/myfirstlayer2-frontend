@@ -1,6 +1,11 @@
 import { Box } from '@mui/material'
-
-export default function NewButton({ type = 'blue', children, onClick }) {
+import React, { ReactNode } from 'react';
+interface NewButtonProps {
+	type?: string;
+	children: ReactNode;
+	onClick?: () => void;
+}
+const NewButton: React.FC<NewButtonProps> = ({ type = 'blue', children, onClick }) => {
 	return (
 		<Box
 			onClick={onClick}
@@ -24,3 +29,4 @@ export default function NewButton({ type = 'blue', children, onClick }) {
 		</Box>
 	)
 }
+export default NewButton;

@@ -1,7 +1,10 @@
 import { Box } from '@mui/material'
 import { useTranslations } from 'next-intl'
-
-export default function EditChapter(props) {
+import React from 'react'
+interface EditChapterProps {
+	url: string
+}
+const EditChapter: React.FC<EditChapterProps> = (props) => {
 	const { url = '' } = props
 	const t = useTranslations('EditChapter')
 
@@ -17,3 +20,4 @@ export default function EditChapter(props) {
 		</Box>
 	)
 }
+export default EditChapter

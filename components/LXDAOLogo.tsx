@@ -1,4 +1,10 @@
-export default function LXDAOLogo({ color, width, height, ...rest }) {
+import React, { SVGProps } from 'react';
+interface LXDAOLogoProps extends SVGProps<SVGSVGElement> {
+	color: string;
+	width?: string;
+	height?: string;
+}
+const LXDAOLogo: React.FC<LXDAOLogoProps> = ({ color, width, height, ...rest }) => {
 	return (
 		<svg
 			width={width}
@@ -70,3 +76,4 @@ export default function LXDAOLogo({ color, width, height, ...rest }) {
 		</svg>
 	)
 }
+export default LXDAOLogo;

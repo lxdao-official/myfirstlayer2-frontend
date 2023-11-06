@@ -13,7 +13,7 @@ import { useState } from 'react'
 import { useNetwork, useSwitchNetwork } from 'wagmi'
 
 export default function Diploma() {
-	const { chain = {} } = useNetwork()
+	const { chain = { id: -1 } } = useNetwork();
 	const [newWorkType, setNewWorkType] = useState('test')
 	const t = useTranslations('Diploma')
 	const locale = useLocale()
@@ -27,17 +27,17 @@ export default function Diploma() {
 
 	const [isHover, setIsHover] = useState(-1)
 
-	const handleMouseEnter = (i) => {
+	const handleMouseEnter = (i: number) => {
 		setIsHover(i)
 	}
 	const handleMouseLeave = () => {
 		setIsHover(-1)
 	}
 
-	const changeNetwork = (type) => {
+	const changeNetwork = (type: string) => {
 		setNewWorkType(type)
 	}
-	const changeChain = (id) => {
+	const changeChain = (id: number) => {
 		console.log(chains)
 		console.log(switchNetwork)
 		switchNetwork?.(id)
@@ -171,7 +171,7 @@ export default function Diploma() {
 							</div>
 						</div>
 						<div style={{ marginTop: '20px' }}>
-							{networkList[locale][newWorkType].map((item, i) => (
+							{networkList[locale][newWorkType].map((item, i: number) => (
 								<div
 									onClick={() => changeChain(item.chainId)}
 									key={i}
@@ -184,12 +184,12 @@ export default function Diploma() {
 										marginTop: '12px',
 										background:
 											chain.id == item.chainId ||
-											isHover == i
+												isHover == i
 												? '#000'
 												: '#fff',
 										color:
 											chain.id == item.chainId ||
-											isHover == i
+												isHover == i
 												? '#fff'
 												: '#000',
 										cursor: 'pointer',
@@ -217,7 +217,9 @@ export default function Diploma() {
 							))}
 						</div>
 					</div>
-					<MintBadge style={{ flex: 1 }} />
+					<MintBadge
+					// style={{ flex: 1 }} 
+					/>
 				</div>
 				{swichLoading ? (
 					<div

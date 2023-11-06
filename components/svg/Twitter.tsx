@@ -1,7 +1,13 @@
 import { useTheme } from '@mui/material'
 import { Theme } from '@mui/system'
-export default function Twitter({  ...rest }) {
-	const theme:Theme = useTheme()
+import React, { SVGProps } from 'react';
+interface TwitterProps extends SVGProps<SVGSVGElement> {
+	color: string;
+	width?: string;
+	height?: string;
+}
+const Twitter: React.FC<TwitterProps> = ({ color, ...rest }) => {
+	const theme: Theme = useTheme()
 
 	return (
 		<svg
@@ -18,3 +24,4 @@ export default function Twitter({  ...rest }) {
 		</svg>
 	)
 }
+export default Twitter;

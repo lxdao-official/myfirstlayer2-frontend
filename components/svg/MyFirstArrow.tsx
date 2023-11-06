@@ -1,6 +1,11 @@
 import { useTheme } from '@mui/material'
-
-export default function MyFirstArrow({ color, ...rest }) {
+import React, { SVGProps } from 'react';
+interface MyFirstArrowProps extends SVGProps<SVGSVGElement> {
+	color: string;
+	width?: string;
+	height?: string;
+}
+const MyFirstArrow: React.FC<MyFirstArrowProps> = ({ color, ...rest }) => {
 	const theme = useTheme()
 
 	return (
@@ -19,3 +24,4 @@ export default function MyFirstArrow({ color, ...rest }) {
 		</svg>
 	)
 }
+export default MyFirstArrow

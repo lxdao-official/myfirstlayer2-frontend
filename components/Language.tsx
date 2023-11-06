@@ -7,14 +7,24 @@ import MenuItem from '@mui/material/MenuItem'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
-
-const Language = ({ color }) => {
+import React from 'react'
+import { Theme } from '@mui/system'
+interface Props {
+	color: string
+}
+const Language: React.FC<Props> = ({ color }) => {
 	const [anchorEl, setAnchorEl] = useState(null)
 	const open = Boolean(anchorEl)
 	const router = useRouter()
 	const { locale, route } = router
-	const theme = useTheme()
+	const theme: Theme = useTheme()
 	const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+	interface textTpye {
+		[key: string]: {
+			[key: string]: string
+		}
+
+	}
 	const text = {
 		zh: {
 			sx: '简',
@@ -26,7 +36,7 @@ const Language = ({ color }) => {
 		},
 	}
 
-	const handleClick = (event) => {
+	const handleClick = (event: any) => {
 		setAnchorEl(event.target.parentElement)
 	}
 
@@ -55,11 +65,11 @@ const Language = ({ color }) => {
 							width={{ xs: 'auto', md: '50px' }}
 							textAlign="center"
 						>
-							{text[locale][smallScreen ? 'sx' : 'md']}
+							{text[locale==='en'?'en':'zh'][smallScreen ? 'sx' : 'md']}
 						</Typography>
 						<Box
 							sx={{
-								rotate: open && '180deg',
+								// rotate: open && '180deg',
 								display: 'flex',
 								alignItems: 'center',
 							}}

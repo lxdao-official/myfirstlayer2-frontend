@@ -1,4 +1,10 @@
-export default function Question({ width = 19, height = 19, color, ...rest }) {
+import React, { SVGProps } from 'react';
+interface QuestionProps extends SVGProps<SVGSVGElement> {
+	color: string;
+	width?: string;
+	height?: string;
+}
+const Question: React.FC<QuestionProps> = ({ width = 19, height = 19, color, ...rest }) => {
 	return (
 		<svg
 			width={width}
@@ -24,3 +30,4 @@ export default function Question({ width = 19, height = 19, color, ...rest }) {
 		</svg>
 	)
 }
+export default Question;

@@ -1,4 +1,10 @@
-export default function Theme({ width = 26, height = 26, color, ...rest }) {
+import React, { SVGProps } from 'react';
+interface ThemeProps extends SVGProps<SVGSVGElement> {
+	color: string;
+	width?: string;
+	height?: string;
+}
+const Theme: React.FC<ThemeProps> = ({ width = 26, height = 26, color, ...rest }) => {
 	return (
 		<svg
 			width={width}
@@ -8,7 +14,7 @@ export default function Theme({ width = 26, height = 26, color, ...rest }) {
 			xmlns="http://www.w3.org/2000/svg"
 			{...rest}
 
-			//   onClick={onClick}
+		//   onClick={onClick}
 		>
 			<path
 				d="M13 2C11.5555 2 10.1251 2.28452 8.79048 2.83733C7.4559 3.39013 6.24327 4.20038 5.22182 5.22183C4.20038 6.24327 3.39013 7.4559 2.83732 8.79048C2.28452 10.1251 2 11.5555 2 13C2 14.4445 2.28452 15.8749 2.83733 17.2095C3.39013 18.5441 4.20038 19.7567 5.22183 20.7782C6.24327 21.7996 7.4559 22.6099 8.79048 23.1627C10.1251 23.7155 11.5555 24 13 24L13 13L13 2Z"
@@ -35,3 +41,4 @@ export default function Theme({ width = 26, height = 26, color, ...rest }) {
 		</svg>
 	)
 }
+export default Theme;

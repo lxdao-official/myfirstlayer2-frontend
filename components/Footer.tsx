@@ -41,8 +41,15 @@ const SignupFormWrapper = styled.div`
 		color: #305fe8 !important;
 	}
 `
-
-const NavList = ({ title, items }) => (
+interface itemType {
+	name: string
+	link: string
+}
+interface NavListProps {
+	title: string
+	items: Array<itemType>
+}
+const NavList: React.FC<NavListProps> = ({ title, items }) => (
 	<Box display="flex" flexDirection="column">
 		<Typography
 			variant="h6"

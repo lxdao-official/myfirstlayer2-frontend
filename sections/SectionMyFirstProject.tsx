@@ -24,7 +24,6 @@ interface MyFirstCardType extends projectType {
 }
 function MyFirstCard(props:MyFirstCardType) {
 	const t = useTranslations('SectionMyFirstProject')
-	console.log(props,'-*-*-+++++++++++++++')
 	return (
 		<Link href={props.url} target="_blank" underline="none">
 			<Box sx={{ width: '100%' }}>

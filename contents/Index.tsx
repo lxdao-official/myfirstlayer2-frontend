@@ -75,7 +75,6 @@ export default function Content(props: { md: any }) {
 		fetch(`/api/getFile/${name}`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data,'+++++++++++++++++++')
 				if (data?.mdxSource) {
 					setMdxSource(data.mdxSource)
 				}
@@ -86,7 +85,6 @@ export default function Content(props: { md: any }) {
 
 	const computeReadCount = (arr: Array<chapterType | boolean>) => {
 		if (!arr) return 0
-		console.log(arr)
 		let count = 0
 		const isChapterTypeArray = arr.every((item): item is chapterType => {
 			return typeof item !== "boolean";

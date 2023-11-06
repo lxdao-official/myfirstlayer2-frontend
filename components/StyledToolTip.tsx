@@ -4,13 +4,13 @@ import React from 'react'
 
 const useStyles = makeStyles((theme) => {
 	return {
-		tooltip: (props) => ({
+		tooltip: (props: Props) => ({
 			marginTop: '10px !important',
 			backgroundColor: props.background,
 			borderRadius: '18px',
 			boxShadow: props.boxShadow,
 		}),
-		arrow: (props) => ({
+		arrow: (props: Props) => ({
 			color: props.background,
 			fontSize: 16,
 			margin: 0,
@@ -24,8 +24,13 @@ const useStyles = makeStyles((theme) => {
 		}),
 	}
 })
-
-export default function StyledToolTip(props) {
+interface Props {
+	background: string
+	boxShadow: string
+	title: string
+	children: React.ReactElement<any, any>
+}
+const StyledToolTip: React.FC<Props> = (props) => {
 	const classes = useStyles(props)
 	return (
 		<Tooltip
@@ -38,3 +43,4 @@ export default function StyledToolTip(props) {
 		/>
 	)
 }
+export default StyledToolTip;
