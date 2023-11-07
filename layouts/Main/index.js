@@ -1,6 +1,7 @@
 import Container from '../../components/Container'
 import Language from '../../components/Language'
 import { MFL2ConnectButton } from '../../components/MFL2ConnectButton'
+import { ChevronRight } from '@mui/icons-material'
 import {
 	Box,
 	Divider,
@@ -14,7 +15,6 @@ import {
 } from '@mui/material'
 import { useLocale } from 'next-intl'
 import React, { useEffect } from 'react'
-import { ChevronRight } from '@mui/icons-material'
 
 const Main = ({ children = false }) => {
 	const locale = useLocale()
@@ -40,48 +40,48 @@ const Main = ({ children = false }) => {
 		],
 	}
 	const partners = [
-		{ id: '0', name: 'Arbitrum', logo: '', url: 'https://arbitrum.io/' },
+		{
+			id: '0',
+			name: 'Optimism',
+			logo: '/partners/optimism.png',
+			url: 'https://www.optimism.io/',
+		},
 		{
 			id: '1',
-			name: 'Base',
-			logo: '',
-			url: 'https://base.org/',
+			name: 'Arbitrum',
+			logo: '/partners/arbitrum.png',
+			url: 'https://arbitrum.io/',
 		},
 		{
 			id: '2',
-			name: 'Optimism',
-			logo: '',
-			url: 'https://www.optimism.io/',
+			name: 'Polygon',
+			logo: '/partners/polygon.png',
+			url: 'https://polygon.technology/',
 		},
 		{
 			id: '3',
 			name: 'Base',
-			logo: '',
+			logo: '/partners/base.png',
 			url: 'https://base.org/',
 		},
+
 		{
 			id: '4',
 			name: 'Scroll',
-			logo: '',
+			logo: '/partners/scroll.png',
 			url: 'https://scroll.io/',
 		},
 		{
 			id: '5',
 			name: 'Mantle',
-			logo: '',
+			logo: '/partners/mantle.png',
 			url: 'https://www.mantle.xyz/',
 		},
 		{
 			id: '6',
 			name: 'Linea',
-			logo: '',
+			logo: '/partners/linea.png',
 			url: 'https://linea.build/',
-		},
-		{
-			id: '7',
-			name: 'Polygon',
-			logo: '',
-			url: 'https://polygon.technology/',
 		},
 	]
 
@@ -292,7 +292,7 @@ const Main = ({ children = false }) => {
 													>
 														<Avatar
 															alt={partner.name}
-															src="./polygon.png"
+															src={partner.logo}
 															sx={{
 																mr: 1,
 																width: 28,
