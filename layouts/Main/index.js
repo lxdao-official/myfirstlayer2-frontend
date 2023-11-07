@@ -336,6 +336,7 @@ const Main = ({ children = false }) => {
 												fontSize: '15px',
 												lineHeight: '1.5',
 												fontWeight: '600',
+												color: '#fff',
 											}}
 										>
 											Chains
