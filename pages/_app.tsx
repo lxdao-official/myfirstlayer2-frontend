@@ -1,52 +1,61 @@
-import '../common/global.css'
-import getTheme from '../common/theme'
-import { ThemeProvider } from '@mui/material/styles'
+import '../common/global.css';
+import getTheme from '../common/theme';
+import { ThemeProvider } from '@mui/material/styles';
 import {
 	RainbowKitProvider,
 	getDefaultWallets,
 	lightTheme,
 	midnightTheme,
-} from '@rainbow-me/rainbowkit'
+} from '@rainbow-me/rainbowkit';
 
 /* RainbowKit imports */
-import '@rainbow-me/rainbowkit/styles.css'
-import { getAccount } from '@wagmi/core'
-import { NextIntlProvider } from 'next-intl'
-import Script from 'next/script'
-import { createContext } from 'react'
-import { useMemo, useState } from 'react'
-import { WagmiConfig, chain, configureChains, createClient } from 'wagmi'
-import { publicProvider } from 'wagmi/providers/public'
+import '@rainbow-me/rainbowkit/styles.css';
+import { getAccount } from '@wagmi/core';
+import { NextIntlProvider } from 'next-intl';
+import Script from 'next/script';
+import { createContext, FC, useMemo, useState } from 'react';
+import { WagmiConfig, chain, configureChains, createClient } from 'wagmi';
+import { publicProvider } from 'wagmi/providers/public';
 
 /* RainbowKit variables */
 const { chains, provider } = configureChains(
 	[chain.optimismGoerli, chain.arbitrumGoerli],
 	[publicProvider()]
-)
+);
 const { connectors } = getDefaultWallets({
 	appName: 'My First Layer2',
 	chains,
-})
+});
 const wagmiClient = createClient({
 	autoConnect: true,
 	connectors,
 	provider,
-})
+});
 /* RainbowKit variables */
 
-export const ColorModeContext = createContext({ toggleColorMode: () => {} })
+export interface ColorModeContextType {
+	toggleColorMode: () => void;
+}
 
-export default function App({ Component, pageProps }) {
-	const [mode, setMode] = useState('light')
-	const colorMode = useMemo(
-		() => ({
-			toggleColorMode: () => {
-				setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
-			},
-		}),
-		[]
-	)
-	const theme = getTheme(mode)
+export const ColorModeContext = createContext<ColorModeContextType>({
+	toggleColorMode: () => { },
+});
+
+interface AppProps {
+	Component: FC;
+	pageProps: Record<string, any>;
+}
+
+const App: FC<AppProps> = ({ Component, pageProps }) => {
+	const [mode, setMode] = useState<string>('light');
+
+	const colorMode = useMemo(() => ({
+		toggleColorMode: () => {
+			setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+		},
+	}), []);
+
+	const theme = getTheme(mode);
 
 	return (
 		<>
@@ -86,5 +95,7 @@ export default function App({ Component, pageProps }) {
 				</RainbowKitProvider>
 			</WagmiConfig>
 		</>
-	)
-}
+	);
+};
+
+export default App;

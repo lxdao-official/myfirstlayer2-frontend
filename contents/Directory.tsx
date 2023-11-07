@@ -1,4 +1,4 @@
-import { formatChapterTitle } from '../utils.js'
+import { formatChapterTitle } from '../utils'
 import Progress from './Progress'
 import React from 'react';
 import { Theme } from '@mui/material';

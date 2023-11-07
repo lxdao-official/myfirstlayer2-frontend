@@ -7,13 +7,17 @@ import SectionMyFirstProject from '../sections/SectionMyFirstProject'
 import SectionSponsors from '../sections/SectionSponsors'
 import SectionTeam from '../sections/SectionTeam'
 import SectionTop from '../sections/SectionTop'
-import { getDocBySlug } from '/utils'
+import { getDocBySlug } from '../utils'
 import { useTheme } from '@mui/material/styles'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import React from 'react'
+interface IndexProps {
+	content: any; // 替换为适当的类型
+	directory: string;
+}
 
-export default function Index({ content, directory }) {
+const Index: React.FC<IndexProps> = ({ content, directory }) => {
 	const theme = useTheme()
 	return (
 		<Main>
@@ -30,8 +34,8 @@ export default function Index({ content, directory }) {
 		</Main>
 	)
 }
-
-export async function getStaticProps(params) {
+export default Index;
+export async function getStaticProps(params: { locale: string }) {
 	const { locale = 'en' } = params
 
 	const { content, meta } = getDocBySlug(DIRECTORY_NAME[0]?.text, locale)

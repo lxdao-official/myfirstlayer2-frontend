@@ -1,4 +1,4 @@
-import { formatChapterTitle } from '../utils.js'
+import { formatChapterTitle } from '../utils'
 import { Box, Hidden, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { useTranslations } from 'next-intl'

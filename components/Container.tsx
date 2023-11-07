@@ -1,17 +1,8 @@
 import Box from '@mui/material/Box'
+import {  BoxProps } from '@mui/material';
+
 import React from 'react'
-interface ContainerProps {
-	children: React.ReactNode
-	maxWidth?: string
-	paddingX?: number
-	paddingY?: {
-		lg?: string
-		md?: string
-		xs?: string
-	}
-	margin?: string
-}
-const Container: React.FC<ContainerProps> = ({
+const Container: React.FC<BoxProps> = ({
 	children,
 	maxWidth = '1339px',
 	paddingX = 2,

@@ -12,11 +12,22 @@ import {
 } from '@mui/material'
 import { useLocale } from 'next-intl'
 import { useEffect } from 'react'
-
-const Main = ({ children = false }) => {
+import React, { ReactNode } from 'react';
+interface MainProps {
+	children: ReactNode
+}
+const Main: React.FC<MainProps> = ({ children }) => {
 	const locale = useLocale()
 	const theme = useTheme()
-	const titles = {
+	interface Title {
+		href: string
+		title: string
+		target: string
+	}
+	interface Titles {
+		[key: string]: Title[]
+	}
+	const titles: Titles = {
 		en: [
 			{ href: '#introduce', title: 'Introduce', target: '_self' },
 			{ href: '#content', title: 'Content', target: '_self' },
