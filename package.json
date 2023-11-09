@@ -43,6 +43,7 @@
 		"remark-gfm": "^3.0.1",
 		"styled-components": "^5.3.8",
 		"swiper": "^9.2.4",
+		"viem": "^1.18.9",
 		"wagmi": "0.8.7"
 	},
 	"devDependencies": {
