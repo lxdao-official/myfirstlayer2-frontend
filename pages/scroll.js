@@ -12,7 +12,10 @@ import {
 } from '@mui/material'
 import Image from 'next/image'
 import * as React from 'react'
-
+import { useSigner, useSendTransaction } from 'wagmi'
+import { useAccount, useNetwork, chain, useSwitchNetwork } from 'wagmi'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
+import Link from 'next/link'
 const steps = [
 	{
 		label: 'Switch your wallet network to "Scroll"',
@@ -34,9 +37,45 @@ const steps = [
 
 export default function Scroll() {
 	const [activeStep, setActiveStep] = React.useState(0)
-
-	const handleNext = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep + 1)
+	const { isConnected } = useAccount()
+	const { chain: currectChain } = useNetwork()
+	const { data: signer } = useSigner({
+		onError(error) {
+			console.log('Error', error)
+		},
+	})
+	const { sendTransaction } = useSendTransaction({
+		mode: 'recklesslyUnprepared',
+		request: {
+			data: '0x6080604052348015600f57600080fd5b5060ac8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80632e64cec11460375780636057361d14604c575b600080fd5b60005460405190815260200160405180910390f35b605c6057366004605e565b600055565b005b600060208284031215606f57600080fd5b503591905056fea26469706673582212205774c71bc1f1fa9ac0bd2216cf5308f60b734e4d6647ca359475919ba8422fb564736f6c63430008120033',
+		},
+		onSuccess(transaction) {
+			setActiveStep((prevActiveStep) => prevActiveStep + 1)
+		},
+	})
+	const { chains, switchNetwork } = useSwitchNetwork()
+	const { openConnectModal } = useConnectModal()
+	React.useEffect(() => {
+		if (!isConnected && activeStep >= 1) {
+			openConnectModal()
+		}
+		console.log(chains[2])
+		console.log(chain.optimismGoerli)
+		if (currectChain?.id != 534352) {
+			switchNetwork?.(chains[2].id)
+		}
+	}, [isConnected, activeStep])
+	const handleNext = async () => {
+		if (activeStep === 0 && !isConnected) {
+			openConnectModal()
+		} else if (activeStep == 1) {
+			// depoly
+			sendTransaction()
+		} else if (activeStep === 2) {
+			setActiveStep((prevActiveStep) => prevActiveStep + 1)
+		} else {
+			setActiveStep((prevActiveStep) => prevActiveStep + 1)
+		}
 	}
 
 	const handleBack = () => {
@@ -64,6 +103,12 @@ export default function Scroll() {
 		],
 	}
 
+	function getText(activeStep, index) {
+		if (activeStep == 0) {
+			return 'Connect Wallet'
+		} else
+			return index === steps.length - 1 ? 'Wait Dec 15, 2023' : 'Continue'
+	}
 	return (
 		<>
 			{/* Nav */}
@@ -219,6 +264,9 @@ export default function Scroll() {
 												color: '#f2a364',
 											},
 										}}
+										onClick={() => {
+											setActiveStep(index)
+										}}
 									>
 										{step.label}
 									</Typography>
@@ -232,10 +280,21 @@ export default function Scroll() {
 												onClick={handleNext}
 												sx={{ mt: 1, mr: 1 }}
 												size="small"
+												disabled={index == 3}
 											>
-												{index === steps.length - 1
-													? 'Finish'
-													: 'Continue'}
+												{index == 2 ? (
+													<Link
+														href="https://scroll.io/developer-nft/check-eligibility"
+														target="_blank"
+													>
+														{getText(
+															activeStep,
+															index
+														)}
+													</Link>
+												) : (
+													getText(activeStep, index)
+												)}
 											</Button>
 											<Button
 												disabled={index === 0}
@@ -251,7 +310,7 @@ export default function Scroll() {
 							</Step>
 						))}
 					</Stepper>
-					{activeStep === steps.length && (
+					{/* {activeStep === steps.length && (
 						<Paper square elevation={0} sx={{ p: 3 }}>
 							<Typography>
 								All steps completed - you&apos;re finished
@@ -265,7 +324,7 @@ export default function Scroll() {
 								Back
 							</Button>
 						</Paper>
-					)}
+					)} */}
 				</Box>
 			</Box>
 		</>
