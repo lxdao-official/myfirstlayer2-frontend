@@ -14,7 +14,6 @@ import {
 	Avatar,
 } from '@mui/material'
 import { useLocale } from 'next-intl'
-import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 
@@ -393,10 +392,10 @@ const Main = ({ children = false }) => {
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
-												border: '1px solid #666',
+												border: '1px solid #333',
 												padding: 1,
 												':hover': {
-													backgroundColor: '#666',
+													backgroundColor: '#333',
 												},
 												transition: 'all 0.2s',
 												borderRadius: '6px',

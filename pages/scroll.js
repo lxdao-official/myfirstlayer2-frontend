@@ -2,13 +2,13 @@ import {
 	Box,
 	Button,
 	Divider,
-	Link,
 	Paper,
 	Step,
 	StepContent,
 	StepLabel,
 	Stepper,
 	Typography,
+	useTheme,
 } from '@mui/material'
 import Image from 'next/image'
 import * as React from 'react'
@@ -43,12 +43,48 @@ export default function Scroll() {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1)
 	}
 
-	const handleReset = () => {
-		setActiveStep(0)
+	const titles = {
+		en: [
+			{ href: '#introduce', title: 'Introduce', target: '_self' },
+			{ href: '#content', title: 'Content', target: '_self' },
+			{
+				href: 'https://lxdao.io/joinus',
+				title: 'Join Us',
+				target: '_blank',
+			},
+		],
+		zh: [
+			{ href: '#introduce', title: '介绍', target: '_self' },
+			{ href: '#content', title: '内容', target: '_self' },
+			{
+				href: 'https://lxdao.io/joinus',
+				title: '加入我们',
+				target: '_blank',
+			},
+		],
 	}
+
 	return (
 		<>
-			<Link id="scroll" sx={{ position: 'relative' }}></Link>
+			{/* Nav */}
+			<Box
+				display="flex"
+				alignItems="center"
+				justifyContent="center"
+				sx={{ pt: 2, background: '#000', height: '10vh' }}
+			>
+				<Box component={'img'} src="/mfl2-logo-new.svg" />
+				<Divider
+					orientation="vertical"
+					sx={{
+						borderColor: '#666',
+						height: '16px',
+						marginInline: '13px',
+					}}
+				/>
+				<Box component="img" src="/lxdao-logo-white.svg" />
+			</Box>
+			{/* Main */}
 			<Box
 				sx={{
 					position: 'relative',
@@ -56,8 +92,7 @@ export default function Scroll() {
 					justifyContent: 'center',
 					alignItems: 'center',
 					width: '100vw',
-					height: '100vh',
-					minHeight: { md: '830px' },
+					height: '90vh',
 					background: 'black',
 					gap: 28,
 				}}
