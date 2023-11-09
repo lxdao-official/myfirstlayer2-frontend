@@ -4,6 +4,7 @@ import Content from '../contents/Index'
 import Main from '../layouts/Main'
 import SectionLXDAOIntro from '../sections/SectionLXDAOIntro'
 import SectionMyFirstProject from '../sections/SectionMyFirstProject'
+import SectionScroll from '../sections/SectionScroll'
 import SectionSponsors from '../sections/SectionSponsors'
 import SectionTeam from '../sections/SectionTeam'
 import SectionTop from '../sections/SectionTop'
@@ -11,22 +12,36 @@ import { getDocBySlug } from '/utils'
 import { useTheme } from '@mui/material/styles'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 
 export default function Index({ content, directory }) {
 	const theme = useTheme()
+	const router = useRouter()
+	const isScroll = router.pathname === '/#scroll'
+
+	useEffect(() => {
+		console.log(router.pathname)
+	}, [router.pathname])
+
 	return (
 		<Main>
-			<SectionTop />
-			<Content md={<MDXRemote {...content} file={directory} />} />
-			<SectionMyFirstProject />
-			<SectionSponsors />
-			<SectionTeam />
-			{/* <SectionLXDAOIntro /> */}
-			{/* <Box id="joinus" paddingTop={{ xs: '50px', md: 15 }} marginBottom={{  md: 15 }} paddingX={0}>
+			{isScroll ? (
+				<SectionScroll />
+			) : (
+				<>
+					<SectionTop />
+					<Content md={<MDXRemote {...content} file={directory} />} />
+					<SectionMyFirstProject />
+					<SectionSponsors />
+					<SectionTeam />
+					{/* <SectionLXDAOIntro /> */}
+					{/* <Box id="joinus" paddingTop={{ xs: '50px', md: 15 }} marginBottom={{  md: 15 }} paddingX={0}>
         <LXDAOIntroduction imgBackground={`${theme?.palette.bodyBg.main}`} titleColor={theme?.palette?.mode === 'dark' ? '#fff' : '#141414'} detailColor={theme?.palette?.mode === 'dark' ? '#fff' : '#667085'} maxWidth="1240px" xsWidth="326px" />
       </Box> */}
-			<Footer />
+					<Footer />
+				</>
+			)}
 		</Main>
 	)
 }

@@ -5,7 +5,7 @@ import { ChevronRight } from '@mui/icons-material'
 import {
 	Box,
 	Divider,
-	Link,
+	Link as MuiLink,
 	Stack,
 	Typography,
 	useMediaQuery,
@@ -14,6 +14,8 @@ import {
 	Avatar,
 } from '@mui/material'
 import { useLocale } from 'next-intl'
+import Image from 'next/image'
+import Link from 'next/link'
 import React, { useEffect } from 'react'
 
 const Main = ({ children = false }) => {
@@ -205,7 +207,7 @@ const Main = ({ children = false }) => {
 													fontWeight: '500',
 												}}
 											>
-												<Link
+												<MuiLink
 													sx={{
 														textDecoration: 'none',
 														color: theme.palette
@@ -216,7 +218,7 @@ const Main = ({ children = false }) => {
 													target={v.target}
 												>
 													{v.title}
-												</Link>
+												</MuiLink>
 											</Typography>
 										</Box>
 									)
@@ -262,6 +264,7 @@ const Main = ({ children = false }) => {
 								}}
 							>
 								<Box gap={4} display="flex" alignItems="center">
+									{/* TODO: chains section (issue #147 | issue #148) */}
 									<Tooltip
 										title={
 											<Box
@@ -303,7 +306,7 @@ const Main = ({ children = false }) => {
 																	'center',
 															}}
 														/>
-														<Link
+														<MuiLink
 															sx={{
 																fontSize:
 																	'15px',
@@ -318,7 +321,7 @@ const Main = ({ children = false }) => {
 															href={partner.url}
 														>
 															{partner.name}
-														</Link>
+														</MuiLink>
 														<ChevronRight
 															sx={{ ml: 'auto' }}
 														/>
@@ -358,7 +361,7 @@ const Main = ({ children = false }) => {
 													fontWeight: '600',
 												}}
 											>
-												<Link
+												<MuiLink
 													sx={{
 														textDecoration: 'none',
 														color: theme.palette
@@ -370,10 +373,47 @@ const Main = ({ children = false }) => {
 													target={v.target}
 												>
 													{v.title}
-												</Link>
+												</MuiLink>
 											</Typography>
 										</Box>
 									))}
+									<Divider
+										orientation="vertical"
+										sx={{
+											borderColor:
+												theme.palette.primary
+													.contrastText,
+											height: '16px',
+											marginInline: '1px',
+										}}
+									/>
+									<Link href="scroll" target="_blank">
+										<Box
+											sx={{
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+												border: '1px solid #666',
+												padding: 1,
+												':hover': {
+													backgroundColor: '#666',
+												},
+												transition: 'all 0.2s',
+												borderRadius: '6px',
+											}}
+										>
+											<Typography
+												sx={{
+													fontSize: '15px',
+													lineHeight: '1.5',
+													fontWeight: '600',
+													color: '#fff',
+												}}
+											>
+												📜 Scroll Origins NFT
+											</Typography>
+										</Box>
+									</Link>
 								</Box>
 							</Box>
 						</Box>
