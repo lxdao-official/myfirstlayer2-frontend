@@ -2,7 +2,6 @@ import { DIRECTORY_NAME } from '../common/constans'
 import Footer from '../components/Footer'
 import Content from '../contents/Index'
 import Main from '../layouts/Main'
-import SectionLXDAOIntro from '../sections/SectionLXDAOIntro'
 import SectionMyFirstProject from '../sections/SectionMyFirstProject'
 import SectionSponsors from '../sections/SectionSponsors'
 import SectionTeam from '../sections/SectionTeam'
@@ -11,10 +10,18 @@ import { getDocBySlug } from '/utils'
 import { useTheme } from '@mui/material/styles'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 
 export default function Index({ content, directory }) {
 	const theme = useTheme()
+	const router = useRouter()
+	const isScroll = router.pathname === '/#scroll'
+
+	useEffect(() => {
+		console.log(router.pathname)
+	}, [router.pathname])
+
 	return (
 		<Main>
 			<SectionTop />
