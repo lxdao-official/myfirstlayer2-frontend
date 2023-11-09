@@ -17,10 +17,27 @@ import { createContext } from 'react'
 import { useMemo, useState } from 'react'
 import { WagmiConfig, chain, configureChains, createClient } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
-
+import { scroll } from 'viem/chains'
 /* RainbowKit variables */
+
 const { chains, provider } = configureChains(
-	[chain.optimismGoerli, chain.arbitrumGoerli],
+	[
+		chain.optimismGoerli,
+		chain.arbitrumGoerli,
+		{
+			id: scroll.id,
+			name: scroll.name,
+			network: scroll.network,
+			nativeCurrency: scroll.nativeCurrency,
+			rpcUrls: {
+				public: scroll.rpcUrls.public.http[0],
+				default: scroll.rpcUrls.public.http[0],
+			},
+			blockExplorers: scroll.blockExplorers,
+			testnet: false,
+			multicall: scroll.contracts.multicall3,
+		},
+	],
 	[publicProvider()]
 )
 const { connectors } = getDefaultWallets({
