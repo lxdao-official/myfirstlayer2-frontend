@@ -1,3 +1,4 @@
+import { MFL2ConnectButton } from '../components/MFL2ConnectButton'
 import {
 	Box,
 	Button,
@@ -10,14 +11,14 @@ import {
 	Typography,
 	useTheme,
 } from '@mui/material'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import Image from 'next/image'
+import Link from 'next/link'
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack'
 import * as React from 'react'
 import { useSigner, useSendTransaction } from 'wagmi'
 import { useAccount, useNetwork, chain, useSwitchNetwork } from 'wagmi'
-import { useConnectModal } from '@rainbow-me/rainbowkit'
-import { SnackbarProvider, VariantType, useSnackbar } from 'notistack'
 
-import Link from 'next/link'
 const steps = [
 	{
 		label: 'Switch your wallet network to "Scroll"',
@@ -73,6 +74,7 @@ export default function Scroll() {
 		}
 		console.log(chains[2])
 		console.log(chain.optimismGoerli)
+		// TODO: failed to change network
 		if (currectChain?.id != 534352) {
 			switchNetwork?.(chains[2].id)
 		}
@@ -127,19 +129,22 @@ export default function Scroll() {
 			<Box
 				display="flex"
 				alignItems="center"
-				justifyContent="center"
-				sx={{ pt: 2, background: '#000', height: '10vh' }}
+				justifyContent="space-between"
+				sx={{ pt: 2, background: '#000', height: '10vh', px: 24 }}
 			>
-				<Box component={'img'} src="/mfl2-logo-new.svg" />
-				<Divider
-					orientation="vertical"
-					sx={{
-						borderColor: '#666',
-						height: '16px',
-						marginInline: '13px',
-					}}
-				/>
-				<Box component="img" src="/lxdao-logo-white.svg" />
+				<Box display="flex">
+					<Box component={'img'} src="/mfl2-logo-new.svg" />
+					<Divider
+						orientation="vertical"
+						sx={{
+							borderColor: '#666',
+							height: '16px',
+							marginInline: '13px',
+						}}
+					/>
+					<Box component="img" src="/lxdao-logo-white.svg" />
+				</Box>
+				<MFL2ConnectButton />
 			</Box>
 			{/* Main */}
 			<Box
@@ -284,7 +289,9 @@ export default function Scroll() {
 									</Typography>
 								</StepLabel>
 								<StepContent>
-									<Typography>{step.description}</Typography>
+									<Typography sx={{ color: '#333' }}>
+										{step.description}
+									</Typography>
 									<Box sx={{ mb: 2 }}>
 										<div>
 											<Button
