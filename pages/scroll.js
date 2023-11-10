@@ -68,20 +68,22 @@ export default function Scroll() {
 	})
 	const { chains, switchNetwork } = useSwitchNetwork()
 	const { openConnectModal } = useConnectModal()
-	React.useEffect(() => {
-		if (!isConnected && activeStep >= 1) {
-			openConnectModal()
-		}
-		console.log(chains[2])
-		console.log(chain.optimismGoerli)
-		// TODO: failed to change network
-		if (currectChain?.id != 534352) {
-			switchNetwork?.(chains[2].id)
-		}
-	}, [isConnected, activeStep])
+
+	// React.useEffect(() => {
+	// 	if (!isConnected && activeStep >= 1) {
+	// 		openConnectModal()
+	// 	}
+	// 	console.log(chains[2])
+	// 	console.log(chain.optimismGoerli)
+	// 	if (currectChain?.id != 534352) {
+	// 		switchNetwork?.(chains[2].id)
+	// 	}
+	// }, [isConnected, activeStep])
+
 	const handleNext = async () => {
-		if (activeStep === 0 && !isConnected) {
-			openConnectModal()
+		if (activeStep === 0) {
+			switchNetwork?.(chains[2].id)
+			setActiveStep((prevActiveStep) => prevActiveStep + 1)
 		} else if (activeStep == 1) {
 			// depoly
 			sendTransaction()
