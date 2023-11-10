@@ -9,6 +9,11 @@ export const CONTRACT_MAP = {
 		rpc: 'https://arb-goerli.g.alchemy.com/v2/a-yu04ERGsxtgYyZ3BuioJ09VSZv4FQm',
 		facute: 'https://faucet.quicknode.com/arbitrum/goerli',
 	},
+	534352: {
+		address: '',
+		rpc: '',
+		facute: '',
+	},
 }
 
 export const networkList = {

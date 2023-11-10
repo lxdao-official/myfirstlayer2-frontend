@@ -119,7 +119,7 @@ export default function Scroll() {
 
 	function getText(activeStep, index) {
 		if (activeStep == 0) {
-			return 'Connect Wallet'
+			return 'switch'
 		} else
 			return index === steps.length - 1 ? 'Wait Dec 15, 2023' : 'Continue'
 	}
@@ -268,7 +268,6 @@ export default function Scroll() {
 											</Typography>
 										) : null
 									}
-									sx={{}}
 								>
 									<Typography
 										sx={{
