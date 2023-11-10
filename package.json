@@ -35,6 +35,7 @@
 		"next-intl": "^2.10.4",
 		"next-mdx-remote": "^4.4.1",
 		"nft.storage": "^7.0.3",
+		"notistack": "^3.0.1",
 		"react": "18.2.0",
 		"react-copy-to-clipboard": "^5.1.0",
 		"react-dom": "18.2.0",

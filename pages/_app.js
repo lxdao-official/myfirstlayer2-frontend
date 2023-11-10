@@ -7,7 +7,7 @@ import {
 	lightTheme,
 	midnightTheme,
 } from '@rainbow-me/rainbowkit'
-
+import { SnackbarProvider } from 'notistack'
 /* RainbowKit imports */
 import '@rainbow-me/rainbowkit/styles.css'
 import { getAccount } from '@wagmi/core'
@@ -66,28 +66,51 @@ export default function App({ Component, pageProps }) {
 	const theme = getTheme(mode)
 
 	return (
-		<WagmiConfig client={wagmiClient}>
-			<RainbowKitProvider
-				chains={chains}
-				theme={lightTheme({
-					accentColor: '#000',
-					accentColorForeground: 'white',
-					borderRadius: 'large',
-					fontStack: 'system',
-					overlayBlur: 'small',
-					selectionColor: '#000',
-					modalBorder: '1px solid #fff',
-				})}
-			>
-				<NextIntlProvider messages={pageProps.messages}>
-					<ColorModeContext.Provider value={colorMode}>
-						<ThemeProvider theme={theme}>
-							<Component {...pageProps} />
-							<Script src="https://cdn.jsdelivr.net/npm/donate3-sdk@1.0.43/dist/webpack/bundle.js" />
-						</ThemeProvider>
-					</ColorModeContext.Provider>
-				</NextIntlProvider>
-			</RainbowKitProvider>
-		</WagmiConfig>
+		<>
+			<Script
+				async
+				src="https://www.googletagmanager.com/gtag/js?id=G-YBM7P1VZH9"
+			/>
+			<Script id="google-analytics">
+				{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-YBM7P1VZH9');
+        `}
+			</Script>
+			<WagmiConfig client={wagmiClient}>
+				<RainbowKitProvider
+					chains={chains}
+					theme={lightTheme({
+						accentColor: '#000',
+						accentColorForeground: 'white',
+						borderRadius: 'large',
+						fontStack: 'system',
+						overlayBlur: 'small',
+						selectionColor: '#000',
+						modalBorder: '1px solid #fff',
+					})}
+				>
+					<NextIntlProvider messages={pageProps.messages}>
+						<ColorModeContext.Provider value={colorMode}>
+							<ThemeProvider theme={theme}>
+								<SnackbarProvider
+									maxSnack={3}
+									anchorOrigin={{
+										horizontal: 'center',
+										vertical: 'top',
+									}}
+								>
+									<Component {...pageProps} />
+									<Script src="https://cdn.jsdelivr.net/npm/donate3-sdk@1.0.43/dist/webpack/bundle.js" />
+								</SnackbarProvider>
+							</ThemeProvider>
+						</ColorModeContext.Provider>
+					</NextIntlProvider>
+				</RainbowKitProvider>
+			</WagmiConfig>
+		</>
 	)
 }
