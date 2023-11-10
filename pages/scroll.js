@@ -15,6 +15,8 @@ import * as React from 'react'
 import { useSigner, useSendTransaction } from 'wagmi'
 import { useAccount, useNetwork, chain, useSwitchNetwork } from 'wagmi'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack'
+
 import Link from 'next/link'
 const steps = [
 	{
@@ -39,6 +41,7 @@ export default function Scroll() {
 	const [activeStep, setActiveStep] = React.useState(0)
 	const { isConnected } = useAccount()
 	const { chain: currectChain } = useNetwork()
+	const { enqueueSnackbar } = useSnackbar()
 	const { data: signer } = useSigner({
 		onError(error) {
 			console.log('Error', error)
@@ -51,6 +54,15 @@ export default function Scroll() {
 		},
 		onSuccess(transaction) {
 			setActiveStep((prevActiveStep) => prevActiveStep + 1)
+		},
+		onError(error) {
+			if (
+				error?.data?.message.includes(
+					'err: insufficient funds for gas * price + value'
+				)
+			) {
+				enqueueSnackbar('Insufficient Gas')
+			}
 		},
 	})
 	const { chains, switchNetwork } = useSwitchNetwork()

@@ -7,7 +7,7 @@ import {
 	lightTheme,
 	midnightTheme,
 } from '@rainbow-me/rainbowkit'
-
+import { SnackbarProvider } from 'notistack'
 /* RainbowKit imports */
 import '@rainbow-me/rainbowkit/styles.css'
 import { getAccount } from '@wagmi/core'
@@ -96,7 +96,15 @@ export default function App({ Component, pageProps }) {
 					<NextIntlProvider messages={pageProps.messages}>
 						<ColorModeContext.Provider value={colorMode}>
 							<ThemeProvider theme={theme}>
-								<Component {...pageProps} />
+								<SnackbarProvider
+									maxSnack={3}
+									anchorOrigin={{
+										horizontal: 'center',
+										vertical: 'top',
+									}}
+								>
+									<Component {...pageProps} />
+								</SnackbarProvider>
 							</ThemeProvider>
 						</ColorModeContext.Provider>
 					</NextIntlProvider>
