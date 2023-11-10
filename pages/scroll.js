@@ -69,17 +69,6 @@ export default function Scroll() {
 	const { chains, switchNetwork } = useSwitchNetwork()
 	const { openConnectModal } = useConnectModal()
 
-	// React.useEffect(() => {
-	// 	if (!isConnected && activeStep >= 1) {
-	// 		openConnectModal()
-	// 	}
-	// 	console.log(chains[2])
-	// 	console.log(chain.optimismGoerli)
-	// 	if (currectChain?.id != 534352) {
-	// 		switchNetwork?.(chains[2].id)
-	// 	}
-	// }, [isConnected, activeStep])
-
 	const handleNext = async () => {
 		if (activeStep === 0) {
 			switchNetwork?.(chains[2].id)
