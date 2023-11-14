@@ -320,6 +320,7 @@ export default function Scroll() {
 																		}
 																		sx={{
 																			color: '#888',
+
 																			fontSize:
 																				'15px',
 																			':hover':
@@ -354,7 +355,10 @@ export default function Scroll() {
 											<Button
 												variant="contained"
 												onClick={handleNext}
-												sx={{ mt: 1, mr: 1 }}
+												sx={{
+													mt: 1,
+													mr: 1,
+												}}
 												size="small"
 												disabled={index == 3}
 											>
@@ -362,6 +366,8 @@ export default function Scroll() {
 													<Link
 														href="https://scroll.io/developer-nft/check-eligibility"
 														target="_blank"
+														sx={{ color: '#fff' }}
+														underline="none"
 													>
 														{getText(
 															activeStep,
