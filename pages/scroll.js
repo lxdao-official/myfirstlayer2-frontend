@@ -1,40 +1,55 @@
 import { MFL2ConnectButton } from '../components/MFL2ConnectButton'
+import { ExpandMore, LinkOutlined, TipsAndUpdates } from '@mui/icons-material'
 import {
+	Accordion,
+	AccordionDetails,
+	AccordionSummary,
 	Box,
 	Button,
 	Divider,
-	Paper,
 	Step,
 	StepContent,
 	StepLabel,
 	Stepper,
 	Typography,
-	useTheme,
+	Link,
 } from '@mui/material'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import Image from 'next/image'
-import Link from 'next/link'
-import { SnackbarProvider, VariantType, useSnackbar } from 'notistack'
+import { useSnackbar } from 'notistack'
 import * as React from 'react'
 import { useSigner, useSendTransaction } from 'wagmi'
-import { useAccount, useNetwork, chain, useSwitchNetwork } from 'wagmi'
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 
 const steps = [
 	{
 		label: 'Switch your wallet network to "Scroll"',
-		description: ``,
+		description: [{ title: '', url: '' }],
 	},
 	{
 		label: 'Deploy a smart contract',
-		description: '',
+		description: [
+			{
+				title: 'Owlto Finance',
+				url: 'https://owlto.finance/rewards/?ref=0xb45e9f74d0a35fe1aa0b78fea03877ef96ae8dd2',
+			},
+			{
+				title: 'Orbiter Finance',
+				url: 'https://www.orbiter.finance/?source=Arbitrum&dest=Scroll&token=ETH',
+			},
+			{
+				title: 'Rhino.fi',
+				url: 'https://app.rhino.fi/bridge?token=ETH&chainOut=SCROLL&chain=ETHEREUM',
+			},
+		],
 	},
 	{
 		label: 'Check if you are eligible',
-		description: ``,
+		description: [{ title: '', url: '' }],
 	},
 	{
 		label: 'Mint the Scroll Origins NFT',
-		description: ``,
+		description: [{ title: '', url: '' }],
 	},
 ]
 
@@ -68,7 +83,6 @@ export default function Scroll() {
 	})
 	const { chains, switchNetwork } = useSwitchNetwork()
 	const { openConnectModal } = useConnectModal()
-
 	const handleNext = async () => {
 		if (activeStep === 0) {
 			switchNetwork?.(chains[2].id)
@@ -82,30 +96,8 @@ export default function Scroll() {
 			setActiveStep((prevActiveStep) => prevActiveStep + 1)
 		}
 	}
-
 	const handleBack = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1)
-	}
-
-	const titles = {
-		en: [
-			{ href: '#introduce', title: 'Introduce', target: '_self' },
-			{ href: '#content', title: 'Content', target: '_self' },
-			{
-				href: 'https://lxdao.io/joinus',
-				title: 'Join Us',
-				target: '_blank',
-			},
-		],
-		zh: [
-			{ href: '#introduce', title: '介绍', target: '_self' },
-			{ href: '#content', title: '内容', target: '_self' },
-			{
-				href: 'https://lxdao.io/joinus',
-				title: '加入我们',
-				target: '_blank',
-			},
-		],
 	}
 
 	function getText(activeStep, index) {
@@ -114,6 +106,7 @@ export default function Scroll() {
 		} else
 			return index === steps.length - 1 ? 'Wait Dec 15, 2023' : 'Continue'
 	}
+
 	return (
 		<>
 			{/* Nav */}
@@ -243,7 +236,7 @@ export default function Scroll() {
 						maxWidth: 500,
 						background: '#fffdfc',
 						padding: 4,
-						height: '55vh',
+						height: '65vh',
 						width: '30vw',
 						borderRadius: '6px',
 					}}
@@ -279,9 +272,83 @@ export default function Scroll() {
 									</Typography>
 								</StepLabel>
 								<StepContent>
-									<Typography sx={{ color: '#333' }}>
-										{step.description}
-									</Typography>
+									{index == 1 ? (
+										<Box>
+											<Accordion
+												sx={{
+													backgroundColor: '#fffdfc',
+													boxShadow: 'none',
+												}}
+											>
+												<AccordionSummary
+													expandIcon={<ExpandMore />}
+													aria-controls="panel1a-content"
+													id="panel1a-header"
+												>
+													<Typography
+														sx={{
+															fontWeight: '600',
+															fontSize: '15px',
+															borderRadius: '6px',
+															color: '#666',
+														}}
+													>
+														<TipsAndUpdates
+															sx={{
+																fontSize:
+																	'15px',
+															}}
+														/>{' '}
+														No Gas Fee? Try Bridges
+														below
+													</Typography>
+												</AccordionSummary>
+												<AccordionDetails>
+													<Typography
+														sx={{
+															color: '#888',
+														}}
+													>
+														{step.description.map(
+															(item) => (
+																<Box
+																	key={index}
+																>
+																	<Link
+																		href={
+																			item.url
+																		}
+																		sx={{
+																			color: '#888',
+																			fontSize:
+																				'15px',
+																			':hover':
+																				{
+																					color: '#666',
+																				},
+																			display:
+																				'flex',
+																			alignItems:
+																				'center',
+																			gap: 0.5,
+																		}}
+																	>
+																		<LinkOutlined />
+																		{
+																			item.title
+																		}
+																	</Link>
+																</Box>
+															)
+														)}
+													</Typography>
+												</AccordionDetails>
+											</Accordion>
+										</Box>
+									) : (
+										''
+									)}
+
 									<Box sx={{ mb: 2 }}>
 										<div>
 											<Button
@@ -319,21 +386,6 @@ export default function Scroll() {
 							</Step>
 						))}
 					</Stepper>
-					{/* {activeStep === steps.length && (
-						<Paper square elevation={0} sx={{ p: 3 }}>
-							<Typography>
-								All steps completed - you&apos;re finished
-							</Typography>
-							<Button
-								size="small"
-								variant="contained"
-								onClick={handleBack}
-								sx={{ mt: 1, mr: 1 }}
-							>
-								Back
-							</Button>
-						</Paper>
-					)} */}
 				</Box>
 			</Box>
 		</>
