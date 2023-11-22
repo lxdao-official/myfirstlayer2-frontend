@@ -16,7 +16,7 @@ export default function ZksyncSwap() {
 					width: '330px',
 					scale: { xs: '0.9', sm: '1' },
 				}}
-				src="https://mfl2-zk-proxy.myfirst.io"
+				src="https://portal.txsync.io/bridge/"
 			/>
 		</Box>
 	)
