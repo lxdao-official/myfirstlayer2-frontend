@@ -12,7 +12,8 @@ import {
 } from '@mui/material'
 import { useLocale } from 'next-intl'
 import { useEffect } from 'react'
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from 'react'
+
 interface MainProps {
 	children: ReactNode
 }

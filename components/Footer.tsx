@@ -84,7 +84,7 @@ const NavList: React.FC<NavListProps> = ({ title, items }) => (
 const Footer = () => {
 	const theme = useTheme()
 	return (
-		<Box sx={{ background: '#ffffff' }} width="100%">
+		<Box sx={{ background: '#ffffff' }} width="100%" mt={'110px'}>
 			<Container paddingY={{ md: '50px', xs: '44px' }} margin="0 auto">
 				<Box
 					display="flex"
@@ -101,7 +101,7 @@ const Footer = () => {
 									},
 									{
 										name: 'My First Layer2',
-										link: '',
+										link: 'https://layer2.myfirst.io/',
 									},
 								]}
 							/>

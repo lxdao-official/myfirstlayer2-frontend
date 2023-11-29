@@ -12,9 +12,10 @@ import { useTheme } from '@mui/material/styles'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import React from 'react'
+
 interface IndexProps {
-	content: any; // 替换为适当的类型
-	directory: string;
+	content: any // 替换为适当的类型
+	directory: string
 }
 
 const Index: React.FC<IndexProps> = ({ content, directory }) => {
@@ -34,7 +35,7 @@ const Index: React.FC<IndexProps> = ({ content, directory }) => {
 		</Main>
 	)
 }
-export default Index;
+export default Index
 export async function getStaticProps(params: { locale: string }) {
 	const { locale = 'en' } = params
 

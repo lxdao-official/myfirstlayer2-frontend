@@ -91,12 +91,13 @@ export default function MintBadge() {
 		}
 		try {
 			setMintLoading(true)
-			const response = await fetch('/api/upload/png', {
-				method: 'POST',
-				body: modifiedImgSrc,
-			})
-			const body = await response.json()
-			const { cid } = body
+			// const response = await fetch('/api/upload/png', {
+			// 	method: 'POST',
+			// 	body: modifiedImgSrc,
+			// })
+			// const body = await response.json()
+			const { cid } =
+				'bafybeid32xbjnbknrv7dy5bcvccrwzt4v46w3ghfgk3djcz4esillvgdoq'
 			const data = btoa(
 				JSON.stringify({
 					name: 'mflayer2-badge',

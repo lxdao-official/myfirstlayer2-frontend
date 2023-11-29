@@ -446,7 +446,7 @@ export default function SectionTeam() {
 			desc={t('sectionTeam-title-12')}
 			id="team"
 		>
-			<Box padding={{ xs: 2, sm: '0px' }} mb="110px">
+			<Box padding={{ xs: 2, sm: '0px' }} mb="90px">
 				<Grid container spacing={2.5}>
 					{coreContributors.map((item, i) => (
 						<Grid
@@ -457,7 +457,7 @@ export default function SectionTeam() {
 								}
 							}}
 							item
-							xs={12 / 5}
+							xs={12 / 7}
 							sm={12 / 7}
 							md={12 / 12}
 							key={i}
