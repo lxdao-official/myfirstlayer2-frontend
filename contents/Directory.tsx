@@ -118,9 +118,9 @@ export function PcDirectory(props: directoryProps) {
 					py: '32px',
 					mb: '32px',
 				}}
-			// backgroundColor={
-			// 	theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'
-			// }
+			backgroundColor={
+				theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'
+			}
 			>
 				<Progress></Progress>
 			</Box>
@@ -132,9 +132,9 @@ export function PcDirectory(props: directoryProps) {
 					pb: '43px',
 					paddingX: '11px',
 				}}
-			// backgroundColor={
-			// 	theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'
-			// }
+			backgroundColor={
+				theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'
+			}
 			>
 				<Box>
 					{directory?.map((row: chapterType, rowIndex: number) => {

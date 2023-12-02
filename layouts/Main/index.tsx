@@ -1,26 +1,34 @@
 import Container from '../../components/Container'
 import Language from '../../components/Language'
 import { MFL2ConnectButton } from '../../components/MFL2ConnectButton'
-import { ChevronRight } from '@mui/icons-material'
 import {
 	Box,
 	Divider,
-	Link as MuiLink,
+	Link,
 	Stack,
 	Typography,
 	useMediaQuery,
 	useTheme,
-	Tooltip,
-	Avatar,
 } from '@mui/material'
 import { useLocale } from 'next-intl'
-import Link from 'next/link'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
+import React, { ReactNode } from 'react'
 
-const Main = ({ children = false }) => {
+interface MainProps {
+	children: ReactNode
+}
+const Main: React.FC<MainProps> = ({ children }) => {
 	const locale = useLocale()
 	const theme = useTheme()
-	const titles = {
+	interface Title {
+		href: string
+		title: string
+		target: string
+	}
+	interface Titles {
+		[key: string]: Title[]
+	}
+	const titles: Titles = {
 		en: [
 			{ href: '#introduce', title: 'Introduce', target: '_self' },
 			{ href: '#content', title: 'Content', target: '_self' },
@@ -40,51 +48,6 @@ const Main = ({ children = false }) => {
 			},
 		],
 	}
-	const partners = [
-		{
-			id: '0',
-			name: 'Optimism',
-			logo: '/partners/optimism.png',
-			url: 'https://www.optimism.io/',
-		},
-		{
-			id: '1',
-			name: 'Arbitrum',
-			logo: '/partners/arbitrum.png',
-			url: 'https://arbitrum.io/',
-		},
-		{
-			id: '2',
-			name: 'Polygon',
-			logo: '/partners/polygon.png',
-			url: 'https://polygon.technology/',
-		},
-		{
-			id: '3',
-			name: 'Base',
-			logo: '/partners/base.png',
-			url: 'https://base.org/',
-		},
-
-		{
-			id: '4',
-			name: 'Scroll',
-			logo: '/partners/scroll.png',
-			url: 'https://scroll.io/',
-		},
-		{
-			id: '5',
-			name: 'Mantle',
-			logo: '/partners/mantle.png',
-			url: 'https://www.mantle.xyz/',
-		},
-		{
-			id: '6',
-			name: 'Linea',
-			logo: '/partners/linea.png',
-			url: 'https://linea.build/',
-		},
-	]
 
 	const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
 
@@ -171,21 +134,6 @@ const Main = ({ children = false }) => {
 								alignItems="center"
 								display="flex"
 							>
-								{/* <Typography
-									sx={{
-										cursor: 'pointer',
-										fontSize: {
-											xs: '12px',
-											sm: '16px',
-										},
-										fontWeight: '500',
-										textDecoration: 'none',
-										color: theme.palette.primary
-											.contrastText,
-									}}
-								>
-									Chains
-								</Typography> */}
 								{titles[locale].map((v, i) => {
 									return (
 										<Box
@@ -206,7 +154,7 @@ const Main = ({ children = false }) => {
 													fontWeight: '500',
 												}}
 											>
-												<MuiLink
+												<Link
 													sx={{
 														textDecoration: 'none',
 														color: theme.palette
@@ -217,7 +165,7 @@ const Main = ({ children = false }) => {
 													target={v.target}
 												>
 													{v.title}
-												</MuiLink>
+												</Link>
 											</Typography>
 										</Box>
 									)
@@ -256,94 +204,13 @@ const Main = ({ children = false }) => {
 							<Box
 								sx={{
 									left: 0,
-									width: 'auto',
+									width: '300px',
 									right: 0,
 									margin: '0 auto',
 									ml: '60px',
 								}}
 							>
 								<Box gap={4} display="flex" alignItems="center">
-									{/* TODO: chains section (issue #147 | issue #148) */}
-									<Tooltip
-										title={
-											<Box
-												sx={{
-													display: 'flex',
-													flexDirection: 'column',
-													alignItems: 'start',
-													justifyContent: 'center',
-													gap: 0.5,
-													padding: 1.5,
-												}}
-											>
-												{partners.map((partner) => (
-													<Box
-														key={partners.id}
-														sx={{
-															display: 'flex',
-															alignItems:
-																'center',
-															justifyContent:
-																'center',
-															my: 1,
-															textDecoration:
-																'none',
-															cursor: 'pointer',
-															width: 150,
-														}}
-													>
-														<Avatar
-															alt={partner.name}
-															src={partner.logo}
-															sx={{
-																mr: 1,
-																width: 28,
-																height: 28,
-																objectFit:
-																	'contain',
-																objectPosition:
-																	'center',
-															}}
-														/>
-														<MuiLink
-															sx={{
-																fontSize:
-																	'15px',
-																textDecoration:
-																	'none',
-																color: theme
-																	.palette
-																	.primary
-																	.contrastText,
-																cursor: 'pointer',
-															}}
-															href={partner.url}
-														>
-															{partner.name}
-														</MuiLink>
-														<ChevronRight
-															sx={{ ml: 'auto' }}
-														/>
-													</Box>
-												))}
-											</Box>
-										}
-										placement="bottom"
-										arrow
-									>
-										<Typography
-											sx={{
-												textDecoration: 'none',
-												cursor: 'pointer',
-												fontSize: '15px',
-												lineHeight: '1.5',
-												fontWeight: '600',
-												color: '#fff',
-											}}
-										>
-											Chains
-										</Typography>
-									</Tooltip>
 									{titles[locale].map((v, i) => (
 										<Box
 											key={i}
@@ -360,7 +227,7 @@ const Main = ({ children = false }) => {
 													fontWeight: '600',
 												}}
 											>
-												<MuiLink
+												<Link
 													sx={{
 														textDecoration: 'none',
 														color: theme.palette
@@ -372,47 +239,10 @@ const Main = ({ children = false }) => {
 													target={v.target}
 												>
 													{v.title}
-												</MuiLink>
+												</Link>
 											</Typography>
 										</Box>
 									))}
-									<Divider
-										orientation="vertical"
-										sx={{
-											borderColor:
-												theme.palette.primary
-													.contrastText,
-											height: '16px',
-											marginInline: '1px',
-										}}
-									/>
-									<Link href="scroll" target="_blank">
-										<Box
-											sx={{
-												display: 'flex',
-												flexDirection: 'column',
-												alignItems: 'center',
-												border: '1px solid #333',
-												padding: 1,
-												':hover': {
-													backgroundColor: '#333',
-												},
-												transition: 'all 0.2s',
-												borderRadius: '6px',
-											}}
-										>
-											<Typography
-												sx={{
-													fontSize: '15px',
-													lineHeight: '1.5',
-													fontWeight: '600',
-													color: '#fff',
-												}}
-											>
-												📜 Scroll Origins NFT
-											</Typography>
-										</Box>
-									</Link>
 								</Box>
 							</Box>
 						</Box>
