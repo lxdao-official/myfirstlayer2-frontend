@@ -376,7 +376,7 @@ const Main = ({ children = false }) => {
 											</Typography>
 										</Box>
 									))}
-									<Divider
+									{/* <Divider
 										orientation="vertical"
 										sx={{
 											borderColor:
@@ -385,8 +385,8 @@ const Main = ({ children = false }) => {
 											height: '16px',
 											marginInline: '1px',
 										}}
-									/>
-									<Link href="scroll" target="_blank">
+									/> */}
+									{/* <Link href="scroll" target="_blank">
 										<Box
 											sx={{
 												display: 'flex',
@@ -412,7 +412,7 @@ const Main = ({ children = false }) => {
 												📜 Scroll Origins NFT
 											</Typography>
 										</Box>
-									</Link>
+									</Link> */}
 								</Box>
 							</Box>
 						</Box>
