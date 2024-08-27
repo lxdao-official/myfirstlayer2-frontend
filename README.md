@@ -5,7 +5,7 @@ MyFirstLayer2 is an education project for newbies to learn and interact with Lay
 -   MyFirstLayer2 Website: <https://layer2.myfirst.io/>
 -   LXDAO Website: <https://lxdao.io/>
 -   LXDAO Forum: <https://forum.lxdao.io/c/projects/010-myfirstlayer2/28>
--   LXDAO Discord: <https://discord.lxdao.io>
+-   LXDAO Telegram: <https://t.me/LXDAO>
 -   LXDAO Twitter: <https://twitter.com/LXDAO_Official>
 
 As it is a public goods, all of the source code are open sourced:
