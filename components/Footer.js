@@ -94,7 +94,7 @@ const Footer = () => {
 									},
 									{
 										name: 'My First Layer2',
-										link: 'https://layer2.myfirst.io/',
+										link: 'https://layer2.myfirstweb3.xyz/',
 									},
 								]}
 							/>
